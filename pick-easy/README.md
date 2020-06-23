@@ -2,7 +2,7 @@
 
 ## Development server
 
-Run `npm start-dev` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm run start-dev` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
@@ -10,7 +10,7 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-Run `ng build-prod` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `ng run build-prod` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Running unit tests
 
