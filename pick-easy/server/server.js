@@ -9,7 +9,7 @@ let passport = require("passport");
 // let apiRoute = require("./routes/index");
 let app = express();
 
-if (process.env.PRODUCTION) {
+if (process.env.NODE_ENV == "production") {
   app.use(express.static(path.join(__dirname, "../dist/pick-easy")));
   app.get("/*", (req, res) => res.sendFile(path.join(__dirname)));
 } else {
