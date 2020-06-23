@@ -6,6 +6,7 @@
     "dev": "run-p dev:*",
     "dev:client": "ng serve --proxy-config server/server.conf.json",
     "dev:server": "nodemon server/server.js",
+    "debug": "run-p dev:client debug:server",
     "debug:server": "nodemon --inspect-brk server/server.js",
     "start": "run-s start:*",
     "start:build": "ng build --prod",
