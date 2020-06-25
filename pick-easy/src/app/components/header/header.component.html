@@ -1,0 +1,46 @@
+<mat-toolbar id="toolbar">
+  <mat-toolbar-row>
+    <div class="space-evenly">
+      <a mat-button routerLink="/discover" *ngIf="currentUser">
+        <mat-icon class="gradient-text">storefront</mat-icon>
+        <span class="gradient-text">Discover</span>
+      </a>
+      <a mat-button routerLink="/my-picks" *ngIf="currentUser">
+        <mat-icon class="gradient-text">local_dining</mat-icon>
+        <span class="gradient-text">My Picks</span>
+      </a>
+    </div>
+
+    <div>
+      <a routerLink="/" id="app-name">
+        <span class="gradient-text app-icon">PickEasy</span>
+      </a>
+    </div>
+
+    <div style="flex: 1;">
+      <div class="space-evenly">
+        <a mat-button routerLink="/groups" *ngIf="currentUser">
+          <mat-icon class="gradient-text">group</mat-icon>
+          <span class="gradient-text">Groups</span>
+        </a>
+        <a mat-button routerLink="/profile" *ngIf="currentUser">
+          <mat-icon class="gradient-text">person</mat-icon>
+          <span class="gradient-text">Profile</span>
+        </a>
+      </div>
+    </div>
+    <button
+      mat-button
+      id="sign-out-button"
+      class="gradient-text"
+      (click)="signOut()"
+      *ngIf="currentUser"
+    >
+      Sign Out
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div id="sign-out-overlay" *ngIf="signingOut">
+  <mat-spinner color="accent"></mat-spinner>
+</div>

@@ -1,0 +1,12 @@
+#credits {
+  width: stretch;
+  height: stretch;
+  overflow-y: auto;
+  padding: 64px 0 0 24px;
+}
+
+.title {
+  display: block;
+  font-size: x-large;
+  margin-top: 24px;
+}

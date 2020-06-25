@@ -6,7 +6,11 @@ let express = require("express");
 let bodyParser = require("body-parser");
 let mongoose = require("mongoose");
 let passport = require("passport");
-// let apiRoute = require("./routes/index");
+
+require("./models/user");
+require("./config/passport");
+
+let apiRoute = require("./routes/index");
 let app = express();
 
 if (process.env.NODE_ENV == "production") {
@@ -18,7 +22,7 @@ if (process.env.NODE_ENV == "production") {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
-// app.use("/api", apiRoute);
+app.use("/api", apiRoute);
 
 app.use((req, res, next) => {
   let error = new Error("Not Found");

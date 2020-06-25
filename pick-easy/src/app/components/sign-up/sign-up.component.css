@@ -1,0 +1,21 @@
+#sign-up-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#sign-up-form {
+  padding: 0 1rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.names {
+  width: calc(50% - 0.5rem);
+}
+
+mat-form-field {
+  margin-bottom: 0.5rem;
+}
