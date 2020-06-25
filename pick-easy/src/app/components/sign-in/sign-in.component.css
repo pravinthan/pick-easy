@@ -1,0 +1,17 @@
+#sign-in-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#sign-in-form {
+  padding: 0 1rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+mat-form-field {
+  margin-bottom: 0.5rem;
+}

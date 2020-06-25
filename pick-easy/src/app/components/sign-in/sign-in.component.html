@@ -1,0 +1,39 @@
+<div id="sign-in-container">
+  <h1>Sign In</h1>
+  <form #form="ngForm" id="sign-in-form" (ngSubmit)="signIn(form)">
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        name="username"
+        required
+        placeholder="Username"
+        ngModel
+        minlength="3"
+        maxlength="20"
+        pattern="[a-zA-Z0-9]+"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        type="password"
+        name="password"
+        required
+        placeholder="Password"
+        ngModel
+        minlength="8"
+        maxlength="20"
+      />
+    </mat-form-field>
+
+    <button
+      mat-stroked-button
+      color="primary"
+      class="full-width"
+      [disabled]="loading || form.invalid"
+    >
+      Sign In
+    </button>
+  </form>
+</div>
