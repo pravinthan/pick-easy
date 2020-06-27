@@ -1,0 +1,23 @@
+<h1>Loyalties and Rewards</h1>
+<mat-card *ngFor="let restuarant of restuarants" class="example-card">
+ 
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{restuarant.name}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src={{restuarant.picture}} alt="Photo of a restuarant">
+    <mat-card-content>
+        <p>Restuarant ID: {{restuarant.id}}</p>
+        <br>
+        <p> {{restuarant.description}}.
+        <br>
+           This a {{restuarant.cuisine}} restuarant.
+       </p>
+       <div style="text-align:center">
+        <star-rating value= {{restuarant.rating}} totalstars="5" checkedcolor="red" uncheckedcolor="black" size="24px" readonly="false" (rate)="onRate($event)"></star-rating>
+      </div>
+      <p>Progress Bar:</p>
+      <mat-progress-bar mode="determinate" value= {{restuarant.progress}}></mat-progress-bar>
+    </mat-card-content>
+  </mat-card>
+  

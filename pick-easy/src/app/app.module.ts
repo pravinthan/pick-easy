@@ -24,6 +24,11 @@ import { FormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatIconModule } from "@angular/material/icon";
+import { LoyaltyComponent } from './components/loyalty/loyalty.component';
+import { MatCardModule } from "@angular/material/card";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { RatingModule } from 'ng-starrating';
+
 
 @NgModule({
   declarations: [
@@ -34,6 +39,7 @@ import { MatIconModule } from "@angular/material/icon";
     HomeComponent,
     PageNotFoundComponent,
     CreditsComponent,
+    LoyaltyComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +55,9 @@ import { MatIconModule } from "@angular/material/icon";
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    MatCardModule,
+    MatProgressBarModule,
+    RatingModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
