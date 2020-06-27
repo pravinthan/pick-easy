@@ -28,7 +28,7 @@ export class AuthenticationService {
   public get currentUser(): User {
     if (this.currentUserSubject.value) {
       const token = this.parseJWT(this.currentUserSubject.value.token);
-      if (token) return new User(token._id, token.username);
+      if (token) {return new User(token._id, token.username)};
     }
 
     return null;

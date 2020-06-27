@@ -24,6 +24,7 @@ import { FormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatIconModule } from "@angular/material/icon";
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { MatIconModule } from "@angular/material/icon";
     HomeComponent,
     PageNotFoundComponent,
     CreditsComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
