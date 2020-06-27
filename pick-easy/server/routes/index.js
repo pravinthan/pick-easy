@@ -1,11 +1,12 @@
 let express = require("express");
 let router = express.Router();
-let { body } = require("express-validator");
+let { body, param } = require("express-validator");
 let jwt = require("express-jwt");
 
 let auth = jwt({ secret: process.env.JWT_SECRET });
 
 let authenticationController = require("../controllers/authentication");
+let restaurantController = require("../controllers/restaurant");
 
 // Authentication
 router.post(
@@ -13,6 +14,7 @@ router.post(
   [
     body("firstName").trim().isAlpha().isLength({ min: 1, max: 20 }).escape(),
     body("lastName").trim().isAlpha().isLength({ min: 1, max: 20 }).escape(),
+    body("isRestaurantOwner").isBoolean().escape(),
     body("username")
       .trim()
       .isAlphanumeric()
@@ -35,19 +37,19 @@ router.post(
   authenticationController.signIn
 );
 
-// // Restaurants
-// router.get("/restaurants", auth, projectController.retrieveAllRestaurants);
-// router.get(
-//   "/restaurants/:id",
-//   auth,
-//   [
-//     param("id")
-//       .exists({ checkNull: true, checkFalsy: true })
-//       .trim()
-//       .isMongoId()
-//       .escape(),
-//   ],
-//   projectController.retrieveRestaurantById
-// );
+// Restaurants
+router.get("/restaurants", auth, restaurantController.retrieveAllRestaurants);
+router.get(
+  "/restaurants/:id",
+  auth,
+  [
+    param("id")
+      .exists({ checkNull: true, checkFalsy: true })
+      .trim()
+      .isMongoId()
+      .escape(),
+  ],
+  restaurantController.retrieveRestaurantById
+);
 
 module.exports = router;
