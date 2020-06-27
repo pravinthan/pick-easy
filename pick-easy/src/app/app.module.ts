@@ -24,7 +24,7 @@ import { FormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatIconModule } from "@angular/material/icon";
-import { LoyaltyComponent } from './components/loyalty/loyalty.component';
+import { MyPicksComponent } from './components/my-picks/my-picks.component';
 import { MatCardModule } from "@angular/material/card";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { RatingModule } from 'ng-starrating';
@@ -39,7 +39,7 @@ import { RatingModule } from 'ng-starrating';
     HomeComponent,
     PageNotFoundComponent,
     CreditsComponent,
-    LoyaltyComponent,
+    MyPicksComponent,
   ],
   imports: [
     BrowserModule,
