@@ -42,6 +42,11 @@ let restaurantSchema = new Schema({
       "Korean",
     ],
   },
+  isOfferingLoyalty: Boolean,
+  loyalty: {
+    type: Number,
+    min: 1,
+  }
 });
 
 mongoose.model("Restaurant", restaurantSchema);

@@ -14,6 +14,17 @@ let userSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  loyalties: [
+    {
+      restaurantId: {
+        type: Schema.Types.objectId,
+      },
+      progress: {
+        type: Number,
+        min: 0,
+      },
+    }
+  ],
   hash: String,
   salt: String,
 });
