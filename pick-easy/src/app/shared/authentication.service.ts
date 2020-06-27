@@ -65,7 +65,8 @@ export class AuthenticationService {
     username: string,
     password: string,
     firstName: string,
-    lastName: string
+    lastName: string,
+    isRestaurantOwner: boolean
   ) {
     return this.http
       .post<any>(`/api/users/signup`, {
@@ -73,6 +74,7 @@ export class AuthenticationService {
         password,
         firstName,
         lastName,
+        isRestaurantOwner,
       })
       .pipe(
         map((user) => {

@@ -41,9 +41,16 @@ mat-icon.gradient-text {
 #app-name {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-.app-icon {
+#app-icon {
+  width: 36px;
+  height: 36px;
+  margin-right: 0.5rem;
+}
+
+.app-logo-text {
   font-size: 36px;
 }
 

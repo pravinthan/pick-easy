@@ -8,6 +8,7 @@ let mongoose = require("mongoose");
 let passport = require("passport");
 
 require("./models/user");
+require("./models/restaurant");
 require("./config/passport");
 
 let apiRoute = require("./routes/index");

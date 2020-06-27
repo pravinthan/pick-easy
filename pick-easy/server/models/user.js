@@ -10,6 +10,10 @@ let userSchema = new Schema({
   },
   firstName: String,
   lastName: String,
+  isRestaurantOwner: {
+    type: Boolean,
+    default: false,
+  },
   hash: String,
   salt: String,
 });

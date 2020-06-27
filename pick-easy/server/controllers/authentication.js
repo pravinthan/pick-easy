@@ -17,6 +17,7 @@ module.exports.signUp = (req, res) => {
       newUser.firstName = req.body.firstName;
       newUser.lastName = req.body.lastName;
       newUser.username = req.body.username;
+      newUser.isRestaurantOwner = req.body.isRestaurantOwner;
       newUser.setPassword(req.body.password);
 
       newUser.save((err) => res.json({ token: newUser.generateJWT() }));
