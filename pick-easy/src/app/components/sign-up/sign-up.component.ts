@@ -12,6 +12,7 @@ import { Notyf } from "notyf";
 })
 export class SignUpComponent {
   loading = false;
+  isRestaurantOwner: boolean = false;
   @Output() signedUp = new EventEmitter();
 
   constructor(
@@ -31,7 +32,8 @@ export class SignUpComponent {
         form.value.username,
         form.value.password,
         form.value.firstName,
-        form.value.lastName
+        form.value.lastName,
+        this.isRestaurantOwner
       )
       .subscribe(
         (data) => {
