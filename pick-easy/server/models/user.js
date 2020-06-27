@@ -17,7 +17,7 @@ let userSchema = new Schema({
   loyalties: [
     {
       restaurantId: {
-        type: Schema.Types.objectId,
+        type: Schema.Types.ObjectId,
       },
       progress: {
         type: Number,
