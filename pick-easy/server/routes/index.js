@@ -6,6 +6,7 @@ let jwt = require("express-jwt");
 let auth = jwt({ secret: process.env.JWT_SECRET });
 
 let authenticationController = require("../controllers/authentication");
+let userController = require("../controllers/user");
 let restaurantController = require("../controllers/restaurant");
 
 // Authentication
@@ -35,6 +36,20 @@ router.post(
     body("password").trim().isLength({ min: 8, max: 20 }).escape(),
   ],
   authenticationController.signIn
+);
+
+// Users
+router.get(
+  "/users/:id",
+  auth,
+  [
+    param("id")
+      .exists({ checkNull: true, checkFalsy: true })
+      .trim()
+      .isMongoId()
+      .escape(),
+  ],
+  userController.retrieveUserById
 );
 
 // Restaurants
