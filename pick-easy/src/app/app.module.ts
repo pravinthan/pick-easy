@@ -29,6 +29,7 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatCardModule } from "@angular/material/card";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { RatingModule } from "ng-starrating";
+import { DiscoverComponent } from './components/discover/discover.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { RatingModule } from "ng-starrating";
     PageNotFoundComponent,
     CreditsComponent,
     MyPicksComponent,
+    DiscoverComponent,
   ],
   imports: [
     BrowserModule,
