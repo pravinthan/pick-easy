@@ -15,6 +15,7 @@ import { HomeComponent } from "./components/pages/home/home.component";
 import { PageNotFoundComponent } from "./components/pages/page-not-found/page-not-found.component";
 import { CreditsComponent } from "./components/pages/credits/credits.component";
 import { MyPicksComponent } from "./components/my-picks/my-picks.component";
+import { ProfileComponent } from "./components/profile/profile.component";
 
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -40,6 +41,7 @@ import { RatingModule } from "ng-starrating";
     PageNotFoundComponent,
     CreditsComponent,
     MyPicksComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

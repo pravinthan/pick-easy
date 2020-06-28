@@ -7,6 +7,7 @@ import { HomeComponent } from "./components/pages/home/home.component";
 import { CreditsComponent } from "./components/pages/credits/credits.component";
 import { MyPicksComponent } from "./components/my-picks/my-picks.component";
 import { AuthenticationGuard } from "./shared/authentication.guard";
+import { ProfileComponent } from "./components/profile/profile.component";
 
 const routes: Routes = [
   { path: "", pathMatch: "full", component: HomeComponent },
@@ -16,6 +17,11 @@ const routes: Routes = [
   {
     path: "my-picks",
     component: MyPicksComponent,
+    canActivate: [AuthenticationGuard],
+  },
+  {
+    path: "profile",
+    component: ProfileComponent,
     canActivate: [AuthenticationGuard],
   },
   { path: "**", component: PageNotFoundComponent },
