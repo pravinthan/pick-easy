@@ -10,9 +10,9 @@ Luke
     2.
     3.
 Evan
-    1.
-    2.
-    3.
+    1.Finished the UI design of the MyPicks component
+    2.Waiting for the leade developer to approve my pull request
+    3.I will be working on setting up the http requests 
 Anthony
     1. Finishing the profile component
     2. Waiting for lead developer to comfirm the code is acceptable
