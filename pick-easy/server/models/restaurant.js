@@ -46,7 +46,7 @@ let restaurantSchema = new Schema({
   loyalty: {
     type: Number,
     min: 1,
-  }
+  },
 });
 
 mongoose.model("Restaurant", restaurantSchema);

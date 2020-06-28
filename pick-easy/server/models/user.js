@@ -23,7 +23,7 @@ let userSchema = new Schema({
         type: Number,
         min: 0,
       },
-    }
+    },
   ],
   hash: String,
   salt: String,
