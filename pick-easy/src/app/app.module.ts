@@ -14,6 +14,7 @@ import { HeaderComponent } from "./components/header/header.component";
 import { HomeComponent } from "./components/pages/home/home.component";
 import { PageNotFoundComponent } from "./components/pages/page-not-found/page-not-found.component";
 import { CreditsComponent } from "./components/pages/credits/credits.component";
+import { MyPicksComponent } from "./components/my-picks/my-picks.component";
 
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -24,11 +25,9 @@ import { FormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatIconModule } from "@angular/material/icon";
-import { MyPicksComponent } from './components/my-picks/my-picks.component';
 import { MatCardModule } from "@angular/material/card";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
-import { RatingModule } from 'ng-starrating';
-
+import { RatingModule } from "ng-starrating";
 
 @NgModule({
   declarations: [
@@ -57,7 +56,7 @@ import { RatingModule } from 'ng-starrating';
     MatIconModule,
     MatCardModule,
     MatProgressBarModule,
-    RatingModule
+    RatingModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

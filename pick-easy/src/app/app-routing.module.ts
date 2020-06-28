@@ -12,9 +12,8 @@ const routes: Routes = [
   { path: "signin", component: SignInComponent },
   { path: "signup", component: SignUpComponent },
   { path: "credits", component: CreditsComponent },
-  { path : "my-picks", component: MyPicksComponent},
+  { path: "my-picks", component: MyPicksComponent },
   { path: "**", component: PageNotFoundComponent },
-
 ];
 
 @NgModule({

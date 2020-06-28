@@ -1,25 +1,46 @@
-<div id='container'> 
-<h1>Loyalties and Rewards</h1>
-<mat-card *ngFor="let restuarant of restuarants" class="example-card">
- 
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{restuarant.name}}</mat-card-title>
-    </mat-card-header>
-    <img mat-card-image src={{restuarant.picture}} alt="Photo of a restuarant">
-    <mat-card-content>
-        <p>Restuarant ID: {{restuarant.id}}</p>
-        <br>
-        <p> {{restuarant.description}}.
-        <br>
-           This a {{restuarant.cuisine}} restuarant.
-       </p>
-       <div style="text-align:center">
-        <star-rating value= {{restuarant.rating}} totalstars="5" checkedcolor="red" uncheckedcolor="black" size="24px" readonly="false" (rate)="onRate($event)"></star-rating>
+<div id="page">
+  <div id="content">
+    <div id="title">
+      <span class="gradient-text">My Picks</span>
+    </div>
+
+    <div id="restaurants">
+      <div class="restaurant" *ngFor="let restaurant of restaurants">
+        <mat-card class="restaurant-card">
+          <mat-card-header>
+            <div mat-card-avatar class="restaurant-logo"></div>
+            <mat-card-title>{{ restaurant.name }}</mat-card-title>
+            <mat-card-subtitle
+              >{{ restaurant.cuisine }} Restaurant ·
+              {{ "$".repeat(restaurant.cost) }}</mat-card-subtitle
+            >
+            <star-rating
+              [value]="restaurant.rating"
+              [totalstars]="5"
+              checkedcolor="red"
+              uncheckedcolor="black"
+              size="24px"
+              [readonly]="true"
+            ></star-rating>
+          </mat-card-header>
+          <img mat-card-image src="../../../assets/kfc.jpg" />
+          <mat-card-content>
+            <div class="description">
+              {{ restaurant.description }}
+            </div>
+            <div class="loyalty">
+              <mat-progress-bar
+                mode="determinate"
+                value="40"
+                color="warn"
+              ></mat-progress-bar>
+              <span class="loyalty-hint">
+                2/5 visits until reward
+              </span>
+            </div>
+          </mat-card-content>
+        </mat-card>
       </div>
-      <p>Progress Bar:</p>
-      <mat-progress-bar mode="determinate" value= {{restuarant.progress}}></mat-progress-bar>
-    </mat-card-content>
-  </mat-card>
+    </div>
+  </div>
 </div>
-  
