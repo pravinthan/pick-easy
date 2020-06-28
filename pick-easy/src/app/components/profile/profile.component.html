@@ -1,7 +1,22 @@
-<div id='container'>
-<h1>Profile Settings</h1>
-<h1>UserID: {{user._id}}</h1>
-<h1>Username: {{user.username}}</h1>
-<h1>First Name: {{user.firstName}}</h1>
-<h1>Last Name: {{user.lastName}}</h1>
+<div id="page">
+  <div id="content">
+    <div id="title">
+      <span class="gradient-text">Profile</span>
+    </div>
+
+    <div id="info-container">
+      <mat-form-field class="example-full-width">
+        <mat-label>Username</mat-label>
+        <input matInput disabled [value]="user.username" />
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>First Name</mat-label>
+        <input matInput disabled [value]="user.firstName" />
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Last Name</mat-label>
+        <input matInput disabled [value]="user.lastName" />
+      </mat-form-field>
+    </div>
+  </div>
 </div>

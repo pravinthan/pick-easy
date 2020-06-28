@@ -14,6 +14,7 @@ import { HeaderComponent } from "./components/header/header.component";
 import { HomeComponent } from "./components/pages/home/home.component";
 import { PageNotFoundComponent } from "./components/pages/page-not-found/page-not-found.component";
 import { CreditsComponent } from "./components/pages/credits/credits.component";
+import { ProfileComponent } from "./components/profile/profile.component";
 
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -24,7 +25,6 @@ import { FormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatIconModule } from "@angular/material/icon";
-import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
