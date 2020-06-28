@@ -14,9 +14,9 @@ Evan
     2.
     3.
 Anthony
-    1.
-    2.
-    3.
+    1. Finishing the profile component
+    2. Waiting for lead developer to comfirm the code is acceptable
+    3. Make changes specfied by lead developer (if any)
 Pravinthan
     1. Merged 2 pull requests
     2. Waiting on others to finish before merging their branches
