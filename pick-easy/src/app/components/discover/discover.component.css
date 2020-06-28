@@ -62,3 +62,7 @@ star-rating {
   display: flex;
   justify-content: flex-end;
 }
+
+.example-full-width {
+  width: 100%;
+}

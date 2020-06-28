@@ -1,12 +1,22 @@
 <div id="page">
   <div id="content">
     <div id="title">
-      <span class="gradient-text">My Picks</span>
+      <span class="gradient-text">Discover</span>
     </div>
 
     <div id="restaurants">
-      <div class="restaurant" *ngFor="let restaurant of restaurants">
-        <mat-card class="restaurant-card">
+      <mat-form-field>
+        <input type="text" placeholder="Enter Location" matInput [formControl]="myControl"
+             [matAutocomplete]="auto">
+           <mat-autocomplete #auto="matAutocomplete">
+             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+               {{option}}
+            </mat-option>
+        </mat-autocomplete>
+     </mat-form-field>
+
+      <div class="restaurant" *ngFor="let restaurant of restaurants" >
+        <mat-card class="restaurant-card" *ngIf="(filteredOptions | async).includes(restaurant.name)">
           <mat-card-header>
             <div mat-card-avatar class="restaurant-logo"></div>
             <mat-card-title>{{ restaurant.name }}</mat-card-title>
@@ -44,3 +54,29 @@
     </div>
   </div>
 </div>
+
+<!-- <div id="page">
+  <div id="content">
+    <div id="title">
+      <span class="gradient-text">Discover</span>
+    </div>
+
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <input type="text"
+                placeholder="Pick one"
+                aria-label="Number"
+                matInput
+                [formControl]="myControl"
+                [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of options" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+
+  </div>
+</div> -->
+

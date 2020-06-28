@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Restaurant } from "../../shared/models/restaurant.model";
+import {FormControl} from '@angular/forms';
+import { map, startWith } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -7,12 +10,14 @@ import { Restaurant } from "../../shared/models/restaurant.model";
   templateUrl: './discover.component.html',
   styleUrls: ['./discover.component.css']
 })
-export class DiscoverComponent {
-  restaurants: Restaurant[] = [
+export class DiscoverComponent implements OnInit {
+  myControl = new FormControl();
+  filteredOptions: Observable<string[]>;
+  restaurants: Array<Restaurant> = [
     {
       _id: "11",
       name: "Kinton Ramen",
-      description: "This is Kinton Ramen",
+      description: "This is Kinton Ramen, DEBUG for discover",
       rating: 1,
       cost: 1,
       cuisine: "Japanese",
@@ -34,4 +39,18 @@ export class DiscoverComponent {
       cuisine: "American",
     },
   ];
+
+  ngOnInit() {
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
+  }
+
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.restaurants.map(restaurant => restaurant.name).filter(name => name.toLowerCase().indexOf(filterValue) === 0);
+  }
 }
