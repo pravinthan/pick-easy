@@ -35,6 +35,7 @@
     "express-validator": "^6.6.0",
     "mongodb": "^3.5.9",
     "mongoose": "^5.9.20",
+    "ng-starrating": "^1.0.20",
     "notyf": "^3.7.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",

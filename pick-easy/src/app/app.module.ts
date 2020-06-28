@@ -14,6 +14,7 @@ import { HeaderComponent } from "./components/header/header.component";
 import { HomeComponent } from "./components/pages/home/home.component";
 import { PageNotFoundComponent } from "./components/pages/page-not-found/page-not-found.component";
 import { CreditsComponent } from "./components/pages/credits/credits.component";
+import { MyPicksComponent } from "./components/my-picks/my-picks.component";
 
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -25,6 +26,9 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatIconModule } from "@angular/material/icon";
 import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatCardModule } from "@angular/material/card";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { RatingModule } from "ng-starrating";
 
 @NgModule({
   declarations: [
@@ -35,6 +39,7 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
     HomeComponent,
     PageNotFoundComponent,
     CreditsComponent,
+    MyPicksComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +56,9 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
     MatInputModule,
     MatIconModule,
     MatCheckboxModule,
+    MatCardModule,
+    MatProgressBarModule,
+    RatingModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

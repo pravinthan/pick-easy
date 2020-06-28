@@ -5,6 +5,7 @@ import { SignInComponent } from "./components/sign-in/sign-in.component";
 import { PageNotFoundComponent } from "./components/pages/page-not-found/page-not-found.component";
 import { HomeComponent } from "./components/pages/home/home.component";
 import { CreditsComponent } from "./components/pages/credits/credits.component";
+import { MyPicksComponent } from "./components/my-picks/my-picks.component";
 import { AuthenticationGuard } from "./shared/authentication.guard";
 
 const routes: Routes = [
@@ -12,11 +13,11 @@ const routes: Routes = [
   { path: "signin", component: SignInComponent },
   { path: "signup", component: SignUpComponent },
   { path: "credits", component: CreditsComponent },
-  // {
-  //   path: "restaurants",
-  //   component: RestaurantsComponent,
-  //   canActivate: [AuthenticationGuard],
-  // },
+  {
+    path: "my-picks",
+    component: MyPicksComponent,
+    canActivate: [AuthenticationGuard],
+  },
   { path: "**", component: PageNotFoundComponent },
 ];
 
