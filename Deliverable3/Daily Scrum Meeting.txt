@@ -6,9 +6,9 @@ Date: June 28, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1.
-    2.
-    3.
+    1. Finished the search component
+    2. Nothing, now that I asked Pravinthan to help me
+    3. Will work on fine tuning the search component like formatting
 Evan
     1.Finished the UI design of the MyPicks component
     2.Waiting for the leade developer to approve my pull request
