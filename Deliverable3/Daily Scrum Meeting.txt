@@ -22,9 +22,9 @@ Pravinthan
     2. Waiting on others to finish before merging their branches
     3. Other than merging pull requests, nothing. I have some other homework to do
 Jeremy
-    1.
-    2.
-    3.
+    1. Finished backend design for the loyalty system
+    2. I wanted feedback for the design
+    3. Nothing
 
 --------------------------------------------------------------------------------------------
 Date: June 29, 2020
