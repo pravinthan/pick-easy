@@ -13,9 +13,11 @@ module.exports.retrieveUserById = async (req, res) => {
     if (!user)
       return res.status(404).send(`User ${req.params.id} does not exist`);
 
-    if (!req.user._id.equals(user._id)) return res.status(401);
+    if (!user._id.equals(req.user._id)) return res.status(401);
 
-    let userWithoutPassword = (({ hash, salt, ...rest }) => rest)(user);
+    let userWithoutPassword = (({ hash, salt, ...rest }) => rest)(
+      user.toJSON()
+    );
     res.json(userWithoutPassword);
   } catch (err) {
     res.sendStatus(500);
