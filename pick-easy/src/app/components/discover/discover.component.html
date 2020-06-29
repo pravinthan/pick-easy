@@ -5,15 +5,17 @@
     </div>
 
     <div id="restaurants">
-      <mat-form-field>
-        <input type="text" placeholder="Enter Location" matInput [formControl]="myControl"
-             [matAutocomplete]="auto">
-           <mat-autocomplete #auto="matAutocomplete">
-             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-               {{option}}
-            </mat-option>
-        </mat-autocomplete>
-     </mat-form-field>
+      <div id= "search">
+        <mat-form-field>
+          <input type="text" placeholder="Search Restaurants" matInput [formControl]="myControl"
+              [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{option}}
+              </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
 
       <div class="restaurant" *ngFor="let restaurant of restaurants" >
         <mat-card class="restaurant-card" *ngIf="(filteredOptions | async).includes(restaurant.name)">
@@ -38,45 +40,16 @@
             <div class="description">
               {{ restaurant.description }}
             </div>
-            <div class="loyalty">
-              <mat-progress-bar
-                mode="determinate"
-                value="40"
-                color="warn"
-              ></mat-progress-bar>
-              <span class="loyalty-hint">
-                2/5 visits until reward
-              </span>
+            <div class="favorite">
+              <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+                <mat-icon>favorite</mat-icon>
+              </button>
             </div>
+
           </mat-card-content>
         </mat-card>
       </div>
     </div>
   </div>
 </div>
-
-<!-- <div id="page">
-  <div id="content">
-    <div id="title">
-      <span class="gradient-text">Discover</span>
-    </div>
-
-    <form class="example-form">
-      <mat-form-field class="example-full-width">
-        <input type="text"
-                placeholder="Pick one"
-                aria-label="Number"
-                matInput
-                [formControl]="myControl"
-                [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let option of options" [value]="option">
-            {{option}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-    </form>
-
-  </div>
-</div> -->
 

@@ -63,6 +63,28 @@ star-rating {
   justify-content: flex-end;
 }
 
-.example-full-width {
+input [type=text] {
+  display:flex;
+  justify-content: center;
   width: 100%;
+}
+
+#search {
+  display:flex;
+  justify-content: left;
+  width: 100%;
+}
+
+#search:focus {
+  display:flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.favorite {
+  display:flex;
+  /* text-align: right; */
+  justify-content: center;
+  width: 100%;
+
 }

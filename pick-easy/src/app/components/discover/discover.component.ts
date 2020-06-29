@@ -17,7 +17,7 @@ export class DiscoverComponent implements OnInit {
     {
       _id: "11",
       name: "Kinton Ramen",
-      description: "This is Kinton Ramen, DEBUG for discover",
+      description: "This is Kinton Ramen",
       rating: 1,
       cost: 1,
       cuisine: "Japanese",
