@@ -46,9 +46,9 @@ Anthony
     2. Comfirmed by lead developer
     3. Nothing
 Pravinthan
-    1.
-    2.
-    3.
+    1. Merged bug fixes
+    2. N/A
+    3. Wait for pull requests, other homework
 Jeremy
     1.
     2.
