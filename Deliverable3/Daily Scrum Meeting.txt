@@ -42,9 +42,9 @@ Evan
     2.
     3.
 Anthony
-    1.
-    2.
-    3.
+    1. Profile component completed
+    2. Comfirmed by lead developer
+    3. Nothing
 Pravinthan
     1.
     2.
