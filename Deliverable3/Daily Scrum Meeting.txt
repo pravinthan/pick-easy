@@ -11,7 +11,7 @@ Luke
     3. Will work on fine tuning the search component like formatting
 Evan
     1.Finished the UI design of the MyPicks component
-    2.Waiting for the leade developer to approve my pull request
+    2.Waiting for the lead developer to approve my pull request
     3.I will be working on setting up the http requests 
 Anthony
     1. Finishing the profile component
@@ -38,9 +38,9 @@ Luke
     2. Not sure how to get the heart outline. Also need a isFavorite field in each restaurant
     3. Completed my task for this sprint, so will research Angular in the mean time
 Evan
-    1.
-    2.
-    3.
+    1. Fixed bug and fine tuned the my picks component
+    2. Not sure yet, intend on confirm with lead developer regarding implementing REST protocals 
+    3. Completed my task for this sprint, take time to learn about http requests in Typescript. 
 Anthony
     1. Profile component completed
     2. Comfirmed by lead developer
