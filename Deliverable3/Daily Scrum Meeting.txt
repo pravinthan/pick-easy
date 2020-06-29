@@ -34,9 +34,9 @@ Date: June 29, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1.
-    2.
-    3.
+    1. Fine tuned the search component
+    2. Not sure how to get the heart outline. Also need a isFavorite field in each restaurant
+    3. Completed my task for this sprint, so will research Angular in the mean time
 Evan
     1.
     2.
