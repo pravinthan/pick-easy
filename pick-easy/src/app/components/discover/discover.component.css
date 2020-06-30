@@ -55,12 +55,7 @@
 }
 
 .restaurant-card {
-  max-width: 375px;
-}
-
-.restaurant-logo {
-  background-image: url("../../../assets/kfc.jpg");
-  background-size: cover;
+  max-width: 400px;
 }
 
 star-rating {
@@ -77,9 +72,8 @@ star-rating {
   justify-content: flex-end;
 }
 
-img {
-  float: left;
-  width:  400px;
+mat-card > img {
+  width: 400px;
   height: 300px;
   object-fit: cover;
 }

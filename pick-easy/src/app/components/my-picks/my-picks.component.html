@@ -8,7 +8,7 @@
       <div class="restaurant" *ngFor="let restaurant of restaurants">
         <mat-card class="restaurant-card">
           <mat-card-header>
-            <div mat-card-avatar class="restaurant-logo"></div>
+            <img mat-card-avatar src="assets/{{restaurant.name}}.jpg" />
             <mat-card-title>{{ restaurant.name }}</mat-card-title>
             <mat-card-subtitle
               >{{ restaurant.cuisine }} Restaurant ·
