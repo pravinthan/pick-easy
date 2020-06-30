@@ -30,7 +30,7 @@ import { MatCardModule } from "@angular/material/card";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { RatingModule } from "ng-starrating";
-import { DiscoverComponent } from './components/discover/discover.component';
+import { DiscoverComponent } from "./components/discover/discover.component";
 
 @NgModule({
   declarations: [

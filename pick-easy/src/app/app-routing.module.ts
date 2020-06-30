@@ -14,7 +14,11 @@ const routes: Routes = [
   { path: "signin", component: SignInComponent },
   { path: "signup", component: SignUpComponent },
   { path: "credits", component: CreditsComponent },
-  { path: "discover", component: DiscoverComponent },
+  {
+    path: "discover",
+    component: DiscoverComponent,
+    canActivate: [AuthenticationGuard],
+  },
   {
     path: "my-picks",
     component: MyPicksComponent,

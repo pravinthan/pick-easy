@@ -5,20 +5,31 @@
     </div>
 
     <div id="restaurants">
-      <div id= "search">
+      <div id="search">
         <mat-form-field>
-          <input type="text" placeholder="Search Restaurants" matInput [formControl]="myControl"
-              [matAutocomplete]="auto">
-            <mat-autocomplete #auto="matAutocomplete">
-              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                {{option}}
-              </mat-option>
+          <input
+            type="text"
+            placeholder="Search Restaurants"
+            matInput
+            [formControl]="myControl"
+            [matAutocomplete]="auto"
+          />
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option
+              *ngFor="let option of filteredOptions | async"
+              [value]="option"
+            >
+              {{ option }}
+            </mat-option>
           </mat-autocomplete>
         </mat-form-field>
       </div>
 
-      <div class="restaurant" *ngFor="let restaurant of restaurants" >
-        <mat-card class="restaurant-card" *ngIf="(filteredOptions | async).includes(restaurant.name)">
+      <div class="restaurant" *ngFor="let restaurant of restaurants">
+        <mat-card
+          class="restaurant-card"
+          *ngIf="(filteredOptions | async).includes(restaurant.name)"
+        >
           <mat-card-header>
             <div mat-card-avatar class="restaurant-logo"></div>
             <mat-card-title>{{ restaurant.name }}</mat-card-title>
@@ -41,15 +52,17 @@
               {{ restaurant.description }}
             </div>
             <div class="favorite">
-              <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+              <button
+                mat-icon-button
+                color="warn"
+                aria-label="Example icon button with a heart icon"
+              >
                 <mat-icon>favorite</mat-icon>
               </button>
             </div>
-
           </mat-card-content>
         </mat-card>
       </div>
     </div>
   </div>
 </div>
-

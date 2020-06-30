@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { Restaurant } from "../../shared/models/restaurant.model";
-import {FormControl} from '@angular/forms';
-import { map, startWith } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-
+import { FormControl } from "@angular/forms";
+import { map, startWith } from "rxjs/operators";
+import { Observable } from "rxjs";
 
 @Component({
-  selector: 'app-discover',
-  templateUrl: './discover.component.html',
-  styleUrls: ['./discover.component.css']
+  selector: "app-discover",
+  templateUrl: "./discover.component.html",
+  styleUrls: ["./discover.component.css"],
 })
 export class DiscoverComponent implements OnInit {
   myControl = new FormControl();
@@ -42,15 +41,16 @@ export class DiscoverComponent implements OnInit {
 
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value))
+      startWith(""),
+      map((value) => this._filter(value))
     );
   }
-
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.restaurants.map(restaurant => restaurant.name).filter(name => name.toLowerCase().indexOf(filterValue) === 0);
+    return this.restaurants
+      .map((restaurant) => restaurant.name)
+      .filter((name) => name.toLowerCase().indexOf(filterValue) === 0);
   }
 }
