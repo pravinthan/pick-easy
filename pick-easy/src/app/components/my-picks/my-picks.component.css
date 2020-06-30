@@ -45,7 +45,7 @@
 }
 
 .restaurant-logo {
-  background-image: url("/assets/kfc.jpg");
+  background-image: url("/assets/KFC.jpg");
   background-size: cover;
 }
 
@@ -61,4 +61,11 @@ star-rating {
 .loyalty-hint {
   display: flex;
   justify-content: flex-end;
+}
+
+img {
+  float: left;
+  width:  400px;
+  height: 300px;
+  object-fit: cover;
 }
