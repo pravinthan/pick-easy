@@ -55,11 +55,11 @@
 }
 
 .restaurant-card {
-  max-width: 375px;
+  max-width: 400px;
 }
 
 .restaurant-logo {
-  background-image: url("../../../assets/kfc.jpg");
+  background-image: url("../../../assets/KFC.jpg");
   background-size: cover;
 }
 
