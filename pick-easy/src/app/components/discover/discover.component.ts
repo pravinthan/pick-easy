@@ -42,7 +42,7 @@ export class DiscoverComponent implements OnInit {
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(""),
-      map((value) => this._filter(value))
+      map((value) => (value.length >= 1 ? this._filter(value) : []))
     );
   }
 
@@ -51,6 +51,6 @@ export class DiscoverComponent implements OnInit {
 
     return this.restaurants
       .map((restaurant) => restaurant.name)
-      .filter((name) => name.toLowerCase().indexOf(filterValue) === 0);
+      .filter((name) => name.toLowerCase().indexOf(filterValue) != -1);
   }
 }

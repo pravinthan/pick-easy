@@ -4,31 +4,36 @@
       <span class="gradient-text">Discover</span>
     </div>
 
-    <div id="restaurants">
-      <div id="search">
-        <mat-form-field>
-          <input
-            type="text"
-            placeholder="Search Restaurants"
-            matInput
-            [formControl]="myControl"
-            [matAutocomplete]="auto"
-          />
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option
-              *ngFor="let option of filteredOptions | async"
-              [value]="option"
-            >
-              {{ option }}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
-      </div>
+    <div id="search">
+      <mat-form-field>
+        <mat-icon matPrefix>search</mat-icon>
+        <input
+          type="text"
+          placeholder="Search Restaurants"
+          matInput
+          [formControl]="myControl"
+          [matAutocomplete]="auto"
+          #search
+        />
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option
+            *ngFor="let option of filteredOptions | async"
+            [value]="option"
+          >
+            {{ option }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
 
+    <div id="restaurants">
       <div class="restaurant" *ngFor="let restaurant of restaurants">
         <mat-card
           class="restaurant-card"
-          *ngIf="(filteredOptions | async).includes(restaurant.name)"
+          *ngIf="
+            (filteredOptions | async).includes(restaurant.name) ||
+            search.value.length == 0
+          "
         >
           <mat-card-header>
             <div mat-card-avatar class="restaurant-logo"></div>
@@ -52,11 +57,7 @@
               {{ restaurant.description }}
             </div>
             <div class="favorite">
-              <button
-                mat-icon-button
-                color="warn"
-                aria-label="Example icon button with a heart icon"
-              >
+              <button mat-icon-button color="accent">
                 <mat-icon>favorite</mat-icon>
               </button>
             </div>
