@@ -1,0 +1,69 @@
+<div id="page">
+  <div id="content">
+    <div id="title">
+      <span class="gradient-text">Discover</span>
+    </div>
+
+    <div id="search">
+      <mat-form-field>
+        <mat-icon matPrefix>search</mat-icon>
+        <input
+          type="text"
+          placeholder="Search Restaurants"
+          matInput
+          [formControl]="myControl"
+          [matAutocomplete]="auto"
+          #search
+        />
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option
+            *ngFor="let option of filteredOptions | async"
+            [value]="option"
+          >
+            {{ option }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <div id="restaurants">
+      <div class="restaurant" *ngFor="let restaurant of restaurants">
+        <mat-card
+          class="restaurant-card"
+          *ngIf="
+            (filteredOptions | async).includes(restaurant.name) ||
+            search.value.length == 0
+          "
+        >
+          <mat-card-header>
+            <div mat-card-avatar class="restaurant-logo"></div>
+            <mat-card-title>{{ restaurant.name }}</mat-card-title>
+            <mat-card-subtitle
+              >{{ restaurant.cuisine }} Restaurant ·
+              {{ "$".repeat(restaurant.cost) }}</mat-card-subtitle
+            >
+            <star-rating
+              [value]="restaurant.rating"
+              [totalstars]="5"
+              checkedcolor="red"
+              uncheckedcolor="black"
+              size="24px"
+              [readonly]="true"
+            ></star-rating>
+          </mat-card-header>
+          <img mat-card-image src="../../../assets/kfc.jpg" />
+          <mat-card-content>
+            <div class="description">
+              {{ restaurant.description }}
+            </div>
+            <div class="favorite">
+              <button mat-icon-button color="accent">
+                <mat-icon>favorite</mat-icon>
+              </button>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
