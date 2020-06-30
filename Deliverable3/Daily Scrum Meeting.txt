@@ -70,9 +70,9 @@ Evan
     2. 
     3. 
 Anthony
-    1. 
-    2. 
-    3. 
+    1. Nothing 
+    2. N/A
+    3. Test current design before demo
 Pravinthan
     1. Merged Luke's pull request
     2. N/A
