@@ -62,9 +62,9 @@ Date: June 30, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Worked on interview and tried our deployed app
+    2. N/A
+    3. Test current design before demo
 Evan
     1. Fixed a few bugs and deployed app.
     2. N/A
