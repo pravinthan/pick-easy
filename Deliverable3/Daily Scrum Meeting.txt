@@ -78,9 +78,9 @@ Pravinthan
     2. N/A
     3. Final touch-ups for the demo
 Jeremy
-    1. 
-    2. 
-    3. 
+    1. Nothing
+    2. N/A
+    3. Test current design before demo
 
 --------------------------------------------------------------------------------------------
 Date: July 1, 2020
