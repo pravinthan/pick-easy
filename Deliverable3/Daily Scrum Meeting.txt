@@ -66,9 +66,9 @@ Luke
     2. 
     3. 
 Evan
-    1. 
-    2. 
-    3. 
+    1. Fixed a few bugs and deployed app.
+    2. N/A
+    3. Fixing any minor touch-ups for the demo.
 Anthony
     1. Nothing 
     2. N/A
