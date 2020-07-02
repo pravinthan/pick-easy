@@ -90,9 +90,9 @@ Date: July 1, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1.Nothing 
+    2.N/A
+    3.Nothing
 Evan
     1. 
     2. 
