@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { Restaurant } from "../../shared/models/restaurant.model";
 import { FormControl } from "@angular/forms";
 import { map, startWith } from "rxjs/operators";
 import { Observable } from "rxjs";
+import { Restaurant } from "src/app/shared/models/restaurant.model";
 
 @Component({
   selector: "app-discover",

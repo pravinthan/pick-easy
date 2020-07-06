@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { Restaurant } from "../../shared/models/restaurant.model";
+import { Restaurant } from "src/app/shared/models/restaurant.model";
 
 @Component({
   selector: "app-my-picks",

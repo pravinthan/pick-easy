@@ -1,7 +1,7 @@
-import { AuthenticationService } from "./../../shared/authentication.service";
-import { UserService } from "./../../shared/user.service";
-import { User } from "./../../shared/models/user.model";
 import { Component } from "@angular/core";
+import { UserService } from "src/app/shared/user.service";
+import { User } from "src/app/shared/models/user.model";
+import { AuthenticationService } from "src/app/shared/authentication.service";
 
 @Component({
   selector: "app-profile",
