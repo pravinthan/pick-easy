@@ -2,15 +2,15 @@ import { Component } from "@angular/core";
 import { AuthenticationService } from "src/app/shared/authentication.service";
 import { Router } from "@angular/router";
 import { MatDialog } from "@angular/material/dialog";
-import { SignUpComponent } from "../../sign-up/sign-up.component";
-import { SignInComponent } from "../../sign-in/sign-in.component";
+import { SignInComponent } from "src/app/components/sign-in/sign-in.component";
+import { SignUpComponent } from "src/app/components/sign-up/sign-up.component";
 
 @Component({
-  selector: "app-home",
-  templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.css"],
+  selector: "app-consumer-home",
+  templateUrl: "./consumer-home.component.html",
+  styleUrls: ["./consumer-home.component.css"],
 })
-export class HomeComponent {
+export class ConsumerHomeComponent {
   currentUser = this.authenticationService.currentUser;
 
   constructor(

@@ -29,19 +29,39 @@
     </div>
 
     <div *ngIf="currentUser">
-      <a mat-raised-button routerLink="/discover" color="accent" style="margin-right: 2rem;">
+      <a
+        mat-raised-button
+        routerLink="./discover"
+        color="accent"
+        style="margin-right: 2rem;"
+      >
         <mat-icon>storefront</mat-icon>
         Discover
       </a>
-      <a mat-raised-button routerLink="/my-picks" color="accent" style="margin-right: 2rem;">
+      <a
+        mat-raised-button
+        routerLink="./my-picks"
+        color="accent"
+        style="margin-right: 2rem;"
+      >
         <mat-icon>local_dining</mat-icon>
         My Picks
       </a>
-      <a mat-raised-button routerLink="/groups" color="accent" style="margin-right: 2rem;">
+      <a
+        mat-raised-button
+        routerLink="./groups"
+        color="accent"
+        style="margin-right: 2rem;"
+      >
         <mat-icon>group</mat-icon>
         Groups
       </a>
-      <a mat-raised-button routerLink="/profile" color="accent" style="margin-right: 2rem;">
+      <a
+        mat-raised-button
+        routerLink="./profile"
+        color="accent"
+        style="margin-right: 2rem;"
+      >
         <mat-icon>person</mat-icon>
         Profile
       </a>
@@ -50,3 +70,5 @@
 </div>
 
 <a mat-flat-button color="warn" id="credits" routerLink="/credits">Credits</a>
+
+<router-outlet></router-outlet>
