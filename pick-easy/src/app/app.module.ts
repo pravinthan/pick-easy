@@ -16,6 +16,8 @@ import { PageNotFoundComponent } from "./components/pages/page-not-found/page-no
 import { CreditsComponent } from "./components/pages/credits/credits.component";
 import { MyPicksComponent } from "./components/my-picks/my-picks.component";
 import { ProfileComponent } from "./components/profile/profile.component";
+import { RewardConfiguratorComponent } from "./components/reward-configurator/reward-configurator.component";
+import { DiscoverComponent } from "./components/discover/discover.component";
 
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -31,7 +33,7 @@ import { MatCardModule } from "@angular/material/card";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { RatingModule } from "ng-starrating";
-import { DiscoverComponent } from "./components/discover/discover.component";
+import {MatStepperModule} from '@angular/material/stepper';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,7 @@ import { DiscoverComponent } from "./components/discover/discover.component";
     MyPicksComponent,
     ProfileComponent,
     DiscoverComponent,
+    RewardConfiguratorComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +69,7 @@ import { DiscoverComponent } from "./components/discover/discover.component";
     MatProgressBarModule,
     MatAutocompleteModule,
     RatingModule,
+    MatStepperModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

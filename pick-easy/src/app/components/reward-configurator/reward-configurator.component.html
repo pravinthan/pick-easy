@@ -3,6 +3,26 @@
     <div id="title">
       <span class="gradient-text">Configure Your Rewards</span>
     </div>
+    <mat-horizontal-stepper [linear]="isLinear" #stepper id="stepper">
+      <mat-step>
+          <ng-template matStepLabel>Configure</ng-template>
+          <div class="stepper-content">
+            <button mat-raised-button>Add Reward</button>
+          </div>
+          <div class="stepper-buttons">
+            <button mat-raised-button class="primary-button" color="primary" matStepperNext>Next</button>
+          </div>
+      </mat-step>
+      <mat-step>
+          <ng-template matStepLabel>Review</ng-template>
+          <div class="stepper-content">
 
+          </div>
+          <div class="stepper-buttons">
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-raised-button class="primary-button" color="primary" matStepperNext>Save</button>
+          </div>
+      </mat-step>
+    </mat-horizontal-stepper>
   </div>
 </div>

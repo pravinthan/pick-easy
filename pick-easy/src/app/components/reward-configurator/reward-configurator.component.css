@@ -30,36 +30,25 @@
   line-height: 35px;
 }
 
-#restaurants {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+#stepper {
+  margin-top: 10px;
+  border-radius: 20px;
+  padding: 20px;
 }
 
-.restaurant {
-  margin: 1rem;
+.stepper-content {
+  margin: 20px;
 }
 
-.restaurant-card {
-  max-width: 400px;
+.stepper-buttons {
+  float: right;
 }
 
-star-rating {
-  height: fit-content;
-  margin-left: auto;
+::ng-deep .mat-step-header .mat-step-icon-selected, ::ng-deep .mat-step-header .mat-step-icon-state-done {
+  background: linear-gradient(to right, #e8285f, #f23f43);
 }
 
-.description {
-  padding: 1rem 0;
-}
-
-.loyalty-hint {
-  display: flex;
-  justify-content: flex-end;
-}
-
-mat-card > img {
-  width: 400px;
-  height: 300px;
-  object-fit: cover;
+::ng-deep .primary-button {
+  color: white;
+  background: linear-gradient(to right, #e8285f, #f23f43);
 }
