@@ -9,6 +9,7 @@ import { DiscoverComponent } from "./components/discover/discover.component";
 import { MyPicksComponent } from "./components/my-picks/my-picks.component";
 import { AuthenticationGuard } from "./shared/authentication.guard";
 import { ProfileComponent } from "./components/profile/profile.component";
+import { RewardConfiguratorComponent } from "./components/reward-configurator/reward-configurator.component";
 
 const routes: Routes = [
   { path: "", pathMatch: "full", component: HomeComponent },
@@ -28,6 +29,11 @@ const routes: Routes = [
   {
     path: "profile",
     component: ProfileComponent,
+    canActivate: [AuthenticationGuard],
+  },
+  {
+    path: "reward-configurator",
+    component: RewardConfiguratorComponent,
     canActivate: [AuthenticationGuard],
   },
   { path: "**", component: PageNotFoundComponent },
