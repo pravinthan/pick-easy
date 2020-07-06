@@ -106,9 +106,9 @@ Pravinthan
     2. 
     3. 
 Jeremy
-    1. 
-    2. 
-    3. 
+    1. Routed Reward Configurator page
+    2. New to Angular Material
+    3. Try to complete the Reward Configurator page
 
 --------------------------------------------------------------------------------------------
 Date: July 6, 2020
