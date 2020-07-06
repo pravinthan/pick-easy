@@ -1,41 +1,46 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { SignUpComponent } from "./components/sign-up/sign-up.component";
-import { SignInComponent } from "./components/sign-in/sign-in.component";
 import { PageNotFoundComponent } from "./components/pages/page-not-found/page-not-found.component";
-import { HomeComponent } from "./components/pages/home/home.component";
 import { CreditsComponent } from "./components/pages/credits/credits.component";
-import { DiscoverComponent } from "./components/discover/discover.component";
-import { MyPicksComponent } from "./components/my-picks/my-picks.component";
 import { AuthenticationGuard } from "./shared/authentication.guard";
-import { ProfileComponent } from "./components/profile/profile.component";
-import { RewardConfiguratorComponent } from "./components/reward-configurator/reward-configurator.component";
+import { ConsumerHomeComponent } from "./components/pages/consumer/consumer-home/consumer-home.component";
+import { DiscoverComponent } from "./components/pages/consumer/discover/discover.component";
+import { MyPicksComponent } from "./components/pages/consumer/my-picks/my-picks.component";
+import { ProfileComponent } from "./components/pages/consumer/profile/profile.component";
+import { RewardConfiguratorComponent } from "./components/pages/restaurant/reward-configurator/reward-configurator.component";
 
 const routes: Routes = [
-  { path: "", pathMatch: "full", component: HomeComponent },
-  { path: "signin", component: SignInComponent },
-  { path: "signup", component: SignUpComponent },
-  { path: "credits", component: CreditsComponent },
+  // { path: "", pathMatch: "full", component: <<<consumer/restaurant component switcher here>>> },
   {
-    path: "discover",
-    component: DiscoverComponent,
-    canActivate: [AuthenticationGuard],
+    path: "consumer",
+    component: ConsumerHomeComponent,
   },
   {
-    path: "my-picks",
+    path: "consumer/discover",
+    component: DiscoverComponent,
+    canActivate: [AuthenticationGuard],
+    // maybe add another guard to verify consumer/restaurant access
+  },
+  {
+    path: "consumer/my-picks",
     component: MyPicksComponent,
     canActivate: [AuthenticationGuard],
   },
   {
-    path: "profile",
+    path: "consumer/profile",
     component: ProfileComponent,
     canActivate: [AuthenticationGuard],
   },
+  // {
+  //   path: "restaurant",
+  //   component: RestaurantHomeComponent,
+  // },
   {
-    path: "reward-configurator",
+    path: "restaurant/rewards",
     component: RewardConfiguratorComponent,
     canActivate: [AuthenticationGuard],
   },
+  { path: "credits", component: CreditsComponent },
   { path: "**", component: PageNotFoundComponent },
 ];
 

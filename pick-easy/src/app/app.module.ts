@@ -11,13 +11,13 @@ import { NOTYF, notyfFactory } from "./shared/utils/notyf.token";
 import { SignInComponent } from "./components/sign-in/sign-in.component";
 import { SignUpComponent } from "./components/sign-up/sign-up.component";
 import { HeaderComponent } from "./components/header/header.component";
-import { HomeComponent } from "./components/pages/home/home.component";
 import { PageNotFoundComponent } from "./components/pages/page-not-found/page-not-found.component";
 import { CreditsComponent } from "./components/pages/credits/credits.component";
-import { MyPicksComponent } from "./components/my-picks/my-picks.component";
-import { ProfileComponent } from "./components/profile/profile.component";
-import { RewardConfiguratorComponent } from "./components/reward-configurator/reward-configurator.component";
-import { DiscoverComponent } from "./components/discover/discover.component";
+import { MyPicksComponent } from "./components/pages/consumer/my-picks/my-picks.component";
+import { ProfileComponent } from "./components/pages/consumer/profile/profile.component";
+import { DiscoverComponent } from "./components/pages/consumer/discover/discover.component";
+import { ConsumerHomeComponent } from "./components/pages/consumer/consumer-home/consumer-home.component";
+import { RewardConfiguratorComponent } from "./components/pages/restaurant/reward-configurator/reward-configurator.component";
 
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -41,7 +41,7 @@ import {MatStepperModule} from '@angular/material/stepper';
     HeaderComponent,
     SignInComponent,
     SignUpComponent,
-    HomeComponent,
+    ConsumerHomeComponent,
     PageNotFoundComponent,
     CreditsComponent,
     MyPicksComponent,

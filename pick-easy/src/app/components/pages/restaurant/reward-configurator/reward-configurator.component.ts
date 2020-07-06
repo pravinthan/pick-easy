@@ -11,6 +11,5 @@ import { MAT_STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 })
 export class RewardConfiguratorComponent {
   isLinear = true;
-
   constructor() {}
 }
