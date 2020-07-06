@@ -17,6 +17,7 @@ import { MyPicksComponent } from "./components/pages/consumer/my-picks/my-picks.
 import { ProfileComponent } from "./components/pages/consumer/profile/profile.component";
 import { DiscoverComponent } from "./components/pages/consumer/discover/discover.component";
 import { ConsumerHomeComponent } from "./components/pages/consumer/consumer-home/consumer-home.component";
+import { AchievementConfiguratorComponent } from "./components/pages/restaurant/achievement-configurator/achievement-configurator.component";
 
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -45,6 +46,7 @@ import { RatingModule } from "ng-starrating";
     MyPicksComponent,
     ProfileComponent,
     DiscoverComponent,
+    AchievementConfiguratorComponent,
   ],
   imports: [
     BrowserModule,
