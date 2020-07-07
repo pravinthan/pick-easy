@@ -130,9 +130,9 @@ Anthony
     2. 
     3. 
 Pravinthan
-    1. 
-    2. 
-    3. 
+    1. Continued to work on restaurant achievements (added basic view and logic for programmatic additions of achievements)
+    2. Nothing
+    3. Continue to work on restaurant achievements
 Jeremy
     1. 
     2. 
