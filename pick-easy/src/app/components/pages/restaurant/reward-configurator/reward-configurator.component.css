@@ -30,25 +30,81 @@
   line-height: 35px;
 }
 
-#stepper {
-  margin-top: 10px;
+.reward-display {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  margin-top: 20px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card, .add-button {
+  border-radius: 16px;
+  /*flex-grow: 1;*/
+  margin: 10px;
+  width: 300px;
+  position: relative;
+}
+
+.add-button {
+  /* width is supposed to be 300px but 34px gets removed by an undiscovered reason*/
+  width: 334px;
+  padding: 16px;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.vertical-align {
+  display: flex;
+  align-items: center;
+}
+
+.button {
+  margin: 10px;
+}
+
+.primary-color {
+  background: linear-gradient(to right, #e8285f, #f23f43);
+}
+
+.chip-bronze, .chip-silver, .chip-gold, .chip-platinum, .chip-diamond {
+  margin: 0px 10px;
+  font-weight: 500;
+  padding: 6px 12px;
   border-radius: 20px;
-  padding: 20px;
-}
-
-.stepper-content {
-  margin: 20px;
-}
-
-.stepper-buttons {
   float: right;
 }
 
-::ng-deep .mat-step-header .mat-step-icon-selected, ::ng-deep .mat-step-header .mat-step-icon-state-done {
-  background: linear-gradient(to right, #e8285f, #f23f43);
+.chip-bronze {
+  color: black;
+  background: linear-gradient(to right, chocolate, rgb(224, 130, 63));
 }
 
-::ng-deep .primary-button {
-  color: white;
-  background: linear-gradient(to right, #e8285f, #f23f43);
+.chip-silver {
+  color: black;
+  background: linear-gradient(to right, rgb(192, 192, 192), lightGrey);
 }
+
+.chip-gold {
+  color: white;
+  background: linear-gradient(to right, gold, rgb(255, 229, 79));
+}
+
+.chip-platinum {
+  color: white;
+  background: linear-gradient(to right, lightGrey, rgb(225, 225, 225));
+  /*background: linear-gradient(to right, peachpuff, antiquewhite);*/
+}
+
+.chip-diamond {
+  color: white;
+  background: linear-gradient(to right, deepskyblue, rgb(81, 211, 255));
+}
+
