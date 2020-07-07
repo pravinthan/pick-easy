@@ -98,9 +98,9 @@ Evan
     2. 
     3. 
 Anthony
-    1. 
-    2. 
-    3. 
+    1. Worked on restaurant/consumer sign in screen
+    2. Nothing
+    3. Start working on restaurant profile interface
 Pravinthan
     1. Worked on restaurant achievements
     2. Nothing
@@ -126,9 +126,9 @@ Evan
     2. 
     3. 
 Anthony
-    1. 
-    2. 
-    3. 
+    1. Worked on restaurant/consumer sign in, started working on restaurant profile interface
+    2. Nothing
+    3. Continue working on sign screens and restaurant profile interface
 Pravinthan
     1. Continued to work on restaurant achievements (added basic view and logic for programmatic additions of achievements)
     2. Nothing
