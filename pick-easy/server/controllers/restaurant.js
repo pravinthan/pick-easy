@@ -45,3 +45,18 @@ module.exports.retrieveAllRestaurants = async (req, res) => {
     res.sendStatus(500);
   }
 };
+
+module.exports.retrieveOwnRestaurant = async (req, res) => {
+  if (isBadRequest(req)) return res.sendStatus(400);
+
+  try {
+    let restaurant = await Restaurant.findOne({ "owner._id": req.user._id });
+
+    if (!restaurant)
+      return res.status(404).send(`No restaurant found under the user`);
+
+    res.json(restaurant);
+  } catch (err) {
+    res.sendStatus(500);
+  }
+};

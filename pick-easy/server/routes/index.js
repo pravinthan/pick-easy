@@ -5,9 +5,24 @@ let jwt = require("express-jwt");
 
 let auth = jwt({ secret: process.env.JWT_SECRET });
 
+let restaurantOwnerAuth = (req, res, next) => {
+  if (!req.user.isRestaurantOwner)
+    return res.status(403).send("User is not a restaurant owner");
+
+  next();
+};
+
+let consumerAuth = (req, res, next) => {
+  if (req.user.isRestaurantOwner)
+    return res.status(403).send("User is not a consumer");
+
+  next();
+};
+
 let authenticationController = require("../controllers/authentication");
 let userController = require("../controllers/user");
 let restaurantController = require("../controllers/restaurant");
+let achievementTemplateController = require("../controllers/achievement-template");
 
 // Authentication
 router.post(
@@ -53,6 +68,7 @@ router.get(
 );
 
 // Restaurants
+router.post("/restaurants", auth, restaurantController.createRestaurant);
 router.get("/restaurants", auth, restaurantController.retrieveAllRestaurants);
 router.get(
   "/restaurants/:id",
@@ -65,6 +81,20 @@ router.get(
       .escape(),
   ],
   restaurantController.retrieveRestaurantById
+);
+router.get(
+  "/restaurants/owned",
+  auth,
+  restaurantOwnerAuth,
+  restaurantController.retrieveOwnRestaurant
+);
+
+// Achievement Templates
+router.get(
+  "/templates/achievements",
+  auth,
+  restaurantOwnerAuth,
+  achievementTemplateController.retrieveAllTemplates
 );
 
 module.exports = router;

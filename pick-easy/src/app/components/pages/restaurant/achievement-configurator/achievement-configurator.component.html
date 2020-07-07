@@ -3,5 +3,86 @@
     <div id="title">
       <span class="gradient-text">Configure Achievements</span>
     </div>
+
+    <div id="configurator-container">
+      <mat-form-field id="stamps-picker">
+        <mat-label>Number of stamps</mat-label>
+        <input
+          type="number"
+          matInput
+          min="1"
+          step="1"
+          placeholder="5"
+          autocomplete="off"
+        />
+        <mat-hint align="start"
+          ><strong
+            >Number of stamps the customer must collect in order to receive a
+            reward</strong
+          >
+        </mat-hint>
+      </mat-form-field>
+
+      <div id="achievements-title">
+        <span class="gradient-text">List of Achievements</span>
+      </div>
+
+      <mat-form-field appearance="fill" id="template-picker">
+        <mat-label>Add an achievement template</mat-label>
+        <mat-select
+          #templatePicker
+          (selectionChange)="
+            addAchievement($event.value); templatePicker.writeValue(null)
+          "
+        >
+          <mat-option
+            *ngFor="let template of templates"
+            [value]="template._id"
+            >{{ template.content }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+
+      <div id="achievements">
+        <div class="achievement" *ngFor="let achievement of achievements">
+          <div
+            *ngFor="
+              let achievementText of getTemplateById(
+                achievement.templateId
+              ).value.split(':variable');
+              let i = index
+            "
+          >
+            <span>{{ achievementText }}</span>
+
+            <mat-form-field
+              class="achievement-field"
+              *ngIf="getTemplateById(achievement.templateId).variables[i]"
+            >
+              <mat-label>{{
+                getTemplateById(achievement.templateId).variables[i]
+                  .variableDescription
+              }}</mat-label>
+
+              <input
+                *ngIf="
+                  getTemplateById(achievement.templateId).variables[i]
+                    .variableType == 'number';
+                  else stringInput
+                "
+                type="number"
+                matInput
+                min="0"
+                autocomplete="off"
+              />
+
+              <ng-template #stringInput>
+                <input type="text" matInput autocomplete="off" />
+              </ng-template>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
