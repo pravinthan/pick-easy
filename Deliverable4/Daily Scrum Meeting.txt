@@ -90,9 +90,9 @@ Date: July 5, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Worked on restaurant UI
+    2. Need help getting isRestaurantOwner from database
+    3. Continue working on restaurant UI. If can't get it to work, will move onto my second task of merging My Picks and Discovers
 Evan
     1. 
     2. 
