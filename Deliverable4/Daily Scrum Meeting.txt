@@ -134,9 +134,9 @@ Pravinthan
     2. 
     3. 
 Jeremy
-    1. 
-    2. 
-    3. 
+    1. Create basic layout for restaurants reward configurator.
+    2. Lack of creativity as well as conflicting ideas
+    3. Create backend reward system
 
 --------------------------------------------------------------------------------------------
 Date: July 7, 2020
