@@ -44,12 +44,11 @@ let restaurantSchema = new Schema({
   numberOfStampsForReward: {
     type: Number,
     min: 1,
+    default: 1,
   },
   achievements: [
     {
-      templateId: {
-        type: Schema.Types.ObjectId,
-      },
+      templateNumber: Number,
       variables: [String],
       numberOfStamps: {
         type: Number,

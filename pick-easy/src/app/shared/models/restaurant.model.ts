@@ -21,7 +21,7 @@ export class Restaurant {
 }
 
 export class RestaurantAchievement {
-  templateId: string;
+  templateNumber: number;
   variables: string[];
   numberOfStamps: number;
 }

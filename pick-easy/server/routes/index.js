@@ -23,6 +23,7 @@ let authenticationController = require("../controllers/authentication");
 let userController = require("../controllers/user");
 let restaurantController = require("../controllers/restaurant");
 let achievementTemplateController = require("../controllers/achievement-template");
+const { isString } = require("util");
 
 // Authentication
 router.post(
@@ -71,6 +72,12 @@ router.get(
 router.post("/restaurants", auth, restaurantController.createRestaurant);
 router.get("/restaurants", auth, restaurantController.retrieveAllRestaurants);
 router.get(
+  "/restaurants/owned",
+  auth,
+  restaurantOwnerAuth,
+  restaurantController.retrieveOwnRestaurant
+);
+router.get(
   "/restaurants/:id",
   auth,
   [
@@ -82,11 +89,38 @@ router.get(
   ],
   restaurantController.retrieveRestaurantById
 );
-router.get(
-  "/restaurants/owned",
+router.patch(
+  "/restaurants/:id",
   auth,
   restaurantOwnerAuth,
-  restaurantController.retrieveOwnRestaurant
+  [
+    param("id")
+      .exists({ checkNull: true, checkFalsy: true })
+      .trim()
+      .isMongoId()
+      .escape(),
+    body("numberOfStampsForReward")
+      .exists({ checkNull: true })
+      .isInt({ min: 1 }),
+    body("achievements")
+      .exists({ checkNull: true, checkFalsy: true })
+      .isArray(),
+    body("achievements.*.templateNumber")
+      .exists({ checkNull: true })
+      .isInt({ min: 0 }),
+    body("achievements.*.numberOfStamps")
+      .exists({ checkNull: true })
+      .isInt({ min: 1 }),
+    body("achievements.*.variables").isArray(),
+    body("achievements.*.variables.*")
+      .if(body("achievements.*.variables.*").isString())
+      .trim()
+      .escape(),
+    body("achievements.*.variables.*")
+      .if(body("achievements.*.variables.*").isInt())
+      .isInt({ min: 0 }),
+  ],
+  restaurantController.updateAchievements
 );
 
 // Achievement Templates
