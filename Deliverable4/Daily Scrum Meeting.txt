@@ -118,9 +118,9 @@ Date: July 6, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Continued to work on restaurant UI
+    2. Nothing
+    3. Work on resturant UI
 Evan
     1. Worked on landing page.
     2. The midterm tomorrow.
@@ -146,9 +146,9 @@ Date: July 7, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Continued to work on restaurant UI
+    2. Nothing
+    3. Work on resturant UI
 Evan
     1. Continued to work on Landing page.
     2. The midterm today.
