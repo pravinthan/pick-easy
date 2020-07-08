@@ -94,9 +94,9 @@ Luke
     2. Need help getting isRestaurantOwner from database
     3. Continue working on restaurant UI. If can't get it to work, will move onto my second task of merging My Picks and Discovers
 Evan
-    1. 
-    2. 
-    3. 
+    1. Worked on restaurant landing page
+    2. Nothing
+    3. Start working on landing page interface.
 Anthony
     1. Worked on restaurant/consumer sign in screen
     2. Nothing
@@ -122,9 +122,9 @@ Luke
     2. 
     3. 
 Evan
-    1. 
-    2. 
-    3. 
+    1. Worked on landing page.
+    2. The midterm tomorrow.
+    3. Continue working on the landing page.
 Anthony
     1. Worked on restaurant/consumer sign in, started working on restaurant profile interface
     2. Nothing
@@ -150,9 +150,9 @@ Luke
     2. 
     3. 
 Evan
-    1. 
-    2. 
-    3. 
+    1. Continued to work on Landing page.
+    2. The midterm today.
+    3. Continue to work on landing page.
 Anthony
     1. 
     2. 
