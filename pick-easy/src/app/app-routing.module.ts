@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { NgModule, Component } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { PageNotFoundComponent } from "./components/pages/page-not-found/page-not-found.component";
 import { CreditsComponent } from "./components/pages/credits/credits.component";
@@ -8,9 +8,13 @@ import { DiscoverComponent } from "./components/pages/consumer/discover/discover
 import { MyPicksComponent } from "./components/pages/consumer/my-picks/my-picks.component";
 import { ProfileComponent } from "./components/pages/consumer/profile/profile.component";
 import { RewardConfiguratorComponent } from "./components/pages/restaurant/reward-configurator/reward-configurator.component";
-
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
 const routes: Routes = [
   // { path: "", pathMatch: "full", component: <<<consumer/restaurant component switcher here>>> },
+  {
+    path: "",
+    component : LandingPageComponent,
+  },
   {
     path: "consumer",
     component: ConsumerHomeComponent,
