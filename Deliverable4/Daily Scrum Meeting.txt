@@ -162,9 +162,9 @@ Pravinthan
     2. 
     3. 
 Jeremy
-    1. 
-    2. 
-    3. 
+    1. Create reward schema model
+    2. Unsure if schema is efficient
+    3. Possibly update reward schema model and continue restaurants reward configurator page
 
 --------------------------------------------------------------------------------------------
 Date: July 8, 2020
