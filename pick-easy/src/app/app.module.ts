@@ -13,7 +13,6 @@ import { SignUpComponent } from "./components/sign-up/sign-up.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { PageNotFoundComponent } from "./components/pages/page-not-found/page-not-found.component";
 import { CreditsComponent } from "./components/pages/credits/credits.component";
-import { MyPicksComponent } from "./components/pages/consumer/my-picks/my-picks.component";
 import { ProfileComponent } from "./components/pages/consumer/profile/profile.component";
 import { DiscoverComponent } from "./components/pages/consumer/discover/discover.component";
 import { ConsumerHomeComponent } from "./components/pages/consumer/consumer-home/consumer-home.component";
@@ -42,7 +41,6 @@ import { RatingModule } from "ng-starrating";
     ConsumerHomeComponent,
     PageNotFoundComponent,
     CreditsComponent,
-    MyPicksComponent,
     ProfileComponent,
     DiscoverComponent,
   ],

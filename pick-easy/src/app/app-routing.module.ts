@@ -5,7 +5,6 @@ import { CreditsComponent } from "./components/pages/credits/credits.component";
 import { AuthenticationGuard } from "./shared/authentication.guard";
 import { ConsumerHomeComponent } from "./components/pages/consumer/consumer-home/consumer-home.component";
 import { DiscoverComponent } from "./components/pages/consumer/discover/discover.component";
-import { MyPicksComponent } from "./components/pages/consumer/my-picks/my-picks.component";
 import { ProfileComponent } from "./components/pages/consumer/profile/profile.component";
 import { RewardConfiguratorComponent } from "./components/pages/restaurant/reward-configurator/reward-configurator.component";
 
@@ -20,11 +19,6 @@ const routes: Routes = [
     component: DiscoverComponent,
     canActivate: [AuthenticationGuard],
     // maybe add another guard to verify consumer/restaurant access
-  },
-  {
-    path: "consumer/my-picks",
-    component: MyPicksComponent,
-    canActivate: [AuthenticationGuard],
   },
   {
     path: "consumer/profile",
