@@ -154,9 +154,9 @@ Evan
     2. The midterm today.
     3. Continue to work on landing page.
 Anthony
-    1. 
-    2. 
-    3. 
+    1. Worked on restaurant/consumer home pages 
+    2. Midterm D:
+    3. Continue working on the restaurant and consumer hoem pages
 Pravinthan
     1. Completed main functionality for restaurant achievements
     2. Nothing
@@ -182,9 +182,9 @@ Evan
     2. Nothing
     3. Help others, see what else there is to do when more gets added to the sprint backlog.
 Anthony
-    1. 
-    2. 
-    3. 
+    1. Worked on restaurant/consumer home pages
+    2. Needed to updated product backlog and sprint plan
+    3. Finish updating product backlog/sprint plan, then continue working on restaurant/consumer home pages
 Pravinthan
     1. Merged Evan's feature branch
     2. Nothing
