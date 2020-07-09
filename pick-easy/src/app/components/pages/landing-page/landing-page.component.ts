@@ -15,7 +15,6 @@ export class LandingPageComponent {
     private authenticationService: AuthenticationService
   ) {
     if (this.currentUser) {
-      console.log(this.currentUser);
       this.router.navigateByUrl(
         this.currentUser.isRestaurantOwner ? "/restaurant" : "/consumer"
       );
