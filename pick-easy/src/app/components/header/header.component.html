@@ -25,14 +25,6 @@
         <mat-icon class="gradient-text">restaurant</mat-icon>
         <span class="gradient-text">My Restaurant</span>
       </a>
-      <a
-        mat-button
-        routerLink="/restaurant/achievements"
-        *ngIf="currentUser?.isRestaurantOwner"
-      >
-        <mat-icon class="gradient-text">card_membership</mat-icon>
-        <span class="gradient-text">Achievements</span>
-      </a>
     </div>
 
     <div>
@@ -64,6 +56,14 @@
         >
           <mat-icon class="gradient-text">person</mat-icon>
           <span class="gradient-text">Profile</span>
+        </a>
+        <a
+          mat-button
+          routerLink="/restaurant/achievements"
+          *ngIf="currentUser?.isRestaurantOwner"
+        >
+          <mat-icon class="gradient-text">card_membership</mat-icon>
+          <span class="gradient-text">Achievements</span>
         </a>
         <a
           mat-button
