@@ -6,7 +6,7 @@
 <div id="home-overlay">
   <div>
     <span style="font-size: xx-large; font-weight: bold;">
-      Welcome to PickEasy
+      Welcome to PickEasy for Restaurants
     </span>
   </div>
   <div style="margin-top: 0.5rem;">
@@ -31,6 +31,15 @@
     <div *ngIf="currentUser">
       <a
         mat-raised-button
+        routerLink="./my-restaurant"
+        color="accent"
+        style="margin-right: 2rem;"
+      >
+        <mat-icon>restaurant</mat-icon>
+        My Restaurant
+      </a>
+      <a
+        mat-raised-button
         routerLink="./achievements"
         color="accent"
         style="margin-right: 2rem;"
@@ -46,15 +55,6 @@
       >
         <mat-icon>redeem</mat-icon>
         Rewards
-      </a>
-      <a
-        mat-raised-button
-        routerLink="./my_restaurant"
-        color="accent"
-        style="margin-right: 2rem;"
-      >
-        <mat-icon>group</mat-icon>
-        My Restaurant
       </a>
     </div>
   </div>

@@ -19,11 +19,11 @@
       </a>
       <a
         mat-button
-        routerLink="/restaurant/rewards"
+        routerLink="/restaurant/my-restaurant"
         *ngIf="currentUser?.isRestaurantOwner"
       >
-        <mat-icon class="gradient-text">redeem</mat-icon>
-        <span class="gradient-text">Rewards</span>
+        <mat-icon class="gradient-text">restaurant</mat-icon>
+        <span class="gradient-text">My Restaurant</span>
       </a>
       <a
         mat-button
@@ -67,11 +67,11 @@
         </a>
         <a
           mat-button
-          routerLink="/restaurant/my-restaurant"
+          routerLink="/restaurant/rewards"
           *ngIf="currentUser?.isRestaurantOwner"
         >
-          <mat-icon class="gradient-text">restaurant</mat-icon>
-          <span class="gradient-text">My Restaurant</span>
+          <mat-icon class="gradient-text">redeem</mat-icon>
+          <span class="gradient-text">Rewards</span>
         </a>
       </div>
     </div>
