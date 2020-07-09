@@ -39,7 +39,10 @@ export class ConsumerHomeComponent {
   }
 
   openSignUpDialog() {
-    const signUpDialog = this.dialog.open(SignUpComponent, { width: "400px", data: {is_restaurant_owner: false} });
+    const signUpDialog = this.dialog.open(SignUpComponent, {
+      width: "400px",
+      data: { isRestaurantOwner: false },
+    });
     const signUpSubscription = signUpDialog.componentInstance.signedUp.subscribe(
       (signedUp: boolean) => {
         if (signedUp) {

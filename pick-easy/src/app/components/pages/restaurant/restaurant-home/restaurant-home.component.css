@@ -30,11 +30,3 @@
   height: 105vh;
   object-fit: cover;
 }
-
-#credits {
-  position: fixed;
-  left: 50%;
-  bottom: 20px;
-  transform: translate(-50%, -50%);
-  margin: 0 auto;
-}

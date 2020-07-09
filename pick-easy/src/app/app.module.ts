@@ -17,6 +17,7 @@ import { MyPicksComponent } from "./components/pages/consumer/my-picks/my-picks.
 import { ProfileComponent } from "./components/pages/consumer/profile/profile.component";
 import { DiscoverComponent } from "./components/pages/consumer/discover/discover.component";
 import { ConsumerHomeComponent } from "./components/pages/consumer/consumer-home/consumer-home.component";
+import { RestaurantHomeComponent } from "./components/pages/restaurant/restaurant-home/restaurant-home.component";
 
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -32,7 +33,6 @@ import { MatCardModule } from "@angular/material/card";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { RatingModule } from "ng-starrating";
-import { RestaurantHomeComponent } from './components/pages/restaurant/restaurant-home/restaurant-home.component';
 
 @NgModule({
   declarations: [
