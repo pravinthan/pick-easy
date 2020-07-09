@@ -51,6 +51,7 @@ userSchema.methods.generateJWT = function () {
     {
       _id: this._id,
       username: this.username,
+      isRestaurantOwner: this.isRestaurantOwner,
       exp: parseInt(expiry.getTime() / 1000),
     },
     process.env.JWT_SECRET
