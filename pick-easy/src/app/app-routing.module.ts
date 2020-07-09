@@ -9,9 +9,14 @@ import { MyPicksComponent } from "./components/pages/consumer/my-picks/my-picks.
 import { ProfileComponent } from "./components/pages/consumer/profile/profile.component";
 import { RewardConfiguratorComponent } from "./components/pages/restaurant/reward-configurator/reward-configurator.component";
 import { AchievementConfiguratorComponent } from "./components/pages/restaurant/achievement-configurator/achievement-configurator.component";
+import { LandingPageComponent } from "./components/pages/landing-page/landing-page.component";
 
 const routes: Routes = [
-  // { path: "", pathMatch: "full", component: <<<consumer/restaurant component switcher here>>> },
+  {
+    path: "",
+    pathMatch: "full",
+    component: LandingPageComponent,
+  },
   {
     path: "consumer",
     component: ConsumerHomeComponent,

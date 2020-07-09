@@ -90,17 +90,17 @@ Date: July 5, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Worked on restaurant UI
+    2. Need help getting isRestaurantOwner from database
+    3. Continue working on restaurant UI. If can't get it to work, will move onto my second task of merging My Picks and Discovers
 Evan
-    1. 
-    2. 
-    3. 
+    1. Worked on restaurant landing page
+    2. Nothing
+    3. Start working on landing page interface.
 Anthony
-    1. 
-    2. 
-    3. 
+    1. Worked on restaurant/consumer sign in screen
+    2. Nothing
+    3. Start working on restaurant profile interface
 Pravinthan
     1. Worked on restaurant achievements
     2. Nothing
@@ -118,25 +118,25 @@ Date: July 6, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Continued to work on restaurant UI
+    2. Nothing
+    3. Work on resturant UI
 Evan
-    1. 
-    2. 
-    3. 
+    1. Worked on landing page.
+    2. The midterm tomorrow.
+    3. Continue working on the landing page.
 Anthony
-    1. 
-    2. 
-    3. 
+    1. Worked on restaurant/consumer sign in, started working on restaurant profile interface
+    2. Nothing
+    3. Continue working on sign screens and restaurant profile interface
 Pravinthan
-    1. 
-    2. 
-    3. 
+    1. Continued to work on restaurant achievements (added basic view and logic for programmatic additions of achievements)
+    2. Nothing
+    3. Continue to work on restaurant achievements
 Jeremy
-    1. 
-    2. 
-    3. 
+    1. Create basic layout for restaurants reward configurator.
+    2. Lack of creativity as well as conflicting ideas
+    3. Create backend reward system
 
 --------------------------------------------------------------------------------------------
 Date: July 7, 2020
@@ -146,25 +146,25 @@ Date: July 7, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Continued to work on restaurant UI
+    2. Nothing
+    3. Work on resturant UI
 Evan
-    1. 
-    2. 
-    3. 
+    1. Continued to work on Landing page.
+    2. The midterm today.
+    3. Continue to work on landing page.
 Anthony
     1. 
     2. 
     3. 
 Pravinthan
-    1. 
-    2. 
-    3. 
+    1. Completed main functionality for restaurant achievements
+    2. Nothing
+    3. Add final touchups and merge into master
 Jeremy
-    1. 
-    2. 
-    3. 
+    1. Create reward schema model
+    2. Unsure if schema is efficient
+    3. Possibly update reward schema model and continue restaurants reward configurator page
 
 --------------------------------------------------------------------------------------------
 Date: July 8, 2020
@@ -186,13 +186,13 @@ Anthony
     2. 
     3. 
 Pravinthan
-    1. 
-    2. 
-    3. 
+    1. Merged Evan's feature branch
+    2. Nothing
+    3. Help others and possibly add more to the sprint backlog
 Jeremy
-    1. 
-    2. 
-    3. 
+    1. Update reward schema model to make more consistent with team members. Added popup dialog to restaurant's reward configurator page
+    2. Other courses
+    3. Finish reward schema model
 
 --------------------------------------------------------------------------------------------
 Date: July 9, 2020

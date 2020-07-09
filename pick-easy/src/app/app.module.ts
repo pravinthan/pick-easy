@@ -18,6 +18,7 @@ import { ProfileComponent } from "./components/pages/consumer/profile/profile.co
 import { DiscoverComponent } from "./components/pages/consumer/discover/discover.component";
 import { ConsumerHomeComponent } from "./components/pages/consumer/consumer-home/consumer-home.component";
 import { AchievementConfiguratorComponent } from "./components/pages/restaurant/achievement-configurator/achievement-configurator.component";
+import { LandingPageComponent } from "./components/pages/landing-page/landing-page.component";
 
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -48,6 +49,7 @@ import { MatSelectModule } from "@angular/material/select";
     ProfileComponent,
     DiscoverComponent,
     AchievementConfiguratorComponent,
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,
