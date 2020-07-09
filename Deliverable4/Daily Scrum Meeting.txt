@@ -210,9 +210,9 @@ Evan
     2. Nothing
     3. Helping others and work on bug fixes till my next task.
 Anthony
-    1. 
-    2. 
-    3. 
+    1. Complete restaurant/consumer login's and submitted pull request for it 
+    2. Make changes indicated by lead dev, if need.
+    3. Work on product backlog/user stories and work on restaurant profile component
 Pravinthan
     1. Merged my branch, Anthony's branch, and Jeremy's branch. Assigned myself more work for this sprint
     2. Nothing
