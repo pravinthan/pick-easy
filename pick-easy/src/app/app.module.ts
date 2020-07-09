@@ -17,6 +17,7 @@ import { MyPicksComponent } from "./components/pages/consumer/my-picks/my-picks.
 import { ProfileComponent } from "./components/pages/consumer/profile/profile.component";
 import { DiscoverComponent } from "./components/pages/consumer/discover/discover.component";
 import { ConsumerHomeComponent } from "./components/pages/consumer/consumer-home/consumer-home.component";
+import { RestaurantHomeComponent } from "./components/pages/restaurant/restaurant-home/restaurant-home.component";
 import { AchievementConfiguratorComponent } from "./components/pages/restaurant/achievement-configurator/achievement-configurator.component";
 import { LandingPageComponent } from "./components/pages/landing-page/landing-page.component";
 
@@ -48,6 +49,7 @@ import { MatSelectModule } from "@angular/material/select";
     MyPicksComponent,
     ProfileComponent,
     DiscoverComponent,
+    RestaurantHomeComponent,
     AchievementConfiguratorComponent,
     LandingPageComponent,
   ],

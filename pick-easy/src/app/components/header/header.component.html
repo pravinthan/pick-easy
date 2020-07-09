@@ -1,18 +1,47 @@
 <mat-toolbar id="toolbar">
   <mat-toolbar-row>
     <div class="space-evenly">
-      <a mat-button routerLink="/consumer/discover" *ngIf="currentUser">
+      <a
+        mat-button
+        routerLink="/consumer/discover"
+        *ngIf="!currentUser?.isRestaurantOwner"
+      >
         <mat-icon class="gradient-text">storefront</mat-icon>
         <span class="gradient-text">Discover</span>
       </a>
-      <a mat-button routerLink="/consumer/my-picks" *ngIf="currentUser">
+      <a
+        mat-button
+        routerLink="/consumer/my-picks"
+        *ngIf="!currentUser?.isRestaurantOwner"
+      >
         <mat-icon class="gradient-text">local_dining</mat-icon>
         <span class="gradient-text">My Picks</span>
+      </a>
+      <a
+        mat-button
+        routerLink="/restaurant/my-restaurant"
+        *ngIf="currentUser?.isRestaurantOwner"
+      >
+        <mat-icon class="gradient-text">restaurant</mat-icon>
+        <span class="gradient-text">My Restaurant</span>
+      </a>
+      <a
+        mat-button
+        routerLink="/restaurant/achievements"
+        *ngIf="currentUser?.isRestaurantOwner"
+      >
+        <mat-icon class="gradient-text">card_membership</mat-icon>
+        <span class="gradient-text">Achievements</span>
       </a>
     </div>
 
     <div>
-      <a routerLink="/consumer" id="app-name">
+      <a
+        [routerLink]="
+          currentUser?.isRestaurantOwner ? '/restaurant' : '/consumer'
+        "
+        id="app-name"
+      >
         <img id="app-icon" src="/assets/pickeasy-logo.png" />
         <span class="gradient-text app-logo-text">PickEasy</span>
       </a>
@@ -20,13 +49,29 @@
 
     <div style="flex: 1;">
       <div class="space-evenly">
-        <a mat-button routerLink="/consumer/groups" *ngIf="currentUser">
+        <a
+          mat-button
+          routerLink="/consumer/groups"
+          *ngIf="!currentUser?.isRestaurantOwner"
+        >
           <mat-icon class="gradient-text">group</mat-icon>
           <span class="gradient-text">Groups</span>
         </a>
-        <a mat-button routerLink="/consumer/profile" *ngIf="currentUser">
+        <a
+          mat-button
+          routerLink="/consumer/profile"
+          *ngIf="!currentUser?.isRestaurantOwner"
+        >
           <mat-icon class="gradient-text">person</mat-icon>
           <span class="gradient-text">Profile</span>
+        </a>
+        <a
+          mat-button
+          routerLink="/restaurant/rewards"
+          *ngIf="currentUser?.isRestaurantOwner"
+        >
+          <mat-icon class="gradient-text">redeem</mat-icon>
+          <span class="gradient-text">Rewards</span>
         </a>
       </div>
     </div>
