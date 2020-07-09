@@ -1,3 +1,4 @@
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Component, Output, EventEmitter, Inject } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
@@ -12,13 +13,13 @@ import { Notyf } from "notyf";
 })
 export class SignUpComponent {
   loading = false;
-  isRestaurantOwner: boolean = false;
   @Output() signedUp = new EventEmitter();
 
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
     private route: ActivatedRoute,
+    @Inject(MAT_DIALOG_DATA) public data: {is_restaurant_owner: boolean},
     @Inject(NOTYF) private notyf: Notyf
   ) {
     if (this.authenticationService.currentUserValue)
@@ -33,15 +34,17 @@ export class SignUpComponent {
         form.value.password,
         form.value.firstName,
         form.value.lastName,
-        this.isRestaurantOwner
+        this.data.is_restaurant_owner
       )
       .subscribe(
         (data) => {
           this.signedUp.emit(true);
-
           const returnUrl = this.route.snapshot.queryParams.returnUrl;
-          if (returnUrl) this.router.navigate([returnUrl]);
-          else this.router.navigate(["/dashboard"]);
+          //console.log(this.data.is_restaurant_owner);
+          //if (returnUrl) this.router.navigate([returnUrl]);
+          if (!this.data.is_restaurant_owner) this.router.navigate(["/consumer"])
+          else if (this.data.is_restaurant_owner) this.router.navigate(["/restaurant"])
+          //else this.router.navigate(["/consumer"]);
         },
         (error) => {
           this.loading = false;

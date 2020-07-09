@@ -32,6 +32,7 @@ import { MatCardModule } from "@angular/material/card";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { RatingModule } from "ng-starrating";
+import { RestaurantHomeComponent } from './components/pages/restaurant/restaurant-home/restaurant-home.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { RatingModule } from "ng-starrating";
     MyPicksComponent,
     ProfileComponent,
     DiscoverComponent,
+    RestaurantHomeComponent,
   ],
   imports: [
     BrowserModule,

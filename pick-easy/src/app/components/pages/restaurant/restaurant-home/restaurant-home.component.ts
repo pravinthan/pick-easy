@@ -6,11 +6,11 @@ import { SignInComponent } from "src/app/components/sign-in/sign-in.component";
 import { SignUpComponent } from "src/app/components/sign-up/sign-up.component";
 
 @Component({
-  selector: "app-consumer-home",
-  templateUrl: "./consumer-home.component.html",
-  styleUrls: ["./consumer-home.component.css"],
+  selector: "app-restaurant-home",
+  templateUrl: "./restaurant-home.component.html",
+  styleUrls: ["./restaurant-home.component.css"],
 })
-export class ConsumerHomeComponent {
+export class RestaurantHomeComponent{
   currentUser = this.authenticationService.currentUser;
 
   constructor(
@@ -39,7 +39,7 @@ export class ConsumerHomeComponent {
   }
 
   openSignUpDialog() {
-    const signUpDialog = this.dialog.open(SignUpComponent, { width: "400px", data: {is_restaurant_owner: false} });
+    const signUpDialog = this.dialog.open(SignUpComponent, { width: "400px", data: {is_restaurant_owner: true}});
     const signUpSubscription = signUpDialog.componentInstance.signedUp.subscribe(
       (signedUp: boolean) => {
         if (signedUp) {
@@ -54,3 +54,4 @@ export class ConsumerHomeComponent {
     });
   }
 }
+

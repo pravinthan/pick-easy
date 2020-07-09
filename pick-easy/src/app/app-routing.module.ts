@@ -7,10 +7,15 @@ import { ConsumerHomeComponent } from "./components/pages/consumer/consumer-home
 import { DiscoverComponent } from "./components/pages/consumer/discover/discover.component";
 import { MyPicksComponent } from "./components/pages/consumer/my-picks/my-picks.component";
 import { ProfileComponent } from "./components/pages/consumer/profile/profile.component";
+import { RestaurantHomeComponent } from './components/pages/restaurant/restaurant-home/restaurant-home.component';
 import { RewardConfiguratorComponent } from "./components/pages/restaurant/reward-configurator/reward-configurator.component";
 
 const routes: Routes = [
   // { path: "", pathMatch: "full", component: <<<consumer/restaurant component switcher here>>> },
+  {
+    path: "restaurant",
+    component: RestaurantHomeComponent,
+  },
   {
     path: "consumer",
     component: ConsumerHomeComponent,
@@ -31,10 +36,6 @@ const routes: Routes = [
     component: ProfileComponent,
     canActivate: [AuthenticationGuard],
   },
-  // {
-  //   path: "restaurant",
-  //   component: RestaurantHomeComponent,
-  // },
   {
     path: "restaurant/rewards",
     component: RewardConfiguratorComponent,
