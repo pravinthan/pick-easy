@@ -1,15 +1,39 @@
 import { Component } from "@angular/core";
-import { MAT_STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: "app-reward-configurator",
   templateUrl: "./reward-configurator.component.html",
-  styleUrls: ["./reward-configurator.component.css"],
-  providers: [{
-    provide: MAT_STEPPER_GLOBAL_OPTIONS, useValue: { displayDefaultIndicatorType: false }
-  }]
+  styleUrls: ["./reward-configurator.component.css"]
 })
 export class RewardConfiguratorComponent {
   isLinear = true;
-  constructor() {}
+  constructor(public dialog: MatDialog) {}
+  openAddDialog() {
+    this.dialog.open(RewardConfiguratorAddDialog);
+  }
+  openEditDialog() {
+    this.dialog.open(RewardConfiguratorEditDialog);
+  }
+  openDeleteDialog() {
+    this.dialog.open(RewardConfiguratorDeleteDialog);
+  }
 }
+
+@Component({
+  selector: 'app-reward-configurator-dialog',
+  templateUrl: './reward-configurator-add-dialog.html',
+})
+export class RewardConfiguratorAddDialog {}
+
+@Component({
+  selector: 'app-reward-configurator-dialog',
+  templateUrl: './reward-configurator-edit-dialog.html',
+})
+export class RewardConfiguratorEditDialog {}
+
+@Component({
+  selector: 'app-reward-configurator-dialog',
+  templateUrl: './reward-configurator-delete-dialog.html',
+})
+export class RewardConfiguratorDeleteDialog {}

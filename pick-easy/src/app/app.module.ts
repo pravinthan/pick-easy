@@ -17,7 +17,9 @@ import { MyPicksComponent } from "./components/pages/consumer/my-picks/my-picks.
 import { ProfileComponent } from "./components/pages/consumer/profile/profile.component";
 import { DiscoverComponent } from "./components/pages/consumer/discover/discover.component";
 import { ConsumerHomeComponent } from "./components/pages/consumer/consumer-home/consumer-home.component";
-import { RewardConfiguratorComponent } from "./components/pages/restaurant/reward-configurator/reward-configurator.component";
+import { RewardConfiguratorComponent, RewardConfiguratorAddDialog,
+  RewardConfiguratorEditDialog,
+  RewardConfiguratorDeleteDialog } from "./components/pages/restaurant/reward-configurator/reward-configurator.component";
 
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -47,7 +49,10 @@ import { MatChipsModule } from '@angular/material/chips';
     MyPicksComponent,
     ProfileComponent,
     DiscoverComponent,
-    RewardConfiguratorComponent
+    RewardConfiguratorComponent,
+    RewardConfiguratorAddDialog,
+    RewardConfiguratorEditDialog,
+    RewardConfiguratorDeleteDialog
   ],
   imports: [
     BrowserModule,
