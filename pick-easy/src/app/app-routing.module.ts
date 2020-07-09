@@ -8,6 +8,7 @@ import { DiscoverComponent } from "./components/pages/consumer/discover/discover
 import { MyPicksComponent } from "./components/pages/consumer/my-picks/my-picks.component";
 import { ProfileComponent } from "./components/pages/consumer/profile/profile.component";
 import { RewardConfiguratorComponent } from "./components/pages/restaurant/reward-configurator/reward-configurator.component";
+import { AchievementConfiguratorComponent } from "./components/pages/restaurant/achievement-configurator/achievement-configurator.component";
 import { LandingPageComponent } from "./components/pages/landing-page/landing-page.component";
 
 const routes: Routes = [
@@ -43,6 +44,11 @@ const routes: Routes = [
   {
     path: "restaurant/rewards",
     component: RewardConfiguratorComponent,
+    canActivate: [AuthenticationGuard],
+  },
+  {
+    path: "restaurant/achievements",
+    component: AchievementConfiguratorComponent,
     canActivate: [AuthenticationGuard],
   },
   { path: "credits", component: CreditsComponent },

@@ -17,6 +17,8 @@ import { MyPicksComponent } from "./components/pages/consumer/my-picks/my-picks.
 import { ProfileComponent } from "./components/pages/consumer/profile/profile.component";
 import { DiscoverComponent } from "./components/pages/consumer/discover/discover.component";
 import { ConsumerHomeComponent } from "./components/pages/consumer/consumer-home/consumer-home.component";
+import { AchievementConfiguratorComponent } from "./components/pages/restaurant/achievement-configurator/achievement-configurator.component";
+import { LandingPageComponent } from "./components/pages/landing-page/landing-page.component";
 
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -32,7 +34,7 @@ import { MatCardModule } from "@angular/material/card";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { RatingModule } from "ng-starrating";
-import { LandingPageComponent } from "./components/pages/landing-page/landing-page.component";
+import { MatSelectModule } from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { LandingPageComponent } from "./components/pages/landing-page/landing-pa
     MyPicksComponent,
     ProfileComponent,
     DiscoverComponent,
+    AchievementConfiguratorComponent,
     LandingPageComponent,
   ],
   imports: [
@@ -68,6 +71,7 @@ import { LandingPageComponent } from "./components/pages/landing-page/landing-pa
     MatProgressBarModule,
     MatAutocompleteModule,
     RatingModule,
+    MatSelectModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

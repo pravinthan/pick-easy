@@ -20,7 +20,6 @@ let restaurantSchema = new Schema({
       min: 0,
     },
   },
-  // Number of "dollar signs" to represent cost
   cost: {
     type: Number,
     min: 1,
@@ -42,11 +41,21 @@ let restaurantSchema = new Schema({
       "Korean",
     ],
   },
-  isOfferingLoyalty: Boolean,
-  loyalty: {
+  numberOfStampsForReward: {
     type: Number,
     min: 1,
+    default: 1,
   },
+  achievements: [
+    {
+      templateNumber: Number,
+      variables: [String],
+      numberOfStamps: {
+        type: Number,
+        min: 1,
+      },
+    },
+  ],
 });
 
 mongoose.model("Restaurant", restaurantSchema);
