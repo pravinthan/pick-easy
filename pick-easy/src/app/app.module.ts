@@ -16,6 +16,9 @@ import { CreditsComponent } from "./components/pages/credits/credits.component";
 import { ProfileComponent } from "./components/pages/consumer/profile/profile.component";
 import { DiscoverComponent } from "./components/pages/consumer/discover/discover.component";
 import { ConsumerHomeComponent } from "./components/pages/consumer/consumer-home/consumer-home.component";
+import { AchievementConfiguratorComponent } from "./components/pages/restaurant/achievement-configurator/achievement-configurator.component";
+import { LandingPageComponent } from "./components/pages/landing-page/landing-page.component";
+import { RestaurantDetailsComponent } from './components/pages/consumer/discover/restaurant-details/restaurant-details.component';
 
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -31,7 +34,7 @@ import { MatCardModule } from "@angular/material/card";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { RatingModule } from "ng-starrating";
-import { RestaurantDetailsComponent } from './components/pages/consumer/discover/restaurant-details/restaurant-details.component';
+import { MatSelectModule } from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -45,6 +48,8 @@ import { RestaurantDetailsComponent } from './components/pages/consumer/discover
     ProfileComponent,
     DiscoverComponent,
     RestaurantDetailsComponent,
+    AchievementConfiguratorComponent,
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +71,7 @@ import { RestaurantDetailsComponent } from './components/pages/consumer/discover
     MatProgressBarModule,
     MatAutocompleteModule,
     RatingModule,
+    MatSelectModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
