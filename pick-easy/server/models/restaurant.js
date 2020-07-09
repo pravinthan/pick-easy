@@ -56,6 +56,12 @@ let restaurantSchema = new Schema({
       },
     },
   ],
+  rewards: [
+    {
+      templateNumber: Number,
+      variables: [String],
+    }
+  ]
 });
 
 mongoose.model("Restaurant", restaurantSchema);

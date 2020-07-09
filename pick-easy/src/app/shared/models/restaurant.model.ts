@@ -17,11 +17,17 @@ export class Restaurant {
     | "Greek"
     | "Korean";
   numberOfStampsForReward?: number;
-  achievements?: RestaurantAchievement[];
+  achievements?: RestaurantAchievement[]
+  rewards?: RestaurantReward[];
 }
 
 export class RestaurantAchievement {
   templateNumber: number;
   variables: string[];
   numberOfStamps: number;
+}
+
+export class RestaurantReward {
+  templateNumber: number;
+  variables: string[];
 }
