@@ -186,9 +186,9 @@ Anthony
     2. 
     3. 
 Pravinthan
-    1. 
-    2. 
-    3. 
+    1. Merged Evan's feature branch
+    2. Nothing
+    3. Help others and possibly add more to the sprint backlog
 Jeremy
     1. 
     2. 
