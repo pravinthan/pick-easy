@@ -18,6 +18,8 @@ import { ProfileComponent } from "./components/pages/consumer/profile/profile.co
 import { DiscoverComponent } from "./components/pages/consumer/discover/discover.component";
 import { ConsumerHomeComponent } from "./components/pages/consumer/consumer-home/consumer-home.component";
 import { RestaurantHomeComponent } from "./components/pages/restaurant/restaurant-home/restaurant-home.component";
+import { AchievementConfiguratorComponent } from "./components/pages/restaurant/achievement-configurator/achievement-configurator.component";
+import { LandingPageComponent } from "./components/pages/landing-page/landing-page.component";
 
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -33,6 +35,7 @@ import { MatCardModule } from "@angular/material/card";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { RatingModule } from "ng-starrating";
+import { MatSelectModule } from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -47,6 +50,8 @@ import { RatingModule } from "ng-starrating";
     ProfileComponent,
     DiscoverComponent,
     RestaurantHomeComponent,
+    AchievementConfiguratorComponent,
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,6 +73,7 @@ import { RatingModule } from "ng-starrating";
     MatProgressBarModule,
     MatAutocompleteModule,
     RatingModule,
+    MatSelectModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

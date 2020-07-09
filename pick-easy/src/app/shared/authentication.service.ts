@@ -29,7 +29,7 @@ export class AuthenticationService {
     if (this.currentUserSubject.value) {
       const token = this.parseJWT(this.currentUserSubject.value.token);
       if (token) {
-        return new User(token._id, token.username);
+        return new User(token._id, token.username, token.isRestaurantOwner);
       }
     }
 
