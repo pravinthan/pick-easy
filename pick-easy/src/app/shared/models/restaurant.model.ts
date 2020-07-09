@@ -16,4 +16,6 @@ export class Restaurant {
     | "Brazilian"
     | "Greek"
     | "Korean";
+  numberOfStampsForReward: number;
+  level: string;
 }

@@ -31,6 +31,7 @@ import { MatCardModule } from "@angular/material/card";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { RatingModule } from "ng-starrating";
+import { RestaurantDetailsComponent } from './components/pages/consumer/discover/restaurant-details/restaurant-details.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { RatingModule } from "ng-starrating";
     CreditsComponent,
     ProfileComponent,
     DiscoverComponent,
+    RestaurantDetailsComponent,
   ],
   imports: [
     BrowserModule,

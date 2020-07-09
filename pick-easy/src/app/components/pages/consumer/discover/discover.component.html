@@ -34,6 +34,7 @@
             (filteredOptions | async).includes(restaurant.name) ||
             search.value.length == 0
           "
+          (click)="openDetailsDialog(restaurant)"
         >
           <mat-card-header>
             <img mat-card-avatar src="assets/{{restaurant.name}}.jpg" />
@@ -55,11 +56,6 @@
           <mat-card-content>
             <div class="description">
               {{ restaurant.description }}
-            </div>
-            <div class="favorite">
-              <button mat-icon-button color="accent">
-                <mat-icon>favorite</mat-icon>
-              </button>
             </div>
           </mat-card-content>
         </mat-card>
