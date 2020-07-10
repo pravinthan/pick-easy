@@ -1,7 +1,11 @@
 import { Observable } from "rxjs";
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Restaurant, RestaurantAchievement } from "./models/restaurant.model";
+import {
+  Restaurant,
+  RestaurantAchievement,
+  RestaurantReward,
+} from "./models/restaurant.model";
 
 @Injectable({ providedIn: "root" })
 export class RestaurantService {
@@ -25,6 +29,16 @@ export class RestaurantService {
       {
         numberOfStampsForReward,
         achievements,
+      },
+      { responseType: "text" }
+    );
+  }
+
+  updateRewards(restaurantId: string, rewards: RestaurantReward[]) {
+    return this.http.patch(
+      `/api/restaurants/${restaurantId}`,
+      {
+        rewards,
       },
       { responseType: "text" }
     );
