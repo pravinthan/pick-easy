@@ -13,10 +13,10 @@ import { SignUpComponent } from "./components/sign-up/sign-up.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { PageNotFoundComponent } from "./components/pages/page-not-found/page-not-found.component";
 import { CreditsComponent } from "./components/pages/credits/credits.component";
-import { MyPicksComponent } from "./components/pages/consumer/my-picks/my-picks.component";
-import { ProfileComponent } from "./components/pages/consumer/profile/profile.component";
-import { DiscoverComponent } from "./components/pages/consumer/discover/discover.component";
-import { ConsumerHomeComponent } from "./components/pages/consumer/consumer-home/consumer-home.component";
+import { MyPicksComponent } from "./components/pages/customer/my-picks/my-picks.component";
+import { ProfileComponent } from "./components/pages/customer/profile/profile.component";
+import { DiscoverComponent } from "./components/pages/customer/discover/discover.component";
+import { CustomerHomeComponent } from "./components/pages/customer/customer-home/customer-home.component";
 import { RewardConfiguratorComponent } from "./components/pages/restaurant/reward-configurator/reward-configurator.component";
 import { RestaurantHomeComponent } from "./components/pages/restaurant/restaurant-home/restaurant-home.component";
 import { AchievementConfiguratorComponent } from "./components/pages/restaurant/achievement-configurator/achievement-configurator.component";
@@ -45,7 +45,7 @@ import { MatSelectModule } from "@angular/material/select";
     HeaderComponent,
     SignInComponent,
     SignUpComponent,
-    ConsumerHomeComponent,
+    CustomerHomeComponent,
     PageNotFoundComponent,
     CreditsComponent,
     MyPicksComponent,

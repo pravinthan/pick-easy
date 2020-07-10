@@ -1,26 +1,21 @@
 import { Component } from "@angular/core";
 import { AuthenticationService } from "src/app/shared/authentication.service";
-import { Router } from "@angular/router";
 import { MatDialog } from "@angular/material/dialog";
 import { SignInComponent } from "src/app/components/sign-in/sign-in.component";
 import { SignUpComponent } from "src/app/components/sign-up/sign-up.component";
 
 @Component({
-  selector: "app-consumer-home",
-  templateUrl: "./consumer-home.component.html",
-  styleUrls: ["./consumer-home.component.css"],
+  selector: "app-customer-home",
+  templateUrl: "./customer-home.component.html",
+  styleUrls: ["./customer-home.component.css"],
 })
-export class ConsumerHomeComponent {
+export class CustomerHomeComponent {
   currentUser = this.authenticationService.currentUser;
 
   constructor(
-    private router: Router,
     private authenticationService: AuthenticationService,
     public dialog: MatDialog
-  ) {
-    // if (this.authenticationService.currentUserValue)
-    //   this.router.navigateByUrl("/dashboard", { skipLocationChange: true });
-  }
+  ) {}
 
   openSignInDialog() {
     const signInDialog = this.dialog.open(SignInComponent, { width: "400px" });

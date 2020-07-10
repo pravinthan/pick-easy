@@ -3,10 +3,10 @@ import { Routes, RouterModule } from "@angular/router";
 import { PageNotFoundComponent } from "./components/pages/page-not-found/page-not-found.component";
 import { CreditsComponent } from "./components/pages/credits/credits.component";
 import { AuthenticationGuard } from "./shared/authentication.guard";
-import { ConsumerHomeComponent } from "./components/pages/consumer/consumer-home/consumer-home.component";
-import { DiscoverComponent } from "./components/pages/consumer/discover/discover.component";
-import { MyPicksComponent } from "./components/pages/consumer/my-picks/my-picks.component";
-import { ProfileComponent } from "./components/pages/consumer/profile/profile.component";
+import { CustomerHomeComponent } from "./components/pages/customer/customer-home/customer-home.component";
+import { DiscoverComponent } from "./components/pages/customer/discover/discover.component";
+import { MyPicksComponent } from "./components/pages/customer/my-picks/my-picks.component";
+import { ProfileComponent } from "./components/pages/customer/profile/profile.component";
 import { RestaurantHomeComponent } from "./components/pages/restaurant/restaurant-home/restaurant-home.component";
 import { RewardConfiguratorComponent } from "./components/pages/restaurant/reward-configurator/reward-configurator.component";
 import { AchievementConfiguratorComponent } from "./components/pages/restaurant/achievement-configurator/achievement-configurator.component";
@@ -19,22 +19,22 @@ const routes: Routes = [
     component: LandingPageComponent,
   },
   {
-    path: "consumer",
-    component: ConsumerHomeComponent,
+    path: "customer",
+    component: CustomerHomeComponent,
   },
   {
-    path: "consumer/discover",
+    path: "customer/discover",
     component: DiscoverComponent,
     canActivate: [AuthenticationGuard],
-    // maybe add another guard to verify consumer/restaurant access
+    // maybe add another guard to verify customer/restaurant access
   },
   {
-    path: "consumer/my-picks",
+    path: "customer/my-picks",
     component: MyPicksComponent,
     canActivate: [AuthenticationGuard],
   },
   {
-    path: "consumer/profile",
+    path: "customer/profile",
     component: ProfileComponent,
     canActivate: [AuthenticationGuard],
   },

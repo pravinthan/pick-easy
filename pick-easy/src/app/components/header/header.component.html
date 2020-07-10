@@ -3,7 +3,7 @@
     <div class="space-evenly">
       <a
         mat-button
-        routerLink="/consumer/discover"
+        routerLink="/customer/discover"
         *ngIf="!currentUser?.isRestaurantOwner"
       >
         <mat-icon class="gradient-text">storefront</mat-icon>
@@ -11,7 +11,7 @@
       </a>
       <a
         mat-button
-        routerLink="/consumer/my-picks"
+        routerLink="/customer/my-picks"
         *ngIf="!currentUser?.isRestaurantOwner"
       >
         <mat-icon class="gradient-text">local_dining</mat-icon>
@@ -30,7 +30,7 @@
     <div>
       <a
         [routerLink]="
-          currentUser?.isRestaurantOwner ? '/restaurant' : '/consumer'
+          currentUser?.isRestaurantOwner ? '/restaurant' : '/customer'
         "
         id="app-name"
       >
@@ -43,7 +43,7 @@
       <div class="space-evenly">
         <a
           mat-button
-          routerLink="/consumer/groups"
+          routerLink="/customer/groups"
           *ngIf="!currentUser?.isRestaurantOwner"
         >
           <mat-icon class="gradient-text">group</mat-icon>
@@ -51,7 +51,7 @@
         </a>
         <a
           mat-button
-          routerLink="/consumer/profile"
+          routerLink="/customer/profile"
           *ngIf="!currentUser?.isRestaurantOwner"
         >
           <mat-icon class="gradient-text">person</mat-icon>
