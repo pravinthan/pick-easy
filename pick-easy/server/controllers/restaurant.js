@@ -2,6 +2,7 @@ let mongoose = require("mongoose");
 let { validationResult } = require("express-validator");
 let Restaurant = mongoose.model("Restaurant");
 let AchievementTemplate = mongoose.model("AchievementTemplate");
+let RewardTemplate = mongoose.model("RewardTemplate");
 
 const isBadRequest = (req) => !validationResult(req).isEmpty();
 
@@ -92,6 +93,46 @@ module.exports.updateAchievements = async (req, res) => {
       $set: {
         numberOfStampsForReward: req.body.numberOfStampsForReward,
         achievements: req.body.achievements,
+      },
+    });
+
+    res.sendStatus(200);
+  } catch (err) {
+    res.sendStatus(500);
+  }
+};
+
+module.exports.updateRewards = async (req, res) => {
+  if (isBadRequest(req)) return res.sendStatus(400);
+
+  for (const reward of req.body.rewards) {
+    let template = await RewardTemplate.findOne({
+      templateNumber: reward.templateNumber,
+    });
+
+    if (
+      !template ||
+      template.variables.length != achievement.variables.length ||
+      (!template.repeatable &&
+        req.body.rewards.filter(
+          (reward) => reward.templateNumber == template.templateNumber
+        ).length > 1)
+    ) {
+      return res.sendStatus(400);
+    }
+  }
+
+  try {
+    let restaurant = await Restaurant.findById(req.params.id);
+
+    if (!restaurant)
+      return res.status(404).send(`Restaurant ${req.params.id} does not exist`);
+
+    if (!restaurant.owner._id.equals(req.user._id)) return res.sendStatus(403);
+
+    await Restaurant.findByIdAndUpdate(restaurant._id, {
+      $set: {
+        rewards: req.body.rewards,
       },
     });
 

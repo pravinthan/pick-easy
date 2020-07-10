@@ -8,4 +8,5 @@ export class RewardTemplate {
         variableType: String;
       }
     ];
+    level: String;
   };

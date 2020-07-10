@@ -18,8 +18,8 @@ let rewardTemplateSchema = new Schema([{
   variables: [{
       variableDescription: String,
       variableType: String,
-    }
-  ]
+  }],
+  level: String
 }]);
 
-mongoose.model("Reward", rewardTemplateSchema);
+mongoose.model("RewardTemplate", rewardTemplateSchema);
