@@ -7,10 +7,10 @@ import { SignUpComponent } from "src/app/components/sign-up/sign-up.component";
 
 @Component({
   selector: "app-consumer-home",
-  templateUrl: "./consumer-home.component.html",
-  styleUrls: ["./consumer-home.component.css"],
+  templateUrl: "./customer-home.component.html",
+  styleUrls: ["./customer-home.component.css"],
 })
-export class ConsumerHomeComponent {
+export class CustomerHomeComponent {
   currentUser = this.authenticationService.currentUser;
 
   constructor(
