@@ -218,9 +218,9 @@ Pravinthan
     2. Nothing
     3. Helping others and working on my next task
 Jeremy
-    1. 
-    2. 
-    3. 
+    1. Finished reward schema model
+    2. nothing
+    3. Connect the backend reward system with the restaurants reward configuator page
 
 --------------------------------------------------------------------------------------------
 Date: July 10, 2020
