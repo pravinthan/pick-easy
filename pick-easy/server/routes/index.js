@@ -23,7 +23,6 @@ let authenticationController = require("../controllers/authentication");
 let userController = require("../controllers/user");
 let restaurantController = require("../controllers/restaurant");
 let achievementTemplateController = require("../controllers/achievement-template");
-const { isString } = require("util");
 
 // Authentication
 router.post(
