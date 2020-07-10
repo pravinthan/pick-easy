@@ -30,36 +30,84 @@
   line-height: 35px;
 }
 
-#restaurants {
+.reward-display {
+  margin-top: 20px;
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
 }
 
-.restaurant {
-  margin: 1rem;
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.restaurant-card {
-  max-width: 400px;
+.card,
+.add-button {
+  border-radius: 16px;
+  /*flex-grow: 1;*/
+  margin: 10px;
+  width: 300px;
+  position: relative;
 }
 
-star-rating {
-  height: fit-content;
-  margin-left: auto;
+.add-button {
+  /* width is supposed to be 300px but 34px gets removed by an undiscovered reason*/
+  width: 334px;
+  padding: 16px;
 }
 
-.description {
-  padding: 1rem 0;
-}
-
-.loyalty-hint {
+.footer {
   display: flex;
   justify-content: flex-end;
 }
 
-mat-card > img {
-  width: 400px;
-  height: 300px;
-  object-fit: cover;
+.vertical-align {
+  display: flex;
+  align-items: center;
+}
+
+.button {
+  margin: 10px;
+}
+
+.primary-color {
+  background: linear-gradient(to right, #e8285f, #f23f43);
+}
+
+.chip-bronze,
+.chip-silver,
+.chip-gold,
+.chip-platinum,
+.chip-diamond {
+  margin: 0px 10px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 20px;
+  float: right;
+}
+
+.chip-bronze {
+  color: black;
+  background: linear-gradient(to right, chocolate, rgb(224, 130, 63));
+}
+
+.chip-silver {
+  color: black;
+  background: linear-gradient(to right, rgb(192, 192, 192), lightGrey);
+}
+
+.chip-gold {
+  color: white;
+  background: linear-gradient(to right, gold, rgb(255, 229, 79));
+}
+
+.chip-platinum {
+  color: white;
+  background: linear-gradient(to right, lightGrey, rgb(225, 225, 225));
+}
+
+.chip-diamond {
+  color: white;
+  background: linear-gradient(to right, deepskyblue, rgb(81, 211, 255));
 }

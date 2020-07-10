@@ -17,6 +17,7 @@ import { MyPicksComponent } from "./components/pages/customer/my-picks/my-picks.
 import { ProfileComponent } from "./components/pages/customer/profile/profile.component";
 import { DiscoverComponent } from "./components/pages/customer/discover/discover.component";
 import { CustomerHomeComponent } from "./components/pages/customer/customer-home/customer-home.component";
+import { RewardConfiguratorComponent } from "./components/pages/restaurant/reward-configurator/reward-configurator.component";
 import { RestaurantHomeComponent } from "./components/pages/restaurant/restaurant-home/restaurant-home.component";
 import { AchievementConfiguratorComponent } from "./components/pages/restaurant/achievement-configurator/achievement-configurator.component";
 import { LandingPageComponent } from "./components/pages/landing-page/landing-page.component";
@@ -35,6 +36,7 @@ import { MatCardModule } from "@angular/material/card";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { RatingModule } from "ng-starrating";
+import { MatChipsModule } from "@angular/material/chips";
 import { MatSelectModule } from "@angular/material/select";
 
 @NgModule({
@@ -49,6 +51,7 @@ import { MatSelectModule } from "@angular/material/select";
     MyPicksComponent,
     ProfileComponent,
     DiscoverComponent,
+    RewardConfiguratorComponent,
     RestaurantHomeComponent,
     AchievementConfiguratorComponent,
     LandingPageComponent,
@@ -73,6 +76,7 @@ import { MatSelectModule } from "@angular/material/select";
     MatProgressBarModule,
     MatAutocompleteModule,
     RatingModule,
+    MatChipsModule,
     MatSelectModule,
   ],
   providers: [
