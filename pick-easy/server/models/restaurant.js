@@ -60,8 +60,8 @@ let restaurantSchema = new Schema({
     {
       templateNumber: Number,
       variables: [String],
-    }
-  ]
+    },
+  ],
 });
 
 mongoose.model("Restaurant", restaurantSchema);

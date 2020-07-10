@@ -11,7 +11,7 @@ export class TemplateService {
   getRewardTemplates(): Observable<RewardTemplate[]> {
     return this.http.get<RewardTemplate[]>(`/api/templates/rewards`);
   }
-  
+
   getAchievementTemplates(): Observable<AchievementTemplate[]> {
     return this.http.get<AchievementTemplate[]>(`/api/templates/achievements`);
   }

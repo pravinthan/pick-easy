@@ -17,7 +17,7 @@ export class Restaurant {
     | "Greek"
     | "Korean";
   numberOfStampsForReward?: number;
-  achievements?: RestaurantAchievement[]
+  achievements?: RestaurantAchievement[];
   rewards?: RestaurantReward[];
 }
 
