@@ -18,6 +18,7 @@ import { ProfileComponent } from "./components/pages/consumer/profile/profile.co
 import { DiscoverComponent } from "./components/pages/consumer/discover/discover.component";
 import { ConsumerHomeComponent } from "./components/pages/consumer/consumer-home/consumer-home.component";
 import { RewardConfiguratorComponent } from "./components/pages/restaurant/reward-configurator/reward-configurator.component";
+import { RestaurantHomeComponent } from "./components/pages/restaurant/restaurant-home/restaurant-home.component";
 import { AchievementConfiguratorComponent } from "./components/pages/restaurant/achievement-configurator/achievement-configurator.component";
 import { LandingPageComponent } from "./components/pages/landing-page/landing-page.component";
 
@@ -51,6 +52,7 @@ import { MatSelectModule } from "@angular/material/select";
     ProfileComponent,
     DiscoverComponent,
     RewardConfiguratorComponent,
+    RestaurantHomeComponent,
     AchievementConfiguratorComponent,
     LandingPageComponent,
   ],
