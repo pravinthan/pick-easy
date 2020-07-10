@@ -12,9 +12,9 @@ let restaurantOwnerAuth = (req, res, next) => {
   next();
 };
 
-let consumerAuth = (req, res, next) => {
+let customerAuth = (req, res, next) => {
   if (req.user.isRestaurantOwner)
-    return res.status(403).send("User is not a consumer");
+    return res.status(403).send("User is not a customer");
 
   next();
 };

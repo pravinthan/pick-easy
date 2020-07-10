@@ -38,7 +38,7 @@ export class SignUpComponent {
       .subscribe(
         (data) => {
           this.signedUp.emit(true);
-          if (!this.data.isRestaurantOwner) this.router.navigate(["/consumer"]);
+          if (!this.data.isRestaurantOwner) this.router.navigate(["/customer"]);
           else this.router.navigate(["/restaurant"]);
         },
         (error) => {

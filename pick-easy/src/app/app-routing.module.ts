@@ -26,7 +26,7 @@ const routes: Routes = [
     path: "customer/discover",
     component: DiscoverComponent,
     canActivate: [AuthenticationGuard],
-    // maybe add another guard to verify consumer/restaurant access
+    // maybe add another guard to verify customer/restaurant access
   },
   {
     path: "customer/my-picks",
