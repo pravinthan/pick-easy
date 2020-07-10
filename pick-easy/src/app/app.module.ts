@@ -33,6 +33,7 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatCardModule } from "@angular/material/card";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { MatTabsModule } from "@angular/material/tabs";
 import { RatingModule } from "ng-starrating";
 import { MatSelectModule } from "@angular/material/select";
 
@@ -72,6 +73,7 @@ import { MatSelectModule } from "@angular/material/select";
     MatAutocompleteModule,
     RatingModule,
     MatSelectModule,
+    MatTabsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

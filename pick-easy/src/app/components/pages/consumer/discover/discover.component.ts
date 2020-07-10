@@ -24,7 +24,16 @@ export class DiscoverComponent implements OnInit {
       cost: 1,
       cuisine: "Japanese",
       numberOfStampsForReward: 5,
-      level: "Bronze",
+      achievements: [{
+        templateNumber: 4,
+        variables: [],
+        numberOfStamps: 5
+      },
+      {
+        templateNumber: 5,
+        variables: [],
+        numberOfStamps: 5
+      }]
     },
     {
       _id: "12",
@@ -34,7 +43,11 @@ export class DiscoverComponent implements OnInit {
       cost: 2,
       cuisine: "Chinese",
       numberOfStampsForReward: 5,
-      level: "Bronze",
+      achievements: [{
+        templateNumber: 5,
+        variables: [],
+        numberOfStamps: 5
+      }]
     },
     {
       _id: "13",
@@ -44,7 +57,11 @@ export class DiscoverComponent implements OnInit {
       cost: 3,
       cuisine: "American",
       numberOfStampsForReward: 5,
-      level: "Bronze",
+      achievements: [{
+        templateNumber: 6,
+        variables: [],
+        numberOfStamps: 5
+      }]
     },
   ];
 
