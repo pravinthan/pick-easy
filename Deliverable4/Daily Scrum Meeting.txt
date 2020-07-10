@@ -238,9 +238,9 @@ Evan
     2. 
     3. 
 Anthony
-    1. 
-    2. 
-    3. 
+    1. Finished updating product backlog 
+    2. Nothing
+    3. Work on the restaurant profile component
 Pravinthan
     1. 
     2. 
