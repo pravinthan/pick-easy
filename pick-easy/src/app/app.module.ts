@@ -38,6 +38,7 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { RatingModule } from "ng-starrating";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatSelectModule } from "@angular/material/select";
+import { MyRestaurantComponent } from './components/pages/restaurant/my-restaurant/my-restaurant.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { MatSelectModule } from "@angular/material/select";
     RestaurantHomeComponent,
     AchievementConfiguratorComponent,
     LandingPageComponent,
+    MyRestaurantComponent,
   ],
   imports: [
     BrowserModule,
