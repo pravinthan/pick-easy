@@ -4,7 +4,7 @@ import { map, startWith } from "rxjs/operators";
 import { Observable } from "rxjs";
 import { Restaurant } from "src/app/shared/models/restaurant.model";
 import { MatDialog } from "@angular/material/dialog";
-import { RestaurantDetailsComponent } from "src/app/components/pages/consumer/discover/restaurant-details/restaurant-details.component";
+import { RestaurantDetailsComponent } from "src/app/components/pages/customer/discover/restaurant-details/restaurant-details.component";
 
 @Component({
   selector: "app-discover",
