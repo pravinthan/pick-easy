@@ -1,0 +1,52 @@
+<mat-card class="restaurant-card">
+  <mat-card-header>
+    <img mat-card-avatar src="assets/{{ data.restaurant.name }}.jpg" />
+    <mat-card-title>{{ data.restaurant.name }}</mat-card-title>
+    <mat-card-subtitle
+      >{{ data.restaurant.cuisine }} Restaurant ·
+      {{ "$".repeat(data.restaurant.cost) }}</mat-card-subtitle
+    >
+    <star-rating
+      [value]="data.restaurant.rating"
+      [totalstars]="5"
+      checkedcolor="red"
+      uncheckedcolor="black"
+      size="24px"
+      [readonly]="true"
+    ></star-rating>
+  </mat-card-header>
+  <img mat-card-image src="assets/{{ data.restaurant.name }}.jpg" />
+  <mat-card-content>
+    <div class="description">
+      {{ data.restaurant.description }} <br>
+      Stamps: {{ data.restaurant.numberOfStampsForReward }}
+    </div>
+    <mat-tab-group animationDuration="0ms">
+      <mat-tab label="Achievements">
+        <div
+          class="achievement"
+          *ngFor="
+            let achievement of data.restaurant.achievements;
+            let i = index
+          "
+        >
+          <div class="achievement-template-container">
+            <div
+              *ngFor="
+                let achievementText of getTemplateByNumber(
+                  achievement.templateNumber
+                ).value.split(':variable');
+                let j = index
+              "
+            >
+              <span>{{ achievementText }}</span>
+
+              <span>{{ achievement.variables[j] }}</span>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Rewards">Content 2</mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>
