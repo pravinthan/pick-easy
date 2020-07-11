@@ -18,7 +18,7 @@ import { DiscoverComponent } from "./components/pages/consumer/discover/discover
 import { ConsumerHomeComponent } from "./components/pages/consumer/consumer-home/consumer-home.component";
 import { AchievementConfiguratorComponent } from "./components/pages/restaurant/achievement-configurator/achievement-configurator.component";
 import { LandingPageComponent } from "./components/pages/landing-page/landing-page.component";
-import { RestaurantDetailsComponent } from './components/pages/consumer/discover/restaurant-details/restaurant-details.component';
+import { RestaurantDetailsComponent } from "./components/pages/consumer/discover/restaurant-details/restaurant-details.component";
 
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -73,7 +73,7 @@ import { MatSelectModule } from "@angular/material/select";
     MatAutocompleteModule,
     RatingModule,
     MatSelectModule,
-    MatTabsModule
+    MatTabsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
