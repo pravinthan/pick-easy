@@ -1,22 +1,22 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { LandingPageComponent } from "./landing-page.component";
+import { RewardConfiguratorComponent } from "./reward-configurator.component";
 import { RouterTestingModule } from "@angular/router/testing";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 
-describe("LandingPageComponent", () => {
-  let component: LandingPageComponent;
-  let fixture: ComponentFixture<LandingPageComponent>;
+describe("RewardConfiguratorComponent", () => {
+  let component: RewardConfiguratorComponent;
+  let fixture: ComponentFixture<RewardConfiguratorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientTestingModule],
-      declarations: [LandingPageComponent],
+      declarations: [RewardConfiguratorComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LandingPageComponent);
+    fixture = TestBed.createComponent(RewardConfiguratorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -25,5 +25,7 @@ describe("LandingPageComponent", () => {
     expect(component).toBeTruthy();
   });
 
-  // Check if buttons link to correct customer/restaurant staff pages
+  // Check if adding rewards works
+  // Check if removing rewards works
+  // Check if 0 rewards works
 });
