@@ -246,9 +246,9 @@ Pravinthan
     2. Nothing
     3. Helping others, creating unit tests and working on next tasks
 Jeremy
-    1. 
-    2. 
-    3. 
+    1. Nothing
+    2. Other course work and other non-Backlog tasks
+    3. Connect the backend reward system with the restaurants reward configuator page
 
 
 --------------------------------------------------------------------------------------------
