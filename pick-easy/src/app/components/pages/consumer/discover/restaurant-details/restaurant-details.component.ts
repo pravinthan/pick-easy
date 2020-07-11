@@ -1,18 +1,18 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Restaurant } from 'src/app/shared/models/restaurant.model';
-import { TemplateService } from 'src/app/shared/template.service';
-import { AchievementTemplate } from 'src/app/shared/models/achievement-template.model';
+import { Component, Inject } from "@angular/core";
+import { MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { Restaurant } from "src/app/shared/models/restaurant.model";
+import { TemplateService } from "src/app/shared/template.service";
+import { AchievementTemplate } from "src/app/shared/models/achievement-template.model";
 
 @Component({
-  selector: 'app-restaurant-details',
-  templateUrl: './restaurant-details.component.html',
-  styleUrls: ['./restaurant-details.component.css']
+  selector: "app-restaurant-details",
+  templateUrl: "./restaurant-details.component.html",
+  styleUrls: ["./restaurant-details.component.css"],
 })
-export class RestaurantDetailsComponent implements OnInit {
+export class RestaurantDetailsComponent {
   templates: AchievementTemplate[];
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: {restaurant: Restaurant},
+    @Inject(MAT_DIALOG_DATA) public data: { restaurant: Restaurant },
     private templateService: TemplateService
   ) {
     this.templateService
@@ -26,8 +26,4 @@ export class RestaurantDetailsComponent implements OnInit {
       (template) => template.templateNumber == templateNumber
     );
   }
-
-  ngOnInit(): void {
-  }
-
 }
