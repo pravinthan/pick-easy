@@ -1,1 +1,34 @@
-<p>my-restaurant works!</p>
+<div id="page">
+  <div id="content">
+    <div id="title">
+      <span class="gradient-text">My Restaurant</span>
+    </div>
+
+    <div id="info-container">
+      <mat-form-field class="example-full-width">
+        <mat-label>Restaurant Name</mat-label>
+        <textarea matInput placeholder="Input the name of your restaurant"></textarea>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput placeholder="Give a brief description of your restaurant"></textarea>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Cuisine</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let cuisine of food" [value]="cuisine">
+            {{ cuisine }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Cost</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let cost of costs" [value]="cost">
+            {{ cost }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
