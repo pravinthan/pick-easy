@@ -275,9 +275,9 @@ Pravinthan
     2. Nothing
     3. Working on unit testing
 Jeremy
-    1. 
-    2. 
-    3. 
+    1. Nothing
+    2. Issues with using back end reward system
+    3. Revise Reward system and connect the backend reward system with the restaurants reward configuator page
 
 
 --------------------------------------------------------------------------------------------
