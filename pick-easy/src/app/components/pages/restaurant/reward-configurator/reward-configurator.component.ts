@@ -70,7 +70,7 @@ export class RewardConfiguratorComponent {
           levels: ["Bronze", "Silver", "Gold", "Platinum", "Diamond"]
         }
       });
-      dialogRef.afterClosed().subscribe(result => {this.rewards.push(result);});
+      dialogRef.afterClosed().subscribe(result => result && this.rewards.push(result));
     }
 
     openEditDialog(index: number) {
@@ -78,7 +78,11 @@ export class RewardConfiguratorComponent {
     }
 
     openDeleteDialog(index: number) {
-      this.dialog.open(RewardConfiguratorDeleteDialog);
+      const dialogRef = this.dialog.open(RewardConfiguratorDeleteDialog, {
+        width: '600px',
+        data: {index: index}
+      });
+      dialogRef.afterClosed().subscribe(index => {typeof index == 'number' && this.rewards.splice(index, 1)});
     }
 
     saveChanges() {
@@ -111,4 +115,8 @@ export class RewardConfiguratorEditDialog {}
   selector: 'app-reward-configurator-dialog',
   templateUrl: './reward-configurator-delete-dialog.html',
 })
-export class RewardConfiguratorDeleteDialog {}
+export class RewardConfiguratorDeleteDialog {
+  constructor(
+    public dialogRef: MatDialogRef<RewardConfiguratorAddDialog>,
+    @Inject(MAT_DIALOG_DATA) public data) {}
+}
