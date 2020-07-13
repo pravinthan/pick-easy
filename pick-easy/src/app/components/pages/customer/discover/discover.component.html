@@ -34,9 +34,10 @@
             (filteredOptions | async).includes(restaurant.name) ||
             search.value.length == 0
           "
+          (click)="openDetailsDialog(restaurant)"
         >
           <mat-card-header>
-            <img mat-card-avatar src="assets/{{restaurant.name}}.jpg" />
+            <img mat-card-avatar src="assets/{{ restaurant.name }}.jpg" />
             <mat-card-title>{{ restaurant.name }}</mat-card-title>
             <mat-card-subtitle
               >{{ restaurant.cuisine }} Restaurant ·
@@ -51,15 +52,11 @@
               [readonly]="true"
             ></star-rating>
           </mat-card-header>
-          <img mat-card-image src="assets/{{restaurant.name}}.jpg" />
+          <img mat-card-image src="assets/{{ restaurant.name }}.jpg" />
           <mat-card-content>
             <div class="description">
               {{ restaurant.description }}
-            </div>
-            <div class="favorite">
-              <button mat-icon-button color="accent">
-                <mat-icon>favorite</mat-icon>
-              </button>
+              <div>Stamps: {{ restaurant.numberOfStampsForReward }}</div>
             </div>
           </mat-card-content>
         </mat-card>

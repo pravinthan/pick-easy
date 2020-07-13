@@ -9,6 +9,8 @@ let passport = require("passport");
 
 require("./models/user");
 require("./models/restaurant");
+require("./models/achievement-template");
+require("./models/reward-template");
 require("./config/passport");
 
 let apiRoute = require("./routes/index");

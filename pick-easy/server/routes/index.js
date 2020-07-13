@@ -5,9 +5,25 @@ let jwt = require("express-jwt");
 
 let auth = jwt({ secret: process.env.JWT_SECRET });
 
+let restaurantOwnerAuth = (req, res, next) => {
+  if (!req.user.isRestaurantOwner)
+    return res.status(403).send("User is not a restaurant owner");
+
+  next();
+};
+
+let customerAuth = (req, res, next) => {
+  if (req.user.isRestaurantOwner)
+    return res.status(403).send("User is not a customer");
+
+  next();
+};
+
 let authenticationController = require("../controllers/authentication");
 let userController = require("../controllers/user");
 let restaurantController = require("../controllers/restaurant");
+let achievementTemplateController = require("../controllers/achievement-template");
+let rewardTemplateController = require("../controllers/reward-template");
 
 // Authentication
 router.post(
@@ -53,7 +69,14 @@ router.get(
 );
 
 // Restaurants
+router.post("/restaurants", auth, restaurantController.createRestaurant);
 router.get("/restaurants", auth, restaurantController.retrieveAllRestaurants);
+router.get(
+  "/restaurants/owned",
+  auth,
+  restaurantOwnerAuth,
+  restaurantController.retrieveOwnRestaurant
+);
 router.get(
   "/restaurants/:id",
   auth,
@@ -65,6 +88,55 @@ router.get(
       .escape(),
   ],
   restaurantController.retrieveRestaurantById
+);
+router.patch(
+  "/restaurants/:id",
+  auth,
+  restaurantOwnerAuth,
+  [
+    param("id")
+      .exists({ checkNull: true, checkFalsy: true })
+      .trim()
+      .isMongoId()
+      .escape(),
+    body("numberOfStampsForReward")
+      .exists({ checkNull: true })
+      .isInt({ min: 1 }),
+    body("achievements")
+      .exists({ checkNull: true, checkFalsy: true })
+      .isArray(),
+    body("achievements.*.templateNumber")
+      .exists({ checkNull: true })
+      .isInt({ min: 0 }),
+    body("achievements.*.numberOfStamps")
+      .exists({ checkNull: true })
+      .isInt({ min: 1 }),
+    body("achievements.*.variables").isArray(),
+    body("achievements.*.variables.*")
+      .if(body("achievements.*.variables.*").isString())
+      .trim()
+      .escape(),
+    body("achievements.*.variables.*")
+      .if(body("achievements.*.variables.*").isInt())
+      .isInt({ min: 0 }),
+  ],
+  restaurantController.updateAchievements
+);
+
+// Achievement Templates
+router.get(
+  "/templates/achievements",
+  auth,
+  restaurantOwnerAuth,
+  achievementTemplateController.retrieveAllTemplates
+);
+
+// Reward Templates
+router.get(
+  "/templates/rewards",
+  auth,
+  restaurantOwnerAuth,
+  rewardTemplateController.retrieveAllTemplates
 );
 
 module.exports = router;

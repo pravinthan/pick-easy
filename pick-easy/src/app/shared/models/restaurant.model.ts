@@ -16,4 +16,19 @@ export class Restaurant {
     | "Brazilian"
     | "Greek"
     | "Korean";
+  numberOfStampsForReward?: number;
+  achievements?: RestaurantAchievement[];
+  rewards?: RestaurantReward[];
+}
+
+export class RestaurantAchievement {
+  templateNumber: number;
+  variables: string[];
+  numberOfStamps: number;
+}
+
+export class RestaurantReward {
+  templateNumber: number;
+  variables: string[];
+  level: string;
 }

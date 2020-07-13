@@ -77,3 +77,7 @@ mat-card > img {
   height: 300px;
   object-fit: cover;
 }
+
+mat-card {
+  cursor: pointer;
+}

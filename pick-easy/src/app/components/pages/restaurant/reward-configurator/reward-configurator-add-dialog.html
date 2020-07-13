@@ -1,7 +1,39 @@
 <h2 mat-dialog-title>Add New Reward</h2>
 <div mat-dialog-content>
+    <mat-form-field appearance="fill">
+        <mat-label>Choose an achievement template</mat-label>
+        <mat-select #templatePicker [(ngModel)]="selectedTemplate">
+            <mat-option
+                *ngFor="let template of data.templates"
+                [value]="template">{{ template.content }}</mat-option>
+        </mat-select>    
+    </mat-form-field>
+    <br>
+    <span *ngFor="let text of selectedTemplate ? selectedTemplate.content.split('<') : ['Nothing Selected']; let i = index">
+        <span>{{ text.substring(text.indexOf('>') + 1) }}</span>
+        <mat-form-field *ngIf="selectedTemplate?.variables[i]" >   
+            <mat-label>{{ selectedTemplate.variables[i] }}</mat-label>
+            <input *ngIf="selectedTemplate.variables[i] === 'Percent'"
+                matInput type="number" min="1" max="99" value="1" required [(ngModel)]="data.variables[i]">
+            <input *ngIf="selectedTemplate.variables[i] === 'Dollar'"
+                matInput type="number" min="1" value="1" required [(ngModel)]="data.variables[i]">
+            <input *ngIf="selectedTemplate.variables[i] === 'Restaurant Item'"
+                matInput required [(ngModel)]="data.variables[i]">
+        </mat-form-field>
+    </span>
+    <br>
+    <mat-form-field appearance="fill">
+        <mat-label>Choose level</mat-label>
+        <mat-select #templatePicker [(ngModel)]="selectedLevel">
+            <mat-option
+                *ngFor="let level of data.levels"
+                [value]="level">{{ level }}</mat-option>
+        </mat-select>    
+    </mat-form-field>
 </div>
 <div mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Add</button>
+    <button mat-button [mat-dialog-close]="
+        {templateNumber: selectedTemplate?.templateNumber, variables: data.variables, level: selectedLevel}
+        " cdkFocusInitial>Add</button>
 </div>

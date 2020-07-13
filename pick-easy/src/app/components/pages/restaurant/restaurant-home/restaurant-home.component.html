@@ -1,0 +1,63 @@
+<div id="home-video">
+  <video autoplay muted loop>
+    <source src="/assets/home-video.mp4" type="video/mp4" />
+  </video>
+</div>
+<div id="home-overlay">
+  <div>
+    <span style="font-size: xx-large; font-weight: bold;">
+      Welcome to PickEasy for Restaurants
+    </span>
+  </div>
+  <div style="margin-top: 0.5rem;">
+    <span style="font-size: medium;">
+      Swipe. Match. Dine.
+    </span>
+  </div>
+  <div style="margin-top: 2rem;">
+    <div *ngIf="!currentUser">
+      <button
+        mat-raised-button
+        (click)="openSignInDialog()"
+        style="margin-right: 2rem;"
+      >
+        Sign In
+      </button>
+      <button mat-raised-button color="accent" (click)="openSignUpDialog()">
+        Sign Up
+      </button>
+    </div>
+
+    <div *ngIf="currentUser">
+      <a
+        mat-raised-button
+        routerLink="./my-restaurant"
+        color="accent"
+        style="margin-right: 2rem;"
+      >
+        <mat-icon>restaurant</mat-icon>
+        My Restaurant
+      </a>
+      <a
+        mat-raised-button
+        routerLink="./achievements"
+        color="accent"
+        style="margin-right: 2rem;"
+      >
+        <mat-icon>card_membership</mat-icon>
+        Achievements
+      </a>
+      <a
+        mat-raised-button
+        routerLink="./rewards"
+        color="accent"
+        style="margin-right: 2rem;"
+      >
+        <mat-icon>redeem</mat-icon>
+        Rewards
+      </a>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

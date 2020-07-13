@@ -1,0 +1,138 @@
+<div id="page">
+  <div id="content">
+    <div id="title">
+      <span class="gradient-text">Configure Achievements</span>
+    </div>
+
+    <div id="configurator-container">
+      <mat-form-field id="stamps-picker">
+        <mat-label>Number of stamps</mat-label>
+        <input
+          type="number"
+          matInput
+          min="1"
+          step="1"
+          placeholder="5"
+          autocomplete="off"
+          [ngModel]="myRestaurant?.numberOfStampsForReward"
+          (ngModelChange)="myRestaurant.numberOfStampsForReward = $event"
+        />
+        <mat-hint align="start"
+          ><strong
+            >Number of stamps the customer must collect in order to receive a
+            reward</strong
+          >
+        </mat-hint>
+      </mat-form-field>
+
+      <div id="achievements-title">
+        <span class="gradient-text">List of Achievements</span>
+      </div>
+
+      <mat-form-field appearance="fill" id="template-picker">
+        <mat-label>Add an achievement template</mat-label>
+        <mat-select
+          #templatePicker
+          (selectionChange)="addAchievement($event.value)"
+        >
+          <mat-option
+            *ngFor="let template of templates"
+            [value]="template.templateNumber"
+            [disabled]="
+              !template.repeatable &&
+              getFirstAchievementByTemplateNumber(template.templateNumber)
+            "
+            >{{ template.content }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+
+      <div id="achievements">
+        <div
+          class="achievement"
+          *ngFor="let achievement of achievements; let i = index"
+        >
+          <div class="achievement-template-container">
+            <div
+              *ngFor="
+                let achievementText of getTemplateByNumber(
+                  achievement.templateNumber
+                ).value.split(':variable');
+                let j = index
+              "
+            >
+              <span>{{ achievementText }}</span>
+
+              <mat-form-field
+                class="achievement-field"
+                *ngIf="
+                  getTemplateByNumber(achievement.templateNumber).variables[j]
+                "
+              >
+                <mat-label>{{
+                  getTemplateByNumber(achievement.templateNumber).variables[j]
+                    .variableDescription
+                }}</mat-label>
+
+                <input
+                  *ngIf="
+                    getTemplateByNumber(achievement.templateNumber).variables[j]
+                      .variableType == 'number';
+                    else stringInput
+                  "
+                  type="number"
+                  matInput
+                  min="0"
+                  autocomplete="off"
+                  [(ngModel)]="achievement.variables[j]"
+                  required
+                />
+
+                <ng-template #stringInput>
+                  <input
+                    type="text"
+                    matInput
+                    autocomplete="off"
+                    [(ngModel)]="achievement.variables[j]"
+                    required
+                  />
+                </ng-template>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="achievement-context-container">
+            <mat-form-field>
+              <mat-label>Number of stamps to award</mat-label>
+              <input
+                type="number"
+                matInput
+                min="1"
+                step="1"
+                autocomplete="off"
+                [(ngModel)]="achievement.numberOfStamps"
+                required
+              />
+            </mat-form-field>
+
+            <button
+              mat-icon-button
+              color="warn"
+              title="Remove achievement"
+              class="remove-achievement-button"
+              (click)="removeAchievement(achievement, i)"
+            >
+              <mat-icon>remove_circle</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="save-button-container">
+      <button mat-flat-button color="accent" (click)="saveAchievements()">
+        Save
+      </button>
+    </div>
+  </div>
+</div>
