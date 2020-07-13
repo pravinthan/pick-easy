@@ -3,6 +3,8 @@ import { FormControl } from "@angular/forms";
 import { map, startWith } from "rxjs/operators";
 import { Observable } from "rxjs";
 import { Restaurant } from "src/app/shared/models/restaurant.model";
+import { MatDialog } from "@angular/material/dialog";
+import { RestaurantDetailsComponent } from "src/app/components/pages/customer/discover/restaurant-details/restaurant-details.component";
 
 @Component({
   selector: "app-discover",
@@ -20,6 +22,19 @@ export class DiscoverComponent implements OnInit {
       rating: 1,
       cost: 1,
       cuisine: "Japanese",
+      numberOfStampsForReward: 5,
+      achievements: [
+        {
+          templateNumber: 4,
+          variables: [],
+          numberOfStamps: 5,
+        },
+        {
+          templateNumber: 5,
+          variables: [],
+          numberOfStamps: 5,
+        },
+      ],
     },
     {
       _id: "12",
@@ -28,6 +43,14 @@ export class DiscoverComponent implements OnInit {
       rating: 3,
       cost: 2,
       cuisine: "Chinese",
+      numberOfStampsForReward: 5,
+      achievements: [
+        {
+          templateNumber: 5,
+          variables: [],
+          numberOfStamps: 5,
+        },
+      ],
     },
     {
       _id: "13",
@@ -36,8 +59,18 @@ export class DiscoverComponent implements OnInit {
       rating: 4,
       cost: 3,
       cuisine: "American",
+      numberOfStampsForReward: 5,
+      achievements: [
+        {
+          templateNumber: 6,
+          variables: [],
+          numberOfStamps: 5,
+        },
+      ],
     },
   ];
+
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges.pipe(
@@ -52,5 +85,12 @@ export class DiscoverComponent implements OnInit {
     return this.restaurants
       .map((restaurant) => restaurant.name)
       .filter((name) => name.toLowerCase().indexOf(filterValue) != -1);
+  }
+
+  openDetailsDialog(restaurant: Restaurant) {
+    this.dialog.open(RestaurantDetailsComponent, {
+      width: "600px",
+      data: { restaurant },
+    });
   }
 }

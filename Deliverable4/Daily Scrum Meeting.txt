@@ -267,17 +267,17 @@ Evan
     2. 
     3. 
 Anthony
-    1. 
-    2. 
-    3. 
+    1. Working on profile component on the restaurant side 
+    2. Need to learn a how to implement image upload using Amazon S3
+    3. Continue working on profile component on the restaurant side
 Pravinthan
-    1. 
-    2. 
-    3. 
+    1. Merged teammates branches
+    2. Nothing
+    3. Working on unit testing
 Jeremy
-    1. 
-    2. 
-    3. 
+    1. Nothing
+    2. Issues with using back end reward system
+    3. Revise Reward system and connect the backend reward system with the restaurants reward configuator page
 
 
 --------------------------------------------------------------------------------------------
@@ -296,17 +296,17 @@ Evan
     2. 
     3. 
 Anthony
-    1. 
-    2. 
-    3. 
+    1. Working on profile component on the restaurant side
+    2. Need to learn a how to implement image upload using Amazon S3
+    3. Continue working on profile component on the restaurant side
 Pravinthan
-    1. 
-    2. 
-    3. 
+    1. Other homework
+    2. Nothing
+    3. Working on unit testing
 Jeremy
-    1. 
-    2. 
-    3. 
+    1. Added feature for restuarants to add new rewards
+    2. Other course work and issues retrieving data from inputs
+    3. Continue to connect the backend reward system with the restaurants reward configuator page
 
 
 --------------------------------------------------------------------------------------------

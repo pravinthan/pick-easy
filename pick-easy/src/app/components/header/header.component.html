@@ -11,14 +11,6 @@
       </a>
       <a
         mat-button
-        routerLink="/customer/my-picks"
-        *ngIf="!currentUser?.isRestaurantOwner"
-      >
-        <mat-icon class="gradient-text">local_dining</mat-icon>
-        <span class="gradient-text">My Picks</span>
-      </a>
-      <a
-        mat-button
         routerLink="/restaurant/my-restaurant"
         *ngIf="currentUser?.isRestaurantOwner"
       >
