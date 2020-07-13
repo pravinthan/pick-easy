@@ -22,17 +22,17 @@ export class DiscoverComponent implements OnInit {
       rating: 1,
       cost: 1,
       cuisine: "Japanese",
-      numberOfStampsForReward: 5,
+      numberOfTicketsForReward: 5,
       achievements: [
         {
           templateNumber: 4,
           variables: [],
-          numberOfStamps: 5,
+          numberOfTickets: 5,
         },
         {
           templateNumber: 5,
           variables: [],
-          numberOfStamps: 5,
+          numberOfTickets: 5,
         },
       ],
     },
@@ -43,12 +43,12 @@ export class DiscoverComponent implements OnInit {
       rating: 3,
       cost: 2,
       cuisine: "Chinese",
-      numberOfStampsForReward: 5,
+      numberOfTicketsForReward: 5,
       achievements: [
         {
           templateNumber: 5,
           variables: [],
-          numberOfStamps: 5,
+          numberOfTickets: 5,
         },
       ],
     },
@@ -59,12 +59,12 @@ export class DiscoverComponent implements OnInit {
       rating: 4,
       cost: 3,
       cuisine: "American",
-      numberOfStampsForReward: 5,
+      numberOfTicketsForReward: 5,
       achievements: [
         {
           templateNumber: 6,
           variables: [],
-          numberOfStamps: 5,
+          numberOfTickets: 5,
         },
       ],
     },
