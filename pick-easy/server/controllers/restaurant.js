@@ -12,7 +12,7 @@ module.exports.createRestaurant = async (req, res) => {
   let restaurant;
   try {
     restaurant = await Restaurant.create({
-      owner: { _id: req.user._id },
+      staff: { _id: req.user._id },
       name: req.body.description,
       rating: { value: 0, ratedBy: 0 },
       cost: req.body.cost,
@@ -50,7 +50,7 @@ module.exports.retrieveAllRestaurants = async (req, res) => {
 
 module.exports.retrieveOwnRestaurant = async (req, res) => {
   try {
-    let restaurant = await Restaurant.findOne({ "owner._id": req.user._id });
+    let restaurant = await Restaurant.findOne({ "staff._id": req.user._id });
 
     if (!restaurant)
       return res.status(404).send(`No restaurant found under the user`);
@@ -87,7 +87,7 @@ module.exports.updateAchievements = async (req, res) => {
     if (!restaurant)
       return res.status(404).send(`Restaurant ${req.params.id} does not exist`);
 
-    if (!restaurant.owner._id.equals(req.user._id)) return res.sendStatus(403);
+    if (!restaurant.staff._id.equals(req.user._id)) return res.sendStatus(403);
 
     await Restaurant.findByIdAndUpdate(restaurant._id, {
       $set: {
@@ -128,7 +128,7 @@ module.exports.updateRewards = async (req, res) => {
     if (!restaurant)
       return res.status(404).send(`Restaurant ${req.params.id} does not exist`);
 
-    if (!restaurant.owner._id.equals(req.user._id)) return res.sendStatus(403);
+    if (!restaurant.staff._id.equals(req.user._id)) return res.sendStatus(403);
 
     await Restaurant.findByIdAndUpdate(restaurant._id, {
       $set: {
