@@ -5,8 +5,8 @@
     </div>
 
     <div id="configurator-container">
-      <mat-form-field id="stamps-picker">
-        <mat-label>Number of stamps</mat-label>
+      <mat-form-field id="tickets-picker">
+        <mat-label>Number of tickets</mat-label>
         <input
           type="number"
           matInput
@@ -14,12 +14,12 @@
           step="1"
           placeholder="5"
           autocomplete="off"
-          [ngModel]="myRestaurant?.numberOfStampsForReward"
-          (ngModelChange)="myRestaurant.numberOfStampsForReward = $event"
+          [ngModel]="myRestaurant?.numberOfTicketsForReward"
+          (ngModelChange)="myRestaurant.numberOfTicketsForReward = $event"
         />
         <mat-hint align="start"
           ><strong
-            >Number of stamps the customer must collect in order to receive a
+            >Number of tickets the customer must collect in order to receive a
             reward</strong
           >
         </mat-hint>
@@ -103,14 +103,14 @@
 
           <div class="achievement-context-container">
             <mat-form-field>
-              <mat-label>Number of stamps to award</mat-label>
+              <mat-label>Number of tickets to award</mat-label>
               <input
                 type="number"
                 matInput
                 min="1"
                 step="1"
                 autocomplete="off"
-                [(ngModel)]="achievement.numberOfStamps"
+                [(ngModel)]="achievement.numberOfTickets"
                 required
               />
             </mat-form-field>

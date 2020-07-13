@@ -55,7 +55,7 @@ export class AchievementConfiguratorComponent {
 
     this.achievements.push({
       templateNumber,
-      numberOfStamps: 1,
+      numberOfTickets: 1,
       variables: Array<string>(template.variables.length).fill(""),
     });
 
@@ -95,7 +95,7 @@ export class AchievementConfiguratorComponent {
     this.restaurantService
       .updateAchievements(
         this.myRestaurant._id,
-        this.myRestaurant.numberOfStampsForReward,
+        this.myRestaurant.numberOfTicketsForReward,
         this.achievements
       )
       .toPromise()
