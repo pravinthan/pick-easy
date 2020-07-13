@@ -9,6 +9,7 @@ import { MatSelect } from "@angular/material/select";
 import { RestaurantService } from "src/app/shared/restaurant.service";
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, Validators } from '@angular/forms';
+import { variable } from '@angular/compiler/src/output/output_ast';
 
 export interface DialogData {
   templates: RewardTemplate[];
@@ -43,6 +44,23 @@ export class RewardConfiguratorComponent {
           this.rewards = restaurant.rewards;
       });
     }
+
+    getFormattedReward(reward: RestaurantReward) {
+      const template = this.getTemplateByNumber(reward.templateNumber);
+      // Splits content by "<...>" where ... is any chars
+      const text = template.content.split('<').map(str => str.substring(str.indexOf('>') + 1));
+      let formattedReward = "";
+      for (let i = 0; i < text.length; i++)
+        formattedReward += text[i] + (reward.variables[i] ? reward.variables[i] : "");
+      return formattedReward;
+    }
+
+    getTemplateByNumber(templateNumber: number): RewardTemplate {
+      return this.templates.find(
+        (template) => template.templateNumber == templateNumber
+      );
+    }
+
     openAddDialog() {
       const dialogRef = this.dialog.open(RewardConfiguratorAddDialog, {
         width: '600px',
@@ -52,15 +70,17 @@ export class RewardConfiguratorComponent {
           levels: ["Bronze", "Silver", "Gold", "Platinum", "Diamond"]
         }
       });
-      console.log(this.myRestaurant);
-      dialogRef.afterClosed().subscribe(result => {this.rewards.push(result);console.log(this.rewards)});
+      dialogRef.afterClosed().subscribe(result => {this.rewards.push(result);});
     }
-    openEditDialog() {
+
+    openEditDialog(index: number) {
       this.dialog.open(RewardConfiguratorEditDialog);
     }
-    openDeleteDialog() {
+
+    openDeleteDialog(index: number) {
       this.dialog.open(RewardConfiguratorDeleteDialog);
     }
+
     saveChanges() {
       this.restaurantService
       .updateRewards(

@@ -4,18 +4,18 @@
       <span class="gradient-text">Configure Your Rewards</span>
     </div>
     <div class="reward-display">
-      <mat-card class="card">
+      <mat-card class="card" *ngFor="let reward of rewards; let i = index">
         <mat-card-title>
-          Get 50% Off all Restaurant Items!
+          {{ getFormattedReward(reward) }}
         </mat-card-title>
         <mat-card-actions>
-          <button mat-icon-button (click)="openEditDialog()">
+          <button mat-icon-button (click)="openEditDialog(i)">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button (click)="openDeleteDialog()">
+          <button mat-icon-button (click)="openDeleteDialog(i)">
             <mat-icon>delete</mat-icon>
           </button>
-          <div class="chip-diamond">Diamond Tier</div>
+          <div class="{{ 'chip-' + reward.level.toLowerCase() }}">{{ reward.level }} Tier</div>
         </mat-card-actions>
       </mat-card>
       <button mat-stroked-button class="add-button" (click)="openAddDialog()">
