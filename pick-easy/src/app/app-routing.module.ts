@@ -28,7 +28,7 @@ const routes: Routes = [
     // maybe add another guard to verify customer/restaurant access
   },
   {
-    path: "consumer/profile",
+    path: "costumer/profile",
     component: ProfileComponent,
     canActivate: [AuthenticationGuard],
   },

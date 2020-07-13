@@ -21,13 +21,13 @@ export class RestaurantService {
 
   updateAchievements(
     restaurantId: string,
-    numberOfStampsForReward: number,
+    numberOfTicketsForReward: number,
     achievements: RestaurantAchievement[]
   ) {
     return this.http.patch(
       `/api/restaurants/${restaurantId}`,
       {
-        numberOfStampsForReward,
+        numberOfTicketsForReward,
         achievements,
       },
       { responseType: "text" }
