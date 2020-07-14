@@ -16,7 +16,7 @@ export class LandingPageComponent {
   ) {
     if (this.currentUser) {
       this.router.navigateByUrl(
-        this.currentUser.isRestaurantOwner ? "/restaurant" : "/customer"
+        this.currentUser.isRestaurantStaff ? "/restaurant" : "/customer"
       );
     }
   }

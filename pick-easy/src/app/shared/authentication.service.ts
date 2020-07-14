@@ -29,7 +29,7 @@ export class AuthenticationService {
     if (this.currentUserSubject.value) {
       const token = this.parseJWT(this.currentUserSubject.value.token);
       if (token) {
-        return new User(token._id, token.username, token.isRestaurantOwner);
+        return new User(token._id, token.username, token.isRestaurantStaff);
       }
     }
 
@@ -68,7 +68,7 @@ export class AuthenticationService {
     password: string,
     firstName: string,
     lastName: string,
-    isRestaurantOwner: boolean
+    isRestaurantStaff: boolean
   ) {
     return this.http
       .post<any>(`/api/users/signup`, {
@@ -76,7 +76,7 @@ export class AuthenticationService {
         password,
         firstName,
         lastName,
-        isRestaurantOwner,
+        isRestaurantStaff,
       })
       .pipe(
         map((user) => {

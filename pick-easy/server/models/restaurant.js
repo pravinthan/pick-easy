@@ -2,10 +2,18 @@ let mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 let restaurantSchema = new Schema({
-  owner: {
+  staff: {
     _id: {
       type: Schema.Types.ObjectId,
     },
+  },
+  image: {
+    fieldname: String,
+    originalname: String,
+    encoding: String,
+    mimetype: String,
+    size: String,
+    isMain: Boolean,
   },
   name: String,
   description: String,
