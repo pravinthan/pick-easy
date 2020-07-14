@@ -2,7 +2,7 @@ let mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 let restaurantSchema = new Schema({
-  owner: {
+  staff: {
     _id: {
       type: Schema.Types.ObjectId,
     },

@@ -31,15 +31,15 @@ let upload = multer({
   limits: { fileSize: 1024 * 1024 * 10 },
 });
 
-let restaurantOwnerAuth = (req, res, next) => {
-  if (!req.user.isRestaurantOwner)
-    return res.status(403).send("User is not a restaurant owner");
+let restaurantStaffAuth = (req, res, next) => {
+  if (!req.user.isRestaurantStaff)
+    return res.status(403).send("User is not a restaurant staff");
 
   next();
 };
 
 let customerAuth = (req, res, next) => {
-  if (req.user.isRestaurantOwner)
+  if (req.user.isRestaurantStaff)
     return res.status(403).send("User is not a customer");
 
   next();
@@ -56,7 +56,7 @@ router.post(
   [
     body("firstName").trim().isAlpha().isLength({ min: 1, max: 20 }).escape(),
     body("lastName").trim().isAlpha().isLength({ min: 1, max: 20 }).escape(),
-    body("isRestaurantOwner").isBoolean().escape(),
+    body("isRestaurantStaff").isBoolean().escape(),
     body("username")
       .trim()
       .isAlphanumeric()
@@ -97,7 +97,7 @@ router.get(
 router.post(
   "/restaurants",
   auth,
-  restaurantOwnerAuth,
+  restaurantStaffAuth,
   upload.single("restaurantImage"),
   [
     body("restaurantName")
@@ -134,7 +134,7 @@ router.get("/restaurants", auth, restaurantController.retrieveAllRestaurants);
 router.get(
   "/restaurants/owned",
   auth,
-  restaurantOwnerAuth,
+  restaurantStaffAuth,
   restaurantController.retrieveOwnRestaurant
 );
 router.get(
@@ -153,7 +153,7 @@ router.get(
 router.patch(
   "/restaurants/:id",
   auth,
-  restaurantOwnerAuth,
+  restaurantStaffAuth,
   upload.single("restaurantImage"),
   [
     param("id")
@@ -200,7 +200,7 @@ router.get(
 router.patch(
   "/restaurants/:id/achievements",
   auth,
-  restaurantOwnerAuth,
+  restaurantStaffAuth,
   [
     param("id")
       .exists({ checkNull: true, checkFalsy: true })
@@ -235,7 +235,7 @@ router.patch(
 router.get(
   "/templates/achievements",
   auth,
-  restaurantOwnerAuth,
+  restaurantStaffAuth,
   achievementTemplateController.retrieveAllTemplates
 );
 
