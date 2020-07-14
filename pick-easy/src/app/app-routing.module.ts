@@ -10,6 +10,7 @@ import { RestaurantHomeComponent } from "./components/pages/restaurant/restauran
 import { RewardConfiguratorComponent } from "./components/pages/restaurant/reward-configurator/reward-configurator.component";
 import { AchievementConfiguratorComponent } from "./components/pages/restaurant/achievement-configurator/achievement-configurator.component";
 import { LandingPageComponent } from "./components/pages/landing-page/landing-page.component";
+import { MyRestaurantComponent } from "./components/pages/restaurant/my-restaurant/my-restaurant.component";
 
 const routes: Routes = [
   {
@@ -35,6 +36,11 @@ const routes: Routes = [
   {
     path: "restaurant",
     component: RestaurantHomeComponent,
+  },
+  {
+    path: "restaurant/my-restaurant",
+    component: MyRestaurantComponent,
+    canActivate: [AuthenticationGuard],
   },
   {
     path: "restaurant/rewards",
