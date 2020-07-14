@@ -6,7 +6,7 @@ export class Restaurant {
   rating: 0 | 1 | 2 | 3 | 4 | 5;
   cost: RestaurantCost;
   cuisine: RestaurantCuisine;
-  numberOfStampsForReward?: number;
+  numberOfTicketsForReward?: number;
   achievements?: RestaurantAchievement[];
   rewards?: RestaurantReward[];
 }
@@ -28,7 +28,7 @@ export class MulterFile {
 export class RestaurantAchievement {
   templateNumber: number;
   variables: string[];
-  numberOfStamps: number;
+  numberOfTickets: number;
 }
 
 export class RestaurantReward {

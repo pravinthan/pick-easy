@@ -206,7 +206,7 @@ router.patch(
       .trim()
       .isMongoId()
       .escape(),
-    body("numberOfStampsForReward")
+    body("numberOfTicketsForReward")
       .exists({ checkNull: true })
       .isInt({ min: 1 }),
     body("achievements")
@@ -215,7 +215,7 @@ router.patch(
     body("achievements.*.templateNumber")
       .exists({ checkNull: true })
       .isInt({ min: 0 }),
-    body("achievements.*.numberOfStamps")
+    body("achievements.*.numberOfTickets")
       .exists({ checkNull: true })
       .isInt({ min: 1 }),
     body("achievements.*.variables").isArray(),

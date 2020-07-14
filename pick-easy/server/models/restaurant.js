@@ -49,7 +49,7 @@ let restaurantSchema = new Schema({
       "Korean",
     ],
   },
-  numberOfStampsForReward: {
+  numberOfTicketsForReward: {
     type: Number,
     min: 1,
     default: 1,
@@ -58,7 +58,7 @@ let restaurantSchema = new Schema({
     {
       templateNumber: Number,
       variables: [String],
-      numberOfStamps: {
+      numberOfTickets: {
         type: Number,
         min: 1,
       },
