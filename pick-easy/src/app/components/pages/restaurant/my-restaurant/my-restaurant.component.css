@@ -1,4 +1,4 @@
-.h4{
+.h4 {
   width: calc(100% - 64px);
   max-width: min-content;
   margin: 0 auto;
@@ -13,7 +13,7 @@
 
 #content {
   width: calc(100% - 64px);
-  max-width: min-content;
+  max-width: 600px;
   margin: 0 auto;
   background: #f5f5f5;
   padding: 32px;
@@ -45,12 +45,50 @@
   flex-direction: column;
 }
 
-#info-container > mat-form-field {
-  width: 250px;
+#info-container > div {
+  width: 500px;
   margin-bottom: 1rem;
 }
 
-#info-container > mat-form-field:last-of-type {
+#info-container > div:last-of-type {
   margin-bottom: 0;
 }
 
+mat-form-field {
+  width: stretch;
+}
+
+form,
+#image-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#image-upload > mat-form-field {
+  width: 50%;
+  margin-top: 1rem;
+}
+
+#image-upload > img{
+  max-width: 400px;
+  max-height: 400px;
+  height: auto;
+  width: auto;
+}
+
+#save-button {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+#cuisine-cost {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#cuisine-cost > mat-form-field {
+  width: 45%;
+}

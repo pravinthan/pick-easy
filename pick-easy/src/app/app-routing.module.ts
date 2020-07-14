@@ -46,6 +46,7 @@ const routes: Routes = [
   {
     path: "restaurant/my-restaurant",
     component: MyRestaurantComponent,
+    canActivate: [AuthenticationGuard],
   },
   {
     path: "restaurant/rewards",

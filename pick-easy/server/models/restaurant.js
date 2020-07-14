@@ -7,6 +7,14 @@ let restaurantSchema = new Schema({
       type: Schema.Types.ObjectId,
     },
   },
+  image: {
+    fieldname: String,
+    originalname: String,
+    encoding: String,
+    mimetype: String,
+    size: String,
+    isMain: Boolean,
+  },
   name: String,
   description: String,
   rating: {

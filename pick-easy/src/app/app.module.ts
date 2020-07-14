@@ -14,6 +14,7 @@ import { HeaderComponent } from "./components/header/header.component";
 import { PageNotFoundComponent } from "./components/pages/page-not-found/page-not-found.component";
 import { CreditsComponent } from "./components/pages/credits/credits.component";
 import { MyPicksComponent } from "./components/pages/customer/my-picks/my-picks.component";
+import { MyRestaurantComponent } from "./components/pages/restaurant/my-restaurant/my-restaurant.component";
 import { ProfileComponent } from "./components/pages/customer/profile/profile.component";
 import { DiscoverComponent } from "./components/pages/customer/discover/discover.component";
 import { CustomerHomeComponent } from "./components/pages/customer/customer-home/customer-home.component";
@@ -22,6 +23,7 @@ import { RestaurantHomeComponent } from "./components/pages/restaurant/restauran
 import { AchievementConfiguratorComponent } from "./components/pages/restaurant/achievement-configurator/achievement-configurator.component";
 import { LandingPageComponent } from "./components/pages/landing-page/landing-page.component";
 
+import { NgxMatFileInputModule } from "@angular-material-components/file-input";
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
@@ -38,7 +40,6 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { RatingModule } from "ng-starrating";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatSelectModule } from "@angular/material/select";
-import { MyRestaurantComponent } from './components/pages/restaurant/my-restaurant/my-restaurant.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { MyRestaurantComponent } from './components/pages/restaurant/my-restaura
     RatingModule,
     MatChipsModule,
     MatSelectModule,
+    NgxMatFileInputModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

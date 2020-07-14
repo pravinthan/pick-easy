@@ -15,6 +15,7 @@ export class DiscoverComponent implements OnInit {
   restaurants: Array<Restaurant> = [
     {
       _id: "11",
+      image: null,
       name: "Kinton Ramen",
       description: "This is Kinton Ramen",
       rating: 1,
@@ -23,6 +24,7 @@ export class DiscoverComponent implements OnInit {
     },
     {
       _id: "12",
+      image: null,
       name: "Panda Express",
       description: "This is panda express",
       rating: 3,
@@ -31,6 +33,7 @@ export class DiscoverComponent implements OnInit {
     },
     {
       _id: "13",
+      image: null,
       name: "KFC",
       description: "This is kfc",
       rating: 4,
