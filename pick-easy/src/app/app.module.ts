@@ -13,6 +13,7 @@ import { SignUpComponent } from "./components/sign-up/sign-up.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { PageNotFoundComponent } from "./components/pages/page-not-found/page-not-found.component";
 import { CreditsComponent } from "./components/pages/credits/credits.component";
+import { MyRestaurantComponent } from "./components/pages/restaurant/my-restaurant/my-restaurant.component";
 import { ProfileComponent } from "./components/pages/customer/profile/profile.component";
 import { DiscoverComponent } from "./components/pages/customer/discover/discover.component";
 import { CustomerHomeComponent } from "./components/pages/customer/customer-home/customer-home.component";
@@ -40,6 +41,8 @@ import { RatingModule } from "ng-starrating";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatSelectModule } from "@angular/material/select";
 
+import { NgxMatFileInputModule } from "@angular-material-components/file-input";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,6 +59,7 @@ import { MatSelectModule } from "@angular/material/select";
     RestaurantDetailsComponent,
     AchievementConfiguratorComponent,
     LandingPageComponent,
+    MyRestaurantComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,6 +84,7 @@ import { MatSelectModule } from "@angular/material/select";
     MatChipsModule,
     MatSelectModule,
     MatTabsModule,
+    NgxMatFileInputModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
