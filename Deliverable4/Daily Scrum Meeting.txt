@@ -325,13 +325,13 @@ Evan
     2. 
     3. 
 Anthony
-    1. 
-    2. 
-    3. 
+    1. Completed my-restaurant component 
+    2. Nothing
+    3. help teams who need help
 Pravinthan
-    1. 
-    2. 
-    3. 
+    1. Helped Anthony complete my-restaurant component
+    2. Nothing
+    3. Unit testing and pull request
 Jeremy
     1. Added feature for restuarants to remove rewards
     2. Personal errands
