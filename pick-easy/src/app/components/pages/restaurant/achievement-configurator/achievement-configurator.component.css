@@ -28,7 +28,7 @@
 
 #title > .gradient-text {
   font-size: 32px;
-  line-height: 35px;
+  line-height: 42px;
 }
 
 #configurator-container {
@@ -90,4 +90,9 @@
 
 #save-button-container > button {
   width: 40%;
+}
+
+.gradient-button {
+  color: white;
+  background: linear-gradient(to right, #e8285f, #f23f43);
 }

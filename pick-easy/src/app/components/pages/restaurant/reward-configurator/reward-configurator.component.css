@@ -27,7 +27,7 @@
 
 #title > .gradient-text {
   font-size: 32px;
-  line-height: 35px;
+  line-height: 42px;
 }
 
 .reward-display {
@@ -71,7 +71,7 @@
   margin: 10px;
 }
 
-.primary-color {
+.gradient-button {
   background: linear-gradient(to right, #e8285f, #f23f43);
 }
 
