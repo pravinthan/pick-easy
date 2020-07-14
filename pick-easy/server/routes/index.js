@@ -2,9 +2,6 @@ let express = require("express");
 let router = express.Router();
 let { body, param } = require("express-validator");
 let jwt = require("express-jwt");
-
-let auth = jwt({ secret: process.env.JWT_SECRET });
-
 let multer = require("multer");
 let multerS3 = require("multer-s3");
 let aws = require("aws-sdk");
@@ -30,6 +27,8 @@ let upload = multer({
   fileFilter: fileFilter,
   limits: { fileSize: 1024 * 1024 * 10 },
 });
+
+let auth = jwt({ secret: process.env.JWT_SECRET });
 
 let restaurantStaffAuth = (req, res, next) => {
   if (!req.user.isRestaurantStaff)
