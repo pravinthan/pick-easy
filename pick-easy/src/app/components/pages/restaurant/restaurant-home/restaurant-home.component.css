@@ -30,3 +30,8 @@
   height: 105vh;
   object-fit: cover;
 }
+
+.gradient-button {
+  color: white;
+  background: linear-gradient(to right, #e8285f, #f23f43);
+}

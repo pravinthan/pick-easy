@@ -48,11 +48,12 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
 
-  signIn(username: string, password: string) {
+  signIn(username: string, password: string, isRestaurantStaff: boolean) {
     return this.http
       .post<any>(`/api/users/signin`, {
         username,
         password,
+        isRestaurantStaff,
       })
       .pipe(
         map((user) => {

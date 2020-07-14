@@ -55,7 +55,7 @@ router.post(
   [
     body("firstName").trim().isAlpha().isLength({ min: 1, max: 20 }).escape(),
     body("lastName").trim().isAlpha().isLength({ min: 1, max: 20 }).escape(),
-    body("isRestaurantStaff").isBoolean().escape(),
+    body("isRestaurantStaff").toBoolean(true),
     body("username")
       .trim()
       .isAlphanumeric()
@@ -68,6 +68,7 @@ router.post(
 router.post(
   "/users/signin",
   [
+    body("isRestaurantStaff").toBoolean(true),
     body("username")
       .trim()
       .isLength({ min: 3, max: 20 })

@@ -23,7 +23,11 @@
       >
         Sign In
       </button>
-      <button mat-raised-button color="accent" (click)="openSignUpDialog()">
+      <button
+        mat-raised-button
+        class="gradient-button"
+        (click)="openSignUpDialog()"
+      >
         Sign Up
       </button>
     </div>
@@ -32,7 +36,7 @@
       <a
         mat-raised-button
         routerLink="./my-restaurant"
-        color="accent"
+        class="gradient-button"
         style="margin-right: 2rem;"
       >
         <mat-icon>restaurant</mat-icon>
@@ -41,18 +45,13 @@
       <a
         mat-raised-button
         routerLink="./achievements"
-        color="accent"
+        class="gradient-button"
         style="margin-right: 2rem;"
       >
         <mat-icon>card_membership</mat-icon>
         Achievements
       </a>
-      <a
-        mat-raised-button
-        routerLink="./rewards"
-        color="accent"
-        style="margin-right: 2rem;"
-      >
+      <a mat-raised-button routerLink="./rewards" class="gradient-button">
         <mat-icon>redeem</mat-icon>
         Rewards
       </a>

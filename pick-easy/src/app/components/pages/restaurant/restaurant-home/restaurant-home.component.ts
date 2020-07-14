@@ -18,7 +18,10 @@ export class RestaurantHomeComponent {
   ) {}
 
   openSignInDialog() {
-    const signInDialog = this.dialog.open(SignInComponent, { width: "400px" });
+    const signInDialog = this.dialog.open(SignInComponent, {
+      width: "400px",
+      data: { isRestaurantStaff: true },
+    });
     const signInSubscription = signInDialog.componentInstance.signedIn.subscribe(
       (signedIn: boolean) => {
         if (signedIn) {

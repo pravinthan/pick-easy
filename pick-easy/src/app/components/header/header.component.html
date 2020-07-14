@@ -4,7 +4,7 @@
       <a
         mat-button
         routerLink="/customer/discover"
-        *ngIf="!currentUser?.isRestaurantStaff"
+        *ngIf="currentUser && !currentUser.isRestaurantStaff"
       >
         <mat-icon class="gradient-text">storefront</mat-icon>
         <span class="gradient-text">Discover</span>
@@ -12,7 +12,7 @@
       <a
         mat-button
         routerLink="/restaurant/my-restaurant"
-        *ngIf="currentUser?.isRestaurantStaff"
+        *ngIf="currentUser && currentUser.isRestaurantStaff"
       >
         <mat-icon class="gradient-text">restaurant</mat-icon>
         <span class="gradient-text">My Restaurant</span>
@@ -22,7 +22,11 @@
     <div>
       <a
         [routerLink]="
-          currentUser?.isRestaurantStaff ? '/restaurant' : '/customer'
+          currentUser
+            ? currentUser.isRestaurantStaff
+              ? '/restaurant'
+              : '/customer'
+            : '/'
         "
         id="app-name"
       >
@@ -36,7 +40,7 @@
         <a
           mat-button
           routerLink="/customer/groups"
-          *ngIf="!currentUser?.isRestaurantStaff"
+          *ngIf="currentUser && !currentUser.isRestaurantStaff"
         >
           <mat-icon class="gradient-text">group</mat-icon>
           <span class="gradient-text">Groups</span>
@@ -44,7 +48,7 @@
         <a
           mat-button
           routerLink="/customer/profile"
-          *ngIf="!currentUser?.isRestaurantStaff"
+          *ngIf="currentUser && !currentUser.isRestaurantStaff"
         >
           <mat-icon class="gradient-text">person</mat-icon>
           <span class="gradient-text">Profile</span>
@@ -52,7 +56,7 @@
         <a
           mat-button
           routerLink="/restaurant/achievements"
-          *ngIf="currentUser?.isRestaurantStaff"
+          *ngIf="currentUser && currentUser.isRestaurantStaff"
         >
           <mat-icon class="gradient-text">card_membership</mat-icon>
           <span class="gradient-text">Achievements</span>
@@ -60,7 +64,7 @@
         <a
           mat-button
           routerLink="/restaurant/rewards"
-          *ngIf="currentUser?.isRestaurantStaff"
+          *ngIf="currentUser && currentUser.isRestaurantStaff"
         >
           <mat-icon class="gradient-text">redeem</mat-icon>
           <span class="gradient-text">Rewards</span>
