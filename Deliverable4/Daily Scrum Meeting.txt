@@ -174,9 +174,9 @@ Date: July 8, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Continued to work on restaurant UI. Get ready for pull request
+    2. Nothing
+    3. Work on resturant UI
 Evan
     1. Finished the landing page.
     2. Nothing
@@ -202,9 +202,9 @@ Date: July 9, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Fixed bug in pull request, forgot to commit
+    2. Nothing
+    3. Research reward templates
 Evan
     1. Worked with Anthony on the sprint backlog.
     2. Nothing
@@ -230,9 +230,9 @@ Date: July 10, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Research reward templates
+    2. Nothing
+    3. Research reward templates
 Evan
     1. Finshed updating project backlog
     2. Nothing
@@ -259,9 +259,9 @@ Date: July 11, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Planned for acceptance testing with Choyin
+    2. Nothing
+    3. Plann for acceptance testing
 Evan
     1. Worked on bugs issues
     2. Need to wait on Mongoose to be commited into master
@@ -288,9 +288,9 @@ Date: July 12, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Continuing planning for acceptance testing with Choyin
+    2. Nothing
+    3. Plan for acceptance testing
 Evan
     1. Worked on bugs and testing
     2. Nothing
@@ -317,9 +317,9 @@ Date: July 13, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Finalize sprint backlog with acceptance criteria
+    2. Nothing
+    3. Finalize sprint backlog with acceptance criteria with Evan
 Evan
     1. Finished bug fixes and made pull requests.
     2. Nothing
@@ -345,9 +345,9 @@ Date: July 14, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Plan for acceptance testing on Thursday
+    2. Need changes to be deployed
+    3. Plan for acceptance testing on Thursday
 Evan
     1. 
     2. 
