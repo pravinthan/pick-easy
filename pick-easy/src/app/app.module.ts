@@ -23,7 +23,6 @@ import { RestaurantHomeComponent } from "./components/pages/restaurant/restauran
 import { AchievementConfiguratorComponent } from "./components/pages/restaurant/achievement-configurator/achievement-configurator.component";
 import { LandingPageComponent } from "./components/pages/landing-page/landing-page.component";
 
-import { NgxMatFileInputModule } from "@angular-material-components/file-input";
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
@@ -40,6 +39,8 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { RatingModule } from "ng-starrating";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatSelectModule } from "@angular/material/select";
+
+import { NgxMatFileInputModule } from "@angular-material-components/file-input";
 
 @NgModule({
   declarations: [

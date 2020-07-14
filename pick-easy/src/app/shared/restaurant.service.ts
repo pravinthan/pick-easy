@@ -13,6 +13,10 @@ import {
 export class RestaurantService {
   constructor(private http: HttpClient) {}
 
+  getAllRestaurants(): Observable<Restaurant[]> {
+    return this.http.get<Restaurant[]>(`/api/restaurants`);
+  }
+
   getRestaurantById(restaurantId: string): Observable<Restaurant> {
     return this.http.get<Restaurant>(`/api/restaurants/${restaurantId}`);
   }
@@ -55,7 +59,7 @@ export class RestaurantService {
     restaurantCuisine: RestaurantCuisine
   ) {
     const formData = new FormData();
-    if (restaurantImage){
+    if (restaurantImage) {
       formData.append("restaurantImage", restaurantImage, restaurantImage.name);
     }
     formData.append("restaurantName", restaurantName);
@@ -75,7 +79,7 @@ export class RestaurantService {
     restaurantCuisine: RestaurantCuisine
   ) {
     const formData = new FormData();
-    if (restaurantImage){
+    if (restaurantImage) {
       formData.append("restaurantImage", restaurantImage, restaurantImage.name);
     }
     formData.append("restaurantName", restaurantName);

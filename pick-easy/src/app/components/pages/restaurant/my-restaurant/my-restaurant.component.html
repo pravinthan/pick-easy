@@ -52,10 +52,7 @@
         <div id="cuisine-cost">
           <mat-form-field>
             <mat-label>Cuisine</mat-label>
-            <mat-select
-              formControlName="restaurantCuisine"
-              required
-            >
+            <mat-select formControlName="restaurantCuisine" required>
               <mat-option *ngFor="let cuisine of food" [value]="cuisine">
                 {{ cuisine }}
               </mat-option>
@@ -63,10 +60,7 @@
           </mat-form-field>
           <mat-form-field>
             <mat-label>Cost</mat-label>
-            <mat-select
-              formControlName="restaurantCost"
-              required
-            >
+            <mat-select formControlName="restaurantCost" required>
               <mat-option *ngFor="let cost of costs" [value]="cost">
                 {{ "$".repeat(cost) }}
               </mat-option>

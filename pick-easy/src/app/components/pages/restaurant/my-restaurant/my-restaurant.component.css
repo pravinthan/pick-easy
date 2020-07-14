@@ -71,7 +71,7 @@ form,
   margin-top: 1rem;
 }
 
-#image-upload > img{
+#image-upload > img {
   max-width: 400px;
   max-height: 400px;
   height: auto;

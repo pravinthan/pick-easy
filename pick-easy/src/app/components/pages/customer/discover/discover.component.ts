@@ -3,6 +3,7 @@ import { FormControl } from "@angular/forms";
 import { map, startWith } from "rxjs/operators";
 import { Observable } from "rxjs";
 import { Restaurant } from "src/app/shared/models/restaurant.model";
+import { RestaurantService } from "src/app/shared/restaurant.service";
 
 @Component({
   selector: "app-discover",
@@ -12,35 +13,16 @@ import { Restaurant } from "src/app/shared/models/restaurant.model";
 export class DiscoverComponent implements OnInit {
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
-  restaurants: Array<Restaurant> = [
-    {
-      _id: "11",
-      image: null,
-      name: "Kinton Ramen",
-      description: "This is Kinton Ramen",
-      rating: 1,
-      cost: 1,
-      cuisine: "Japanese",
-    },
-    {
-      _id: "12",
-      image: null,
-      name: "Panda Express",
-      description: "This is panda express",
-      rating: 3,
-      cost: 2,
-      cuisine: "Chinese",
-    },
-    {
-      _id: "13",
-      image: null,
-      name: "KFC",
-      description: "This is kfc",
-      rating: 4,
-      cost: 3,
-      cuisine: "American",
-    },
-  ];
+  restaurants: Restaurant[];
+
+  constructor(public restaurantService: RestaurantService) {
+    this.restaurantService
+      .getAllRestaurants()
+      .toPromise()
+      .then((restaurants) => {
+        this.restaurants = restaurants;
+      });
+  }
 
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges.pipe(
