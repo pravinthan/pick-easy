@@ -37,7 +37,14 @@
         mat-raised-button
         routerLink="./my-restaurant"
         class="gradient-button"
+        [ngClass]="{ 'onboarding-gradient': !currentUser?.createdRestaurant }"
+        matBadge="&#8288;"
+        [matBadgeHidden]="currentUser?.createdRestaurant"
+        matBadgeColor="warn"
+        matBadgeSize="small"
         style="margin-right: 2rem;"
+        matTooltip="Create a restaurant here!"
+        [matTooltipDisabled]="currentUser?.createdRestaurant"
       >
         <mat-icon>restaurant</mat-icon>
         My Restaurant
@@ -45,18 +52,43 @@
       <a
         mat-raised-button
         routerLink="./achievements"
+        *ngIf="currentUser?.createdRestaurant"
         class="gradient-button"
         style="margin-right: 2rem;"
       >
         <mat-icon>card_membership</mat-icon>
         Achievements
       </a>
-      <a mat-raised-button routerLink="./rewards" class="gradient-button">
+      <a
+        mat-raised-button
+        *ngIf="!currentUser?.createdRestaurant"
+        disabled
+        class="gradient-button"
+        style="margin-right: 2rem;"
+        matTooltip="Create a restaurant to configure achievements"
+      >
+        <mat-icon>card_membership</mat-icon>
+        Achievements
+      </a>
+      <a
+        mat-raised-button
+        routerLink="./rewards"
+        *ngIf="currentUser?.createdRestaurant"
+        class="gradient-button"
+      >
+        <mat-icon>redeem</mat-icon>
+        Rewards
+      </a>
+      <a
+        mat-raised-button
+        *ngIf="!currentUser?.createdRestaurant"
+        disabled
+        class="gradient-button"
+        matTooltip="Create a restaurant to configure rewards"
+      >
         <mat-icon>redeem</mat-icon>
         Rewards
       </a>
     </div>
   </div>
 </div>
-
-<router-outlet></router-outlet>

@@ -15,6 +15,7 @@ import { MaxSizeValidator } from "@angular-material-components/file-input";
 import { SafeUrl } from "@angular/platform-browser";
 import { Notyf } from "notyf";
 import { NOTYF } from "src/app/shared/utils/notyf.token";
+import { AuthenticationService } from "src/app/shared/authentication.service";
 
 @Component({
   selector: "app-my-restaurant",
@@ -44,6 +45,7 @@ export class MyRestaurantComponent implements OnInit {
 
   constructor(
     public restaurantService: RestaurantService,
+    private authenticationService: AuthenticationService,
     @Inject(NOTYF) private notyf: Notyf
   ) {
     const imageValidators: ValidatorFn[] = [MaxSizeValidator(1024 * 1024 * 10)];
@@ -55,30 +57,34 @@ export class MyRestaurantComponent implements OnInit {
       restaurantCost: new FormControl(""),
       restaurantCuisine: new FormControl(""),
     });
-    this.restaurantService
-      .getOwnRestaurant()
-      .toPromise()
-      .then((restaurant) => {
-        this.restaurant = restaurant;
 
-        if (!this.restaurant.image) {
-          imageValidators.push(Validators.required);
-        }
+    if (this.authenticationService.currentUser?.createdRestaurant) {
+      this.restaurantService
+        .getOwnRestaurant()
+        .toPromise()
+        .then((restaurant) => {
+          this.restaurant = restaurant;
 
-        this.form.controls.restaurantImage.setValidators(imageValidators);
-        this.form.controls.restaurantName.patchValue(this.restaurant.name);
-        this.form.controls.restaurantDescription.patchValue(
-          this.restaurant.description
-        );
-        this.form.controls.restaurantCost.patchValue(this.restaurant.cost);
-        this.form.controls.restaurantCuisine.patchValue(
-          this.restaurant.cuisine
-        );
+          if (!this.restaurant.image) {
+            imageValidators.push(Validators.required);
+          }
 
-        this.getImage();
-      })
-      .catch((err) => {});
+          this.form.controls.restaurantImage.setValidators(imageValidators);
+          this.form.controls.restaurantName.patchValue(this.restaurant.name);
+          this.form.controls.restaurantDescription.patchValue(
+            this.restaurant.description
+          );
+          this.form.controls.restaurantCost.patchValue(this.restaurant.cost);
+          this.form.controls.restaurantCuisine.patchValue(
+            this.restaurant.cuisine
+          );
+
+          this.getImage();
+        })
+        .catch((err) => {});
+    }
   }
+
   ngOnInit(): void {
     this.fileControl.valueChanges.subscribe((file: File) => {
       if (file) {
@@ -117,7 +123,10 @@ export class MyRestaurantComponent implements OnInit {
           this.form.controls.restaurantCuisine.value
         )
         .toPromise()
-        .then(() => this.notyf.success("Saved successfully!"))
+        .then(() => {
+          this.form.markAsPristine();
+          this.notyf.success("Saved successfully!");
+        })
         .catch(() => this.notyf.error("An error occurred while saving"));
     } else {
       this.restaurantService
@@ -129,7 +138,11 @@ export class MyRestaurantComponent implements OnInit {
           this.form.controls.restaurantCuisine.value
         )
         .toPromise()
-        .then(() => this.notyf.success("Saved successfully!"))
+        .then(() => {
+          this.form.markAsPristine();
+          this.notyf.success("Saved successfully!");
+          this.authenticationService.retrieveNewJWT().toPromise();
+        })
         .catch(() => this.notyf.error("An error occurred while saving"));
     }
   }

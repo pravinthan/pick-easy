@@ -29,7 +29,12 @@ export class AuthenticationService {
     if (this.currentUserSubject.value) {
       const token = this.parseJWT(this.currentUserSubject.value.token);
       if (token) {
-        return new User(token._id, token.username, token.isRestaurantStaff);
+        return new User(
+          token._id,
+          token.username,
+          token.isRestaurantStaff,
+          token.createdRestaurant
+        );
       }
     }
 
@@ -46,6 +51,18 @@ export class AuthenticationService {
 
   public get currentUserValue() {
     return this.currentUserSubject.value;
+  }
+
+  retrieveNewJWT() {
+    if (this.currentUser) {
+      return this.http.get<any>(`/api/users/retrieve-new-jwt`).pipe(
+        map((user) => {
+          localStorage.setItem("currentUser", JSON.stringify(user));
+          this.currentUserSubject.next(user);
+          return user;
+        })
+      );
+    }
   }
 
   signIn(username: string, password: string, isRestaurantStaff: boolean) {

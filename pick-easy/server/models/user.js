@@ -14,6 +14,10 @@ let userSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  createdRestaurant: {
+    type: Boolean,
+    default: false,
+  },
   loyalties: [
     {
       restaurantId: {
@@ -52,6 +56,7 @@ userSchema.methods.generateJWT = function () {
       _id: this._id,
       username: this.username,
       isRestaurantStaff: this.isRestaurantStaff,
+      createdRestaurant: this.createdRestaurant,
       exp: parseInt(expiry.getTime() / 1000),
     },
     process.env.JWT_SECRET

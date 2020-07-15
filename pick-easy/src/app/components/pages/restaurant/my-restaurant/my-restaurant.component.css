@@ -97,3 +97,7 @@ form,
   color: white;
   background: linear-gradient(to right, #e8285f, #f23f43);
 }
+
+.mat-raised-button[disabled][disabled] {
+  color: rgba(255, 255, 255, 0.507);
+}
