@@ -325,9 +325,9 @@ Evan
     2. 
     3. 
 Anthony
-    1. 
-    2. 
-    3. 
+    1. help other team members
+    2. internet issues
+    3. nothing
 Pravinthan
     1. Fixed 2 bugs listed in issues on github
     2. Nothing
