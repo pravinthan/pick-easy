@@ -13,6 +13,7 @@ import { LandingPageComponent } from "./components/pages/landing-page/landing-pa
 import { MyRestaurantComponent } from "./components/pages/restaurant/my-restaurant/my-restaurant.component";
 import { CustomerGuard } from "./shared/customer.guard";
 import { RestaurantStaffGuard } from "./shared/restaurant-staff.guard";
+import { RestaurantCreationGuard } from "./shared/restaurant-creation.guard";
 
 const routes: Routes = [
   {
@@ -50,12 +51,20 @@ const routes: Routes = [
   {
     path: "restaurant/rewards",
     component: RewardConfiguratorComponent,
-    canActivate: [AuthenticationGuard, RestaurantStaffGuard],
+    canActivate: [
+      AuthenticationGuard,
+      RestaurantStaffGuard,
+      RestaurantCreationGuard,
+    ],
   },
   {
     path: "restaurant/achievements",
     component: AchievementConfiguratorComponent,
-    canActivate: [AuthenticationGuard, RestaurantStaffGuard],
+    canActivate: [
+      AuthenticationGuard,
+      RestaurantStaffGuard,
+      RestaurantCreationGuard,
+    ],
   },
   { path: "credits", component: CreditsComponent },
   { path: "**", component: PageNotFoundComponent },

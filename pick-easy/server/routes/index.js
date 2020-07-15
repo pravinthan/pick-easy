@@ -78,6 +78,11 @@ router.post(
   ],
   authenticationController.signIn
 );
+router.get(
+  "/users/retrieve-new-jwt",
+  auth,
+  authenticationController.retrieveNewJWT
+);
 
 // Users
 router.get(
@@ -100,11 +105,7 @@ router.post(
   restaurantStaffAuth,
   upload.single("restaurantImage"),
   [
-    body("restaurantName")
-      .trim()
-      .isLength({ min: 1, max: 30 })
-      .isAlphanumeric()
-      .escape(),
+    body("restaurantName").trim().isLength({ min: 1, max: 30 }).escape(),
     body("restaurantDescription")
       .trim()
       .isLength({ min: 1, max: 250 })
@@ -161,11 +162,7 @@ router.patch(
       .trim()
       .isMongoId()
       .escape(),
-    body("restaurantName")
-      .trim()
-      .isLength({ min: 1, max: 30 })
-      .isAlphanumeric()
-      .escape(),
+    body("restaurantName").trim().isLength({ min: 1, max: 30 }).escape(),
     body("restaurantDescription")
       .trim()
       .isLength({ min: 1, max: 250 })

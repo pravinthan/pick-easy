@@ -14,8 +14,8 @@
           step="1"
           placeholder="5"
           autocomplete="off"
-          [ngModel]="myRestaurant?.numberOfTicketsForReward"
-          (ngModelChange)="myRestaurant.numberOfTicketsForReward = $event"
+          [ngModel]="restaurant?.numberOfTicketsForReward"
+          (ngModelChange)="restaurant.numberOfTicketsForReward = $event"
         />
         <mat-hint align="start"
           ><strong
@@ -131,7 +131,7 @@
 
     <div id="save-button-container">
       <button
-        mat-flat-button
+        mat-raised-button
         class="gradient-button"
         (click)="saveAchievements()"
       >

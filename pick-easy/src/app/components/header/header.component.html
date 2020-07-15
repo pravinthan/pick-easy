@@ -56,18 +56,52 @@
         <a
           mat-button
           routerLink="/restaurant/achievements"
-          *ngIf="currentUser && currentUser.isRestaurantStaff"
+          *ngIf="
+            currentUser &&
+            currentUser.isRestaurantStaff &&
+            currentUser.createdRestaurant
+          "
         >
           <mat-icon class="gradient-text">card_membership</mat-icon>
           <span class="gradient-text">Achievements</span>
         </a>
         <a
           mat-button
+          disabled
+          *ngIf="
+            currentUser &&
+            currentUser.isRestaurantStaff &&
+            !currentUser.createdRestaurant
+          "
+          matTooltip="Create a restaurant to configure achievements"
+        >
+          <mat-icon class="gradient-text disabled">card_membership</mat-icon>
+          <span class="gradient-text disabled">Achievements</span>
+        </a>
+        <a
+          mat-button
           routerLink="/restaurant/rewards"
-          *ngIf="currentUser && currentUser.isRestaurantStaff"
+          *ngIf="
+            currentUser &&
+            currentUser.isRestaurantStaff &&
+            currentUser.createdRestaurant
+          "
         >
           <mat-icon class="gradient-text">redeem</mat-icon>
           <span class="gradient-text">Rewards</span>
+        </a>
+        <a
+          mat-button
+          disabled
+          *ngIf="
+            currentUser &&
+            currentUser.isRestaurantStaff &&
+            !currentUser.createdRestaurant
+          "
+          matTooltip="Create a restaurant to configure rewards"
+        >
+          <mat-icon class="gradient-text disabled">redeem</mat-icon>
+          <span class="gradient-text disabled">Rewards</span>
         </a>
       </div>
     </div>

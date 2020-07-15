@@ -1,6 +1,7 @@
 let mongoose = require("mongoose");
 let { validationResult } = require("express-validator");
 let Restaurant = mongoose.model("Restaurant");
+let User = mongoose.model("User");
 let AchievementTemplate = mongoose.model("AchievementTemplate");
 let RewardTemplate = mongoose.model("RewardTemplate");
 let aws = require("aws-sdk");
@@ -26,6 +27,10 @@ module.exports.createRestaurant = async (req, res) => {
       cost: req.body.restaurantCost,
       cuisine: req.body.restaurantCuisine,
       image: req.file,
+    });
+
+    await User.findByIdAndUpdate(req.user._id, {
+      $set: { createdRestaurant: true },
     });
 
     res.json(restaurant);

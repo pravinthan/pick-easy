@@ -68,9 +68,9 @@
           </mat-form-field>
         </div>
         <button
-          [disabled]="form.invalid"
+          [disabled]="form.invalid || form.pristine"
           (click)="save()"
-          mat-flat-button
+          mat-raised-button
           class="gradient-button"
           id="save-button"
         >

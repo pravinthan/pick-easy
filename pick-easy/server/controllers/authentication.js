@@ -35,3 +35,9 @@ module.exports.signIn = (req, res) => {
     res.json({ token: user.generateJWT() });
   })(req, res);
 };
+
+module.exports.retrieveNewJWT = (req, res) => {
+  User.findOne({ username: req.user.username })
+    .then((user) => res.json({ token: user.generateJWT() }))
+    .catch((err) => res.sendStatus(500));
+};

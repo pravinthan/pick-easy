@@ -40,6 +40,8 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { RatingModule } from "ng-starrating";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatSelectModule } from "@angular/material/select";
+import { MatTooltipModule } from "@angular/material/tooltip";
+import { MatBadgeModule } from "@angular/material/badge";
 
 import { NgxMatFileInputModule } from "@angular-material-components/file-input";
 
@@ -85,6 +87,8 @@ import { NgxMatFileInputModule } from "@angular-material-components/file-input";
     MatSelectModule,
     MatTabsModule,
     NgxMatFileInputModule,
+    MatTooltipModule,
+    MatBadgeModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
