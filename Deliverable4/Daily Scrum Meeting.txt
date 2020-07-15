@@ -1,32 +1,4 @@
 --------------------------------------------------------------------------------------------
-Date: July 2, 2020
-
-1. What have you completed (relative to the Backlog) since the last Scrum meeting?
-2. What is in your way to completing this work? 
-3. What will you do between now and the next Scrum meeting? 
-
-Luke
-    1. Nothing
-    2. N/A
-    3. Nothing
-Evan
-    1. Nothing
-    2. N/A
-    3. Nothing
-Anthony
-    1. Nothing
-    2. N/A
-    3. Nothing 
-Pravinthan
-    1. Nothing
-    2. N/A
-    3. Nothing
-Jeremy
-    1. Nothing
-    2. N/A
-    3. Nothing
-
---------------------------------------------------------------------------------------------
 Date: July 3, 2020
 
 1. What have you completed (relative to the Backlog) since the last Scrum meeting?
@@ -357,9 +329,9 @@ Anthony
     2. 
     3. 
 Pravinthan
-    1. 
-    2. 
-    3. 
+    1. Fixed 2 bugs listed in issues on github
+    2. Nothing
+    3. Unit testing
 Jeremy
     1. 
     2. 
