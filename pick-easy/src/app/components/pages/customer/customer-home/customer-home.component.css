@@ -38,3 +38,8 @@
   transform: translate(-50%, -50%);
   margin: 0 auto;
 }
+
+.gradient-button {
+  color: white;
+  background: linear-gradient(to right, #e8285f, #f23f43);
+}

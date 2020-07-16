@@ -2,6 +2,12 @@ export class RewardTemplate {
   _id: string;
   templateNumber: Number;
   content: String;
-  variables: [String];
+  value: String;
+  variables: [
+    {
+      variableDescription: String;
+      variableType: String;
+    }
+  ];
   level: String;
 }

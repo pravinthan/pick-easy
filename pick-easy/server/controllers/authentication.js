@@ -17,7 +17,7 @@ module.exports.signUp = (req, res) => {
       newUser.firstName = req.body.firstName;
       newUser.lastName = req.body.lastName;
       newUser.username = req.body.username;
-      newUser.isRestaurantOwner = req.body.isRestaurantOwner;
+      newUser.isRestaurantStaff = req.body.isRestaurantStaff;
       newUser.setPassword(req.body.password);
 
       newUser.save((err) => res.json({ token: newUser.generateJWT() }));
@@ -34,4 +34,10 @@ module.exports.signIn = (req, res) => {
 
     res.json({ token: user.generateJWT() });
   })(req, res);
+};
+
+module.exports.retrieveNewJWT = (req, res) => {
+  User.findOne({ username: req.user.username })
+    .then((user) => res.json({ token: user.generateJWT() }))
+    .catch((err) => res.sendStatus(500));
 };

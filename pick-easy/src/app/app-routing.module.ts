@@ -10,6 +10,10 @@ import { RestaurantHomeComponent } from "./components/pages/restaurant/restauran
 import { RewardConfiguratorComponent } from "./components/pages/restaurant/reward-configurator/reward-configurator.component";
 import { AchievementConfiguratorComponent } from "./components/pages/restaurant/achievement-configurator/achievement-configurator.component";
 import { LandingPageComponent } from "./components/pages/landing-page/landing-page.component";
+import { MyRestaurantComponent } from "./components/pages/restaurant/my-restaurant/my-restaurant.component";
+import { CustomerGuard } from "./shared/customer.guard";
+import { RestaurantStaffGuard } from "./shared/restaurant-staff.guard";
+import { RestaurantCreationGuard } from "./shared/restaurant-creation.guard";
 
 const routes: Routes = [
   {
@@ -20,31 +24,47 @@ const routes: Routes = [
   {
     path: "customer",
     component: CustomerHomeComponent,
+    canActivate: [CustomerGuard],
+    data: { guardOnlyIfSignedIn: true },
   },
   {
     path: "customer/discover",
     component: DiscoverComponent,
-    canActivate: [AuthenticationGuard],
-    // maybe add another guard to verify customer/restaurant access
+    canActivate: [AuthenticationGuard, CustomerGuard],
   },
   {
-    path: "consumer/profile",
+    path: "customer/profile",
     component: ProfileComponent,
-    canActivate: [AuthenticationGuard],
+    canActivate: [AuthenticationGuard, CustomerGuard],
   },
   {
     path: "restaurant",
     component: RestaurantHomeComponent,
+    canActivate: [RestaurantStaffGuard],
+    data: { guardOnlyIfSignedIn: true },
+  },
+  {
+    path: "restaurant/my-restaurant",
+    component: MyRestaurantComponent,
+    canActivate: [AuthenticationGuard, RestaurantStaffGuard],
   },
   {
     path: "restaurant/rewards",
     component: RewardConfiguratorComponent,
-    canActivate: [AuthenticationGuard],
+    canActivate: [
+      AuthenticationGuard,
+      RestaurantStaffGuard,
+      RestaurantCreationGuard,
+    ],
   },
   {
     path: "restaurant/achievements",
     component: AchievementConfiguratorComponent,
-    canActivate: [AuthenticationGuard],
+    canActivate: [
+      AuthenticationGuard,
+      RestaurantStaffGuard,
+      RestaurantCreationGuard,
+    ],
   },
   { path: "credits", component: CreditsComponent },
   { path: "**", component: PageNotFoundComponent },
