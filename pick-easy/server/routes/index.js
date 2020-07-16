@@ -48,6 +48,7 @@ let authenticationController = require("../controllers/authentication");
 let userController = require("../controllers/user");
 let restaurantController = require("../controllers/restaurant");
 let achievementTemplateController = require("../controllers/achievement-template");
+let rewardTemplateController = require("../controllers/reward-template");
 
 // Authentication
 router.post(
@@ -234,6 +235,14 @@ router.get(
   auth,
   restaurantStaffAuth,
   achievementTemplateController.retrieveAllTemplates
+);
+
+// Reward Templates
+router.get(
+  "/templates/rewards",
+  auth,
+  restaurantStaffAuth,
+  rewardTemplateController.retrieveAllTemplates
 );
 
 module.exports = router;

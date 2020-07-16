@@ -34,6 +34,7 @@ export class RestaurantAchievement {
 export class RestaurantReward {
   templateNumber: number;
   variables: string[];
+  level: string;
 }
 
 export type RestaurantCuisine =
