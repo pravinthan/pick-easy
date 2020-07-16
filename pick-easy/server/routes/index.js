@@ -247,9 +247,7 @@ router.patch(
       .trim()
       .isMongoId()
       .escape(),
-    body("rewards")
-      .exists({ checkNull: true, checkFalsy: true })
-      .isArray(),
+    body("rewards").exists({ checkNull: true, checkFalsy: true }).isArray(),
     body("rewards.*.templateNumber")
       .exists({ checkNull: true })
       .isInt({ min: 0 }),

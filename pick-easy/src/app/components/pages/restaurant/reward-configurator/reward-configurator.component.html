@@ -7,37 +7,96 @@
       <mat-form-field id="template-picker" appearance="fill">
         <mat-label>Choose an Reward template</mat-label>
         <mat-select #templatePicker (selectionChange)="addReward($event.value)">
-            <mat-option
-                *ngFor="let template of templates"
-                [value]="template.templateNumber">{{ template.content }}</mat-option>
-        </mat-select>    
+          <mat-option
+            *ngFor="let template of templates"
+            [value]="template.templateNumber"
+            >{{ template.content }}</mat-option
+          >
+        </mat-select>
       </mat-form-field>
       <div id="rewards">
         <div id="reward" *ngFor="let reward of rewards; let i = index">
           <div class="reward-text">
-            <span *ngFor="let text of getTemplateByNumber(reward.templateNumber).content.split('<'); let i = index">
-              <span>{{ text.substring(text.indexOf('>') + 1) }}</span>
-              <mat-form-field class="reward-field" *ngIf="getTemplateByNumber(reward.templateNumber).variables[i]" >   
-                <mat-label>{{ getTemplateByNumber(reward.templateNumber).variables[i] }}</mat-label>
+            <span
+              *ngFor="
+                let text of getTemplateByNumber(
+                  reward.templateNumber
+                ).content.split('<');
+                let i = index
+              "
+            >
+              <span>{{ text.substring(text.indexOf(">") + 1) }}</span>
+              <mat-form-field
+                class="reward-field"
+                *ngIf="getTemplateByNumber(reward.templateNumber).variables[i]"
+              >
+                <mat-label>{{
+                  getTemplateByNumber(reward.templateNumber).variables[i]
+                }}</mat-label>
 
                 <!--Percent input-->
-                <input *ngIf="getTemplateByNumber(reward.templateNumber).variables[i] === 'Percent'"
-                    matInput type="number" min="1" max="100" value="1" required [(ngModel)]="reward.variables[i]" [formControl]="percentControl">
-                <mat-hint *ngIf="getTemplateByNumber(reward.templateNumber).variables[i] === 'Percent'">
+                <input
+                  *ngIf="
+                    getTemplateByNumber(reward.templateNumber).variables[i] ===
+                    'Percent'
+                  "
+                  matInput
+                  type="number"
+                  min="1"
+                  max="100"
+                  value="1"
+                  required
+                  [(ngModel)]="reward.variables[i]"
+                  [formControl]="percentControl"
+                />
+                <mat-hint
+                  *ngIf="
+                    getTemplateByNumber(reward.templateNumber).variables[i] ===
+                    'Percent'
+                  "
+                >
                   Enter a percent between 1 - 100
                 </mat-hint>
 
                 <!--Dollar amount input-->
-                <input *ngIf="getTemplateByNumber(reward.templateNumber).variables[i] === 'Dollar'"
-                    matInput type="number" min="1" value="1" required [(ngModel)]="reward.variables[i]" [formControl]="numberControl">
-                <mat-hint *ngIf="getTemplateByNumber(reward.templateNumber).variables[i] === 'Dollar'">
+                <input
+                  *ngIf="
+                    getTemplateByNumber(reward.templateNumber).variables[i] ===
+                    'Dollar'
+                  "
+                  matInput
+                  type="number"
+                  min="1"
+                  value="1"
+                  required
+                  [(ngModel)]="reward.variables[i]"
+                  [formControl]="numberControl"
+                />
+                <mat-hint
+                  *ngIf="
+                    getTemplateByNumber(reward.templateNumber).variables[i] ===
+                    'Dollar'
+                  "
+                >
                   Enter a Dollar amount
                 </mat-hint>
 
                 <!--Restaurant item input-->
-                <input *ngIf="getTemplateByNumber(reward.templateNumber).variables[i] === 'Restaurant Item'"
-                    matInput required [(ngModel)]="reward.variables[i]">
-                <mat-hint *ngIf="getTemplateByNumber(reward.templateNumber).variables[i] === 'Restaurant Item'">
+                <input
+                  *ngIf="
+                    getTemplateByNumber(reward.templateNumber).variables[i] ===
+                    'Restaurant Item'
+                  "
+                  matInput
+                  required
+                  [(ngModel)]="reward.variables[i]"
+                />
+                <mat-hint
+                  *ngIf="
+                    getTemplateByNumber(reward.templateNumber).variables[i] ===
+                    'Restaurant Item'
+                  "
+                >
                   Enter a Restaurant Item
                 </mat-hint>
               </mat-form-field>
@@ -47,26 +106,31 @@
             <mat-form-field class="reward-level" appearance="fill">
               <mat-label>Choose level</mat-label>
               <mat-select [(ngModel)]="reward.level">
-                <mat-option
-                  *ngFor="let level of levels"
-                  [value]="level">{{ level }}</mat-option>
-              </mat-select>    
+                <mat-option *ngFor="let level of levels" [value]="level">{{
+                  level
+                }}</mat-option>
+              </mat-select>
             </mat-form-field>
             <button
-                mat-icon-button
-                color="warn"
-                title="Remove reward"
-                class="remove-reward-button"
-                (click)="deleteReward(i)"
-              >
-                <mat-icon>remove_circle</mat-icon>
+              mat-icon-button
+              color="warn"
+              title="Remove reward"
+              class="remove-reward-button"
+              (click)="deleteReward(i)"
+            >
+              <mat-icon>remove_circle</mat-icon>
             </button>
           </div>
         </div>
       </div>
     </div>
     <div id="save-button-container">
-      <button class="primary-color" mat-flat-button color="accent" (click)="saveRewards()">
+      <button
+        class="primary-color"
+        mat-flat-button
+        color="accent"
+        (click)="saveRewards()"
+      >
         Save
       </button>
     </div>
