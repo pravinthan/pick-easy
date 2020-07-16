@@ -1,0 +1,82 @@
+<div id="page">
+  <div id="content">
+    <div id="title">
+      <span class="gradient-text">My Restaurant</span>
+    </div>
+
+    <form [formGroup]="form">
+      <div id="info-container">
+        <div id="image-upload">
+          <img [src]="imageSrc" />
+          <mat-form-field>
+            <ngx-mat-file-input
+              accept=".png, .jpg, .jpeg"
+              color="accent"
+              [required]="!restaurant?.image"
+              [formControl]="fileControl"
+            >
+              <mat-icon ngxMatFileInputIcon>insert_photo</mat-icon>
+            </ngx-mat-file-input>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Restaurant Name</mat-label>
+            <input
+              type="text"
+              matInput
+              formControlName="restaurantName"
+              required
+              maxlength="30"
+              #name
+            />
+            <mat-hint align="end">{{ name.value.length }} / 30</mat-hint>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Restaurant Description</mat-label>
+            <input
+              type="text"
+              matInput
+              formControlName="restaurantDescription"
+              required
+              maxlength="250"
+              #description
+            />
+            <mat-hint align="end"
+              >{{ description.value.length }} / 250</mat-hint
+            >
+          </mat-form-field>
+        </div>
+        <div id="cuisine-cost">
+          <mat-form-field>
+            <mat-label>Cuisine</mat-label>
+            <mat-select formControlName="restaurantCuisine" required>
+              <mat-option *ngFor="let cuisine of food" [value]="cuisine">
+                {{ cuisine }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Cost</mat-label>
+            <mat-select formControlName="restaurantCost" required>
+              <mat-option *ngFor="let cost of costs" [value]="cost">
+                {{ "$".repeat(cost) }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <button
+          [disabled]="form.invalid || form.pristine"
+          (click)="save()"
+          mat-raised-button
+          class="gradient-button"
+          id="save-button"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
