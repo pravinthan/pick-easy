@@ -10,8 +10,6 @@ import { RestaurantService } from "src/app/shared/restaurant.service";
 import { NOTYF } from "src/app/shared/utils/notyf.token";
 import { Notyf } from "notyf";
 import { FormControl, Validators } from '@angular/forms';
-import { variable } from '@angular/compiler/src/output/output_ast';
-
 
 @Component({
   selector: "app-reward-configurator",
@@ -46,16 +44,6 @@ export class RewardConfiguratorComponent {
       this.levels = ["Bronze", "Silver", "Gold", "Platinum", "Diamond"];
       this.percentControl = new FormControl("", [Validators.max(100), Validators.min(1)]);
       this.numberControl =  new FormControl("", [Validators.min(1)]);
-    }
-
-    getFormattedReward(reward: RestaurantReward) {
-      const template = this.getTemplateByNumber(reward.templateNumber);
-      // Splits content by "<...>" where ... is any chars
-      const text = template.content.split('<').map(str => str.substring(str.indexOf('>') + 1));
-      let formattedReward = "";
-      for (let i = 0; i < text.length; i++)
-        formattedReward += text[i] + (reward.variables[i] ? reward.variables[i] : "");
-      return formattedReward;
     }
 
     getTemplateByNumber(templateNumber: number): RewardTemplate {
