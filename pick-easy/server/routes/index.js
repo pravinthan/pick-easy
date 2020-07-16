@@ -237,6 +237,39 @@ router.get(
   achievementTemplateController.retrieveAllTemplates
 );
 
+router.patch(
+  "/restaurants/:id/rewards",
+  auth,
+  restaurantStaffAuth,
+  [
+    param("id")
+      .exists({ checkNull: true, checkFalsy: true })
+      .trim()
+      .isMongoId()
+      .escape(),
+    body("rewards")
+      .exists({ checkNull: true, checkFalsy: true })
+      .isArray(),
+    body("rewards.*.templateNumber")
+      .exists({ checkNull: true })
+      .isInt({ min: 0 }),
+    body("rewards.*.level")
+      .exists({ checkNull: true })
+      .if(body("level").isString())
+      .trim()
+      .escape(),
+    body("rewards.*.variables").isArray(),
+    body("rewards.*.variables.*")
+      .if(body("rewards.*.variables.*").isString())
+      .trim()
+      .escape(),
+    body("rewards.*.variables.*")
+      .if(body("rewards.*.variables.*").isInt())
+      .isInt({ min: 0 }),
+  ],
+  restaurantController.updateAchievements
+);
+
 // Reward Templates
 router.get(
   "/templates/rewards",
