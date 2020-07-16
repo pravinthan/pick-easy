@@ -18,7 +18,10 @@ export class CustomerHomeComponent {
   ) {}
 
   openSignInDialog() {
-    const signInDialog = this.dialog.open(SignInComponent, { width: "400px" });
+    const signInDialog = this.dialog.open(SignInComponent, {
+      width: "400px",
+      data: { isRestaurantStaff: false },
+    });
     const signInSubscription = signInDialog.componentInstance.signedIn.subscribe(
       (signedIn: boolean) => {
         if (signedIn) {
@@ -36,7 +39,7 @@ export class CustomerHomeComponent {
   openSignUpDialog() {
     const signUpDialog = this.dialog.open(SignUpComponent, {
       width: "400px",
-      data: { isRestaurantOwner: false },
+      data: { isRestaurantStaff: false },
     });
     const signUpSubscription = signUpDialog.componentInstance.signedUp.subscribe(
       (signedUp: boolean) => {
