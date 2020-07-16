@@ -333,9 +333,9 @@ Pravinthan
     2. Nothing
     3. Unit testing
 Jeremy
-    1. 
-    2. 
-    3. 
+    1. Nothing
+    2. Other course work
+    3. Add feature to allow restaurant staff to edit existing rewards
 
 --------------------------------------------------------------------------------------------
 Date: July 15, 2020
@@ -361,9 +361,9 @@ Pravinthan
     2. Nothing
     3. Nothing
 Jeremy
-    1. 
-    2. 
-    3. 
+    1. Changed how rewards created/deleted/edited to match Achievement configurator. Completed Reward configurator
+    2. Nothing
+    3. Nothing
 
 --------------------------------------------------------------------------------------------
 Date: July 16, 2020
