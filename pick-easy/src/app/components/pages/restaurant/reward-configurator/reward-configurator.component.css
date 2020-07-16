@@ -43,13 +43,25 @@
 }
 
 #reward {
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: baseline;
   padding: 1rem;
   border-bottom: 1px solid #00000026;
+}
+
+.reward-field {
+  padding: 0 0.25rem;
+}
+
+.reward-context-container {
+  display: flex;
+  align-items: baseline;
+}
+
+.reward-level {
+  padding-left: 3rem;
 }
 
 .remove-reward-button {
