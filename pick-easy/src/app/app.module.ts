@@ -16,9 +16,7 @@ import { CreditsComponent } from "./components/pages/credits/credits.component";
 import { ProfileComponent } from "./components/pages/customer/profile/profile.component";
 import { DiscoverComponent } from "./components/pages/customer/discover/discover.component";
 import { CustomerHomeComponent } from "./components/pages/customer/customer-home/customer-home.component";
-import { RewardConfiguratorComponent, RewardConfiguratorAddDialog,
-  RewardConfiguratorEditDialog,
-  RewardConfiguratorDeleteDialog } from "./components/pages/restaurant/reward-configurator/reward-configurator.component";
+import { RewardConfiguratorComponent } from "./components/pages/restaurant/reward-configurator/reward-configurator.component";
 import { RestaurantHomeComponent } from "./components/pages/restaurant/restaurant-home/restaurant-home.component";
 import { AchievementConfiguratorComponent } from "./components/pages/restaurant/achievement-configurator/achievement-configurator.component";
 import { LandingPageComponent } from "./components/pages/landing-page/landing-page.component";
@@ -54,9 +52,6 @@ import { MatSelectModule } from "@angular/material/select";
     ProfileComponent,
     DiscoverComponent,
     RewardConfiguratorComponent,
-    RewardConfiguratorAddDialog,
-    RewardConfiguratorEditDialog,
-    RewardConfiguratorDeleteDialog,
     RestaurantHomeComponent,
     RestaurantDetailsComponent,
     AchievementConfiguratorComponent,

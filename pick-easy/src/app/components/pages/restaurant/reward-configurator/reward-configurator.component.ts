@@ -1,4 +1,4 @@
-import { Component, ViewChild, Inject } from "@angular/core";
+import { Component, ViewChild, Inject, ElementRef } from "@angular/core";
 import { RewardTemplate } from "src/app/shared/models/reward-template.model";
 import { TemplateService } from "src/app/shared/template.service";
 import {
@@ -7,15 +7,11 @@ import {
 } from "src/app/shared/models/restaurant.model";
 import { MatSelect } from "@angular/material/select";
 import { RestaurantService } from "src/app/shared/restaurant.service";
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { NOTYF } from "src/app/shared/utils/notyf.token";
+import { Notyf } from "notyf";
 import { FormControl, Validators } from '@angular/forms';
 import { variable } from '@angular/compiler/src/output/output_ast';
 
-export interface DialogData {
-  templates: RewardTemplate[];
-  variables: number[];
-  levels: string[];
-}
 
 @Component({
   selector: "app-reward-configurator",
@@ -27,11 +23,15 @@ export class RewardConfiguratorComponent {
   templates: RewardTemplate[];
   rewards: RestaurantReward[] = [];
   myRestaurant: Restaurant;
+  levels: string[];
+  percentControl: FormControl;
+  numberControl: FormControl;
 
   constructor(
-    public dialog: MatDialog,
     private templateService: TemplateService,
-    private restaurantService: RestaurantService) {
+    private restaurantService: RestaurantService,
+    @Inject(NOTYF) private notyf: Notyf,
+    private elem: ElementRef) {
       this.templateService
         .getRewardTemplates()
         .toPromise()
@@ -43,6 +43,9 @@ export class RewardConfiguratorComponent {
           this.myRestaurant = restaurant;
           this.rewards = restaurant.rewards;
       });
+      this.levels = ["Bronze", "Silver", "Gold", "Platinum", "Diamond"];
+      this.percentControl = new FormControl("", [Validators.max(100), Validators.min(1)]);
+      this.numberControl =  new FormControl("", [Validators.min(1)]);
     }
 
     getFormattedReward(reward: RestaurantReward) {
@@ -61,62 +64,32 @@ export class RewardConfiguratorComponent {
       );
     }
 
-    openAddDialog() {
-      const dialogRef = this.dialog.open(RewardConfiguratorAddDialog, {
-        width: '600px',
-        data: {
-          templates: this.templates,
-          variables: new Array(),
-          levels: ["Bronze", "Silver", "Gold", "Platinum", "Diamond"]
-        }
+    addReward(templateNumber: number) {
+      const template = this.getTemplateByNumber(templateNumber);
+      this.rewards?.push({
+        templateNumber,
+        variables: Array<string>(template.variables.length).fill(""),
+        level: this.levels[0]
       });
-      dialogRef.afterClosed().subscribe(result => result && this.rewards.push(result));
+      this.templatePicker.writeValue(null);
     }
 
-    openEditDialog(index: number) {
-      this.dialog.open(RewardConfiguratorEditDialog);
+    deleteReward(index: number) {
+      typeof index == 'number' && this.rewards.splice(index, 1);
     }
 
-    openDeleteDialog(index: number) {
-      const dialogRef = this.dialog.open(RewardConfiguratorDeleteDialog, {
-        width: '600px',
-        data: {index: index}
-      });
-      dialogRef.afterClosed().subscribe(index => {typeof index == 'number' && this.rewards.splice(index, 1)});
-    }
-
-    saveChanges() {
+    saveRewards() {
+      if (this.elem.nativeElement.querySelectorAll(".ng-invalid").length > 0) {
+        this.notyf.error("Invalid input(s)");
+        return;
+      }
       this.restaurantService
       .updateRewards(
         this.myRestaurant._id,
         this.rewards,
       )
       .toPromise()
+      .then(() => this.notyf.success("Saved successfully!"))
+      .catch(() => this.notyf.error("An error occurred while saving"));
     }
-}
-
-@Component({
-  selector: 'app-reward-configurator-dialog',
-  templateUrl: './reward-configurator-add-dialog.html',
-})
-export class RewardConfiguratorAddDialog {
-  constructor(
-    public dialogRef: MatDialogRef<RewardConfiguratorAddDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
-}
-
-@Component({
-  selector: 'app-reward-configurator-dialog',
-  templateUrl: './reward-configurator-edit-dialog.html',
-})
-export class RewardConfiguratorEditDialog {}
-
-@Component({
-  selector: 'app-reward-configurator-dialog',
-  templateUrl: './reward-configurator-delete-dialog.html',
-})
-export class RewardConfiguratorDeleteDialog {
-  constructor(
-    public dialogRef: MatDialogRef<RewardConfiguratorAddDialog>,
-    @Inject(MAT_DIALOG_DATA) public data) {}
 }
