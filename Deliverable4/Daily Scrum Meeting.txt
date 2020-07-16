@@ -357,9 +357,9 @@ Anthony
     2. nothing
     3. nothing 
 Pravinthan
-    1. 
-    2. 
-    3. 
+    1. Fixed and tested the two bugs
+    2. Nothing
+    3. Nothing
 Jeremy
     1. 
     2. 
