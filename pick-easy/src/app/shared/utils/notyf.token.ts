@@ -7,6 +7,6 @@ export function notyfFactory(): Notyf {
   return new Notyf({
     duration: 3000,
     dismissible: true,
-    position: { x: "right", y: "bottom" },
+    position: { x: "center", y: "bottom" },
   });
 }

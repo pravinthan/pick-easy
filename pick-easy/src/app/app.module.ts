@@ -13,7 +13,7 @@ import { SignUpComponent } from "./components/sign-up/sign-up.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { PageNotFoundComponent } from "./components/pages/page-not-found/page-not-found.component";
 import { CreditsComponent } from "./components/pages/credits/credits.component";
-import { MyPicksComponent } from "./components/pages/customer/my-picks/my-picks.component";
+import { MyRestaurantComponent } from "./components/pages/restaurant/my-restaurant/my-restaurant.component";
 import { ProfileComponent } from "./components/pages/customer/profile/profile.component";
 import { DiscoverComponent } from "./components/pages/customer/discover/discover.component";
 import { CustomerHomeComponent } from "./components/pages/customer/customer-home/customer-home.component";
@@ -21,6 +21,7 @@ import { RewardConfiguratorComponent } from "./components/pages/restaurant/rewar
 import { RestaurantHomeComponent } from "./components/pages/restaurant/restaurant-home/restaurant-home.component";
 import { AchievementConfiguratorComponent } from "./components/pages/restaurant/achievement-configurator/achievement-configurator.component";
 import { LandingPageComponent } from "./components/pages/landing-page/landing-page.component";
+import { RestaurantDetailsComponent } from "./components/pages/customer/discover/restaurant-details/restaurant-details.component";
 
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -35,9 +36,14 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatCardModule } from "@angular/material/card";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { MatTabsModule } from "@angular/material/tabs";
 import { RatingModule } from "ng-starrating";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatSelectModule } from "@angular/material/select";
+import { MatTooltipModule } from "@angular/material/tooltip";
+import { MatBadgeModule } from "@angular/material/badge";
+
+import { NgxMatFileInputModule } from "@angular-material-components/file-input";
 
 @NgModule({
   declarations: [
@@ -48,13 +54,14 @@ import { MatSelectModule } from "@angular/material/select";
     CustomerHomeComponent,
     PageNotFoundComponent,
     CreditsComponent,
-    MyPicksComponent,
     ProfileComponent,
     DiscoverComponent,
     RewardConfiguratorComponent,
     RestaurantHomeComponent,
+    RestaurantDetailsComponent,
     AchievementConfiguratorComponent,
     LandingPageComponent,
+    MyRestaurantComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,6 +85,10 @@ import { MatSelectModule } from "@angular/material/select";
     RatingModule,
     MatChipsModule,
     MatSelectModule,
+    MatTabsModule,
+    NgxMatFileInputModule,
+    MatTooltipModule,
+    MatBadgeModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

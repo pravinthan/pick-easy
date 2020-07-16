@@ -9,7 +9,6 @@ import { RestaurantService } from "src/app/shared/restaurant.service";
 import { MatSelect } from "@angular/material/select";
 import { NOTYF } from "src/app/shared/utils/notyf.token";
 import { Notyf } from "notyf";
-import { NgForm } from "@angular/forms";
 import { DOCUMENT } from "@angular/common";
 
 @Component({
@@ -21,7 +20,7 @@ export class AchievementConfiguratorComponent {
   @ViewChild("templatePicker") templatePicker: MatSelect;
   templates: AchievementTemplate[];
   achievements: RestaurantAchievement[] = [];
-  myRestaurant: Restaurant;
+  restaurant: Restaurant;
 
   constructor(
     private templateService: TemplateService,
@@ -39,7 +38,7 @@ export class AchievementConfiguratorComponent {
       .getOwnRestaurant()
       .toPromise()
       .then((restaurant) => {
-        this.myRestaurant = restaurant;
+        this.restaurant = restaurant;
         this.achievements = restaurant.achievements;
       });
   }
@@ -55,7 +54,7 @@ export class AchievementConfiguratorComponent {
 
     this.achievements.push({
       templateNumber,
-      numberOfStamps: 1,
+      numberOfTickets: 1,
       variables: Array<string>(template.variables.length).fill(""),
     });
 
@@ -94,8 +93,8 @@ export class AchievementConfiguratorComponent {
 
     this.restaurantService
       .updateAchievements(
-        this.myRestaurant._id,
-        this.myRestaurant.numberOfStampsForReward,
+        this.restaurant._id,
+        this.restaurant.numberOfTicketsForReward,
         this.achievements
       )
       .toPromise()

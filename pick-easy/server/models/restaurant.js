@@ -2,10 +2,18 @@ let mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 let restaurantSchema = new Schema({
-  owner: {
+  staff: {
     _id: {
       type: Schema.Types.ObjectId,
     },
+  },
+  image: {
+    fieldname: String,
+    originalname: String,
+    encoding: String,
+    mimetype: String,
+    size: String,
+    isMain: Boolean,
   },
   name: String,
   description: String,
@@ -41,7 +49,7 @@ let restaurantSchema = new Schema({
       "Korean",
     ],
   },
-  numberOfStampsForReward: {
+  numberOfTicketsForReward: {
     type: Number,
     min: 1,
     default: 1,
@@ -50,7 +58,7 @@ let restaurantSchema = new Schema({
     {
       templateNumber: Number,
       variables: [String],
-      numberOfStamps: {
+      numberOfTickets: {
         type: Number,
         min: 1,
       },
@@ -60,6 +68,10 @@ let restaurantSchema = new Schema({
     {
       templateNumber: Number,
       variables: [String],
+      level: {
+        type: String,
+        enum: ["Bronze", "Silver", "Gold", "Platinum", "Diamond"],
+      },
     },
   ],
 });

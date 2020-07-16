@@ -5,7 +5,7 @@ import { NOTYF } from "./utils/notyf.token";
 import { Notyf } from "notyf";
 
 @Injectable({ providedIn: "root" })
-export class AuthenticationGuard implements CanActivate {
+export class RestaurantCreationGuard implements CanActivate {
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
@@ -13,12 +13,10 @@ export class AuthenticationGuard implements CanActivate {
   ) {}
 
   canActivate() {
-    if (this.authenticationService.currentUserValue) return true;
+    if (this.authenticationService.currentUser.createdRestaurant) return true;
 
-    this.router.navigate(["/"]);
-    this.notyf.error(
-      "Unauthorized or forbidden access to this resource, try signing in"
-    );
+    this.router.navigate(["/restaurant"]);
+    this.notyf.error("Create a restaurant to access this resource");
 
     return false;
   }

@@ -3,85 +3,136 @@
     <div id="title">
       <span class="gradient-text">Configure Your Rewards</span>
     </div>
-    <div class="reward-display">
-      <mat-card class="card">
-        <mat-card-title>
-          Get 50% Off all Restaurant Items!
-        </mat-card-title>
-        <mat-card-actions>
-          <button mat-icon-button>
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-icon-button>
-            <mat-icon>delete</mat-icon>
-          </button>
-          <div class="chip-diamond">Diamond Tier</div>
-        </mat-card-actions>
-      </mat-card>
-      <mat-card class="card">
-        <mat-card-title>
-          Receive a "Chicken Combo" with a purchase of "Large Fries"!
-        </mat-card-title>
-        <mat-card-actions>
-          <button mat-icon-button>
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-icon-button>
-            <mat-icon>delete</mat-icon>
-          </button>
-          <div class="chip-platinum">Platinum Tier</div>
-        </mat-card-actions>
-      </mat-card>
-      <mat-card class="card">
-        <mat-card-title>
-          Get a $5 Discount on "Chicken Combo"!
-        </mat-card-title>
-        <mat-card-actions>
-          <button mat-icon-button>
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-icon-button>
-            <mat-icon>delete</mat-icon>
-          </button>
-          <div class="chip-gold">Gold Tier</div>
-        </mat-card-actions>
-      </mat-card>
-      <mat-card class="card">
-        <mat-card-title>
-          Get a Free "Small Soft Drink"!
-        </mat-card-title>
-        <mat-card-actions>
-          <button mat-icon-button>
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-icon-button>
-            <mat-icon>delete</mat-icon>
-          </button>
-          <div class="chip-silver">Silver Tier</div>
-        </mat-card-actions>
-      </mat-card>
-      <mat-card class="card">
-        <mat-card-title>
-          Get a $1 off!
-        </mat-card-title>
-        <mat-card-actions>
-          <button mat-icon-button>
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-icon-button>
-            <mat-icon>delete</mat-icon>
-          </button>
-          <div class="chip-bronze">Bronze Tier</div>
-        </mat-card-actions>
-      </mat-card>
-      <button mat-stroked-button class="add-button">
-        <mat-icon>add</mat-icon> Add New Reward
-      </button>
+    <div id="configurator-container">
+      <mat-form-field id="template-picker" appearance="fill">
+        <mat-label>Choose a reward template</mat-label>
+        <mat-select #templatePicker (selectionChange)="addReward($event.value)">
+          <mat-option
+            *ngFor="let template of templates"
+            [value]="template.templateNumber"
+            >{{ template.content }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+      <div id="rewards">
+        <div class="reward" *ngFor="let reward of rewards; let i = index">
+          <div class="reward-text">
+            <span
+              *ngFor="
+                let text of getTemplateByNumber(
+                  reward.templateNumber
+                ).content.split('<');
+                let i = index
+              "
+            >
+              <span>{{ text.substring(text.indexOf(">") + 1) }}</span>
+              <mat-form-field
+                class="reward-field"
+                *ngIf="getTemplateByNumber(reward.templateNumber).variables[i]"
+              >
+                <mat-label>{{
+                  getTemplateByNumber(reward.templateNumber).variables[i]
+                }}</mat-label>
+
+                <!--Percent input-->
+                <input
+                  *ngIf="
+                    getTemplateByNumber(reward.templateNumber).variables[i] ===
+                    'Percent'
+                  "
+                  matInput
+                  type="number"
+                  min="1"
+                  max="100"
+                  value="1"
+                  required
+                  [(ngModel)]="reward.variables[i]"
+                />
+                <mat-hint
+                  *ngIf="
+                    getTemplateByNumber(reward.templateNumber).variables[i] ===
+                    'Percent'
+                  "
+                  [id]="null"
+                >
+                  Enter a percent between 1 - 100
+                </mat-hint>
+
+                <!--Dollar amount input-->
+                <input
+                  *ngIf="
+                    getTemplateByNumber(reward.templateNumber).variables[i] ===
+                    'Dollar'
+                  "
+                  matInput
+                  type="number"
+                  min="1"
+                  value="1"
+                  required
+                  [(ngModel)]="reward.variables[i]"
+                />
+                <mat-hint
+                  *ngIf="
+                    getTemplateByNumber(reward.templateNumber).variables[i] ===
+                    'Dollar'
+                  "
+                  [id]="null"
+                >
+                  Enter a Dollar amount
+                </mat-hint>
+
+                <!--Restaurant item input-->
+                <input
+                  *ngIf="
+                    getTemplateByNumber(reward.templateNumber).variables[i] ===
+                    'Restaurant Item'
+                  "
+                  matInput
+                  required
+                  [(ngModel)]="reward.variables[i]"
+                />
+                <mat-hint
+                  *ngIf="
+                    getTemplateByNumber(reward.templateNumber).variables[i] ===
+                    'Restaurant Item'
+                  "
+                  [id]="null"
+                >
+                  Enter a Restaurant Item
+                </mat-hint>
+              </mat-form-field>
+            </span>
+          </div>
+          <div class="reward-context-container">
+            <mat-form-field class="reward-level" appearance="fill">
+              <mat-label>Choose level</mat-label>
+              <mat-select [(ngModel)]="reward.level" required>
+                <mat-option *ngFor="let level of levels" [value]="level">{{
+                  level
+                }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button
+              mat-icon-button
+              color="warn"
+              title="Remove reward"
+              class="remove-reward-button"
+              (click)="deleteReward(i)"
+            >
+              <mat-icon>remove_circle</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="footer">
-      <button mat-button class="button">Cancel</button>
-      <button mat-raised-button color="primary" class="button primary-color">
-        <mat-icon>save</mat-icon> Save
+    <div id="save-button-container">
+      <button
+        class="primary-color"
+        mat-raised-button
+        color="accent"
+        (click)="saveRewards()"
+      >
+        Save
       </button>
     </div>
   </div>

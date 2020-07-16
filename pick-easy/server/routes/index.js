@@ -2,18 +2,43 @@ let express = require("express");
 let router = express.Router();
 let { body, param } = require("express-validator");
 let jwt = require("express-jwt");
+let multer = require("multer");
+let multerS3 = require("multer-s3");
+let aws = require("aws-sdk");
+aws.config.update({
+  secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+  accessKeyId: process.env.S3_ACCESS_KEY_ID,
+  region: process.env.S3_BUCKET_REGION,
+});
+let s3 = new aws.S3();
+const fileFilter = (req, file, callback) => {
+  if (file.mimetype === "image/png" || file.mimetype === "image/jpeg")
+    callback(null, true);
+  else callback(null, false);
+};
+let upload = multer({
+  storage: multerS3({
+    s3,
+    bucket: process.env.S3_BUCKET_NAME,
+    key: (req, file, cb) => {
+      cb(null, req.user._id);
+    },
+  }),
+  fileFilter: fileFilter,
+  limits: { fileSize: 1024 * 1024 * 10 },
+});
 
 let auth = jwt({ secret: process.env.JWT_SECRET });
 
-let restaurantOwnerAuth = (req, res, next) => {
-  if (!req.user.isRestaurantOwner)
-    return res.status(403).send("User is not a restaurant owner");
+let restaurantStaffAuth = (req, res, next) => {
+  if (!req.user.isRestaurantStaff)
+    return res.status(403).send("User is not a restaurant staff");
 
   next();
 };
 
 let customerAuth = (req, res, next) => {
-  if (req.user.isRestaurantOwner)
+  if (req.user.isRestaurantStaff)
     return res.status(403).send("User is not a customer");
 
   next();
@@ -23,6 +48,7 @@ let authenticationController = require("../controllers/authentication");
 let userController = require("../controllers/user");
 let restaurantController = require("../controllers/restaurant");
 let achievementTemplateController = require("../controllers/achievement-template");
+let rewardTemplateController = require("../controllers/reward-template");
 
 // Authentication
 router.post(
@@ -30,7 +56,7 @@ router.post(
   [
     body("firstName").trim().isAlpha().isLength({ min: 1, max: 20 }).escape(),
     body("lastName").trim().isAlpha().isLength({ min: 1, max: 20 }).escape(),
-    body("isRestaurantOwner").isBoolean().escape(),
+    body("isRestaurantStaff").toBoolean(true),
     body("username")
       .trim()
       .isAlphanumeric()
@@ -43,6 +69,7 @@ router.post(
 router.post(
   "/users/signin",
   [
+    body("isRestaurantStaff").toBoolean(true),
     body("username")
       .trim()
       .isLength({ min: 3, max: 20 })
@@ -51,6 +78,11 @@ router.post(
     body("password").trim().isLength({ min: 8, max: 20 }).escape(),
   ],
   authenticationController.signIn
+);
+router.get(
+  "/users/retrieve-new-jwt",
+  auth,
+  authenticationController.retrieveNewJWT
 );
 
 // Users
@@ -68,12 +100,43 @@ router.get(
 );
 
 // Restaurants
-router.post("/restaurants", auth, restaurantController.createRestaurant);
+router.post(
+  "/restaurants",
+  auth,
+  restaurantStaffAuth,
+  upload.single("restaurantImage"),
+  [
+    body("restaurantName").trim().isLength({ min: 1, max: 30 }).escape(),
+    body("restaurantDescription")
+      .trim()
+      .isLength({ min: 1, max: 250 })
+      .escape(),
+    body("restaurantCost")
+      .exists({ checkNull: true })
+      .toInt()
+      .isInt({ min: 1, max: 4 }),
+    body("restaurantCuisine").isIn([
+      "Mexican",
+      "Italian",
+      "American",
+      "Thai",
+      "Japanese",
+      "Chinese",
+      "Indian",
+      "French",
+      "Brazilian",
+      "Greek",
+      "Korean",
+    ]),
+  ],
+  restaurantController.createRestaurant
+);
+
 router.get("/restaurants", auth, restaurantController.retrieveAllRestaurants);
 router.get(
   "/restaurants/owned",
   auth,
-  restaurantOwnerAuth,
+  restaurantStaffAuth,
   restaurantController.retrieveOwnRestaurant
 );
 router.get(
@@ -88,17 +151,61 @@ router.get(
   ],
   restaurantController.retrieveRestaurantById
 );
+
 router.patch(
   "/restaurants/:id",
   auth,
-  restaurantOwnerAuth,
+  restaurantStaffAuth,
+  upload.single("restaurantImage"),
   [
     param("id")
       .exists({ checkNull: true, checkFalsy: true })
       .trim()
       .isMongoId()
       .escape(),
-    body("numberOfStampsForReward")
+    body("restaurantName").trim().isLength({ min: 1, max: 30 }).escape(),
+    body("restaurantDescription")
+      .trim()
+      .isLength({ min: 1, max: 250 })
+      .escape(),
+    body("restaurantCost")
+      .exists({ checkNull: true })
+      .toInt()
+      .isInt({ min: 1, max: 4 }),
+    body("restaurantCuisine").isIn([
+      "Mexican",
+      "Italian",
+      "American",
+      "Thai",
+      "Japanese",
+      "Chinese",
+      "Indian",
+      "French",
+      "Brazilian",
+      "Greek",
+      "Korean",
+    ]),
+  ],
+  restaurantController.updateRestaurant
+);
+
+router.get(
+  "/restaurants/:id/image",
+  auth,
+  restaurantController.retrieveRestaurantImage
+);
+
+router.patch(
+  "/restaurants/:id/achievements",
+  auth,
+  restaurantStaffAuth,
+  [
+    param("id")
+      .exists({ checkNull: true, checkFalsy: true })
+      .trim()
+      .isMongoId()
+      .escape(),
+    body("numberOfTicketsForReward")
       .exists({ checkNull: true })
       .isInt({ min: 1 }),
     body("achievements")
@@ -107,7 +214,7 @@ router.patch(
     body("achievements.*.templateNumber")
       .exists({ checkNull: true })
       .isInt({ min: 0 }),
-    body("achievements.*.numberOfStamps")
+    body("achievements.*.numberOfTickets")
       .exists({ checkNull: true })
       .isInt({ min: 1 }),
     body("achievements.*.variables").isArray(),
@@ -126,8 +233,49 @@ router.patch(
 router.get(
   "/templates/achievements",
   auth,
-  restaurantOwnerAuth,
+  restaurantStaffAuth,
   achievementTemplateController.retrieveAllTemplates
+);
+
+router.patch(
+  "/restaurants/:id/rewards",
+  auth,
+  restaurantStaffAuth,
+  [
+    param("id")
+      .exists({ checkNull: true, checkFalsy: true })
+      .trim()
+      .isMongoId()
+      .escape(),
+    body("rewards").exists({ checkNull: true, checkFalsy: true }).isArray(),
+    body("rewards.*.templateNumber")
+      .exists({ checkNull: true })
+      .isInt({ min: 0 }),
+    body("rewards.*.level").isIn([
+      "Bronze",
+      "Silver",
+      "Gold",
+      "Platinum",
+      "Diamond",
+    ]),
+    body("rewards.*.variables").isArray(),
+    body("rewards.*.variables.*")
+      .if(body("rewards.*.variables.*").isString())
+      .trim()
+      .escape(),
+    body("rewards.*.variables.*")
+      .if(body("rewards.*.variables.*").isInt())
+      .isInt({ min: 0 }),
+  ],
+  restaurantController.updateRewards
+);
+
+// Reward Templates
+router.get(
+  "/templates/rewards",
+  auth,
+  restaurantStaffAuth,
+  rewardTemplateController.retrieveAllTemplates
 );
 
 module.exports = router;

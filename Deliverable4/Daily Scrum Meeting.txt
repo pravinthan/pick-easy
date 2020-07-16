@@ -1,32 +1,4 @@
 --------------------------------------------------------------------------------------------
-Date: July 2, 2020
-
-1. What have you completed (relative to the Backlog) since the last Scrum meeting?
-2. What is in your way to completing this work? 
-3. What will you do between now and the next Scrum meeting? 
-
-Luke
-    1. Nothing
-    2. N/A
-    3. Nothing
-Evan
-    1. Nothing
-    2. N/A
-    3. Nothing
-Anthony
-    1. Nothing
-    2. N/A
-    3. Nothing 
-Pravinthan
-    1. Nothing
-    2. N/A
-    3. Nothing
-Jeremy
-    1. Nothing
-    2. N/A
-    3. Nothing
-
---------------------------------------------------------------------------------------------
 Date: July 3, 2020
 
 1. What have you completed (relative to the Backlog) since the last Scrum meeting?
@@ -174,9 +146,9 @@ Date: July 8, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Continued to work on restaurant UI. Get ready for pull request
+    2. Nothing
+    3. Work on resturant UI
 Evan
     1. Finished the landing page.
     2. Nothing
@@ -202,9 +174,9 @@ Date: July 9, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Fixed bug in pull request, forgot to commit
+    2. Nothing
+    3. Research reward templates
 Evan
     1. Worked with Anthony on the sprint backlog.
     2. Nothing
@@ -230,13 +202,13 @@ Date: July 10, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Research reward templates
+    2. Nothing
+    3. Research reward templates
 Evan
-    1. 
-    2. 
-    3. 
+    1. Finshed updating project backlog
+    2. Nothing
+    3. Work on bugs
 Anthony
     1. Finished updating product backlog 
     2. Nothing
@@ -259,6 +231,120 @@ Date: July 11, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
+    1. Planned for acceptance testing with Choyin
+    2. Nothing
+    3. Plann for acceptance testing
+Evan
+    1. Worked on bugs issues
+    2. Need to wait on Mongoose to be commited into master
+    3. Continue to work on bugs
+Anthony
+    1. Working on profile component on the restaurant side 
+    2. Need to learn a how to implement image upload using Amazon S3
+    3. Continue working on profile component on the restaurant side
+Pravinthan
+    1. Merged teammates branches
+    2. Nothing
+    3. Working on unit testing
+Jeremy
+    1. Nothing
+    2. Issues with using back end reward system
+    3. Revise Reward system and connect the backend reward system with the restaurants reward configuator page
+
+
+--------------------------------------------------------------------------------------------
+Date: July 12, 2020
+
+1. What have you completed (relative to the Backlog) since the last Scrum meeting?
+2. What is in your way to completing this work? 
+3. What will you do between now and the next Scrum meeting? 
+
+Luke
+    1. Continuing planning for acceptance testing with Choyin
+    2. Nothing
+    3. Plan for acceptance testing
+Evan
+    1. Worked on bugs and testing
+    2. Nothing
+    3. Try to wrap up the bug issues.
+Anthony
+    1. Working on profile component on the restaurant side
+    2. Need to learn a how to implement image upload using Amazon S3
+    3. Continue working on profile component on the restaurant side
+Pravinthan
+    1. Other homework
+    2. Nothing
+    3. Working on unit testing
+Jeremy
+    1. Added feature for restuarants to add new rewards
+    2. Other course work and issues retrieving data from inputs
+    3. Continue to connect the backend reward system with the restaurants reward configuator page
+
+
+--------------------------------------------------------------------------------------------
+Date: July 13, 2020
+
+1. What have you completed (relative to the Backlog) since the last Scrum meeting?
+2. What is in your way to completing this work? 
+3. What will you do between now and the next Scrum meeting? 
+
+Luke
+    1. Finalize sprint backlog with acceptance criteria
+    2. Nothing
+    3. Finalize sprint backlog with acceptance criteria with Evan
+Evan
+    1. Finished bug fixes and made pull requests.
+    2. Nothing
+    3. Work on project backlog and help anyone who still needs help.
+Anthony
+    1. Completed my-restaurant component 
+    2. Nothing
+    3. help teams who need help
+Pravinthan
+    1. Helped Anthony complete my-restaurant component
+    2. Nothing
+    3. Unit testing and pull request
+Jeremy
+    1. Added feature for restuarants to remove rewards
+    2. Personal errands
+    3. Add feature to allow restaurant staff to edit existing rewards
+
+--------------------------------------------------------------------------------------------
+Date: July 14, 2020
+
+1. What have you completed (relative to the Backlog) since the last Scrum meeting?
+2. What is in your way to completing this work? 
+3. What will you do between now and the next Scrum meeting? 
+
+Luke
+    1. Plan for acceptance testing on Thursday
+    2. Need changes to be deployed
+    3. Plan for acceptance testing on Thursday
+Evan
+    1. 
+    2. 
+    3. 
+Anthony
+    1. help other team members
+    2. internet issues
+    3. nothing
+Pravinthan
+    1. Fixed 2 bugs listed in issues on github
+    2. Nothing
+    3. Unit testing
+Jeremy
+    1. Nothing
+    2. Other course work
+    3. Add feature to allow restaurant staff to edit existing rewards
+
+--------------------------------------------------------------------------------------------
+Date: July 15, 2020
+
+1. What have you completed (relative to the Backlog) since the last Scrum meeting?
+2. What is in your way to completing this work? 
+3. What will you do between now and the next Scrum meeting? 
+
+Luke
     1. 
     2. 
     3. 
@@ -267,21 +353,20 @@ Evan
     2. 
     3. 
 Anthony
-    1. 
-    2. 
-    3. 
+    1. help other team members
+    2. nothing
+    3. nothing 
 Pravinthan
-    1. 
-    2. 
-    3. 
+    1. Fixed and tested the two bugs
+    2. Nothing
+    3. Nothing
 Jeremy
-    1. 
-    2. 
-    3. 
-
+    1. Changed how rewards created/deleted/edited to match Achievement configurator. Completed Reward configurator
+    2. Nothing
+    3. Nothing
 
 --------------------------------------------------------------------------------------------
-Date: July 12, 2020
+Date: July 16, 2020
 
 1. What have you completed (relative to the Backlog) since the last Scrum meeting?
 2. What is in your way to completing this work? 
@@ -308,9 +393,428 @@ Jeremy
     2. 
     3. 
 
+--------------------------------------------------------------------------------------------
+Date: July 17, 2020
+
+1. What have you completed (relative to the Backlog) since the last Scrum meeting?
+2. What is in your way to completing this work? 
+3. What will you do between now and the next Scrum meeting? 
+
+Luke
+    1. 
+    2. 
+    3. 
+Evan
+    1. 
+    2. 
+    3. 
+Anthony
+    1. 
+    2. 
+    3. 
+Pravinthan
+    1. 
+    2. 
+    3. 
+Jeremy
+    1. 
+    2. 
+    3. 
 
 --------------------------------------------------------------------------------------------
-Date: July 13, 2020
+Date: July 18, 2020
+
+1. What have you completed (relative to the Backlog) since the last Scrum meeting?
+2. What is in your way to completing this work? 
+3. What will you do between now and the next Scrum meeting? 
+
+Luke
+    1. 
+    2. 
+    3. 
+Evan
+    1. 
+    2. 
+    3. 
+Anthony
+    1. 
+    2. 
+    3. 
+Pravinthan
+    1. 
+    2. 
+    3. 
+Jeremy
+    1. 
+    2. 
+    3. 
+
+--------------------------------------------------------------------------------------------
+Date: July 19, 2020
+
+1. What have you completed (relative to the Backlog) since the last Scrum meeting?
+2. What is in your way to completing this work? 
+3. What will you do between now and the next Scrum meeting? 
+
+Luke
+    1. 
+    2. 
+    3. 
+Evan
+    1. 
+    2. 
+    3. 
+Anthony
+    1. 
+    2. 
+    3. 
+Pravinthan
+    1. 
+    2. 
+    3. 
+Jeremy
+    1. 
+    2. 
+    3. 
+
+--------------------------------------------------------------------------------------------
+Date: July 20, 2020
+
+1. What have you completed (relative to the Backlog) since the last Scrum meeting?
+2. What is in your way to completing this work? 
+3. What will you do between now and the next Scrum meeting? 
+
+Luke
+    1. 
+    2. 
+    3. 
+Evan
+    1. 
+    2. 
+    3. 
+Anthony
+    1. 
+    2. 
+    3. 
+Pravinthan
+    1. 
+    2. 
+    3. 
+Jeremy
+    1. 
+    2. 
+    3. 
+
+--------------------------------------------------------------------------------------------
+Date: July 21, 2020
+
+1. What have you completed (relative to the Backlog) since the last Scrum meeting?
+2. What is in your way to completing this work? 
+3. What will you do between now and the next Scrum meeting? 
+
+Luke
+    1. 
+    2. 
+    3. 
+Evan
+    1. 
+    2. 
+    3. 
+Anthony
+    1. 
+    2. 
+    3. 
+Pravinthan
+    1. 
+    2. 
+    3. 
+Jeremy
+    1. 
+    2. 
+    3. 
+
+--------------------------------------------------------------------------------------------
+Date: July 22, 2020
+
+1. What have you completed (relative to the Backlog) since the last Scrum meeting?
+2. What is in your way to completing this work? 
+3. What will you do between now and the next Scrum meeting? 
+
+Luke
+    1. 
+    2. 
+    3. 
+Evan
+    1. 
+    2. 
+    3. 
+Anthony
+    1. 
+    2. 
+    3. 
+Pravinthan
+    1. 
+    2. 
+    3. 
+Jeremy
+    1. 
+    2. 
+    3. 
+
+--------------------------------------------------------------------------------------------
+Date: July 23, 2020
+
+1. What have you completed (relative to the Backlog) since the last Scrum meeting?
+2. What is in your way to completing this work? 
+3. What will you do between now and the next Scrum meeting? 
+
+Luke
+    1. 
+    2. 
+    3. 
+Evan
+    1. 
+    2. 
+    3. 
+Anthony
+    1. 
+    2. 
+    3. 
+Pravinthan
+    1. 
+    2. 
+    3. 
+Jeremy
+    1. 
+    2. 
+    3. 
+
+--------------------------------------------------------------------------------------------
+Date: July 24, 2020
+
+1. What have you completed (relative to the Backlog) since the last Scrum meeting?
+2. What is in your way to completing this work? 
+3. What will you do between now and the next Scrum meeting? 
+
+Luke
+    1. 
+    2. 
+    3. 
+Evan
+    1. 
+    2. 
+    3. 
+Anthony
+    1. 
+    2. 
+    3. 
+Pravinthan
+    1. 
+    2. 
+    3. 
+Jeremy
+    1. 
+    2. 
+    3. 
+
+--------------------------------------------------------------------------------------------
+Date: July 25, 2020
+
+1. What have you completed (relative to the Backlog) since the last Scrum meeting?
+2. What is in your way to completing this work? 
+3. What will you do between now and the next Scrum meeting? 
+
+Luke
+    1. 
+    2. 
+    3. 
+Evan
+    1. 
+    2. 
+    3. 
+Anthony
+    1. 
+    2. 
+    3. 
+Pravinthan
+    1. 
+    2. 
+    3. 
+Jeremy
+    1. 
+    2. 
+    3. 
+
+--------------------------------------------------------------------------------------------
+Date: July 26, 2020
+
+1. What have you completed (relative to the Backlog) since the last Scrum meeting?
+2. What is in your way to completing this work? 
+3. What will you do between now and the next Scrum meeting? 
+
+Luke
+    1. 
+    2. 
+    3. 
+Evan
+    1. 
+    2. 
+    3. 
+Anthony
+    1. 
+    2. 
+    3. 
+Pravinthan
+    1. 
+    2. 
+    3. 
+Jeremy
+    1. 
+    2. 
+    3. 
+
+--------------------------------------------------------------------------------------------
+Date: July 27, 2020
+
+1. What have you completed (relative to the Backlog) since the last Scrum meeting?
+2. What is in your way to completing this work? 
+3. What will you do between now and the next Scrum meeting? 
+
+Luke
+    1. 
+    2. 
+    3. 
+Evan
+    1. 
+    2. 
+    3. 
+Anthony
+    1. 
+    2. 
+    3. 
+Pravinthan
+    1. 
+    2. 
+    3. 
+Jeremy
+    1. 
+    2. 
+    3. 
+
+--------------------------------------------------------------------------------------------
+Date: July 28, 2020
+
+1. What have you completed (relative to the Backlog) since the last Scrum meeting?
+2. What is in your way to completing this work? 
+3. What will you do between now and the next Scrum meeting? 
+
+Luke
+    1. 
+    2. 
+    3. 
+Evan
+    1. 
+    2. 
+    3. 
+Anthony
+    1. 
+    2. 
+    3. 
+Pravinthan
+    1. 
+    2. 
+    3. 
+Jeremy
+    1. 
+    2. 
+    3. 
+
+--------------------------------------------------------------------------------------------
+Date: July 29, 2020
+
+1. What have you completed (relative to the Backlog) since the last Scrum meeting?
+2. What is in your way to completing this work? 
+3. What will you do between now and the next Scrum meeting? 
+
+Luke
+    1. 
+    2. 
+    3. 
+Evan
+    1. 
+    2. 
+    3. 
+Anthony
+    1. 
+    2. 
+    3. 
+Pravinthan
+    1. 
+    2. 
+    3. 
+Jeremy
+    1. 
+    2. 
+    3. 
+
+--------------------------------------------------------------------------------------------
+Date: July 30, 2020
+
+1. What have you completed (relative to the Backlog) since the last Scrum meeting?
+2. What is in your way to completing this work? 
+3. What will you do between now and the next Scrum meeting? 
+
+Luke
+    1. 
+    2. 
+    3. 
+Evan
+    1. 
+    2. 
+    3. 
+Anthony
+    1. 
+    2. 
+    3. 
+Pravinthan
+    1. 
+    2. 
+    3. 
+Jeremy
+    1. 
+    2. 
+    3. 
+
+--------------------------------------------------------------------------------------------
+Date: July 31, 2020
+
+1. What have you completed (relative to the Backlog) since the last Scrum meeting?
+2. What is in your way to completing this work? 
+3. What will you do between now and the next Scrum meeting? 
+
+Luke
+    1. 
+    2. 
+    3. 
+Evan
+    1. 
+    2. 
+    3. 
+Anthony
+    1. 
+    2. 
+    3. 
+Pravinthan
+    1. 
+    2. 
+    3. 
+Jeremy
+    1. 
+    2. 
+    3. 
+
+--------------------------------------------------------------------------------------------
+Date: August 1, 2020
 
 1. What have you completed (relative to the Backlog) since the last Scrum meeting?
 2. What is in your way to completing this work? 

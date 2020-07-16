@@ -77,3 +77,8 @@ mat-icon.gradient-text {
   top: 0;
   left: 0;
 }
+
+.gradient-text.disabled {
+  background: linear-gradient(to right, #e8285e8e, #f23f4277);
+  background-clip: text;
+}

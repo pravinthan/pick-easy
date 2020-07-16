@@ -23,7 +23,11 @@
       >
         Sign In
       </button>
-      <button mat-raised-button color="accent" (click)="openSignUpDialog()">
+      <button
+        mat-raised-button
+        class="gradient-button"
+        (click)="openSignUpDialog()"
+      >
         Sign Up
       </button>
     </div>
@@ -32,8 +36,15 @@
       <a
         mat-raised-button
         routerLink="./my-restaurant"
-        color="accent"
+        class="gradient-button"
+        [ngClass]="{ 'onboarding-gradient': !currentUser?.createdRestaurant }"
+        matBadge="&#8288;"
+        [matBadgeHidden]="currentUser?.createdRestaurant"
+        matBadgeColor="warn"
+        matBadgeSize="small"
         style="margin-right: 2rem;"
+        matTooltip="Create a restaurant here!"
+        [matTooltipDisabled]="currentUser?.createdRestaurant"
       >
         <mat-icon>restaurant</mat-icon>
         My Restaurant
@@ -41,7 +52,8 @@
       <a
         mat-raised-button
         routerLink="./achievements"
-        color="accent"
+        *ngIf="currentUser?.createdRestaurant"
+        class="gradient-button"
         style="margin-right: 2rem;"
       >
         <mat-icon>card_membership</mat-icon>
@@ -49,9 +61,30 @@
       </a>
       <a
         mat-raised-button
-        routerLink="./rewards"
-        color="accent"
+        *ngIf="!currentUser?.createdRestaurant"
+        disabled
+        class="gradient-button"
         style="margin-right: 2rem;"
+        matTooltip="Create a restaurant to configure achievements"
+      >
+        <mat-icon>card_membership</mat-icon>
+        Achievements
+      </a>
+      <a
+        mat-raised-button
+        routerLink="./rewards"
+        *ngIf="currentUser?.createdRestaurant"
+        class="gradient-button"
+      >
+        <mat-icon>redeem</mat-icon>
+        Rewards
+      </a>
+      <a
+        mat-raised-button
+        *ngIf="!currentUser?.createdRestaurant"
+        disabled
+        class="gradient-button"
+        matTooltip="Create a restaurant to configure rewards"
       >
         <mat-icon>redeem</mat-icon>
         Rewards
@@ -59,5 +92,3 @@
     </div>
   </div>
 </div>
-
-<router-outlet></router-outlet>

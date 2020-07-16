@@ -27,7 +27,7 @@
 
 #title > .gradient-text {
   font-size: 32px;
-  line-height: 35px;
+  line-height: 42px;
 }
 
 #search {
@@ -55,7 +55,7 @@
 }
 
 .restaurant-card {
-  max-width: 400px;
+  max-width: 500px;
 }
 
 star-rating {
@@ -73,7 +73,11 @@ star-rating {
 }
 
 mat-card > img {
-  width: 400px;
+  width: 500px;
   height: 300px;
   object-fit: cover;
+}
+
+mat-card {
+  cursor: pointer;
 }

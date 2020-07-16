@@ -118,5 +118,8 @@
       }
     }
   },
-  "defaultProject": "pick-easy"
+  "defaultProject": "pick-easy",
+  "cli": {
+    "analytics": false
+  }
 }
