@@ -1,26 +1,17 @@
 export class User {
   _id: string;
   username: string;
-  isRestaurantStaff: boolean;
-  createdRestaurant: boolean;
+  isRestaurantOwner: boolean;
   firstName?: string;
   lastName?: string;
 
   constructor(
     _id: string,
     username: string,
-    isRestaurantStaff: boolean,
-    createdRestaurant: boolean,
+    isRestaurantOwner: boolean,
     firstName?: string,
     lastName?: string
   ) {
-    return {
-      _id,
-      username,
-      isRestaurantStaff,
-      createdRestaurant,
-      firstName,
-      lastName,
-    };
+    return { _id, username, isRestaurantOwner, firstName, lastName };
   }
 }

@@ -23,11 +23,7 @@
       >
         Sign In
       </button>
-      <button
-        mat-raised-button
-        class="gradient-button"
-        (click)="openSignUpDialog()"
-      >
+      <button mat-raised-button color="accent" (click)="openSignUpDialog()">
         Sign Up
       </button>
     </div>
@@ -36,7 +32,7 @@
       <a
         mat-raised-button
         routerLink="./discover"
-        class="gradient-button"
+        color="accent"
         style="margin-right: 2rem;"
       >
         <mat-icon>storefront</mat-icon>
@@ -45,16 +41,23 @@
       <a
         mat-raised-button
         routerLink="./groups"
-        class="gradient-button"
+        color="accent"
         style="margin-right: 2rem;"
       >
         <mat-icon>group</mat-icon>
         Groups
       </a>
-      <a mat-raised-button routerLink="./profile" class="gradient-button">
+      <a
+        mat-raised-button
+        routerLink="./profile"
+        color="accent"
+        style="margin-right: 2rem;"
+      >
         <mat-icon>person</mat-icon>
         Profile
       </a>
     </div>
   </div>
 </div>
+
+<router-outlet></router-outlet>

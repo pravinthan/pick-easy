@@ -1,4 +1,32 @@
 --------------------------------------------------------------------------------------------
+Date: July 2, 2020
+
+1. What have you completed (relative to the Backlog) since the last Scrum meeting?
+2. What is in your way to completing this work? 
+3. What will you do between now and the next Scrum meeting? 
+
+Luke
+    1. Nothing
+    2. N/A
+    3. Nothing
+Evan
+    1. Nothing
+    2. N/A
+    3. Nothing
+Anthony
+    1. Nothing
+    2. N/A
+    3. Nothing 
+Pravinthan
+    1. Nothing
+    2. N/A
+    3. Nothing
+Jeremy
+    1. Nothing
+    2. N/A
+    3. Nothing
+
+--------------------------------------------------------------------------------------------
 Date: July 3, 2020
 
 1. What have you completed (relative to the Backlog) since the last Scrum meeting?
@@ -146,9 +174,9 @@ Date: July 8, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. Continued to work on restaurant UI. Get ready for pull request
-    2. Nothing
-    3. Work on resturant UI
+    1. 
+    2. 
+    3. 
 Evan
     1. Finished the landing page.
     2. Nothing
@@ -174,9 +202,9 @@ Date: July 9, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. Fixed bug in pull request, forgot to commit
-    2. Nothing
-    3. Research reward templates
+    1. 
+    2. 
+    3. 
 Evan
     1. Worked with Anthony on the sprint backlog.
     2. Nothing
@@ -202,13 +230,13 @@ Date: July 10, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. Research reward templates
-    2. Nothing
-    3. Research reward templates
+    1. 
+    2. 
+    3. 
 Evan
-    1. Finshed updating project backlog
-    2. Nothing
-    3. Work on bugs
+    1. 
+    2. 
+    3. 
 Anthony
     1. Finished updating product backlog 
     2. Nothing
@@ -231,13 +259,13 @@ Date: July 11, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. Planned for acceptance testing with Choyin
-    2. Nothing
-    3. Plann for acceptance testing
+    1. 
+    2. 
+    3. 
 Evan
-    1. Worked on bugs issues
-    2. Need to wait on Mongoose to be commited into master
-    3. Continue to work on bugs
+    1. 
+    2. 
+    3. 
 Anthony
     1. Working on profile component on the restaurant side 
     2. Need to learn a how to implement image upload using Amazon S3
@@ -260,13 +288,13 @@ Date: July 12, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. Continuing planning for acceptance testing with Choyin
-    2. Nothing
-    3. Plan for acceptance testing
+    1. 
+    2. 
+    3. 
 Evan
-    1. Worked on bugs and testing
-    2. Nothing
-    3. Try to wrap up the bug issues.
+    1. 
+    2. 
+    3. 
 Anthony
     1. Working on profile component on the restaurant side
     2. Need to learn a how to implement image upload using Amazon S3

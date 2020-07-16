@@ -1,6 +1,5 @@
 <div id="sign-in-container">
-  <span class="gradient-text">Sign In</span>
-
+  <h1>Sign In</h1>
   <form #form="ngForm" id="sign-in-form" (ngSubmit)="signIn(form)">
     <mat-form-field class="full-width">
       <input
@@ -29,8 +28,9 @@
     </mat-form-field>
 
     <button
-      mat-raised-button
-      class="gradient-button full-width"
+      mat-stroked-button
+      color="primary"
+      class="full-width"
       [disabled]="loading || form.invalid"
     >
       Sign In

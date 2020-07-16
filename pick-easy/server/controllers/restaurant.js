@@ -1,16 +1,8 @@
 let mongoose = require("mongoose");
 let { validationResult } = require("express-validator");
 let Restaurant = mongoose.model("Restaurant");
-let User = mongoose.model("User");
 let AchievementTemplate = mongoose.model("AchievementTemplate");
 let RewardTemplate = mongoose.model("RewardTemplate");
-let aws = require("aws-sdk");
-aws.config.update({
-  secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
-  accessKeyId: process.env.S3_ACCESS_KEY_ID,
-  region: process.env.S3_BUCKET_REGION,
-});
-let s3 = new aws.S3();
 
 const isBadRequest = (req) => !validationResult(req).isEmpty();
 
@@ -20,17 +12,11 @@ module.exports.createRestaurant = async (req, res) => {
   let restaurant;
   try {
     restaurant = await Restaurant.create({
-      staff: { _id: req.user._id },
-      name: req.body.restaurantName,
-      description: req.body.restaurantDescription,
+      owner: { _id: req.user._id },
+      name: req.body.description,
       rating: { value: 0, ratedBy: 0 },
-      cost: req.body.restaurantCost,
-      cuisine: req.body.restaurantCuisine,
-      image: req.file,
-    });
-
-    await User.findByIdAndUpdate(req.user._id, {
-      $set: { createdRestaurant: true },
+      cost: req.body.cost,
+      cuisine: req.body.cuisine,
     });
 
     res.json(restaurant);
@@ -64,7 +50,7 @@ module.exports.retrieveAllRestaurants = async (req, res) => {
 
 module.exports.retrieveOwnRestaurant = async (req, res) => {
   try {
-    let restaurant = await Restaurant.findOne({ "staff._id": req.user._id });
+    let restaurant = await Restaurant.findOne({ "owner._id": req.user._id });
 
     if (!restaurant)
       return res.status(404).send(`No restaurant found under the user`);
@@ -101,11 +87,11 @@ module.exports.updateAchievements = async (req, res) => {
     if (!restaurant)
       return res.status(404).send(`Restaurant ${req.params.id} does not exist`);
 
-    if (!restaurant.staff._id.equals(req.user._id)) return res.sendStatus(403);
+    if (!restaurant.owner._id.equals(req.user._id)) return res.sendStatus(403);
 
     await Restaurant.findByIdAndUpdate(restaurant._id, {
       $set: {
-        numberOfTicketsForReward: req.body.numberOfTicketsForReward,
+        numberOfStampsForReward: req.body.numberOfStampsForReward,
         achievements: req.body.achievements,
       },
     });
@@ -142,7 +128,7 @@ module.exports.updateRewards = async (req, res) => {
     if (!restaurant)
       return res.status(404).send(`Restaurant ${req.params.id} does not exist`);
 
-    if (!restaurant.staff._id.equals(req.user._id)) return res.sendStatus(403);
+    if (!restaurant.owner._id.equals(req.user._id)) return res.sendStatus(403);
 
     await Restaurant.findByIdAndUpdate(restaurant._id, {
       $set: {
@@ -151,70 +137,6 @@ module.exports.updateRewards = async (req, res) => {
     });
 
     res.sendStatus(200);
-  } catch (err) {
-    res.sendStatus(500);
-  }
-};
-
-module.exports.updateRestaurant = async (req, res) => {
-  if (isBadRequest(req)) return res.sendStatus(400);
-
-  try {
-    let restaurant = await Restaurant.findById(req.params.id);
-
-    if (!restaurant)
-      return res.status(404).send(`Restaurant ${req.params.id} does not exist`);
-
-    if (!restaurant.staff._id.equals(req.user._id)) return res.sendStatus(403);
-
-    let updatedRestaurantValues = {
-      name: req.body.restaurantName,
-      description: req.body.restaurantDescription,
-      cost: req.body.restaurantCost,
-      cuisine: req.body.restaurantCuisine,
-    };
-
-    if (req.file) {
-      await Restaurant.findByIdAndUpdate(restaurant._id, {
-        $set: {
-          ...updatedRestaurantValues,
-          image: req.file,
-        },
-      });
-    } else {
-      await Restaurant.findByIdAndUpdate(restaurant._id, {
-        $set: updatedRestaurantValues,
-      });
-    }
-
-    res.sendStatus(200);
-  } catch (err) {
-    res.sendStatus(500);
-  }
-};
-
-module.exports.retrieveRestaurantImage = async (req, res) => {
-  if (isBadRequest(req)) return res.sendStatus(400);
-
-  try {
-    let restaurant = await Restaurant.findById(req.params.id);
-
-    if (!restaurant)
-      return res.status(404).send(`Restaurant ${req.params.id} does not exist`);
-
-    if (!restaurant.image)
-      return res
-        .status(404)
-        .send(`Restaurant image for ${req.params.id} does not exist`);
-
-    res.setHeader("Content-Type", restaurant.image.mimetype);
-    const image = await s3
-      .getObject({
-        Bucket: process.env.S3_BUCKET_NAME,
-        Key: req.user._id,
-      })
-      .promise();
-    return res.send(image.Body);
   } catch (err) {
     res.sendStatus(500);
   }

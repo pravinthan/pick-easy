@@ -5,7 +5,6 @@ import { Observable } from "rxjs";
 import { Restaurant } from "src/app/shared/models/restaurant.model";
 import { MatDialog } from "@angular/material/dialog";
 import { RestaurantDetailsComponent } from "src/app/components/pages/customer/discover/restaurant-details/restaurant-details.component";
-import { RestaurantService } from "src/app/shared/restaurant.service";
 
 @Component({
   selector: "app-discover",
@@ -15,19 +14,63 @@ import { RestaurantService } from "src/app/shared/restaurant.service";
 export class DiscoverComponent implements OnInit {
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
-  restaurants: Restaurant[];
+  restaurants: Array<Restaurant> = [
+    {
+      _id: "11",
+      name: "Kinton Ramen",
+      description: "This is Kinton Ramen",
+      rating: 1,
+      cost: 1,
+      cuisine: "Japanese",
+      numberOfStampsForReward: 5,
+      achievements: [
+        {
+          templateNumber: 4,
+          variables: [],
+          numberOfStamps: 5,
+        },
+        {
+          templateNumber: 5,
+          variables: [],
+          numberOfStamps: 5,
+        },
+      ],
+    },
+    {
+      _id: "12",
+      name: "Panda Express",
+      description: "This is panda express",
+      rating: 3,
+      cost: 2,
+      cuisine: "Chinese",
+      numberOfStampsForReward: 5,
+      achievements: [
+        {
+          templateNumber: 5,
+          variables: [],
+          numberOfStamps: 5,
+        },
+      ],
+    },
+    {
+      _id: "13",
+      name: "KFC",
+      description: "This is kfc",
+      rating: 4,
+      cost: 3,
+      cuisine: "American",
+      numberOfStampsForReward: 5,
+      achievements: [
+        {
+          templateNumber: 6,
+          variables: [],
+          numberOfStamps: 5,
+        },
+      ],
+    },
+  ];
 
-  constructor(
-    public restaurantService: RestaurantService,
-    public dialog: MatDialog
-  ) {
-    this.restaurantService
-      .getAllRestaurants()
-      .toPromise()
-      .then((restaurants) => {
-        this.restaurants = restaurants;
-      });
-  }
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges.pipe(

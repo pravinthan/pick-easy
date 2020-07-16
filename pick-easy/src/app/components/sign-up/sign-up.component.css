@@ -19,22 +19,3 @@
 mat-form-field {
   margin-bottom: 0.5rem;
 }
-
-.gradient-text {
-  background: linear-gradient(to right, #e8285f, #f23f43);
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 24px;
-  font-weight: bold;
-  line-height: 35px;
-}
-
-.gradient-button {
-  color: white;
-  background: linear-gradient(to right, #e8285f, #f23f43);
-  margin-top: 0.5rem;
-}
-
-.mat-raised-button[disabled][disabled] {
-  color: rgba(255, 255, 255, 0.507);
-}

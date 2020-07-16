@@ -18,7 +18,7 @@ export class SignUpComponent {
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
-    @Inject(MAT_DIALOG_DATA) public data: { isRestaurantStaff: boolean },
+    @Inject(MAT_DIALOG_DATA) public data: { isRestaurantOwner: boolean },
     @Inject(NOTYF) private notyf: Notyf
   ) {
     if (this.authenticationService.currentUserValue)
@@ -33,12 +33,12 @@ export class SignUpComponent {
         form.value.password,
         form.value.firstName,
         form.value.lastName,
-        this.data.isRestaurantStaff
+        this.data.isRestaurantOwner
       )
       .subscribe(
         (data) => {
           this.signedUp.emit(true);
-          if (!this.data.isRestaurantStaff) this.router.navigate(["/customer"]);
+          if (!this.data.isRestaurantOwner) this.router.navigate(["/customer"]);
           else this.router.navigate(["/restaurant"]);
         },
         (error) => {

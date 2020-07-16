@@ -10,11 +10,7 @@ let userSchema = new Schema({
   },
   firstName: String,
   lastName: String,
-  isRestaurantStaff: {
-    type: Boolean,
-    default: false,
-  },
-  createdRestaurant: {
+  isRestaurantOwner: {
     type: Boolean,
     default: false,
   },
@@ -55,8 +51,7 @@ userSchema.methods.generateJWT = function () {
     {
       _id: this._id,
       username: this.username,
-      isRestaurantStaff: this.isRestaurantStaff,
-      createdRestaurant: this.createdRestaurant,
+      isRestaurantOwner: this.isRestaurantOwner,
       exp: parseInt(expiry.getTime() / 1000),
     },
     process.env.JWT_SECRET

@@ -2,18 +2,10 @@ let mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 let restaurantSchema = new Schema({
-  staff: {
+  owner: {
     _id: {
       type: Schema.Types.ObjectId,
     },
-  },
-  image: {
-    fieldname: String,
-    originalname: String,
-    encoding: String,
-    mimetype: String,
-    size: String,
-    isMain: Boolean,
   },
   name: String,
   description: String,
@@ -49,7 +41,7 @@ let restaurantSchema = new Schema({
       "Korean",
     ],
   },
-  numberOfTicketsForReward: {
+  numberOfStampsForReward: {
     type: Number,
     min: 1,
     default: 1,
@@ -58,7 +50,7 @@ let restaurantSchema = new Schema({
     {
       templateNumber: Number,
       variables: [String],
-      numberOfTickets: {
+      numberOfStamps: {
         type: Number,
         min: 1,
       },

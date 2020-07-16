@@ -30,39 +30,3 @@
   height: 105vh;
   object-fit: cover;
 }
-
-.gradient-button {
-  color: white;
-  background: linear-gradient(to right, #e8285f, #f23f43);
-}
-
-.mat-raised-button[disabled][disabled] {
-  color: rgba(255, 255, 255, 0.507);
-}
-
-.onboarding-gradient {
-  background: linear-gradient(
-    to right,
-    #ff0800,
-    #e8285f,
-    #f23f43,
-    #f23f43,
-    #e75053
-  );
-  background-size: 800% 800%;
-  animation: gradient 15s ease infinite;
-}
-
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}

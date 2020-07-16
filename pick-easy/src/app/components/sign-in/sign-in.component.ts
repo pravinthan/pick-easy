@@ -4,7 +4,6 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { AuthenticationService } from "src/app/shared/authentication.service";
 import { NOTYF } from "src/app/shared/utils/notyf.token";
 import { Notyf } from "notyf";
-import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 
 @Component({
   selector: "app-sign-in",
@@ -19,7 +18,6 @@ export class SignInComponent {
     private router: Router,
     private authenticationService: AuthenticationService,
     private route: ActivatedRoute,
-    @Inject(MAT_DIALOG_DATA) public data: { isRestaurantStaff: boolean },
     @Inject(NOTYF) private notyf: Notyf
   ) {
     if (this.authenticationService.currentUserValue)
@@ -29,15 +27,14 @@ export class SignInComponent {
   signIn(form: NgForm) {
     this.loading = true;
     this.authenticationService
-      .signIn(
-        form.value.username,
-        form.value.password,
-        this.data.isRestaurantStaff
-      )
+      .signIn(form.value.username, form.value.password)
       .subscribe(
         (data) => {
           this.signedIn.emit(true);
-          this.router.navigate(["/"]);
+
+          const returnUrl = this.route.snapshot.queryParams.returnUrl;
+          if (returnUrl) this.router.navigate([returnUrl]);
+          else this.router.navigate(["/"]);
         },
         (error) => {
           this.loading = false;

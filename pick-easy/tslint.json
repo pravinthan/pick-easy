@@ -84,7 +84,7 @@
     "ordered-imports": false,
     "quotemark": [
       true,
-      "double"
+      "single"
     ],
     "semicolon": {
       "options": [

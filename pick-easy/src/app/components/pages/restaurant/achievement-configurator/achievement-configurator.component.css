@@ -28,7 +28,7 @@
 
 #title > .gradient-text {
   font-size: 32px;
-  line-height: 42px;
+  line-height: 35px;
 }
 
 #configurator-container {
@@ -37,7 +37,7 @@
   flex-direction: column;
 }
 
-#tickets-picker {
+#stamps-picker {
   width: 40%;
   margin-bottom: 2rem;
 }
@@ -90,9 +90,4 @@
 
 #save-button-container > button {
   width: 40%;
-}
-
-.gradient-button {
-  color: white;
-  background: linear-gradient(to right, #e8285f, #f23f43);
 }

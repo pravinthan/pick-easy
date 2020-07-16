@@ -5,8 +5,8 @@
     </div>
 
     <div id="configurator-container">
-      <mat-form-field id="tickets-picker">
-        <mat-label>Number of tickets</mat-label>
+      <mat-form-field id="stamps-picker">
+        <mat-label>Number of stamps</mat-label>
         <input
           type="number"
           matInput
@@ -14,12 +14,12 @@
           step="1"
           placeholder="5"
           autocomplete="off"
-          [ngModel]="restaurant?.numberOfTicketsForReward"
-          (ngModelChange)="restaurant.numberOfTicketsForReward = $event"
+          [ngModel]="myRestaurant?.numberOfStampsForReward"
+          (ngModelChange)="myRestaurant.numberOfStampsForReward = $event"
         />
         <mat-hint align="start"
           ><strong
-            >Number of tickets the customer must collect in order to receive a
+            >Number of stamps the customer must collect in order to receive a
             reward</strong
           >
         </mat-hint>
@@ -103,14 +103,14 @@
 
           <div class="achievement-context-container">
             <mat-form-field>
-              <mat-label>Number of tickets to award</mat-label>
+              <mat-label>Number of stamps to award</mat-label>
               <input
                 type="number"
                 matInput
                 min="1"
                 step="1"
                 autocomplete="off"
-                [(ngModel)]="achievement.numberOfTickets"
+                [(ngModel)]="achievement.numberOfStamps"
                 required
               />
             </mat-form-field>
@@ -130,11 +130,7 @@
     </div>
 
     <div id="save-button-container">
-      <button
-        mat-raised-button
-        class="gradient-button"
-        (click)="saveAchievements()"
-      >
+      <button mat-flat-button color="accent" (click)="saveAchievements()">
         Save
       </button>
     </div>
