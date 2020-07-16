@@ -5,7 +5,7 @@
     </div>
     <div id="configurator-container">
       <mat-form-field id="template-picker" appearance="fill">
-        <mat-label>Choose an Reward template</mat-label>
+        <mat-label>Choose a reward template</mat-label>
         <mat-select #templatePicker (selectionChange)="addReward($event.value)">
           <mat-option
             *ngFor="let template of templates"
@@ -15,7 +15,7 @@
         </mat-select>
       </mat-form-field>
       <div id="rewards">
-        <div id="reward" *ngFor="let reward of rewards; let i = index">
+        <div class="reward" *ngFor="let reward of rewards; let i = index">
           <div class="reward-text">
             <span
               *ngFor="
@@ -47,13 +47,13 @@
                   value="1"
                   required
                   [(ngModel)]="reward.variables[i]"
-                  [formControl]="percentControl"
                 />
                 <mat-hint
                   *ngIf="
                     getTemplateByNumber(reward.templateNumber).variables[i] ===
                     'Percent'
                   "
+                  [id]="null"
                 >
                   Enter a percent between 1 - 100
                 </mat-hint>
@@ -70,13 +70,13 @@
                   value="1"
                   required
                   [(ngModel)]="reward.variables[i]"
-                  [formControl]="numberControl"
                 />
                 <mat-hint
                   *ngIf="
                     getTemplateByNumber(reward.templateNumber).variables[i] ===
                     'Dollar'
                   "
+                  [id]="null"
                 >
                   Enter a Dollar amount
                 </mat-hint>
@@ -96,6 +96,7 @@
                     getTemplateByNumber(reward.templateNumber).variables[i] ===
                     'Restaurant Item'
                   "
+                  [id]="null"
                 >
                   Enter a Restaurant Item
                 </mat-hint>
@@ -105,7 +106,7 @@
           <div class="reward-context-container">
             <mat-form-field class="reward-level" appearance="fill">
               <mat-label>Choose level</mat-label>
-              <mat-select [(ngModel)]="reward.level">
+              <mat-select [(ngModel)]="reward.level" required>
                 <mat-option *ngFor="let level of levels" [value]="level">{{
                   level
                 }}</mat-option>
@@ -127,7 +128,7 @@
     <div id="save-button-container">
       <button
         class="primary-color"
-        mat-flat-button
+        mat-raised-button
         color="accent"
         (click)="saveRewards()"
       >

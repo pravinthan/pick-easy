@@ -43,9 +43,7 @@ export class RestaurantService {
   updateRewards(restaurantId: string, rewards: RestaurantReward[]) {
     return this.http.patch(
       `/api/restaurants/${restaurantId}/rewards`,
-      {
-        rewards,
-      },
+      { rewards },
       { responseType: "text" }
     );
   }

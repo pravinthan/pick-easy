@@ -1,4 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ViewChildren,
+  QueryList,
+  AfterViewInit,
+  AfterViewChecked,
+  ElementRef,
+} from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { map, startWith } from "rxjs/operators";
 import { Observable } from "rxjs";
@@ -12,7 +20,9 @@ import { RestaurantService } from "src/app/shared/restaurant.service";
   templateUrl: "./discover.component.html",
   styleUrls: ["./discover.component.css"],
 })
-export class DiscoverComponent implements OnInit {
+export class DiscoverComponent implements OnInit, AfterViewInit {
+  @ViewChildren("logo") logoImageElements: QueryList<HTMLImageElement>;
+  @ViewChildren("image") imageElements: QueryList<HTMLImageElement>;
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
   restaurants: Restaurant[];
@@ -29,11 +39,52 @@ export class DiscoverComponent implements OnInit {
       });
   }
 
+  ngAfterViewInit() {
+    this.logoImageElements.changes.subscribe(
+      (logoImageElements: QueryList<ElementRef<HTMLImageElement>>) => {
+        this.getRestaurantImage(
+          logoImageElements.last.nativeElement.id.substring(
+            0,
+            logoImageElements.last.nativeElement.id.indexOf("-")
+          ),
+          logoImageElements.last.nativeElement
+        );
+      }
+    );
+
+    this.imageElements.changes.subscribe(
+      (imageElements: QueryList<ElementRef<HTMLImageElement>>) => {
+        this.getRestaurantImage(
+          imageElements.last.nativeElement.id.substring(
+            0,
+            imageElements.last.nativeElement.id.indexOf("-")
+          ),
+          imageElements.last.nativeElement
+        );
+      }
+    );
+  }
+
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(""),
       map((value) => (value.length >= 1 ? this._filter(value) : []))
     );
+  }
+
+  async getRestaurantImage(
+    restaurantId: string,
+    imageElement: HTMLImageElement
+  ) {
+    const image = await this.restaurantService
+      .getRestaurantImage(restaurantId)
+      .toPromise();
+
+    const reader = new FileReader();
+    reader.readAsDataURL(image);
+    reader.onloadend = () => {
+      imageElement.src = reader.result as string;
+    };
   }
 
   private _filter(value: string): string[] {

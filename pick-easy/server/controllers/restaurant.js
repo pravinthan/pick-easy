@@ -124,14 +124,7 @@ module.exports.updateRewards = async (req, res) => {
       templateNumber: reward.templateNumber,
     });
 
-    if (
-      !template ||
-      template.variables.length != achievement.variables.length ||
-      (!template.repeatable &&
-        req.body.rewards.filter(
-          (reward) => reward.templateNumber == template.templateNumber
-        ).length > 1)
-    ) {
+    if (!template || template.variables.length != reward.variables.length) {
       return res.sendStatus(400);
     }
   }
@@ -145,9 +138,7 @@ module.exports.updateRewards = async (req, res) => {
     if (!restaurant.staff._id.equals(req.user._id)) return res.sendStatus(403);
 
     await Restaurant.findByIdAndUpdate(restaurant._id, {
-      $set: {
-        rewards: req.body.rewards,
-      },
+      $set: { rewards: req.body.rewards },
     });
 
     res.sendStatus(200);
@@ -211,7 +202,7 @@ module.exports.retrieveRestaurantImage = async (req, res) => {
     const image = await s3
       .getObject({
         Bucket: process.env.S3_BUCKET_NAME,
-        Key: req.user._id,
+        Key: restaurant.staff._id.toString(),
       })
       .promise();
     return res.send(image.Body);

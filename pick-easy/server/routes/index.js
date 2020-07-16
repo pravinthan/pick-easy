@@ -251,11 +251,13 @@ router.patch(
     body("rewards.*.templateNumber")
       .exists({ checkNull: true })
       .isInt({ min: 0 }),
-    body("rewards.*.level")
-      .exists({ checkNull: true })
-      .if(body("level").isString())
-      .trim()
-      .escape(),
+    body("rewards.*.level").isIn([
+      "Bronze",
+      "Silver",
+      "Gold",
+      "Platinum",
+      "Diamond",
+    ]),
     body("rewards.*.variables").isArray(),
     body("rewards.*.variables.*")
       .if(body("rewards.*.variables.*").isString())
@@ -265,7 +267,7 @@ router.patch(
       .if(body("rewards.*.variables.*").isInt())
       .isInt({ min: 0 }),
   ],
-  restaurantController.updateAchievements
+  restaurantController.updateRewards
 );
 
 // Reward Templates

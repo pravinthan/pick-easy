@@ -37,7 +37,7 @@
           (click)="openDetailsDialog(restaurant)"
         >
           <mat-card-header>
-            <img mat-card-avatar src="assets/{{ restaurant.name }}.jpg" />
+            <img mat-card-avatar #logo [id]="restaurant._id + '-logo'" src="" />
             <mat-card-title>{{ restaurant.name }}</mat-card-title>
             <mat-card-subtitle
               >{{ restaurant.cuisine }} Restaurant ·
@@ -52,7 +52,7 @@
               [readonly]="true"
             ></star-rating>
           </mat-card-header>
-          <img mat-card-image src="assets/{{ restaurant.name }}.jpg" />
+          <img mat-card-image #image [id]="restaurant._id + '-image'" src="" />
           <mat-card-content>
             <div class="description">
               {{ restaurant.description }}

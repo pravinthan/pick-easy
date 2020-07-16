@@ -4,12 +4,13 @@ import { TemplateService } from "src/app/shared/template.service";
 import {
   Restaurant,
   RestaurantReward,
+  RestaurantRewardLevel,
 } from "src/app/shared/models/restaurant.model";
 import { MatSelect } from "@angular/material/select";
 import { RestaurantService } from "src/app/shared/restaurant.service";
 import { NOTYF } from "src/app/shared/utils/notyf.token";
 import { Notyf } from "notyf";
-import { FormControl, Validators } from "@angular/forms";
+import { FormControl } from "@angular/forms";
 
 @Component({
   selector: "app-reward-configurator",
@@ -21,9 +22,13 @@ export class RewardConfiguratorComponent {
   templates: RewardTemplate[];
   rewards: RestaurantReward[] = [];
   restaurant: Restaurant;
-  levels: string[];
-  percentControl: FormControl;
-  numberControl: FormControl;
+  levels: RestaurantRewardLevel[] = [
+    "Bronze",
+    "Silver",
+    "Gold",
+    "Platinum",
+    "Diamond",
+  ];
 
   constructor(
     private templateService: TemplateService,
@@ -43,13 +48,6 @@ export class RewardConfiguratorComponent {
         this.restaurant = restaurant;
         this.rewards = restaurant.rewards;
       });
-
-    this.levels = ["Bronze", "Silver", "Gold", "Platinum", "Diamond"];
-    this.percentControl = new FormControl("", [
-      Validators.max(100),
-      Validators.min(1),
-    ]);
-    this.numberControl = new FormControl("", [Validators.min(1)]);
   }
 
   getTemplateByNumber(templateNumber: number): RewardTemplate {
@@ -64,7 +62,7 @@ export class RewardConfiguratorComponent {
     this.rewards.push({
       templateNumber,
       variables: Array<string>(template.variables.length).fill(""),
-      level: this.levels[0],
+      level: null,
     });
 
     this.templatePicker.writeValue(null);

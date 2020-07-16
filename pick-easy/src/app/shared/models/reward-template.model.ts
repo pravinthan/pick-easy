@@ -3,5 +3,4 @@ export class RewardTemplate {
   templateNumber: number;
   content: string;
   variables: string[];
-  level: string;
 }

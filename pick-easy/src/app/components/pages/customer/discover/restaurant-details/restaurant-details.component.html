@@ -1,6 +1,6 @@
-<mat-card class="restaurant-card">
+<mat-card>
   <mat-card-header>
-    <img mat-card-avatar src="assets/{{ data.restaurant.name }}.jpg" />
+    <img mat-card-avatar #logo [id]="data.restaurant._id + '-logo'" src="" />
     <mat-card-title>{{ data.restaurant.name }}</mat-card-title>
     <mat-card-subtitle
       >{{ data.restaurant.cuisine }} Restaurant ·
@@ -15,11 +15,13 @@
       [readonly]="true"
     ></star-rating>
   </mat-card-header>
-  <img mat-card-image src="assets/{{ data.restaurant.name }}.jpg" />
+  <img mat-card-image #image [id]="data.restaurant._id + '-image'" src="" />
   <mat-card-content>
     <div class="description">
       {{ data.restaurant.description }}
-      <div>Tickets till reward: {{ data.restaurant.numberOfTicketsForReward }}</div>
+      <div>
+        Tickets till reward: {{ data.restaurant.numberOfTicketsForReward }}
+      </div>
     </div>
     <mat-tab-group animationDuration="0ms">
       <mat-tab label="Achievements">
