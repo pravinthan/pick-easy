@@ -102,7 +102,12 @@
   background: linear-gradient(to right, gold, rgb(255, 229, 79));
 }
 
-#save-button-container > button {
-  min-width: 300px;
-  width: 40%;
+.chip-platinum {
+  color: white;
+  background: linear-gradient(to right, lightGrey, rgb(225, 225, 225));
+}
+
+.chip-diamond {
+  color: white;
+  background: linear-gradient(to right, deepskyblue, rgb(81, 211, 255));
 }
