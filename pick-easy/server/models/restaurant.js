@@ -68,6 +68,10 @@ let restaurantSchema = new Schema({
     {
       templateNumber: Number,
       variables: [String],
+      level: {
+        type: String,
+        enum: ["Bronze", "Silver", "Gold", "Platinum", "Diamond"],
+      },
     },
   ],
 });

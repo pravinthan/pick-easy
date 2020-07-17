@@ -48,6 +48,7 @@ let authenticationController = require("../controllers/authentication");
 let userController = require("../controllers/user");
 let restaurantController = require("../controllers/restaurant");
 let achievementTemplateController = require("../controllers/achievement-template");
+let rewardTemplateController = require("../controllers/reward-template");
 
 // Authentication
 router.post(
@@ -234,6 +235,47 @@ router.get(
   auth,
   restaurantStaffAuth,
   achievementTemplateController.retrieveAllTemplates
+);
+
+router.patch(
+  "/restaurants/:id/rewards",
+  auth,
+  restaurantStaffAuth,
+  [
+    param("id")
+      .exists({ checkNull: true, checkFalsy: true })
+      .trim()
+      .isMongoId()
+      .escape(),
+    body("rewards").exists({ checkNull: true, checkFalsy: true }).isArray(),
+    body("rewards.*.templateNumber")
+      .exists({ checkNull: true })
+      .isInt({ min: 0 }),
+    body("rewards.*.level").isIn([
+      "Bronze",
+      "Silver",
+      "Gold",
+      "Platinum",
+      "Diamond",
+    ]),
+    body("rewards.*.variables").isArray(),
+    body("rewards.*.variables.*")
+      .if(body("rewards.*.variables.*").isString())
+      .trim()
+      .escape(),
+    body("rewards.*.variables.*")
+      .if(body("rewards.*.variables.*").isInt())
+      .isInt({ min: 0 }),
+  ],
+  restaurantController.updateRewards
+);
+
+// Reward Templates
+router.get(
+  "/templates/rewards",
+  auth,
+  restaurantStaffAuth,
+  rewardTemplateController.retrieveAllTemplates
 );
 
 module.exports = router;

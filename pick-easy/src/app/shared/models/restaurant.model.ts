@@ -1,5 +1,8 @@
 export class Restaurant {
   _id: string;
+  staff: {
+    _id: string;
+  };
   image: MulterFile;
   name: string;
   description: string;
@@ -18,11 +21,6 @@ export class MulterFile {
   encoding: string;
   mimetype: string;
   size: string;
-  destination: string;
-  filename: string;
-  path: string;
-  buffer: any[];
-  isMain: boolean;
 }
 
 export class RestaurantAchievement {
@@ -34,7 +32,15 @@ export class RestaurantAchievement {
 export class RestaurantReward {
   templateNumber: number;
   variables: string[];
+  level: RestaurantRewardLevel;
 }
+
+export type RestaurantRewardLevel =
+  | "Bronze"
+  | "Silver"
+  | "Gold"
+  | "Platinum"
+  | "Diamond";
 
 export type RestaurantCuisine =
   | "Mexican"
