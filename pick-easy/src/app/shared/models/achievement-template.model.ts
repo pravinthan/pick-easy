@@ -3,11 +3,11 @@ export class AchievementTemplate {
   templateNumber: number;
   content: string;
   value: string;
-  variables: [
-    {
-      variableDescription: string;
-      variableType: string;
-    }
-  ];
+  variables: AchievementTemplateVariable[];
   repeatable: boolean;
 }
+
+export type AchievementTemplateVariable = {
+  variableDescription: string;
+  variableType: string;
+};
