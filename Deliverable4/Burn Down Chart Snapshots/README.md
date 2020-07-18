@@ -1,7 +1,5 @@
 # Links to Burn Down Chart Snapshots
 
-July 2nd (No Burn Down Chart Snapshot available as we completed the sprint)
+[Start of Sprint: July 4th](./July%204,%202020.png)
 
-[July 4th](./July%204,%202020.png)
-
-[July 6th](./July%206,%202020.png)
+[End of Sprint: July 18th](./July%2018,%202020.png)
