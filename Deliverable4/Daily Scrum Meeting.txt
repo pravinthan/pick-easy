@@ -345,9 +345,9 @@ Date: July 15, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Acceptance testing with Pickeasy
+    2. Nothing
+    3. Look for Bugs
 Evan
     1. 
     2. 
@@ -373,9 +373,9 @@ Date: July 16, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Found some bugs with discover page linking to restaurant's. will address in next sprint meeting
+    2. nothing
+    3. Look for bugs
 Evan
     1. 
     2. 
@@ -401,9 +401,9 @@ Date: July 17, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Nothing
+    2. Nothing
+    3. Nothing
 Evan
     1. 
     2. 
