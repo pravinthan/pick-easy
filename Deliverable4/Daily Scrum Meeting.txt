@@ -389,9 +389,9 @@ Pravinthan
     2. Other homework
     3. Unit testing
 Jeremy
-    1. 
-    2. 
-    3. 
+    1. Nothing
+    2. Nothing
+    3. Nothing
 
 --------------------------------------------------------------------------------------------
 Date: July 17, 2020
@@ -417,9 +417,9 @@ Pravinthan
     2. Nothing
     3. Nothing
 Jeremy
-    1. 
-    2. 
-    3. 
+    1. Nothing
+    2. Nothing
+    3. Nothing
 
 --------------------------------------------------------------------------------------------
 Date: July 18, 2020
@@ -445,9 +445,9 @@ Pravinthan
     2. Nothing
     3. Creating new sprint
 Jeremy
-    1. 
-    2. 
-    3. 
+    1. Nothing
+    2. Nothing
+    3. Nothing
 
 --------------------------------------------------------------------------------------------
 Date: July 19, 2020
