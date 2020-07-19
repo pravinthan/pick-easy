@@ -70,9 +70,15 @@ export class MyRestaurantComponent implements OnInit {
           }
 
           this.form.controls.restaurantImage.setValidators(imageValidators);
-          this.form.controls.restaurantName.patchValue(this.restaurant.name);
+          this.form.controls.restaurantName.patchValue(
+            new DOMParser().parseFromString(this.restaurant.name, "text/html")
+              .documentElement.textContent
+          );
           this.form.controls.restaurantDescription.patchValue(
-            this.restaurant.description
+            new DOMParser().parseFromString(
+              this.restaurant.description,
+              "text/html"
+            ).documentElement.textContent
           );
           this.form.controls.restaurantCost.patchValue(this.restaurant.cost);
           this.form.controls.restaurantCuisine.patchValue(

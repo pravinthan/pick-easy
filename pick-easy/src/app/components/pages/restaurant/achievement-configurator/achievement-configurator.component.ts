@@ -94,7 +94,7 @@ export class AchievementConfiguratorComponent {
     this.restaurantService
       .updateAchievements(
         this.restaurant._id,
-        this.restaurant.numberOfTicketsForReward,
+        this.restaurant.numberOfTicketsForRedemption,
         this.achievements
       )
       .toPromise()

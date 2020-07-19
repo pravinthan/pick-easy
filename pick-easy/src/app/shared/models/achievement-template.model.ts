@@ -5,9 +5,11 @@ export class AchievementTemplate {
   value: string;
   variables: AchievementTemplateVariable[];
   repeatable: boolean;
+  typeOfAchievement: "progress" | "oneOff";
 }
 
 export type AchievementTemplateVariable = {
   variableDescription: string;
   variableType: string;
+  isProgressionVariable: boolean;
 };

@@ -47,6 +47,7 @@ let customerAuth = (req, res, next) => {
 let authenticationController = require("../controllers/authentication");
 let userController = require("../controllers/user");
 let restaurantController = require("../controllers/restaurant");
+let customerController = require("../controllers/customer");
 let achievementTemplateController = require("../controllers/achievement-template");
 let rewardTemplateController = require("../controllers/reward-template");
 
@@ -205,7 +206,7 @@ router.patch(
       .trim()
       .isMongoId()
       .escape(),
-    body("numberOfTicketsForReward")
+    body("numberOfTicketsForRedemption")
       .exists({ checkNull: true })
       .isInt({ min: 1 }),
     body("achievements")
@@ -233,7 +234,6 @@ router.patch(
 router.get(
   "/templates/achievements",
   auth,
-  restaurantStaffAuth,
   achievementTemplateController.retrieveAllTemplates
 );
 
@@ -274,8 +274,32 @@ router.patch(
 router.get(
   "/templates/rewards",
   auth,
-  restaurantStaffAuth,
   rewardTemplateController.retrieveAllTemplates
+);
+
+// Customer
+router.post(
+  "/customers/:userId/achievements",
+  auth,
+  customerAuth,
+  [
+    param("userId")
+      .exists({ checkNull: true, checkFalsy: true })
+      .trim()
+      .isMongoId()
+      .escape(),
+    body("restaurantId")
+      .exists({ checkNull: true, checkFalsy: true })
+      .trim()
+      .isMongoId()
+      .escape(),
+    body("restaurantAchievementId")
+      .exists({ checkNull: true, checkFalsy: true })
+      .trim()
+      .isMongoId()
+      .escape(),
+  ],
+  customerController.addAchievement
 );
 
 module.exports = router;

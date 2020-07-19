@@ -15,13 +15,13 @@
           step="1"
           placeholder="5"
           autocomplete="off"
-          [ngModel]="restaurant?.numberOfTicketsForReward"
-          (ngModelChange)="restaurant.numberOfTicketsForReward = $event"
+          [ngModel]="restaurant?.numberOfTicketsForRedemption"
+          (ngModelChange)="restaurant.numberOfTicketsForRedemption = $event"
         />
         <mat-hint align="start"
           ><strong
-            >Number of tickets the customer must collect in order to receive a
-            reward</strong
+            >Number of tickets the customer must collect to receive a reward or
+            level up</strong
           >
         </mat-hint>
       </mat-form-field>

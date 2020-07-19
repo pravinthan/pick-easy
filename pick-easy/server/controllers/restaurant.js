@@ -105,7 +105,7 @@ module.exports.updateAchievements = async (req, res) => {
 
     await Restaurant.findByIdAndUpdate(restaurant._id, {
       $set: {
-        numberOfTicketsForReward: req.body.numberOfTicketsForReward,
+        numberOfTicketsForRedemption: req.body.numberOfTicketsForRedemption,
         achievements: req.body.achievements,
       },
     });

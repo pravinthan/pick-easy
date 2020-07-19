@@ -21,7 +21,8 @@ import { RewardConfiguratorComponent } from "./components/pages/restaurant/rewar
 import { RestaurantHomeComponent } from "./components/pages/restaurant/restaurant-home/restaurant-home.component";
 import { AchievementConfiguratorComponent } from "./components/pages/restaurant/achievement-configurator/achievement-configurator.component";
 import { LandingPageComponent } from "./components/pages/landing-page/landing-page.component";
-import { RestaurantDetailsComponent } from "./components/pages/customer/discover/restaurant-details/restaurant-details.component";
+import { RestaurantDetailsComponent } from "./components/pages/customer/restaurant-details/restaurant-details.component";
+import { AchievementsComponent } from "./components/pages/customer/achievements/achievements.component";
 
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -62,6 +63,7 @@ import { NgxMatFileInputModule } from "@angular-material-components/file-input";
     AchievementConfiguratorComponent,
     LandingPageComponent,
     MyRestaurantComponent,
+    AchievementsComponent,
   ],
   imports: [
     BrowserModule,

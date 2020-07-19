@@ -38,11 +38,15 @@
         >
           <mat-card-header>
             <img mat-card-avatar #logo [id]="restaurant._id + '-logo'" src="" />
-            <mat-card-title>{{ restaurant.name }}</mat-card-title>
+            <mat-card-title [innerHTML]="restaurant.name"></mat-card-title>
             <mat-card-subtitle
-              >{{ restaurant.cuisine }} Restaurant ·
-              {{ "$".repeat(restaurant.cost) }}</mat-card-subtitle
+              [innerHTML]="
+                restaurant.cuisine +
+                ' Restaurant · ' +
+                '$'.repeat(restaurant.cost)
+              "
             >
+            </mat-card-subtitle>
             <star-rating
               [value]="restaurant.rating"
               [totalstars]="5"
@@ -54,9 +58,8 @@
           </mat-card-header>
           <img mat-card-image #image [id]="restaurant._id + '-image'" src="" />
           <mat-card-content>
-            <div class="description">
-              {{ restaurant.description }}
-              <div>Tickets: {{ restaurant.numberOfTicketsForReward }}</div>
+            <div class="description" [innerHTML]="restaurant.description">
+              <div>Tickets: {{ restaurant.numberOfTicketsForRedemption }}</div>
             </div>
           </mat-card-content>
         </mat-card>
