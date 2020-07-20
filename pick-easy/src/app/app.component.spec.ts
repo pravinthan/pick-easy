@@ -10,6 +10,7 @@ describe("AppComponent", () => {
     }).compileComponents();
   }));
 
+  /* app should be created so not be falsy */
   it("should create the app", () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;

@@ -83,10 +83,12 @@ describe("RewardConfiguratorComponent", () => {
     fixture.detectChanges();
   });
 
+  /* component should be created so not be falsy */
   it("should create", () => {
     expect(component).toBeTruthy();
   });
 
+  /* Adding reward template should be able to be added */
   it("should check to see if adding a reward template works", () => {
     const matSelect = fixture.debugElement.query(By.css(".mat-select-trigger"))
       .nativeElement;
@@ -100,6 +102,7 @@ describe("RewardConfiguratorComponent", () => {
     expect(component.rewards.length).toEqual(1);
   });
 
+  /* Removing reward template should be able to be removed */
   it("should check to see if removing an reward template works", async () => {
     const matSelect = fixture.debugElement.query(By.css(".mat-select-trigger"))
       .nativeElement;
