@@ -47,14 +47,17 @@ describe("MyRestaurantComponent", () => {
     ).nativeElement;
   });
 
+  /* component should be created so not be falsy */
   it("should create", () => {
     expect(component).toBeTruthy();
   });
 
+  /* nameInput.maxLength should only accept strings of 30 characters or less */
   it("should check to see if the restaurant name input only accepts strings of < 30 characters", () => {
     expect(nameInput.maxLength).toEqual(30);
   });
 
+  /* descriptionInput.maxLength should only accept strings of 250 characters or less */
   it("should check to see if the restaurant description input only accepts strings of < 250 characters", () => {
     expect(descriptionInput.maxLength).toEqual(250);
   });

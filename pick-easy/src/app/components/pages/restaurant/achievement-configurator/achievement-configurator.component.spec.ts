@@ -128,18 +128,22 @@ describe("AchievementConfiguratorComponent", () => {
     fixture.detectChanges();
   });
 
+  /* component should be created so not be falsy */
   it("should create", () => {
     expect(component).toBeTruthy();
   });
 
+  /* type of ticketsPickerInput should be number */
   it("should check to see if the number of tickets input only accepts numbers", () => {
     expect(ticketsPickerInput.type).toEqual("number");
   });
 
+  /* min ticketsPickerInput should have a minimum value of 1 */
   it("should check to see if the number of tickets input only accepts numbers from 1", () => {
     expect(ticketsPickerInput.min).toEqual("1");
   });
 
+  /* Adding achievement template should be able to be added */
   it("should check to see if adding an achievement template works", () => {
     const matSelect = fixture.debugElement.query(By.css(".mat-select-trigger"))
       .nativeElement;
@@ -153,6 +157,7 @@ describe("AchievementConfiguratorComponent", () => {
     expect(component.achievements.length).toEqual(1);
   });
 
+  /* Removeing achievement template should be able to be removed */
   it("should check to see if removing an achievement template works", async () => {
     const matSelect = fixture.debugElement.query(By.css(".mat-select-trigger"))
       .nativeElement;
