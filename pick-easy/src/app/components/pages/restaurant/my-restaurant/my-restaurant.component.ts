@@ -16,6 +16,7 @@ import { SafeUrl } from "@angular/platform-browser";
 import { Notyf } from "notyf";
 import { NOTYF } from "src/app/shared/utils/notyf.token";
 import { AuthenticationService } from "src/app/shared/authentication.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-my-restaurant",
@@ -45,6 +46,7 @@ export class MyRestaurantComponent implements OnInit {
 
   constructor(
     public restaurantService: RestaurantService,
+    private router: Router,
     private authenticationService: AuthenticationService,
     @Inject(NOTYF) private notyf: Notyf
   ) {
@@ -140,8 +142,11 @@ export class MyRestaurantComponent implements OnInit {
         .toPromise()
         .then(() => {
           this.form.markAsPristine();
-          this.notyf.success("Saved successfully!");
-          this.authenticationService.retrieveNewJWT().toPromise();
+          this.notyf.success("Saved successfully! You can configure your achievements here.");
+          return this.authenticationService.retrieveNewJWT().toPromise();
+        })
+        .then(() => {
+          this.router.navigate(["/restaurant/achievements"]);
         })
         .catch(() => this.notyf.error("An error occurred while saving"));
     }
