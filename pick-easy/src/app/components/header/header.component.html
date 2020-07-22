@@ -17,6 +17,32 @@
         <mat-icon class="gradient-text">restaurant</mat-icon>
         <span class="gradient-text">My Restaurant</span>
       </a>
+
+      <a
+        mat-button
+        routerLink="/restaurant/scan"
+        *ngIf="
+          currentUser &&
+          currentUser.isRestaurantStaff &&
+          currentUser.createdRestaurant
+        "
+      >
+        <mat-icon class="gradient-text">qr_code_scanner</mat-icon>
+        <span class="gradient-text">Scan</span>
+      </a>
+      <a
+        mat-button
+        disabled
+        *ngIf="
+          currentUser &&
+          currentUser.isRestaurantStaff &&
+          !currentUser.createdRestaurant
+        "
+        matTooltip="Create a restaurant to scan"
+      >
+        <mat-icon class="gradient-text disabled">qr_code_scanner</mat-icon>
+        <span class="gradient-text disabled">Scan</span>
+      </a>
     </div>
 
     <div>

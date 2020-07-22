@@ -1,0 +1,56 @@
+<div id="page">
+  <div id="content">
+    <div id="title">
+      <span class="gradient-text">Scan</span>
+    </div>
+
+    <div id="scan-container">
+      <div [hidden]="!hasDevices">
+        <div class="select-container">
+          <mat-form-field appearance="fill">
+            <mat-label>Selected Media Device</mat-label>
+            <mat-select
+              (selectionChange)="onDeviceSelectChange($event.value)"
+              [(ngModel)]="deviceSelect"
+            >
+              <mat-option value="none">No Device Selected</mat-option>
+              <mat-option
+                *ngFor="let device of availableDevices"
+                [value]="device.deviceId"
+              >
+                {{ device.label }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <zxing-scanner
+          [(device)]="currentDevice"
+          (scanSuccess)="onCodeResult($event)"
+          [formats]="['QR_CODE']"
+          (permissionResponse)="onHasPermission($event)"
+          (camerasFound)="onCamerasFound($event)"
+        ></zxing-scanner>
+      </div>
+
+      <span class="error" *ngIf="hasPermission === undefined"
+        >Waiting for permissions (If your device does not have cameras, no
+        permissions will be asked)
+      </span>
+
+      <span class="error" *ngIf="hasPermission === false"
+        >You denied the camera permission (Allow access to your camera)
+      </span>
+
+      <span
+        class="error"
+        *ngIf="hasDevices === undefined && hasPermission !== false"
+        >Couldn't check for devices (This may be caused by some security error)
+      </span>
+
+      <span class="error" *ngIf="hasDevices === false"
+        >No media devices were found
+      </span>
+    </div>
+  </div>
+</div>

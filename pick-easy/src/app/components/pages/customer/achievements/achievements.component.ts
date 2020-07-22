@@ -15,6 +15,7 @@ import { AuthenticationService } from "src/app/shared/authentication.service";
 import { User } from "src/app/shared/models/user.model";
 import { CustomerService } from "src/app/shared/customer.service";
 import { RestaurantDetailsComponent } from "../restaurant-details/restaurant-details.component";
+import { QRCodeComponent } from "../qr-code/qr-code.component";
 
 @Component({
   selector: "app-achievements",
@@ -119,8 +120,8 @@ export class AchievementsComponent implements OnInit {
     return restaurantAchievements.filter(
       (restaurantAchievement) =>
         !this.customer?.loyalties
-          .find((loyalty) => loyalty.restaurantId == restaurantId)
-          .achievements.find(
+          ?.find((loyalty) => loyalty.restaurantId == restaurantId)
+          ?.achievements.find(
             (customerAchievement) =>
               customerAchievement.restaurantAchievementId ==
               restaurantAchievement._id
@@ -160,6 +161,16 @@ export class AchievementsComponent implements OnInit {
     this.dialog.open(RestaurantDetailsComponent, {
       width: "600px",
       data: { restaurant },
+    });
+  }
+
+  openQRCodeDialog(restaurantId: string, restaurantAchievementId: string) {
+    this.dialog.open(QRCodeComponent, {
+      data: {
+        customerId: this.currentUser._id,
+        restaurantId: restaurantId,
+        restaurantAchievementId: restaurantAchievementId,
+      },
     });
   }
 }

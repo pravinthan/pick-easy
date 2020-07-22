@@ -23,6 +23,8 @@ import { AchievementConfiguratorComponent } from "./components/pages/restaurant/
 import { LandingPageComponent } from "./components/pages/landing-page/landing-page.component";
 import { RestaurantDetailsComponent } from "./components/pages/customer/restaurant-details/restaurant-details.component";
 import { AchievementsComponent } from "./components/pages/customer/achievements/achievements.component";
+import { QRCodeComponent } from "./components/pages/customer/qr-code/qr-code.component";
+import { ScanQrCodeComponent } from "./components/pages/restaurant/scan-qr-code/scan-qr-code.component";
 
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -45,6 +47,8 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatBadgeModule } from "@angular/material/badge";
 
 import { NgxMatFileInputModule } from "@angular-material-components/file-input";
+import { QRCodeModule } from "angularx-qrcode";
+import { ZXingScannerModule } from "@zxing/ngx-scanner";
 
 @NgModule({
   declarations: [
@@ -64,6 +68,8 @@ import { NgxMatFileInputModule } from "@angular-material-components/file-input";
     LandingPageComponent,
     MyRestaurantComponent,
     AchievementsComponent,
+    QRCodeComponent,
+    ScanQrCodeComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,6 +97,8 @@ import { NgxMatFileInputModule } from "@angular-material-components/file-input";
     NgxMatFileInputModule,
     MatTooltipModule,
     MatBadgeModule,
+    QRCodeModule,
+    ZXingScannerModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

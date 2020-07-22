@@ -40,13 +40,17 @@
             class="restaurant-name"
             (click)="openDetailsDialog(restaurant)"
           ></span>
-          <span
-            >You currently have
-            {{
-              getCustomerLoyaltyByRestaurantId(restaurant._id)?.numberOfTickets
-            }}
-            tickets</span
-          >
+
+          <span>
+            You currently have
+            <span class="bold">
+              {{
+                getCustomerLoyaltyByRestaurantId(restaurant._id)
+                  ?.numberOfTickets || 0
+              }}
+              tickets
+            </span>
+          </span>
 
           <div class="customer-achievements">
             <div
@@ -85,6 +89,12 @@
                   mat-flat-button
                   class="customer-achievement-context-button gradient-button"
                   *ngIf="!customerAchievement.complete"
+                  (click)="
+                    openQRCodeDialog(
+                      restaurant._id,
+                      customerAchievement.restaurantAchievementId
+                    )
+                  "
                 >
                   Scan
                 </button>
@@ -119,7 +129,7 @@
                       : 0
                   "
                 ></mat-progress-bar>
-                <span class="customer-achievement-progress-hint">
+                <span class="customer-achievement-progress-hint bold">
                   {{
                     customerAchievement.complete
                       ? "Complete"

@@ -15,6 +15,7 @@ import { CustomerGuard } from "./shared/customer.guard";
 import { RestaurantStaffGuard } from "./shared/restaurant-staff.guard";
 import { RestaurantCreationGuard } from "./shared/restaurant-creation.guard";
 import { AchievementsComponent } from "./components/pages/customer/achievements/achievements.component";
+import { ScanQrCodeComponent } from "./components/pages/restaurant/scan-qr-code/scan-qr-code.component";
 
 const routes: Routes = [
   {
@@ -66,6 +67,15 @@ const routes: Routes = [
   {
     path: "restaurant/achievements",
     component: AchievementConfiguratorComponent,
+    canActivate: [
+      AuthenticationGuard,
+      RestaurantStaffGuard,
+      RestaurantCreationGuard,
+    ],
+  },
+  {
+    path: "restaurant/scan",
+    component: ScanQrCodeComponent,
     canActivate: [
       AuthenticationGuard,
       RestaurantStaffGuard,

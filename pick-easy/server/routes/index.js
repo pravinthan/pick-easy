@@ -302,4 +302,28 @@ router.post(
   customerController.addAchievement
 );
 
+router.patch(
+  "/customers/:userId/achievements",
+  auth,
+  restaurantStaffAuth,
+  [
+    param("userId")
+      .exists({ checkNull: true, checkFalsy: true })
+      .trim()
+      .isMongoId()
+      .escape(),
+    body("restaurantId")
+      .exists({ checkNull: true, checkFalsy: true })
+      .trim()
+      .isMongoId()
+      .escape(),
+    body("restaurantAchievementId")
+      .exists({ checkNull: true, checkFalsy: true })
+      .trim()
+      .isMongoId()
+      .escape(),
+  ],
+  customerController.progressAchievement
+);
+
 module.exports = router;

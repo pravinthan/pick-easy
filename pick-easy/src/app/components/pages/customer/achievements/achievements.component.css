@@ -140,3 +140,7 @@
 ::ng-deep .mat-progress-bar-fill::after {
   background: linear-gradient(to right, #e8285f, #f23f43);
 }
+
+.bold {
+  font-weight: bold;
+}
