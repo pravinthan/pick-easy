@@ -49,7 +49,7 @@ let restaurantSchema = new Schema({
       "Korean",
     ],
   },
-  numberOfTicketsForReward: {
+  numberOfTicketsForRedemption: {
     type: Number,
     min: 1,
     default: 1,

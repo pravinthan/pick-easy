@@ -1,0 +1,219 @@
+<div id="page">
+  <div id="content">
+    <div id="title">
+      <span class="gradient-text">Achievements</span>
+    </div>
+
+    <div id="search">
+      <mat-form-field>
+        <mat-icon matPrefix>search</mat-icon>
+        <input
+          type="text"
+          placeholder="Search Restaurants"
+          matInput
+          [formControl]="myControl"
+          [matAutocomplete]="auto"
+          #search
+        />
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option
+            *ngFor="let option of filteredOptions | async"
+            [value]="option"
+          >
+            {{ option }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <div id="restaurants">
+      <div *ngFor="let restaurant of restaurants">
+        <div
+          *ngIf="
+            (filteredOptions | async).includes(restaurant.name) ||
+            search.value.length == 0
+          "
+          class="restaurant"
+        >
+          <span
+            [innerHTML]="restaurant.name"
+            class="restaurant-name"
+            (click)="openDetailsDialog(restaurant)"
+          ></span>
+
+          <span>
+            You currently have
+            <span class="bold">
+              {{
+                getCustomerLoyaltyByRestaurantId(restaurant._id)
+                  ?.numberOfTickets || 0
+              }}
+            </span>
+            tickets
+          </span>
+
+          <div class="customer-achievements">
+            <div
+              *ngFor="
+                let customerAchievement of getCustomerAchievementsByRestaurantId(
+                  restaurant._id
+                )
+              "
+              class="customer-achievement-container"
+            >
+              <div class="customer-achievement">
+                <span class="achievement-description">
+                  {{
+                    restaurantAchievementToText(
+                      getRestaurantAchievementById(
+                        restaurant.achievements,
+                        customerAchievement.restaurantAchievementId
+                      )
+                    )
+                  }}
+                  for
+                  {{
+                    getRestaurantAchievementById(
+                      restaurant.achievements,
+                      customerAchievement.restaurantAchievementId
+                    ).numberOfTickets +
+                      (getRestaurantAchievementById(
+                        restaurant.achievements,
+                        customerAchievement.restaurantAchievementId
+                      ).numberOfTickets == 1
+                        ? " ticket"
+                        : " tickets")
+                  }}
+                </span>
+                <button
+                  mat-flat-button
+                  class="customer-achievement-context-button gradient-button"
+                  *ngIf="!customerAchievement.complete"
+                  (click)="
+                    openQRCodeDialog(
+                      restaurant._id,
+                      customerAchievement.restaurantAchievementId
+                    )
+                  "
+                >
+                  Scan
+                </button>
+                <button
+                  mat-flat-button
+                  class="customer-achievement-context-button gradient-button"
+                  *ngIf="customerAchievement.complete"
+                  (click)="
+                    redeemTickets(
+                      restaurant._id,
+                      customerAchievement.restaurantAchievementId
+                    )
+                  "
+                >
+                  Redeem Tickets
+                </button>
+              </div>
+
+              <div class="customer-achievement-progress-container">
+                <mat-progress-bar
+                  [value]="
+                    customerAchievement.complete
+                      ? 100
+                      : getTemplateByNumber(
+                          getRestaurantAchievementById(
+                            restaurant.achievements,
+                            customerAchievement.restaurantAchievementId
+                          ).templateNumber
+                        ).typeOfAchievement == 'progress'
+                      ? (customerAchievement.progress /
+                          getProgressionNumber(
+                            getRestaurantAchievementById(
+                              restaurant.achievements,
+                              customerAchievement.restaurantAchievementId
+                            )
+                          )) *
+                        100
+                      : 0
+                  "
+                ></mat-progress-bar>
+                <span class="customer-achievement-progress-hint bold">
+                  {{
+                    customerAchievement.complete
+                      ? "Complete"
+                      : getTemplateByNumber(
+                          getRestaurantAchievementById(
+                            restaurant.achievements,
+                            customerAchievement.restaurantAchievementId
+                          ).templateNumber
+                        ).typeOfAchievement == "progress"
+                      ? customerAchievement.progress +
+                        " / " +
+                        getProgressionNumber(
+                          getRestaurantAchievementById(
+                            restaurant.achievements,
+                            customerAchievement.restaurantAchievementId
+                          )
+                        )
+                      : "Incomplete"
+                  }}
+                </span>
+              </div>
+            </div>
+            <div
+              *ngFor="
+                let restaurantAchievement of getUnactivatedAchievements(
+                  restaurant._id,
+                  restaurant.achievements
+                )
+              "
+              class="restaurant-achievement"
+            >
+              <span class="achievement-description">
+                {{ restaurantAchievementToText(restaurantAchievement) }} for
+                {{
+                  restaurantAchievement.numberOfTickets +
+                    (restaurantAchievement.numberOfTickets == 1
+                      ? " ticket"
+                      : " tickets")
+                }}
+              </span>
+              <button
+                mat-stroked-button
+                class="restaurant-achievement-activate-button gradient-text"
+                (click)="
+                  activateAchievement(restaurant._id, restaurantAchievement)
+                "
+              >
+                Activate
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  *ngIf="endVal"
+  id="count-up-overlay"
+  (click)="endVal = null; confetti.reset()"
+>
+  <span class="gradient-text count-up-hint">
+    You now have
+  </span>
+  <span
+    id="count-up"
+    class="gradient-text"
+    [countUp]="endVal"
+    [options]="countUpOptions"
+    (complete)="endVal = null"
+    >0</span
+  >
+  <span class="gradient-text count-up-hint">
+    tickets
+  </span>
+</div>
+
+<div id="canvas-container">
+  <canvas #canvas></canvas>
+</div>

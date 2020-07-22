@@ -49,6 +49,29 @@
         <mat-icon>restaurant</mat-icon>
         My Restaurant
       </a>
+
+      <a
+        mat-raised-button
+        routerLink="./scan"
+        *ngIf="currentUser?.createdRestaurant"
+        class="gradient-button"
+        style="margin-right: 2rem;"
+      >
+        <mat-icon>qr_code_scanner</mat-icon>
+        Scan
+      </a>
+      <a
+        mat-raised-button
+        *ngIf="!currentUser?.createdRestaurant"
+        disabled
+        class="gradient-button"
+        style="margin-right: 2rem;"
+        matTooltip="Create a restaurant to scan"
+      >
+        <mat-icon>qr_code_scanner</mat-icon>
+        Scan
+      </a>
+
       <a
         mat-raised-button
         routerLink="./achievements"
@@ -70,6 +93,7 @@
         <mat-icon>card_membership</mat-icon>
         Achievements
       </a>
+
       <a
         mat-raised-button
         routerLink="./rewards"

@@ -23,10 +23,33 @@ let userSchema = new Schema({
       restaurantId: {
         type: Schema.Types.ObjectId,
       },
-      progress: {
+      numberOfTickets: {
         type: Number,
         min: 0,
       },
+      level: {
+        type: String,
+        enum: ["Bronze", "Silver", "Gold", "Platinum", "Diamond"],
+      },
+      achievements: [
+        {
+          restaurantAchievementId: {
+            type: Schema.Types.ObjectId,
+          },
+          progress: {
+            type: Number,
+            min: 0,
+          },
+          complete: Boolean,
+        },
+      ],
+      completedNonRepeatableAchievements: [
+        {
+          restaurantAchievementId: {
+            type: Schema.Types.ObjectId,
+          },
+        },
+      ],
     },
   ],
   hash: String,

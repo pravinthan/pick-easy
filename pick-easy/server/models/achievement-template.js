@@ -10,9 +10,17 @@ let achievementTemplateSchema = new Schema([
       {
         variableDescription: String,
         variableType: String,
+        isProgressionVariable: {
+          type: Boolean,
+          default: false,
+        },
       },
     ],
     repeatable: Boolean,
+    typeOfAchievement: {
+      type: String,
+      enum: ["progress", "oneOff"],
+    },
   },
 ]);
 
@@ -36,9 +44,11 @@ let AchievementTemplate = mongoose.model(
         {
           variableDescription: "Number of times to visit",
           variableType: "number",
+          isProgressionVariable: true,
         },
       ],
       repeatable: true,
+      typeOfAchievement: "progress",
     },
     {
       templateNumber: 1,
@@ -52,37 +62,47 @@ let AchievementTemplate = mongoose.model(
         {
           variableDescription: "Number of times to order",
           variableType: "number",
+          isProgressionVariable: true,
         },
       ],
       repeatable: true,
+      typeOfAchievement: "progress",
     },
     {
       templateNumber: 2,
-      content: "Visit as a group of <number> or more",
-      value: "Visit as a group of :variable or more",
+      content: "Visit as a group of <number> or more <number> time(s)",
+      value: "Visit as a group of :variable or more :variable time(s)",
       variables: [
         {
           variableDescription: "Number of people in group",
           variableType: "number",
         },
+        {
+          variableDescription: "Number of times to visit",
+          variableType: "number",
+          isProgressionVariable: true,
+        },
       ],
       repeatable: true,
+      typeOfAchievement: "progress",
     },
     {
       templateNumber: 3,
-      content: "Spend $<number> in <number> visit(s)",
-      value: "Spend $:variable in :variable visit(s)",
+      content: "Spend $<number> <number> time(s)",
+      value: "Spend $:variable :variable time(s)",
       variables: [
         {
           variableDescription: "Required money to spend (in $)",
           variableType: "number",
         },
         {
-          variableDescription: "Number of visits",
+          variableDescription: "Number of times to spend",
           variableType: "number",
+          isProgressionVariable: true,
         },
       ],
       repeatable: true,
+      typeOfAchievement: "progress",
     },
     {
       templateNumber: 4,
@@ -90,6 +110,7 @@ let AchievementTemplate = mongoose.model(
       value: "Write a review on a review site (e.g. Google, Yelp)",
       variables: [],
       repeatable: false,
+      typeOfAchievement: "oneOff",
     },
     {
       templateNumber: 5,
@@ -97,6 +118,7 @@ let AchievementTemplate = mongoose.model(
       value: "Share a picture of your meal on social media",
       variables: [],
       repeatable: false,
+      typeOfAchievement: "oneOff",
     },
     {
       templateNumber: 6,
@@ -104,6 +126,7 @@ let AchievementTemplate = mongoose.model(
       value: "Like and follow on social media",
       variables: [],
       repeatable: false,
+      typeOfAchievement: "oneOff",
     },
   ]);
 })();

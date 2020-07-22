@@ -47,6 +47,7 @@ let customerAuth = (req, res, next) => {
 let authenticationController = require("../controllers/authentication");
 let userController = require("../controllers/user");
 let restaurantController = require("../controllers/restaurant");
+let customerController = require("../controllers/customer");
 let achievementTemplateController = require("../controllers/achievement-template");
 let rewardTemplateController = require("../controllers/reward-template");
 
@@ -205,7 +206,7 @@ router.patch(
       .trim()
       .isMongoId()
       .escape(),
-    body("numberOfTicketsForReward")
+    body("numberOfTicketsForRedemption")
       .exists({ checkNull: true })
       .isInt({ min: 1 }),
     body("achievements")
@@ -233,7 +234,6 @@ router.patch(
 router.get(
   "/templates/achievements",
   auth,
-  restaurantStaffAuth,
   achievementTemplateController.retrieveAllTemplates
 );
 
@@ -274,8 +274,64 @@ router.patch(
 router.get(
   "/templates/rewards",
   auth,
-  restaurantStaffAuth,
   rewardTemplateController.retrieveAllTemplates
+);
+
+// Customer
+router.post(
+  "/customers/:userId/achievements",
+  auth,
+  customerAuth,
+  [
+    param("userId")
+      .exists({ checkNull: true, checkFalsy: true })
+      .trim()
+      .isMongoId()
+      .escape(),
+    body("restaurantId")
+      .exists({ checkNull: true, checkFalsy: true })
+      .trim()
+      .isMongoId()
+      .escape(),
+    body("restaurantAchievementId")
+      .exists({ checkNull: true, checkFalsy: true })
+      .trim()
+      .isMongoId()
+      .escape(),
+  ],
+  customerController.addAchievement
+);
+
+router.patch(
+  "/customers/:userId/achievements",
+  auth,
+  // If operation is 'progress', then use restaurantStaffAuth. If operation is 'redeem', then use customerAuth.
+  (req, res, next) => {
+    if (req.body.operation == "progress")
+      return restaurantStaffAuth(req, res, next);
+    else if (req.body.operation == "redeem")
+      return customerAuth(req, res, next);
+    else return res.sendStatus(400);
+  },
+  [
+    param("userId")
+      .exists({ checkNull: true, checkFalsy: true })
+      .trim()
+      .isMongoId()
+      .escape(),
+    body("restaurantId")
+      .exists({ checkNull: true, checkFalsy: true })
+      .trim()
+      .isMongoId()
+      .escape(),
+    body("restaurantAchievementId")
+      .exists({ checkNull: true, checkFalsy: true })
+      .trim()
+      .isMongoId()
+      .escape(),
+    body("operation").isIn(["progress", "redeem"]),
+  ],
+  customerController.updateAchievement
 );
 
 module.exports = router;
