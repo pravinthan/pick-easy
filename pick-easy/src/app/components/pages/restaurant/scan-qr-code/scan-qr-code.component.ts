@@ -1,8 +1,8 @@
 import { Component, Inject } from "@angular/core";
-import { RestaurantService } from "src/app/shared/restaurant.service";
 import { QRCodeAchievementData } from "../../customer/qr-code/qr-code.component";
 import { NOTYF } from "src/app/shared/utils/notyf.token";
 import { Notyf } from "notyf";
+import { CustomerService } from "src/app/shared/customer.service";
 
 @Component({
   selector: "app-scan-qr-code",
@@ -18,7 +18,7 @@ export class ScanQrCodeComponent {
   nextUpdateAllowed = true;
 
   constructor(
-    private restaurantService: RestaurantService,
+    private customerService: CustomerService,
     @Inject(NOTYF) private notyf: Notyf
   ) {}
 
@@ -47,8 +47,8 @@ export class ScanQrCodeComponent {
           restaurantAchievementId,
         }: QRCodeAchievementData = parsedObj;
 
-        this.restaurantService
-          .updateCustomerAchievement(
+        this.customerService
+          .progressAchievement(
             customerId,
             restaurantId,
             restaurantAchievementId

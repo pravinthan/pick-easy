@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, ViewChild, ElementRef, AfterViewInit } from "@angular/core";
 import { startWith, map } from "rxjs/operators";
 import { FormControl } from "@angular/forms";
 import { Observable } from "rxjs";
@@ -16,19 +16,24 @@ import { User } from "src/app/shared/models/user.model";
 import { CustomerService } from "src/app/shared/customer.service";
 import { RestaurantDetailsComponent } from "../restaurant-details/restaurant-details.component";
 import { QRCodeComponent } from "../qr-code/qr-code.component";
+import * as confetti from "canvas-confetti";
 
 @Component({
   selector: "app-achievements",
   templateUrl: "./achievements.component.html",
   styleUrls: ["./achievements.component.css"],
 })
-export class AchievementsComponent implements OnInit {
+export class AchievementsComponent implements AfterViewInit {
+  @ViewChild("canvas") canvas: ElementRef<HTMLCanvasElement>;
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
   restaurants: Restaurant[];
   templates: AchievementTemplate[];
   currentUser = this.authenticationService.currentUser;
   customer: User;
+  endVal: number = null;
+  countUpOptions = { duration: 4 };
+  confetti: any;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -43,26 +48,41 @@ export class AchievementsComponent implements OnInit {
       .toPromise()
       .then((templates) => (this.templates = templates));
 
-    this.restaurantService
-      .getAllRestaurants()
-      .toPromise()
-      .then((restaurants) => {
-        this.restaurants = restaurants;
-      });
-
-    this.userService
-      .getUserInfo(this.currentUser._id)
-      .toPromise()
-      .then((customer) => {
-        this.customer = customer;
-      });
-  }
-
-  ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(""),
       map((value) => (value.length >= 1 ? this._filter(value) : []))
     );
+
+    this.getRestaurants();
+    this.getCustomer();
+  }
+
+  ngAfterViewInit() {
+    this.canvas.nativeElement.width = window.innerWidth;
+
+    this.confetti = confetti.create(this.canvas.nativeElement, {
+      resize: true,
+    });
+  }
+
+  async getRestaurants() {
+    let restaurants = await this.restaurantService
+      .getAllRestaurants()
+      .toPromise();
+
+    this.restaurants = restaurants;
+
+    return restaurants;
+  }
+
+  async getCustomer() {
+    let customer = await this.userService
+      .getUserInfo(this.currentUser._id)
+      .toPromise();
+
+    this.customer = customer;
+
+    return customer;
   }
 
   private _filter(value: string): string[] {
@@ -117,7 +137,8 @@ export class AchievementsComponent implements OnInit {
     restaurantId: string,
     restaurantAchievements: RestaurantAchievement[]
   ) {
-    return restaurantAchievements.filter(
+    // Filter out active achievements
+    restaurantAchievements = restaurantAchievements.filter(
       (restaurantAchievement) =>
         !this.customer?.loyalties
           ?.find((loyalty) => loyalty.restaurantId == restaurantId)
@@ -127,6 +148,20 @@ export class AchievementsComponent implements OnInit {
               restaurantAchievement._id
           )
     );
+
+    // Filter out completed achievements
+    restaurantAchievements = restaurantAchievements.filter(
+      (restaurantAchievement) =>
+        !this.customer?.loyalties
+          ?.find((loyalty) => loyalty.restaurantId == restaurantId)
+          ?.completedNonRepeatableAchievements.find(
+            (completedNonRepeatableAchievement) =>
+              completedNonRepeatableAchievement.restaurantAchievementId ==
+              restaurantAchievement._id
+          )
+    );
+
+    return restaurantAchievements;
   }
 
   getProgressionNumber(restaurantAchievement: RestaurantAchievement) {
@@ -157,6 +192,32 @@ export class AchievementsComponent implements OnInit {
       });
   }
 
+  async redeemTickets(restaurantId: string, restaurantAchievementId: string) {
+    await this.customerService
+      .redeemTicketsForCompletedAchievement(
+        this.customer._id,
+        restaurantId,
+        restaurantAchievementId
+      )
+      .toPromise();
+
+    await this.getCustomer();
+
+    this.endVal = this.getCustomerLoyaltyByRestaurantId(
+      restaurantId
+    ).numberOfTickets;
+
+    this.confetti({
+      particleCount: 100,
+      spread: 90,
+      origin: {
+        y: 1,
+        x: 0.5,
+      },
+      zIndex: 1001,
+    });
+  }
+
   openDetailsDialog(restaurant: Restaurant) {
     this.dialog.open(RestaurantDetailsComponent, {
       width: "600px",
@@ -165,12 +226,16 @@ export class AchievementsComponent implements OnInit {
   }
 
   openQRCodeDialog(restaurantId: string, restaurantAchievementId: string) {
-    this.dialog.open(QRCodeComponent, {
+    let qrCodeDialog = this.dialog.open(QRCodeComponent, {
       data: {
         customerId: this.currentUser._id,
         restaurantId: restaurantId,
         restaurantAchievementId: restaurantAchievementId,
       },
+    });
+
+    qrCodeDialog.afterClosed().subscribe(() => {
+      this.getCustomer();
     });
   }
 }

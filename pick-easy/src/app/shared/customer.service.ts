@@ -17,4 +17,47 @@ export class CustomerService {
       restaurantAchievementId,
     });
   }
+
+  redeemTicketsForCompletedAchievement(
+    customerId: string,
+    restaurantId: string,
+    restaurantAchievementId: string
+  ) {
+    return this.patchAchievements(
+      customerId,
+      restaurantId,
+      restaurantAchievementId,
+      "redeem"
+    );
+  }
+
+  progressAchievement(
+    customerId: string,
+    restaurantId: string,
+    restaurantAchievementId: string
+  ) {
+    return this.patchAchievements(
+      customerId,
+      restaurantId,
+      restaurantAchievementId,
+      "progress"
+    );
+  }
+
+  private patchAchievements(
+    customerId: string,
+    restaurantId: string,
+    restaurantAchievementId: string,
+    operation: "progress" | "redeem"
+  ): Observable<string> {
+    return this.http.patch(
+      `/api/customers/${customerId}/achievements`,
+      {
+        operation,
+        restaurantId,
+        restaurantAchievementId,
+      },
+      { responseType: "text" }
+    );
+  }
 }

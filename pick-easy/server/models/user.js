@@ -43,6 +43,13 @@ let userSchema = new Schema({
           complete: Boolean,
         },
       ],
+      completedNonRepeatableAchievements: [
+        {
+          restaurantAchievementId: {
+            type: Schema.Types.ObjectId,
+          },
+        },
+      ],
     },
   ],
   hash: String,

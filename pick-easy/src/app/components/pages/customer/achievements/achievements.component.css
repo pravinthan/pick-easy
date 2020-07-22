@@ -144,3 +144,38 @@
 .bold {
   font-weight: bold;
 }
+
+#count-up-overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 1000;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.count-up-hint {
+  font-size: 48px;
+  line-height: 48px;
+}
+
+#count-up {
+  padding: 0.5rem 0;
+  font-size: 96px;
+  line-height: 96px;
+}
+
+#canvas-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

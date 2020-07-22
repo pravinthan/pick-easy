@@ -49,6 +49,7 @@ import { MatBadgeModule } from "@angular/material/badge";
 import { NgxMatFileInputModule } from "@angular-material-components/file-input";
 import { QRCodeModule } from "angularx-qrcode";
 import { ZXingScannerModule } from "@zxing/ngx-scanner";
+import { CountUpModule } from "ngx-countup";
 
 @NgModule({
   declarations: [
@@ -99,6 +100,7 @@ import { ZXingScannerModule } from "@zxing/ngx-scanner";
     MatBadgeModule,
     QRCodeModule,
     ZXingScannerModule,
+    CountUpModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

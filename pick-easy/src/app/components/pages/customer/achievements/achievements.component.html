@@ -36,7 +36,7 @@
           class="restaurant"
         >
           <span
-            [innerHTML]="restaurant.name + 'ADD ANIMATION ON REDEMPTION'"
+            [innerHTML]="restaurant.name"
             class="restaurant-name"
             (click)="openDetailsDialog(restaurant)"
           ></span>
@@ -48,8 +48,8 @@
                 getCustomerLoyaltyByRestaurantId(restaurant._id)
                   ?.numberOfTickets || 0
               }}
-              tickets
             </span>
+            tickets
           </span>
 
           <div class="customer-achievements">
@@ -102,6 +102,12 @@
                   mat-flat-button
                   class="customer-achievement-context-button gradient-button"
                   *ngIf="customerAchievement.complete"
+                  (click)="
+                    redeemTickets(
+                      restaurant._id,
+                      customerAchievement.restaurantAchievementId
+                    )
+                  "
                 >
                   Redeem Tickets
                 </button>
@@ -185,4 +191,29 @@
       </div>
     </div>
   </div>
+</div>
+
+<div
+  *ngIf="endVal"
+  id="count-up-overlay"
+  (click)="endVal = null; confetti.reset()"
+>
+  <span class="gradient-text count-up-hint">
+    You now have
+  </span>
+  <span
+    id="count-up"
+    class="gradient-text"
+    [countUp]="endVal"
+    [options]="countUpOptions"
+    (complete)="endVal = null"
+    >0</span
+  >
+  <span class="gradient-text count-up-hint">
+    tickets
+  </span>
+</div>
+
+<div id="canvas-container">
+  <canvas #canvas></canvas>
 </div>

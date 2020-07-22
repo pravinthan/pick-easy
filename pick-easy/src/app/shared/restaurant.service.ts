@@ -92,18 +92,4 @@ export class RestaurantService {
       responseType: "blob",
     });
   }
-
-  updateCustomerAchievement(
-    customerId: string,
-    restaurantId: string,
-    restaurantAchievementId: string
-  ) {
-    return this.http.patch(
-      `/api/customers/${customerId}/achievements`,
-      { restaurantId, restaurantAchievementId },
-      {
-        responseType: "text",
-      }
-    );
-  }
 }

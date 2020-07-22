@@ -38,11 +38,25 @@ module.exports.addAchievement = async (req, res) => {
       complete: false,
     };
 
-    if (
-      user.loyalties.find((loyalty) =>
-        loyalty.restaurantId.equals(restaurant._id)
-      )
-    ) {
+    let loyalty = user.loyalties.find((loyalty) =>
+      loyalty.restaurantId.equals(restaurant._id)
+    );
+    if (loyalty) {
+      if (
+        loyalty.completedNonRepeatableAchievements.find(
+          (completedNonRepeatableAchievement) =>
+            completedNonRepeatableAchievement.restaurantAchievementId.equals(
+              restaurantAchievement._id
+            )
+        )
+      ) {
+        return res
+          .status(409)
+          .send(
+            `Restaurant achievement ${req.body.restaurantAchievementId} is not repeatable`
+          );
+      }
+
       user = await User.findOneAndUpdate(
         { _id: req.user._id, "loyalties.restaurantId": restaurant._id },
         {
@@ -75,7 +89,7 @@ module.exports.addAchievement = async (req, res) => {
   }
 };
 
-module.exports.progressAchievement = async (req, res) => {
+module.exports.updateAchievement = async (req, res) => {
   if (isBadRequest(req)) return res.sendStatus(400);
 
   try {
@@ -90,8 +104,6 @@ module.exports.progressAchievement = async (req, res) => {
       return res
         .status(404)
         .send(`Restaurant ${req.body.restaurantId} does not exist`);
-
-    if (!restaurant.staff._id.equals(req.user._id)) return res.status(401);
 
     let restaurantAchievement = restaurant.achievements.find((achievement) =>
       achievement._id.equals(req.body.restaurantAchievementId)
@@ -120,28 +132,57 @@ module.exports.progressAchievement = async (req, res) => {
               j
             ].restaurantAchievementId.equals(restaurantAchievement._id)
           ) {
-            if (achievementTemplate.typeOfAchievement == "progress") {
-              // If the progress < max progression, we can increment it
-              if (
-                customer.loyalties[i].achievements[j].progress <
-                restaurantAchievement.variables[
-                  achievementTemplateVariableIndex
-                ]
-              ) {
-                customer.loyalties[i].achievements[j].progress += 1;
-              }
+            if (req.body.operation == "progress") {
+              if (!restaurant.staff._id.equals(req.user._id))
+                return res.status(401);
 
-              // If the progress is now equal to (or greater than) max progression, we can set complete as true
-              if (
-                customer.loyalties[i].achievements[j].progress >=
-                restaurantAchievement.variables[
-                  achievementTemplateVariableIndex
-                ]
-              ) {
+              if (achievementTemplate.typeOfAchievement == "progress") {
+                // If the progress < max progression, we can increment it
+                if (
+                  customer.loyalties[i].achievements[j].progress <
+                  restaurantAchievement.variables[
+                    achievementTemplateVariableIndex
+                  ]
+                ) {
+                  customer.loyalties[i].achievements[j].progress += 1;
+                }
+
+                // If the progress is now equal to (or greater than) max progression, we can set complete as true
+                if (
+                  customer.loyalties[i].achievements[j].progress >=
+                  restaurantAchievement.variables[
+                    achievementTemplateVariableIndex
+                  ]
+                ) {
+                  customer.loyalties[i].achievements[j].complete = true;
+                }
+              } else if (achievementTemplate.typeOfAchievement == "oneOff") {
                 customer.loyalties[i].achievements[j].complete = true;
               }
-            } else if (achievementTemplate.typeOfAchievement == "oneOff") {
-              customer.loyalties[i].achievements[j].complete = true;
+            } else if (req.body.operation == "redeem") {
+              if (!customer._id.equals(req.user._id)) return res.status(401);
+
+              if (!customer.loyalties[i].achievements[j].complete) {
+                return res
+                  .status(409)
+                  .send(
+                    "Customer achievement not complete. Complete the achievement before redeeming"
+                  );
+              }
+
+              // Add the amount of tickets the achievement awards
+              customer.loyalties[i].numberOfTickets +=
+                restaurantAchievement.numberOfTickets;
+
+              // Remove the achievement from the customer's achievements
+              customer.loyalties[i].achievements.splice(j, 1);
+
+              // Add the achievement to the list of non repeatable achievements if the achievement is not repeatable
+              if (!achievementTemplate.repeatable) {
+                customer.loyalties[i].completedNonRepeatableAchievements.push({
+                  restaurantAchievementId: restaurantAchievement._id,
+                });
+              }
             }
 
             await customer.save();
@@ -153,7 +194,6 @@ module.exports.progressAchievement = async (req, res) => {
 
     res.sendStatus(200);
   } catch (err) {
-    console.log(err);
     return res.sendStatus(500);
   }
 };

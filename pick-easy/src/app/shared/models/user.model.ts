@@ -35,10 +35,15 @@ export type CustomerLoyalty = {
   numberOfTickets: number;
   level: RestaurantRewardLevel;
   achievements: CustomerAchievement[];
+  completedNonRepeatableAchievements: CompletedNonRepeatableAchievement[];
 };
 
 export type CustomerAchievement = {
   restaurantAchievementId: string;
   progress: number;
   complete: boolean;
+};
+
+export type CompletedNonRepeatableAchievement = {
+  restaurantAchievementId: string;
 };

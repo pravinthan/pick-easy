@@ -305,7 +305,14 @@ router.post(
 router.patch(
   "/customers/:userId/achievements",
   auth,
-  restaurantStaffAuth,
+  // If operation is 'progress', then use restaurantStaffAuth. If operation is 'redeem', then use customerAuth.
+  (req, res, next) => {
+    if (req.body.operation == "progress")
+      return restaurantStaffAuth(req, res, next);
+    else if (req.body.operation == "redeem")
+      return customerAuth(req, res, next);
+    else return res.sendStatus(400);
+  },
   [
     param("userId")
       .exists({ checkNull: true, checkFalsy: true })
@@ -322,8 +329,9 @@ router.patch(
       .trim()
       .isMongoId()
       .escape(),
+    body("operation").isIn(["progress", "redeem"]),
   ],
-  customerController.progressAchievement
+  customerController.updateAchievement
 );
 
 module.exports = router;

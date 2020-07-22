@@ -8,7 +8,7 @@
       <div [hidden]="!hasDevices">
         <div class="select-container">
           <mat-form-field appearance="fill">
-            <mat-label>Selected Media Device</mat-label>
+            <mat-label>Select a Media Device</mat-label>
             <mat-select
               (selectionChange)="onDeviceSelectChange($event.value)"
               [(ngModel)]="deviceSelect"
@@ -30,6 +30,7 @@
           [formats]="['QR_CODE']"
           (permissionResponse)="onHasPermission($event)"
           (camerasFound)="onCamerasFound($event)"
+          [ngStyle]="{ display: deviceSelect == 'none' ? 'none' : 'block' }"
         ></zxing-scanner>
       </div>
 
