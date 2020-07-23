@@ -5,6 +5,7 @@ import { Observable } from "rxjs";
 import {
   Restaurant,
   RestaurantAchievement,
+  RestaurantRewardLevel,
 } from "src/app/shared/models/restaurant.model";
 import { RestaurantService } from "src/app/shared/restaurant.service";
 import { MatDialog } from "@angular/material/dialog";
@@ -15,7 +16,6 @@ import { AuthenticationService } from "src/app/shared/authentication.service";
 import { User } from "src/app/shared/models/user.model";
 import { CustomerService } from "src/app/shared/customer.service";
 import { RestaurantDetailsComponent } from "../restaurant-details/restaurant-details.component";
-import { QRCodeComponent } from "../qr-code/qr-code.component";
 import * as confetti from "canvas-confetti";
 
 @Component({
@@ -34,6 +34,15 @@ export class TierComponent implements AfterViewInit {
   endVal: number = null;
   countUpOptions = { duration: 4 };
   confetti: any;
+
+  tier: RestaurantRewardLevel[] = [
+    "Bronze",
+    "Silver",
+    "Gold",
+    "Platinum",
+    "Diamond",
+  ];
+  tierCount = 0;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -192,50 +201,39 @@ export class TierComponent implements AfterViewInit {
       });
   }
 
-  async redeemTickets(restaurantId: string, restaurantAchievementId: string) {
-    await this.customerService
-      .redeemTicketsForCompletedAchievement(
-        this.customer._id,
-        restaurantId,
-        restaurantAchievementId
-      )
-      .toPromise();
-
-    await this.getCustomer();
-
-    this.endVal = this.getCustomerLoyaltyByRestaurantId(
-      restaurantId
-    ).numberOfTickets;
-
-    this.confetti({
-      particleCount: 100,
-      spread: 90,
-      origin: {
-        y: 1,
-        x: 0.5,
-      },
-      zIndex: 1001,
-    });
-  }
-
   openDetailsDialog(restaurant: Restaurant) {
     this.dialog.open(RestaurantDetailsComponent, {
       width: "600px",
       data: { restaurant },
     });
   }
+  /////////////////
+  async upgradeTier(restaurantId: string) {
+    //put tier changing animation here?
 
-  openQRCodeDialog(restaurantId: string, restaurantAchievementId: string) {
-    let qrCodeDialog = this.dialog.open(QRCodeComponent, {
-      data: {
-        customerId: this.currentUser._id,
-        restaurantId: restaurantId,
-        restaurantAchievementId: restaurantAchievementId,
-      },
-    });
+    //first if statement and the number of tickets removed when moving up a tier
+    //aren't connected to restaurant side variable values and values are not
+    //being saved when updating tier?
 
-    qrCodeDialog.afterClosed().subscribe(() => {
-      this.getCustomer();
-    });
+    //temporary ticket amount needed to rank up set as 1
+    if (
+      this.getCustomerLoyaltyByRestaurantId(restaurantId).numberOfTickets == 1
+    ) {
+      //tickets decrease after moving up a tier. Current set with a temporary cost of 1 set
+      this.getCustomerLoyaltyByRestaurantId(restaurantId).numberOfTickets =
+      this.getCustomerLoyaltyByRestaurantId(restaurantId).numberOfTickets - 1;
+      //count variable to keep track of the current tier user is on
+      this.tierCount += 1;
+      if (this.tierCount == 1) {
+        this.getCustomerLoyaltyByRestaurantId(restaurantId).level = "Silver";
+      } else if (this.tierCount == 2) {
+        this.getCustomerLoyaltyByRestaurantId(restaurantId).level = "Gold";
+      } else if (this.tierCount == 3) {
+        this.getCustomerLoyaltyByRestaurantId(restaurantId).level = "Platinum";
+      } else if (this.tierCount == 4) {
+        this.getCustomerLoyaltyByRestaurantId(restaurantId).level = "Diamond";
+      }
+    }
   }
+  /////////////////
 }

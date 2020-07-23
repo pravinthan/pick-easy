@@ -2,17 +2,46 @@
   <div id="content">
     <div id="restaurants">
       <div *ngFor="let restaurant of restaurants">
-        <span>
-          You currently have
-          <span class="bold">
-            {{
-              getCustomerLoyaltyByRestaurantId(restaurant._id)
-                ?.numberOfTickets || 0
-            }}
+        <span
+          [innerHTML]="restaurant.name"
+          class="restaurant-name"
+          (click)="openDetailsDialog(restaurant)"
+        ></span>
+        <div>
+          <span>
+            You currently have
+            <span class="bold">
+              {{
+                getCustomerLoyaltyByRestaurantId(restaurant._id)
+                  ?.numberOfTickets || 0
+              }}
+            </span>
+            tickets
           </span>
-          tickets
-        </span>
+        </div>
+        <div>
+          <span>
+            You currently are
+            <span class="bold">
+              {{ getCustomerLoyaltyByRestaurantId(restaurant._id)?.level }}
+            </span>
+            Tier
+          </span>
+          <div>
+            <button
+              mat-raised-button
+              (click)="upgradeTier(restaurant._id)"
+              style="margin-right: 2rem;"
+            >
+              Upgrade Tier
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+</div>
+
+<div id="canvas-container">
+  <canvas #canvas></canvas>
 </div>
