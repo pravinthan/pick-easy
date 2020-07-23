@@ -1,0 +1,18 @@
+<div id="page">
+  <div id="content">
+    <div id="restaurants">
+      <div *ngFor="let restaurant of restaurants">
+        <span>
+          You currently have
+          <span class="bold">
+            {{
+              getCustomerLoyaltyByRestaurantId(restaurant._id)
+                ?.numberOfTickets || 0
+            }}
+          </span>
+          tickets
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

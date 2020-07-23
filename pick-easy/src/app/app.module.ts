@@ -50,6 +50,7 @@ import { NgxMatFileInputModule } from "@angular-material-components/file-input";
 import { QRCodeModule } from "angularx-qrcode";
 import { ZXingScannerModule } from "@zxing/ngx-scanner";
 import { CountUpModule } from "ngx-countup";
+import { TierComponent } from './components/pages/customer/tier/tier.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { CountUpModule } from "ngx-countup";
     AchievementsComponent,
     QRCodeComponent,
     ScanQrCodeComponent,
+    TierComponent,
   ],
   imports: [
     BrowserModule,
