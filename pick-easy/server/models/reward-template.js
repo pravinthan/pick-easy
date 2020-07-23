@@ -3,11 +3,6 @@ const Schema = mongoose.Schema;
 
 let rewardTemplateSchema = new Schema([
   {
-    /*
-  Example:
-  content: "Get <number>% Off!",
-  variables: ["Percent"],
-  */
     templateNumber: Number,
     content: String,
     value: String,

@@ -60,4 +60,30 @@ export class CustomerService {
       { responseType: "text" }
     );
   }
+
+  initializeReward(
+    customerId: string,
+    restaurantId: string,
+    restaurantRewardId: string
+  ): Observable<User> {
+    return this.http.post<User>(`/api/customers/${customerId}/rewards`, {
+      restaurantId,
+      restaurantRewardId,
+    });
+  }
+
+  private patchRewards(
+    customerId: string,
+    restaurantId: string,
+    restaurantRewardId: string,
+  ): Observable<string> {
+    return this.http.patch(
+      `/api/customers/${customerId}/rewards`,
+      {
+        restaurantId,
+        restaurantRewardId,
+      },
+      { responseType: "text" }
+    );
+  }
 }
