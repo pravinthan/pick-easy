@@ -21,11 +21,11 @@
               *ngFor="
                 let text of getTemplateByNumber(
                   reward.templateNumber
-                ).content.split('<');
+                ).value.split(':variable');
                 let i = index
               "
             >
-              <span>{{ text.substring(text.indexOf(">") + 1) }}</span>
+              <span>{{ text }}</span>
               <mat-form-field
                 class="reward-field"
                 *ngIf="getTemplateByNumber(reward.templateNumber).variables[i]"

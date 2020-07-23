@@ -50,6 +50,18 @@ let userSchema = new Schema({
           },
         },
       ],
+      rewards: [
+        {
+          restaurantRewardId: {
+            type: Schema.Types.ObjectId,
+          },
+          content: String,
+          level: {
+            type: String,
+            enum: ["Bronze", "Silver", "Gold", "Platinum", "Diamond"],
+          },
+        }
+      ],
     },
   ],
   hash: String,
