@@ -68,7 +68,9 @@ export class DiscoverComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(""),
-      map((value) => (value.length >= 1 ? this._filter(value) : []))
+      map((value: string) =>
+        value.length >= 1 ? this._filter(value.trim()) : []
+      )
     );
   }
 

@@ -56,6 +56,9 @@ export class ScanQrCodeComponent {
           .toPromise()
           .then(() => {
             this.notyf.success("Scanned successfully!");
+          })
+          .catch(() => {
+            this.notyf.error("Scan failed, try again");
           });
 
         this.nextUpdateAllowed = false;

@@ -78,6 +78,11 @@ mat-card > img {
   object-fit: cover;
 }
 
-mat-card {
-  cursor: pointer;
+a.gradient-text {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+::ng-deep .mat-stroked-button .mat-ripple-element {
+  background-color: #f23f43;
 }

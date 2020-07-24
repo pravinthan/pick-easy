@@ -58,8 +58,26 @@
           </mat-card-header>
           <img mat-card-image #image [id]="restaurant._id + '-image'" src="" />
           <mat-card-content>
-            <div class="description" [innerHTML]="restaurant.description">
-              <div>Tickets: {{ restaurant.numberOfTicketsForRedemption }}</div>
+            <div class="description" [innerHTML]="restaurant.description"></div>
+            <div style="display: flex; justify-content: space-between;">
+              <a
+                mat-stroked-button
+                routerLink="../achievements"
+                [queryParams]="{ restaurantName: restaurant.name }"
+                class="gradient-text"
+              >
+                <mat-icon>card_membership</mat-icon>
+                Achievements
+              </a>
+              <a
+                mat-stroked-button
+                routerLink="../rewards"
+                [queryParams]="{ restaurantName: restaurant.name }"
+                class="gradient-text"
+              >
+                <mat-icon>redeem</mat-icon>
+                Rewards
+              </a>
             </div>
           </mat-card-content>
         </mat-card>
