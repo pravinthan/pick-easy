@@ -197,3 +197,57 @@ module.exports.updateAchievement = async (req, res) => {
     return res.sendStatus(500);
   }
 };
+
+module.exports.updateLevel = async (req, res) => {
+  if (isBadRequest(req)) return res.sendStatus(400);
+
+  try {
+    let customer = await User.findById(req.params.userId);
+    if (!customer)
+      return res
+        .status(404)
+        .send(`Customer ${req.params.userId} does not exist`);
+    if (!customer._id.equals(req.user._id)) return res.status(401);
+
+    let restaurant = await Restaurant.findById(req.body.restaurantId);
+    if (!restaurant)
+      return res
+        .status(404)
+        .send(`Restaurant ${req.body.restaurantId} does not exist`);
+
+    for (let i = 0; i < customer.loyalties.length; i++) {
+      if (customer.loyalties[i].restaurantId.equals(restaurant._id)) {
+        if (
+          customer.loyalties[i].numberOfTickets <
+          restaurant.numberOfTicketsForRedemption
+        ) {
+          return res.status(409).send(`Not enough tickets for redemption`);
+        }
+        // Reduce the amount of tickets after upgrading tier
+        customer.loyalties[i].numberOfTickets -=
+          restaurant.numberOfTicketsForRedemption;
+        // lvl the tier up
+        if (customer.loyalties[i].level == "Bronze") {
+          customer.loyalties[i].level = "Silver";
+        } else if (customer.loyalties[i].level == "Silver") {
+          customer.loyalties[i].level = "Gold";
+        } else if (customer.loyalties[i].level == "Gold") {
+          customer.loyalties[i].level = "Platinum";
+        } else if (customer.loyalties[i].level == "Platinum") {
+          customer.loyalties[i].level = "Diamond";
+        } else if ((customer.loyalties[i].level = "Diamond")) {
+          // tell user they can't level up anymore
+          // user must use their tickets on random rewards
+          return res.status(409).send(`Already at max level`);
+        }
+
+        await customer.save();
+        break;
+      }
+    }
+
+    res.sendStatus(200);
+  } catch (err) {
+    return res.sendStatus(500);
+  }
+};
