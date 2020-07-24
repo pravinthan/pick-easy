@@ -34,7 +34,6 @@
             (filteredOptions | async).includes(restaurant.name) ||
             search.value.length == 0
           "
-          (click)="openDetailsDialog(restaurant)"
         >
           <mat-card-header>
             <img mat-card-avatar #logo [id]="restaurant._id + '-logo'" src="" />
