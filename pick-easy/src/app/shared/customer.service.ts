@@ -61,29 +61,14 @@ export class CustomerService {
     );
   }
 
-  initializeReward(
+  redeemReward(
     customerId: string,
     restaurantId: string,
-    restaurantRewardId: string
+    customerRewardId: string
   ): Observable<User> {
     return this.http.post<User>(`/api/customers/${customerId}/rewards`, {
       restaurantId,
-      restaurantRewardId,
+      customerRewardId,
     });
-  }
-
-  private patchRewards(
-    customerId: string,
-    restaurantId: string,
-    restaurantRewardId: string,
-  ): Observable<string> {
-    return this.http.patch(
-      `/api/customers/${customerId}/rewards`,
-      {
-        restaurantId,
-        restaurantRewardId,
-      },
-      { responseType: "text" }
-    );
   }
 }

@@ -225,11 +225,14 @@ module.exports.addReward = async (req, res) => {
         .send(
           `Restaurant reward ${req.body.restaurantRewardId} does not exist`
         );
+    
+    let rewardTemplate = await RewardTemplate.findOne({
+      templateNumber: restaurantReward.templateNumber,
+    });
 
     let newReward = {
-      restaurantRewardId: restaurantReward._id,
-      content: "",
-      level: "Bronze",
+      content: rewardTemplate.value.split(":variable").reduce((result, text, i) => result + text + (restaurantReward.variables[i] || ""), ""),
+      level: restaurantReward.level,
     };
 
     let loyalty = user.loyalties.find((loyalty) =>
@@ -285,35 +288,27 @@ module.exports.removeReward = async (req, res) => {
         .status(404)
         .send(`Restaurant ${req.body.restaurantId} does not exist`);
 
-    let restaurantAchievement = restaurant.achievements.find((achievement) =>
-      achievement._id.equals(req.body.restaurantAchievementId)
+    if (!restaurant.staff._id.equals(req.user._id)) return res.status(401);
+
+    let restaurantReward = restaurant.rewards.find((reward) =>
+      reward._id.equals(req.body.customerRewardId)
     );
-    if (!restaurantAchievement)
+    if (!restaurantReward)
       return res
         .status(404)
         .send(
-          `Restaurant reward ${req.body.restaurantAchievementId} does not exist`
+          `Customer reward ${req.body.customerRewardId} does not exist`
         );
-
-    let rewardTemplate = await RewardTemplate.findOne({
-      templateNumber: restaurantReward.templateNumber,
-    });
-
-    let rewardTemplateVariableIndex = rewardTemplate.variables.findIndex(
-      (variable) => variable.isProgressionVariable
-    );
 
     for (let i = 0; i < customer.loyalties.length; i++) {
       if (customer.loyalties[i].restaurantId.equals(restaurant._id)) {
-        for (let j = 0; j < customer.loyalties[i].achievements.length; j++) {
+        for (let j = 0; j < customer.loyalties[i].restaurantId.length; j++) {
           // If the restaurant reward ID matches
           if (
             customer.loyalties[i].rewards[
               j
-            ].restaurantRewardId.equals(restaurantReward._id)
+            ]._id.equals(restaurantReward._id)
           ) {
-            if (!customer._id.equals(req.user._id)) return res.status(401);
-
             // Remove the reward from the customer's rewards
             customer.loyalties[i].rewards.splice(j, 1);
             await customer.save();

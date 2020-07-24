@@ -52,9 +52,6 @@ let userSchema = new Schema({
       ],
       rewards: [
         {
-          restaurantRewardId: {
-            type: Schema.Types.ObjectId,
-          },
           content: String,
           level: {
             type: String,
