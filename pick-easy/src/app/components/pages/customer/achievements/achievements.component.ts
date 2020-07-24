@@ -17,6 +17,7 @@ import { CustomerService } from "src/app/shared/customer.service";
 import { RestaurantDetailsComponent } from "../restaurant-details/restaurant-details.component";
 import { QRCodeComponent } from "../qr-code/qr-code.component";
 import * as confetti from "canvas-confetti";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-achievements",
@@ -34,6 +35,7 @@ export class AchievementsComponent implements AfterViewInit {
   endVal: number = null;
   countUpOptions = { duration: 4 };
   confetti: any;
+  queryName: string;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -41,20 +43,26 @@ export class AchievementsComponent implements AfterViewInit {
     public restaurantService: RestaurantService,
     public userService: UserService,
     public customerService: CustomerService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public route: ActivatedRoute
   ) {
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(""),
+      map((value: string) =>
+        value.length >= 1 ? this._filter(value.trim()) : []
+      )
+    );
+
+    this.queryName = this.route.snapshot.queryParamMap.get("restaurantName");
+    this.myControl.setValue(this.queryName);
+
     this.templateService
       .getAchievementTemplates()
       .toPromise()
       .then((templates) => (this.templates = templates));
 
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(""),
-      map((value) => (value.length >= 1 ? this._filter(value) : []))
-    );
-
-    this.getRestaurants();
     this.getCustomer();
+    this.getRestaurants().then();
   }
 
   ngAfterViewInit() {

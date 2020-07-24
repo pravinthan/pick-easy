@@ -31,15 +31,37 @@
         <div
           *ngIf="
             (filteredOptions | async).includes(restaurant.name) ||
+            search.value == restaurant.name ||
             search.value.length == 0
           "
           class="restaurant"
+          [ngClass]="{
+            highlight: queryName ? queryName == restaurant.name : false
+          }"
         >
-          <span
-            [innerHTML]="restaurant.name"
-            class="restaurant-name"
-            (click)="openDetailsDialog(restaurant)"
-          ></span>
+          <div class="name-level-container">
+            <span
+              [innerHTML]="restaurant.name"
+              class="restaurant-name"
+              (click)="openDetailsDialog(restaurant)"
+            ></span>
+
+            <img
+              *ngIf="getCustomerLoyaltyByRestaurantId(restaurant._id).level"
+              [src]="
+                '/assets/' +
+                getCustomerLoyaltyByRestaurantId(
+                  restaurant._id
+                ).level.toLowerCase() +
+                '.png'
+              "
+              class="level-icon"
+              [matTooltip]="
+                getCustomerLoyaltyByRestaurantId(restaurant._id).level
+              "
+              matTooltipPosition="right"
+            />
+          </div>
 
           <span>
             You currently have
@@ -50,6 +72,55 @@
               }}
             </span>
             tickets
+          </span>
+
+          <span
+            *ngIf="
+              restaurant.numberOfTicketsForRedemption >
+              getCustomerLoyaltyByRestaurantId(restaurant._id)?.numberOfTickets
+            "
+          >
+            You need
+            <span class="bold">
+              {{
+                restaurant.numberOfTicketsForRedemption -
+                  getCustomerLoyaltyByRestaurantId(restaurant._id)
+                    ?.numberOfTickets
+              }}
+            </span>
+            more
+            {{
+              restaurant.numberOfTicketsForRedemption -
+                getCustomerLoyaltyByRestaurantId(restaurant._id)
+                  ?.numberOfTickets ==
+              1
+                ? " ticket"
+                : " tickets"
+            }}
+            to level up or redeem a reward!
+          </span>
+
+          <span
+            *ngIf="
+              restaurant.numberOfTicketsForRedemption <=
+              getCustomerLoyaltyByRestaurantId(restaurant._id)?.numberOfTickets
+            "
+          >
+            You can
+            <span class="bold">
+              level up
+            </span>
+            or
+            <span class="bold">
+              redeem a reward.
+            </span>
+            <a
+              mat-stroked-button
+              routerLink="../rewards"
+              [queryParams]="{ restaurantName: restaurant.name }"
+              class="navigate-reward-button gradient-text"
+              >Take me there!</a
+            >
           </span>
 
           <div class="customer-achievements">

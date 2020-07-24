@@ -179,3 +179,34 @@
   justify-content: center;
   align-items: center;
 }
+
+.navigate-reward-button {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 25px;
+  padding: 0 5px;
+  margin-left: 0.25rem;
+}
+
+@keyframes highlight {
+  0% {
+    background: rgba(250, 238, 9, 0.719);
+  }
+  100% {
+    background: none;
+  }
+}
+
+.highlight {
+  animation: highlight 3s;
+}
+
+.name-level-container {
+  display: flex;
+  align-items: center;
+}
+
+.level-icon {
+  width: 30px;
+  margin-left: 1rem;
+}
