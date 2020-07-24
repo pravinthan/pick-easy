@@ -4,15 +4,12 @@ import {
   ViewChildren,
   QueryList,
   AfterViewInit,
-  AfterViewChecked,
   ElementRef,
 } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { map, startWith } from "rxjs/operators";
 import { Observable } from "rxjs";
 import { Restaurant } from "src/app/shared/models/restaurant.model";
-import { MatDialog } from "@angular/material/dialog";
-import { RestaurantDetailsComponent } from "src/app/components/pages/customer/restaurant-details/restaurant-details.component";
 import { RestaurantService } from "src/app/shared/restaurant.service";
 
 @Component({
@@ -27,10 +24,7 @@ export class DiscoverComponent implements OnInit, AfterViewInit {
   filteredOptions: Observable<string[]>;
   restaurants: Restaurant[];
 
-  constructor(
-    public restaurantService: RestaurantService,
-    public dialog: MatDialog
-  ) {
+  constructor(public restaurantService: RestaurantService) {
     this.restaurantService
       .getAllRestaurants()
       .toPromise()
@@ -42,25 +36,29 @@ export class DiscoverComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.logoImageElements.changes.subscribe(
       (logoImageElements: QueryList<ElementRef<HTMLImageElement>>) => {
-        this.getRestaurantImage(
-          logoImageElements.last.nativeElement.id.substring(
-            0,
-            logoImageElements.last.nativeElement.id.indexOf("-")
-          ),
-          logoImageElements.last.nativeElement
-        );
+        logoImageElements.forEach((logoImageElement) => {
+          this.getRestaurantImage(
+            logoImageElement.nativeElement.id.substring(
+              0,
+              logoImageElement.nativeElement.id.indexOf("-")
+            ),
+            logoImageElement.nativeElement
+          );
+        });
       }
     );
 
     this.imageElements.changes.subscribe(
       (imageElements: QueryList<ElementRef<HTMLImageElement>>) => {
-        this.getRestaurantImage(
-          imageElements.last.nativeElement.id.substring(
-            0,
-            imageElements.last.nativeElement.id.indexOf("-")
-          ),
-          imageElements.last.nativeElement
-        );
+        imageElements.forEach((imageElement) => {
+          this.getRestaurantImage(
+            imageElement.nativeElement.id.substring(
+              0,
+              imageElement.nativeElement.id.indexOf("-")
+            ),
+            imageElement.nativeElement
+          );
+        });
       }
     );
   }
@@ -95,12 +93,5 @@ export class DiscoverComponent implements OnInit, AfterViewInit {
     return this.restaurants
       .map((restaurant) => restaurant.name)
       .filter((name) => name.toLowerCase().indexOf(filterValue) != -1);
-  }
-
-  openDetailsDialog(restaurant: Restaurant) {
-    this.dialog.open(RestaurantDetailsComponent, {
-      width: "600px",
-      data: { restaurant },
-    });
   }
 }
