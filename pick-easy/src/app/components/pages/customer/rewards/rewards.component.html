@@ -1,0 +1,114 @@
+<div id="page">
+  <div id="content">
+    <div id="title">
+      <span class="gradient-text">Rewards</span>
+    </div>
+
+    <div id="search">
+      <mat-form-field>
+        <mat-icon matPrefix>search</mat-icon>
+        <input
+          type="text"
+          placeholder="Search Restaurants"
+          matInput
+          [formControl]="myControl"
+          [matAutocomplete]="auto"
+          #search
+        />
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option
+            *ngFor="let option of filteredOptions | async"
+            [value]="option"
+          >
+            {{ option }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <div id="restaurants">
+      <div *ngFor="let restaurant of restaurants">
+        <div
+          *ngIf="
+            (filteredOptions | async).includes(restaurant.name) ||
+            search.value.length == 0
+          "
+          class="restaurant"
+        >
+          <span
+            [innerHTML]="restaurant.name"
+            class="restaurant-name"
+            (click)="openDetailsDialog(restaurant)"
+          ></span>
+
+          <span>
+            You currently have
+            <span class="bold">
+              {{
+                getCustomerLoyaltyByRestaurantId(restaurant._id)
+                  ?.numberOfTickets || 0
+              }}
+            </span>
+            {{
+              getCustomerLoyaltyByRestaurantId(restaurant._id)
+                ?.numberOfTickets == 1
+                ? "ticket"
+                : "tickets"
+            }}
+          </span>
+          <span>
+            You currently have
+            <span class="bold">
+              {{
+                getCustomerLoyaltyByRestaurantId(restaurant._id)?.rewards
+                  .length || 0
+              }}
+            </span>
+            {{
+              getCustomerLoyaltyByRestaurantId(restaurant._id)?.rewards
+                .length == 1
+                ? "reward"
+                : "rewards"
+            }}
+          </span>
+
+          <div class="customer-rewards">
+            <div
+              *ngFor="
+                let customerReward of getCustomerRewardsByRestaurantId(
+                  restaurant._id
+                )
+              "
+              class="customer-reward-container"
+            >
+              <div class="customer-reward">
+                <span class="reward-description">
+                  {{ customerReward.content }}
+                </span>
+                <button
+                  mat-flat-button
+                  class="customer-reward-context-button gradient-button"
+                  (click)="openQRCodeDialog(restaurant._id, customerReward._id)"
+                >
+                  Redeem Reward
+                </button>
+              </div>
+            </div>
+          </div>
+          <!--<button
+            mat-flat-button
+            class="customer-reward-context-button gradient-button"
+            (click)="
+              redeemTickets(
+                restaurant._id,
+                customerReward._id
+              )
+            "
+          >
+            Redeem Tickets For Reward
+          </button>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

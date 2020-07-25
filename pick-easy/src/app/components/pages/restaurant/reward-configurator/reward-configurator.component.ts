@@ -10,7 +10,6 @@ import { MatSelect } from "@angular/material/select";
 import { RestaurantService } from "src/app/shared/restaurant.service";
 import { NOTYF } from "src/app/shared/utils/notyf.token";
 import { Notyf } from "notyf";
-import { FormControl } from "@angular/forms";
 
 @Component({
   selector: "app-reward-configurator",

@@ -3,6 +3,7 @@ let { validationResult } = require("express-validator");
 let Restaurant = mongoose.model("Restaurant");
 let User = mongoose.model("User");
 let AchievementTemplate = mongoose.model("AchievementTemplate");
+let RewardTemplate = mongoose.model("RewardTemplate");
 
 const isBadRequest = (req) => !validationResult(req).isEmpty();
 
@@ -76,6 +77,7 @@ module.exports.addAchievement = async (req, res) => {
               numberOfTickets: 0,
               level: "Bronze",
               achievements: [newAchievement],
+              rewards: [],
             },
           },
         },
@@ -119,9 +121,47 @@ module.exports.updateAchievement = async (req, res) => {
       templateNumber: restaurantAchievement.templateNumber,
     });
 
+    if (!achievementTemplate)
+      return res
+        .status(404)
+        .send(
+          `Restaurant achievement template ${restaurantAchievement.templateNumber} does not exist`
+        );
+
     let achievementTemplateVariableIndex = achievementTemplate.variables.findIndex(
       (variable) => variable.isProgressionVariable
     );
+
+    let addToLog = async (
+      restaurant,
+      customer,
+      achievementTemplate,
+      restaurantAchievement,
+      customerAchievementProgress,
+      maxProgression,
+      complete
+    ) => {
+      restaurant.log.achievements.push({
+        customerId: customer._id,
+        customerName: customer.firstName + " " + customer.lastName,
+        achievement:
+          achievementTemplate.value
+            .split(":variable")
+            .reduce(
+              (result, text, i) =>
+                result + text + (restaurantAchievement.variables[i] || ""),
+              ""
+            ) +
+          " for " +
+          restaurantAchievement.numberOfTickets +
+          " ticket" +
+          (restaurantAchievement.numberOfTickets == 1 ? "" : "s"),
+        progress: customerAchievementProgress + " / " + maxProgression,
+        complete,
+        timeOfScan: new Date(),
+      });
+      await restaurant.save();
+    };
 
     for (let i = 0; i < customer.loyalties.length; i++) {
       if (customer.loyalties[i].restaurantId.equals(restaurant._id)) {
@@ -147,6 +187,21 @@ module.exports.updateAchievement = async (req, res) => {
                   customer.loyalties[i].achievements[j].progress += 1;
                 }
 
+                addToLog(
+                  restaurant,
+                  customer,
+                  achievementTemplate,
+                  restaurantAchievement,
+                  customer.loyalties[i].achievements[j].progress,
+                  restaurantAchievement.variables[
+                    achievementTemplateVariableIndex
+                  ],
+                  customer.loyalties[i].achievements[j].progress >=
+                    restaurantAchievement.variables[
+                      achievementTemplateVariableIndex
+                    ]
+                );
+
                 // If the progress is now equal to (or greater than) max progression, we can set complete as true
                 if (
                   customer.loyalties[i].achievements[j].progress >=
@@ -157,6 +212,15 @@ module.exports.updateAchievement = async (req, res) => {
                   customer.loyalties[i].achievements[j].complete = true;
                 }
               } else if (achievementTemplate.typeOfAchievement == "oneOff") {
+                addToLog(
+                  restaurant,
+                  customer,
+                  achievementTemplate,
+                  restaurantAchievement,
+                  1,
+                  1,
+                  true
+                );
                 customer.loyalties[i].achievements[j].complete = true;
               }
             } else if (req.body.operation == "redeem") {
@@ -207,6 +271,7 @@ module.exports.updateLevel = async (req, res) => {
       return res
         .status(404)
         .send(`Customer ${req.params.userId} does not exist`);
+
     if (!customer._id.equals(req.user._id)) return res.status(401);
 
     let restaurant = await Restaurant.findById(req.body.restaurantId);
@@ -226,7 +291,8 @@ module.exports.updateLevel = async (req, res) => {
         // Reduce the amount of tickets after upgrading tier
         customer.loyalties[i].numberOfTickets -=
           restaurant.numberOfTicketsForRedemption;
-        // lvl the tier up
+
+        // Level the tier up
         if (customer.loyalties[i].level == "Bronze") {
           customer.loyalties[i].level = "Silver";
         } else if (customer.loyalties[i].level == "Silver") {
@@ -236,13 +302,166 @@ module.exports.updateLevel = async (req, res) => {
         } else if (customer.loyalties[i].level == "Platinum") {
           customer.loyalties[i].level = "Diamond";
         } else if ((customer.loyalties[i].level = "Diamond")) {
-          // tell user they can't level up anymore
-          // user must use their tickets on random rewards
           return res.status(409).send(`Already at max level`);
         }
 
         await customer.save();
         break;
+      }
+    }
+
+    res.sendStatus(200);
+  } catch (err) {
+    return res.sendStatus(500);
+  }
+};
+
+module.exports.addReward = async (req, res) => {
+  if (isBadRequest(req)) return res.sendStatus(400);
+
+  try {
+    let user = await User.findById(req.params.userId);
+    if (!user)
+      return res.status(404).send(`User ${req.params.userId} does not exist`);
+
+    if (!user._id.equals(req.user._id)) return res.status(401);
+
+    let restaurant = await Restaurant.findById(req.body.restaurantId);
+    if (!restaurant)
+      return res
+        .status(404)
+        .send(`Restaurant ${req.body.restaurantId} does not exist`);
+
+    let restaurantReward = restaurant.rewards.find((reward) =>
+      reward._id.equals(req.body.restaurantRewardId)
+    );
+    if (!restaurantReward)
+      return res
+        .status(404)
+        .send(
+          `Restaurant reward ${req.body.restaurantRewardId} does not exist`
+        );
+
+    let rewardTemplate = await RewardTemplate.findOne({
+      templateNumber: restaurantReward.templateNumber,
+    });
+
+    if (!rewardTemplate)
+      return res
+        .status(404)
+        .send(
+          `Restaurant rewards template ${restaurantReward.templateNumber} does not exist`
+        );
+
+    let newReward = {
+      content: rewardTemplate.value
+        .split(":variable")
+        .reduce(
+          (result, text, i) =>
+            result + text + (restaurantReward.variables[i] || ""),
+          ""
+        ),
+      level: restaurantReward.level,
+    };
+
+    let loyalty = user.loyalties.find((loyalty) =>
+      loyalty.restaurantId.equals(restaurant._id)
+    );
+    if (loyalty) {
+      user = await User.findOneAndUpdate(
+        { _id: req.user._id, "loyalties.restaurantId": restaurant._id },
+        {
+          $push: {
+            "loyalties.$.rewards": newReward,
+          },
+        },
+        { new: true }
+      );
+    } else {
+      user = await User.findByIdAndUpdate(
+        req.user._id,
+        {
+          $push: {
+            loyalties: {
+              restaurantId: restaurant._id,
+              numberOfTickets: 0,
+              level: "Bronze",
+              achievements: [],
+              rewards: [newReward],
+            },
+          },
+        },
+        { new: true }
+      );
+    }
+
+    res.json(user);
+  } catch (err) {
+    return res.sendStatus(500);
+  }
+};
+
+module.exports.removeReward = async (req, res) => {
+  if (isBadRequest(req)) return res.sendStatus(400);
+
+  try {
+    let customer = await User.findById(req.params.userId);
+    if (!customer)
+      return res
+        .status(404)
+        .send(`Customer ${req.params.userId} does not exist`);
+
+    if (!customer._id.equals(req.user._id)) return res.status(401);
+
+    let restaurant = await Restaurant.findById(req.body.restaurantId);
+    if (!restaurant)
+      return res
+        .status(404)
+        .send(`Restaurant ${req.body.restaurantId} does not exist`);
+
+    if (!restaurant.staff._id.equals(req.user._id)) return res.status(401);
+
+    let loyalty = customer.loyalties.find((loyalty) =>
+      loyalty.restaurantId.equals(restaurant._id)
+    );
+
+    if (!loyalty)
+      return res
+        .status(404)
+        .send(
+          `Customer loyalty for Restaurant ${restaurant._id} does not exist`
+        );
+
+    let customerReward = loyalty.rewards.find((reward) =>
+      reward._id.equals(req.body.customerRewardId)
+    );
+
+    if (!customerReward)
+      return res
+        .status(404)
+        .send(`Customer reward ${req.body.customerRewardId} does not exist`);
+
+    for (let i = 0; i < customer.loyalties.length; i++) {
+      if (customer.loyalties[i].restaurantId.equals(restaurant._id)) {
+        for (let j = 0; j < customer.loyalties[i].rewards.length; j++) {
+          // If the restaurant reward ID matches
+          if (customer.loyalties[i].rewards[j]._id.equals(customerReward._id)) {
+            // Pushes the reward to log
+            restaurant.log.rewards.push({
+              customerId: customer._id,
+              customerName: customer.firstName + " " + customer.lastName,
+              reward: customerReward.content,
+              level: customerReward.level,
+              timeOfScan: new Date(),
+            });
+
+            // Remove the reward from the customer's rewards
+            customer.loyalties[i].rewards.splice(j, 1);
+            await restaurant.save();
+            await customer.save();
+            break;
+          }
+        }
       }
     }
 

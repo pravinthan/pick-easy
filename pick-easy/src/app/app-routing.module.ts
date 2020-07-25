@@ -15,6 +15,7 @@ import { CustomerGuard } from "./shared/customer.guard";
 import { RestaurantStaffGuard } from "./shared/restaurant-staff.guard";
 import { RestaurantCreationGuard } from "./shared/restaurant-creation.guard";
 import { AchievementsComponent } from "./components/pages/customer/achievements/achievements.component";
+import { RewardsComponent } from "./components/pages/customer/rewards/rewards.component";
 import { ScanQrCodeComponent } from "./components/pages/restaurant/scan-qr-code/scan-qr-code.component";
 import { TierComponent } from "./components/pages/customer/tier/tier.component";
 
@@ -43,6 +44,10 @@ const routes: Routes = [
   {
     path: "customer/tier",
     component: TierComponent,
+  },
+  {
+    path: "customer/rewards",
+    component: RewardsComponent,
     canActivate: [AuthenticationGuard, CustomerGuard],
   },
   {

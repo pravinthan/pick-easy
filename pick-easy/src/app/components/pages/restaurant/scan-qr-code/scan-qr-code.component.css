@@ -56,3 +56,13 @@ zxing-scanner {
   color: red;
   padding: 1rem 0;
 }
+
+.logs {
+  display: flex;
+  justify-content: center;
+  width: stretch;
+}
+
+.logs > mat-tab-group {
+  width: stretch;
+}

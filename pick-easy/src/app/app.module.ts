@@ -23,8 +23,10 @@ import { AchievementConfiguratorComponent } from "./components/pages/restaurant/
 import { LandingPageComponent } from "./components/pages/landing-page/landing-page.component";
 import { RestaurantDetailsComponent } from "./components/pages/customer/restaurant-details/restaurant-details.component";
 import { AchievementsComponent } from "./components/pages/customer/achievements/achievements.component";
+import { RewardsComponent } from "./components/pages/customer/rewards/rewards.component";
 import { QRCodeComponent } from "./components/pages/customer/qr-code/qr-code.component";
 import { ScanQrCodeComponent } from "./components/pages/restaurant/scan-qr-code/scan-qr-code.component";
+import { RedeemedRewardDialogComponent } from "./components/pages/restaurant/scan-qr-code/redeemed-reward-dialog/redeemed-reward-dialog.component";
 
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -45,6 +47,8 @@ import { MatChipsModule } from "@angular/material/chips";
 import { MatSelectModule } from "@angular/material/select";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatBadgeModule } from "@angular/material/badge";
+import { MatTableModule } from "@angular/material/table";
+import { MatSortModule } from "@angular/material/sort";
 
 import { NgxMatFileInputModule } from "@angular-material-components/file-input";
 import { QRCodeModule } from "angularx-qrcode";
@@ -70,9 +74,11 @@ import { TierComponent } from './components/pages/customer/tier/tier.component';
     LandingPageComponent,
     MyRestaurantComponent,
     AchievementsComponent,
+    RewardsComponent,
     QRCodeComponent,
     ScanQrCodeComponent,
     TierComponent,
+    RedeemedRewardDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -103,6 +109,8 @@ import { TierComponent } from './components/pages/customer/tier/tier.component';
     QRCodeModule,
     ZXingScannerModule,
     CountUpModule,
+    MatTableModule,
+    MatSortModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
