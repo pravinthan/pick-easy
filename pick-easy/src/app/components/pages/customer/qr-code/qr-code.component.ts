@@ -7,6 +7,12 @@ export type QRCodeAchievementData = {
   restaurantAchievementId: string;
 };
 
+export type QRCodeRewardData = {
+  customerId: string;
+  restaurantId: string;
+  customerRewardId: string;
+};
+
 @Component({
   selector: "app-qr-code",
   templateUrl: "./qr-code.component.html",
@@ -15,7 +21,7 @@ export type QRCodeAchievementData = {
 export class QRCodeComponent {
   qrCodeData: string;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: QRCodeAchievementData) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: QRCodeAchievementData | QRCodeRewardData) {
     this.qrCodeData = JSON.stringify(data);
   }
 }

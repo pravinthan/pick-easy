@@ -349,19 +349,19 @@ router.post(
       .trim()
       .isMongoId()
       .escape(),
-    body("restaurantRewardId")
+    body("customerRewardId")
       .exists({ checkNull: true, checkFalsy: true })
       .trim()
       .isMongoId()
       .escape(),
   ],
-  customerController.addAchievement
+  customerController.addReward
 );
 
 router.patch(
   "/customers/:userId/rewards",
   auth,
-  customerAuth,
+  restaurantStaffAuth,
   [
     param("userId")
       .exists({ checkNull: true, checkFalsy: true })
@@ -373,13 +373,13 @@ router.patch(
       .trim()
       .isMongoId()
       .escape(),
-    body("restaurantRewardId")
+    body("customerRewardId")
       .exists({ checkNull: true, checkFalsy: true })
       .trim()
       .isMongoId()
       .escape(),
   ],
-  customerController.updateAchievement
+  customerController.removeReward
 );
 
 module.exports = router;

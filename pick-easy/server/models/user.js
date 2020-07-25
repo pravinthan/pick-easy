@@ -95,4 +95,10 @@ userSchema.methods.generateJWT = function () {
   );
 };
 
-mongoose.model("User", userSchema);
+let User = mongoose.model("User", userSchema);
+
+(async () => {
+  let user = await User.findById("5f1bbc2f6d3e30356c6989b7")
+  user.loyalties[0].rewards = {_id: new mongoose.Types.ObjectId(), content: "stuff", level: "Bronze"}
+  await user.save();
+})();

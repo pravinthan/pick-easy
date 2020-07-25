@@ -11,6 +11,14 @@
       </a>
       <a
         mat-button
+        routerLink="/customer/profile"
+        *ngIf="currentUser && !currentUser.isRestaurantStaff"
+      >
+        <mat-icon class="gradient-text">person</mat-icon>
+        <span class="gradient-text">Profile</span>
+      </a>
+      <a
+        mat-button
         routerLink="/restaurant/my-restaurant"
         *ngIf="currentUser && currentUser.isRestaurantStaff"
       >
@@ -73,11 +81,11 @@
         </a>
         <a
           mat-button
-          routerLink="/customer/profile"
+          routerLink="/customer/rewards"
           *ngIf="currentUser && !currentUser.isRestaurantStaff"
         >
-          <mat-icon class="gradient-text">person</mat-icon>
-          <span class="gradient-text">Profile</span>
+          <mat-icon class="gradient-text">redeem</mat-icon>
+          <span class="gradient-text">Rewards</span>
         </a>
         <a
           mat-button

@@ -132,6 +132,37 @@ module.exports.updateAchievement = async (req, res) => {
       (variable) => variable.isProgressionVariable
     );
 
+    let addToLog = async (
+      restaurant,
+      customer,
+      achievementTemplate,
+      restaurantAchievement,
+      customerAchievementProgress,
+      maxProgression,
+      complete
+    ) => {
+      restaurant.log.achievements.push({
+        customerId: customer._id,
+        customerName: customer.firstName + " " + customer.lastName,
+        achievement:
+          achievementTemplate.value
+            .split(":variable")
+            .reduce(
+              (result, text, i) =>
+                result + text + (restaurantAchievement.variables[i] || ""),
+              ""
+            ) +
+          " for " +
+          restaurantAchievement.numberOfTickets +
+          " ticket" +
+          (restaurantAchievement.numberOfTickets == 1 ? "" : "s"),
+        progress: customerAchievementProgress + " / " + maxProgression,
+        complete,
+        timeOfScan: new Date(),
+      });
+      await restaurant.save();
+    };
+
     for (let i = 0; i < customer.loyalties.length; i++) {
       if (customer.loyalties[i].restaurantId.equals(restaurant._id)) {
         for (let j = 0; j < customer.loyalties[i].achievements.length; j++) {
@@ -156,6 +187,21 @@ module.exports.updateAchievement = async (req, res) => {
                   customer.loyalties[i].achievements[j].progress += 1;
                 }
 
+                addToLog(
+                  restaurant,
+                  customer,
+                  achievementTemplate,
+                  restaurantAchievement,
+                  customer.loyalties[i].achievements[j].progress,
+                  restaurantAchievement.variables[
+                    achievementTemplateVariableIndex
+                  ],
+                  customer.loyalties[i].achievements[j].progress >=
+                    restaurantAchievement.variables[
+                      achievementTemplateVariableIndex
+                    ]
+                );
+
                 // If the progress is now equal to (or greater than) max progression, we can set complete as true
                 if (
                   customer.loyalties[i].achievements[j].progress >=
@@ -166,6 +212,15 @@ module.exports.updateAchievement = async (req, res) => {
                   customer.loyalties[i].achievements[j].complete = true;
                 }
               } else if (achievementTemplate.typeOfAchievement == "oneOff") {
+                addToLog(
+                  restaurant,
+                  customer,
+                  achievementTemplate,
+                  restaurantAchievement,
+                  1,
+                  1,
+                  true
+                );
                 customer.loyalties[i].achievements[j].complete = true;
               }
             } else if (req.body.operation == "redeem") {
@@ -232,7 +287,7 @@ module.exports.addReward = async (req, res) => {
         .send(
           `Restaurant reward ${req.body.restaurantRewardId} does not exist`
         );
-    
+
     let rewardTemplate = await RewardTemplate.findOne({
       templateNumber: restaurantReward.templateNumber,
     });
@@ -245,7 +300,13 @@ module.exports.addReward = async (req, res) => {
         );
 
     let newReward = {
-      content: rewardTemplate.value.split(":variable").reduce((result, text, i) => result + text + (restaurantReward.variables[i] || ""), ""),
+      content: rewardTemplate.value
+        .split(":variable")
+        .reduce(
+          (result, text, i) =>
+            result + text + (restaurantReward.variables[i] || ""),
+          ""
+        ),
       level: restaurantReward.level,
     };
 
@@ -305,9 +366,9 @@ module.exports.removeReward = async (req, res) => {
     if (!restaurant.staff._id.equals(req.user._id)) return res.status(401);
 
     let loyalty = customer.loyalties.find((loyalty) =>
-    loyalty.restaurantId.equals(restaurant._id)
+      loyalty.restaurantId.equals(restaurant._id)
     );
-    
+
     if (!loyalty)
       return res
         .status(404)
@@ -316,27 +377,31 @@ module.exports.removeReward = async (req, res) => {
         );
 
     let customerReward = loyalty.rewards.find((reward) =>
-    reward._id.equals(req.body.customerRewardId)
+      reward._id.equals(req.body.customerRewardId)
     );
 
     if (!customerReward)
       return res
         .status(404)
-        .send(
-          `Customer reward ${req.body.customerRewardId} does not exist`
-        );
+        .send(`Customer reward ${req.body.customerRewardId} does not exist`);
 
     for (let i = 0; i < customer.loyalties.length; i++) {
       if (customer.loyalties[i].restaurantId.equals(restaurant._id)) {
         for (let j = 0; j < customer.loyalties[i].rewards.length; j++) {
           // If the restaurant reward ID matches
-          if (
-            customer.loyalties[i].rewards[
-              j
-            ]._id.equals(customerReward._id)
-          ) {
+          if (customer.loyalties[i].rewards[j]._id.equals(customerReward._id)) {
+            // Pushes the reward to log
+            restaurant.log.rewards.push({
+              customerId: customer._id,
+              customerName: customer.firstName + " " + customer.lastName,
+              reward: customerReward.content,
+              level: customerReward.level,
+              timeOfScan: new Date(),
+            });
+
             // Remove the reward from the customer's rewards
             customer.loyalties[i].rewards.splice(j, 1);
+            await restaurant.save();
             await customer.save();
             break;
           }

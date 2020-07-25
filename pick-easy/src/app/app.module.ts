@@ -23,6 +23,7 @@ import { AchievementConfiguratorComponent } from "./components/pages/restaurant/
 import { LandingPageComponent } from "./components/pages/landing-page/landing-page.component";
 import { RestaurantDetailsComponent } from "./components/pages/customer/restaurant-details/restaurant-details.component";
 import { AchievementsComponent } from "./components/pages/customer/achievements/achievements.component";
+import { RewardsComponent } from "./components/pages/customer/rewards/rewards.component";
 import { QRCodeComponent } from "./components/pages/customer/qr-code/qr-code.component";
 import { ScanQrCodeComponent } from "./components/pages/restaurant/scan-qr-code/scan-qr-code.component";
 
@@ -45,11 +46,14 @@ import { MatChipsModule } from "@angular/material/chips";
 import { MatSelectModule } from "@angular/material/select";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatBadgeModule } from "@angular/material/badge";
+import { MatTableModule } from "@angular/material/table";
+import { MatSortModule } from "@angular/material/sort";
 
 import { NgxMatFileInputModule } from "@angular-material-components/file-input";
 import { QRCodeModule } from "angularx-qrcode";
 import { ZXingScannerModule } from "@zxing/ngx-scanner";
 import { CountUpModule } from "ngx-countup";
+import { RedeemedRewardDialogComponent } from './components/pages/restaurant/scan-qr-code/redeemed-reward-dialog/redeemed-reward-dialog.component';
 
 @NgModule({
   declarations: [
@@ -69,8 +73,10 @@ import { CountUpModule } from "ngx-countup";
     LandingPageComponent,
     MyRestaurantComponent,
     AchievementsComponent,
+    RewardsComponent,
     QRCodeComponent,
     ScanQrCodeComponent,
+    RedeemedRewardDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -101,6 +107,8 @@ import { CountUpModule } from "ngx-countup";
     QRCodeModule,
     ZXingScannerModule,
     CountUpModule,
+    MatTableModule,
+    MatSortModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

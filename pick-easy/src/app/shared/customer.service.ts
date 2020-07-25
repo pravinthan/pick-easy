@@ -65,10 +65,12 @@ export class CustomerService {
     customerId: string,
     restaurantId: string,
     customerRewardId: string
-  ): Observable<User> {
-    return this.http.post<User>(`/api/customers/${customerId}/rewards`, {
+  ): Observable<string> {
+    return this.http.patch(`/api/customers/${customerId}/rewards`, {
+      customerId,
       restaurantId,
       customerRewardId,
-    });
+    },
+    { responseType: "text" });
   }
 }
