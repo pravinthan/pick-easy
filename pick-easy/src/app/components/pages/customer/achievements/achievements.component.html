@@ -34,7 +34,7 @@
             search.value == restaurant.name ||
             search.value.length == 0
           "
-          class="restaurant"
+          class="restaurant mat-elevation-z4"
           [ngClass]="{
             highlight: queryName ? queryName == restaurant.name : false
           }"
@@ -47,7 +47,7 @@
             ></span>
 
             <img
-              *ngIf="getCustomerLoyaltyByRestaurantId(restaurant._id).level"
+              *ngIf="getCustomerLoyaltyByRestaurantId(restaurant._id)?.level"
               [src]="
                 '/assets/' +
                 getCustomerLoyaltyByRestaurantId(
@@ -61,6 +61,13 @@
               "
               matTooltipPosition="right"
             />
+            <img
+              *ngIf="!getCustomerLoyaltyByRestaurantId(restaurant._id)?.level"
+              src="/assets/bronze.png"
+              class="level-icon"
+              matTooltip="Bronze"
+              matTooltipPosition="right"
+            />
           </div>
 
           <span>
@@ -71,7 +78,12 @@
                   ?.numberOfTickets || 0
               }}
             </span>
-            tickets
+            {{
+              getCustomerLoyaltyByRestaurantId(restaurant._id)
+                ?.numberOfTickets == 1
+                ? " Ticket"
+                : " Tickets"
+            }}
           </span>
 
           <span
@@ -94,25 +106,28 @@
                 getCustomerLoyaltyByRestaurantId(restaurant._id)
                   ?.numberOfTickets ==
               1
-                ? " ticket"
-                : " tickets"
+                ? " Ticket"
+                : " Tickets"
             }}
-            to level up or redeem a reward!
+            to
+            <span class="bold">Level Up</span>
+            or
+            <span class="bold">Roll a Reward!</span>
           </span>
 
           <span
             *ngIf="
-              restaurant.numberOfTicketsForRedemption <=
-              getCustomerLoyaltyByRestaurantId(restaurant._id)?.numberOfTickets
+              getCustomerLoyaltyByRestaurantId(restaurant._id)
+                ?.numberOfTickets >= restaurant.numberOfTicketsForRedemption
             "
           >
             You can
             <span class="bold">
-              level up
+              Level Up
             </span>
             or
             <span class="bold">
-              redeem a reward.
+              Roll a Reward
             </span>
             <a
               mat-stroked-button
@@ -152,8 +167,8 @@
                         restaurant.achievements,
                         customerAchievement.restaurantAchievementId
                       ).numberOfTickets == 1
-                        ? " ticket"
-                        : " tickets")
+                        ? " Ticket"
+                        : " Tickets")
                   }}
                 </span>
                 <button
@@ -243,8 +258,8 @@
                 {{
                   restaurantAchievement.numberOfTickets +
                     (restaurantAchievement.numberOfTickets == 1
-                      ? " ticket"
-                      : " tickets")
+                      ? " Ticket"
+                      : " Tickets")
                 }}
               </span>
               <button
@@ -281,7 +296,7 @@
     >0</span
   >
   <span class="gradient-text count-up-hint">
-    tickets
+    Tickets
   </span>
 </div>
 

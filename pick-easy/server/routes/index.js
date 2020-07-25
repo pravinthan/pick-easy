@@ -334,4 +334,47 @@ router.patch(
   customerController.updateAchievement
 );
 
+router.post(
+  "/customers/:userId/rewards",
+  auth,
+  customerAuth,
+  [
+    param("userId")
+      .exists({ checkNull: true, checkFalsy: true })
+      .trim()
+      .isMongoId()
+      .escape(),
+    body("restaurantId")
+      .exists({ checkNull: true, checkFalsy: true })
+      .trim()
+      .isMongoId()
+      .escape(),
+  ],
+  customerController.addReward
+);
+
+router.patch(
+  "/customers/:userId/rewards",
+  auth,
+  restaurantStaffAuth,
+  [
+    param("userId")
+      .exists({ checkNull: true, checkFalsy: true })
+      .trim()
+      .isMongoId()
+      .escape(),
+    body("restaurantId")
+      .exists({ checkNull: true, checkFalsy: true })
+      .trim()
+      .isMongoId()
+      .escape(),
+    body("customerRewardId")
+      .exists({ checkNull: true, checkFalsy: true })
+      .trim()
+      .isMongoId()
+      .escape(),
+  ],
+  customerController.removeReward
+);
+
 module.exports = router;

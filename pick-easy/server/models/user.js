@@ -50,6 +50,15 @@ let userSchema = new Schema({
           },
         },
       ],
+      rewards: [
+        {
+          content: String,
+          level: {
+            type: String,
+            enum: ["Bronze", "Silver", "Gold", "Platinum", "Diamond"],
+          },
+        },
+      ],
     },
   ],
   hash: String,

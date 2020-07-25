@@ -1,0 +1,192 @@
+<div id="page">
+  <div id="content">
+    <div id="title">
+      <span class="gradient-text">Rewards</span>
+    </div>
+
+    <div id="search">
+      <mat-form-field>
+        <mat-icon matPrefix>search</mat-icon>
+        <input
+          type="text"
+          placeholder="Search Restaurants"
+          matInput
+          [formControl]="myControl"
+          [matAutocomplete]="auto"
+          #search
+        />
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option
+            *ngFor="let option of filteredOptions | async"
+            [value]="option"
+          >
+            {{ option }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <div id="restaurants">
+      <div *ngFor="let restaurant of restaurants">
+        <div
+          *ngIf="
+            (filteredOptions | async).includes(restaurant.name) ||
+            search.value == restaurant.name ||
+            search.value.length == 0
+          "
+          class="restaurant mat-elevation-z4"
+          [ngClass]="{
+            highlight: queryName ? queryName == restaurant.name : false
+          }"
+        >
+          <div class="restaurant-header-container">
+            <span
+              [innerHTML]="restaurant.name"
+              class="restaurant-name"
+              (click)="openDetailsDialog(restaurant)"
+            ></span>
+
+            <img
+              *ngIf="getCustomerLoyaltyByRestaurantId(restaurant._id)?.level"
+              [src]="
+                '/assets/' +
+                getCustomerLoyaltyByRestaurantId(
+                  restaurant._id
+                ).level.toLowerCase() +
+                '.png'
+              "
+              class="level-icon"
+              [matTooltip]="
+                getCustomerLoyaltyByRestaurantId(restaurant._id).level
+              "
+              matTooltipPosition="right"
+            />
+            <img
+              *ngIf="!getCustomerLoyaltyByRestaurantId(restaurant._id)?.level"
+              src="/assets/bronze.png"
+              class="level-icon"
+              matTooltip="Bronze"
+              matTooltipPosition="right"
+            />
+            <button
+              *ngIf="
+                getCustomerLoyaltyByRestaurantId(restaurant._id)
+                  ?.numberOfTickets >= restaurant.numberOfTicketsForRedemption
+              "
+              mat-icon-button
+              class="level-up-button"
+              [matTooltip]="
+                'Level Up for ' +
+                restaurant.numberOfTicketsForRedemption +
+                (restaurant.numberOfTicketsForRedemption == 1
+                  ? ' Ticket'
+                  : ' Tickets')
+              "
+              matTooltipPosition="above"
+            >
+              <mat-icon>upgrade</mat-icon>
+            </button>
+          </div>
+
+          <span>
+            You currently have
+            <span class="bold">
+              {{
+                getCustomerLoyaltyByRestaurantId(restaurant._id)
+                  ?.numberOfTickets || 0
+              }}
+            </span>
+            {{
+              getCustomerLoyaltyByRestaurantId(restaurant._id)
+                ?.numberOfTickets == 1
+                ? "Ticket"
+                : "Tickets"
+            }}
+          </span>
+
+          <span
+            *ngIf="
+              restaurant.numberOfTicketsForRedemption >
+              getCustomerLoyaltyByRestaurantId(restaurant._id)?.numberOfTickets
+            "
+          >
+            You need
+            <span class="bold">
+              {{
+                restaurant.numberOfTicketsForRedemption -
+                  getCustomerLoyaltyByRestaurantId(restaurant._id)
+                    ?.numberOfTickets
+              }}
+            </span>
+            more
+            {{
+              restaurant.numberOfTicketsForRedemption -
+                getCustomerLoyaltyByRestaurantId(restaurant._id)
+                  ?.numberOfTickets ==
+              1
+                ? " Ticket"
+                : " Tickets"
+            }}
+            to
+            <span class="bold">Level Up</span>
+            or
+            <span class="bold">Roll a Reward!</span>
+          </span>
+
+          <div class="customer-rewards">
+            <div
+              *ngFor="
+                let customerReward of getCustomerRewardsByRestaurantId(
+                  restaurant._id
+                )
+              "
+              class="customer-reward-container"
+            >
+              <div class="customer-reward">
+                <span class="reward-description">
+                  {{ customerReward.content }}
+                </span>
+                <button
+                  mat-flat-button
+                  class="customer-reward-context-button gradient-button"
+                  (click)="openQRCodeDialog(restaurant._id, customerReward._id)"
+                >
+                  Redeem Reward
+                </button>
+              </div>
+            </div>
+            <div
+              *ngIf="
+                getCustomerLoyaltyByRestaurantId(restaurant._id)?.rewards
+                  .length == 0 &&
+                getCustomerLoyaltyByRestaurantId(restaurant._id)
+                  ?.numberOfTickets < restaurant.numberOfTicketsForRedemption
+              "
+              class="no-rewards-text"
+            >
+              No Obtained Rewards
+            </div>
+
+            <button
+              *ngIf="
+                getCustomerLoyaltyByRestaurantId(restaurant._id)
+                  ?.numberOfTickets >= restaurant.numberOfTicketsForRedemption
+              "
+              mat-raised-button
+              class="roll-reward-button gradient-button"
+            >
+              <mat-icon>casino</mat-icon>
+              Roll a Reward for {{ restaurant.numberOfTicketsForRedemption }}
+              {{
+                restaurant.numberOfTicketsForRedemption == 1
+                  ? "Ticket"
+                  : "Tickets"
+              }}
+              <mat-icon>casino</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

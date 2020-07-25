@@ -60,4 +60,20 @@ export class CustomerService {
       { responseType: "text" }
     );
   }
+
+  redeemReward(
+    customerId: string,
+    restaurantId: string,
+    customerRewardId: string
+  ): Observable<string> {
+    return this.http.patch(
+      `/api/customers/${customerId}/rewards`,
+      {
+        customerId,
+        restaurantId,
+        customerRewardId,
+      },
+      { responseType: "text" }
+    );
+  }
 }

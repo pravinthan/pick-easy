@@ -62,7 +62,7 @@ export class AchievementsComponent implements AfterViewInit {
       .then((templates) => (this.templates = templates));
 
     this.getCustomer();
-    this.getRestaurants().then();
+    this.getRestaurants();
   }
 
   ngAfterViewInit() {

@@ -36,6 +36,7 @@ export type CustomerLoyalty = {
   level: RestaurantRewardLevel;
   achievements: CustomerAchievement[];
   completedNonRepeatableAchievements: CompletedNonRepeatableAchievement[];
+  rewards: CustomerReward[];
 };
 
 export type CustomerAchievement = {
@@ -46,4 +47,10 @@ export type CustomerAchievement = {
 
 export type CompletedNonRepeatableAchievement = {
   restaurantAchievementId: string;
+};
+
+export type CustomerReward = {
+  _id: string;
+  content: number;
+  level: string;
 };
