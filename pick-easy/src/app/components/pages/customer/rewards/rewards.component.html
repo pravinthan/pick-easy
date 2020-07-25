@@ -72,6 +72,29 @@
             }}
           </span>
 
+          <div>
+            <span>
+              You currently are
+              <span class="bold">
+                {{ getCustomerLoyaltyByRestaurantId(restaurant._id)?.level }}
+              </span>
+              Level
+            </span>
+            <div>
+              <button
+                *ngIf="
+                  getCustomerLoyaltyByRestaurantId(restaurant._id)?.level !=
+                  'Diamond'
+                "
+                mat-raised-button
+                (click)="upgradeLevel(restaurant._id)"
+                style="margin-right: 2rem;"
+              >
+                Upgrade Level
+              </button>
+            </div>
+          </div>
+
           <div class="customer-rewards">
             <div
               *ngFor="

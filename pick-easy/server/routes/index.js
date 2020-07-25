@@ -335,7 +335,7 @@ router.patch(
 );
 
 router.patch(
-  "/customers/:userId/level",
+  "/customers/:userId/rewards",
   auth,
   customerAuth,
   [
