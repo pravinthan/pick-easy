@@ -21,7 +21,10 @@ export type QRCodeRewardData = {
 export class QRCodeComponent {
   qrCodeData: string;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: QRCodeAchievementData | QRCodeRewardData) {
+  constructor(
+    @Inject(MAT_DIALOG_DATA)
+    public data: QRCodeAchievementData | QRCodeRewardData
+  ) {
     this.qrCodeData = JSON.stringify(data);
   }
 }

@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { RedeemedRewardDialogComponent } from './redeemed-reward-dialog.component';
+import { RedeemedRewardDialogComponent } from "./redeemed-reward-dialog.component";
 
-describe('RedeemedRewardDialogComponent', () => {
+describe("RedeemedRewardDialogComponent", () => {
   let component: RedeemedRewardDialogComponent;
   let fixture: ComponentFixture<RedeemedRewardDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RedeemedRewardDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [RedeemedRewardDialogComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('RedeemedRewardDialogComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -14,8 +14,8 @@ import {
 } from "src/app/shared/models/restaurant.model";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
-import { RedeemedRewardDialogComponent } from './redeemed-reward-dialog/redeemed-reward-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
+import { RedeemedRewardDialogComponent } from "./redeemed-reward-dialog/redeemed-reward-dialog.component";
+import { MatDialog } from "@angular/material/dialog";
 
 @Component({
   selector: "app-scan-qr-code",
@@ -138,8 +138,11 @@ export class ScanQrCodeComponent implements AfterViewInit {
         .then((restaurant) => {
           this.restaurant = restaurant;
           this.rewardLogDataSource.data = restaurant.log.rewards;
-          this.openRedeemedRewardDialog(restaurant.log.rewards[restaurant.log.rewards.length - 1].reward);
-        }).catch(() => {
+          this.openRedeemedRewardDialog(
+            restaurant.log.rewards[restaurant.log.rewards.length - 1].reward
+          );
+        })
+        .catch(() => {
           this.notyf.error("Scan failed! (May have already been redeemed)");
         });
 

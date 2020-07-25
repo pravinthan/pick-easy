@@ -66,11 +66,14 @@ export class CustomerService {
     restaurantId: string,
     customerRewardId: string
   ): Observable<string> {
-    return this.http.patch(`/api/customers/${customerId}/rewards`, {
-      customerId,
-      restaurantId,
-      customerRewardId,
-    },
-    { responseType: "text" });
+    return this.http.patch(
+      `/api/customers/${customerId}/rewards`,
+      {
+        customerId,
+        restaurantId,
+        customerRewardId,
+      },
+      { responseType: "text" }
+    );
   }
 }

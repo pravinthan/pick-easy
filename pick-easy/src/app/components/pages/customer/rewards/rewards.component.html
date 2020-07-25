@@ -51,20 +51,24 @@
             </span>
             {{
               getCustomerLoyaltyByRestaurantId(restaurant._id)
-                ?.numberOfTickets == 1 ? "ticket" : "tickets"
+                ?.numberOfTickets == 1
+                ? "ticket"
+                : "tickets"
             }}
           </span>
           <span>
             You currently have
             <span class="bold">
               {{
-                getCustomerLoyaltyByRestaurantId(restaurant._id)
-                  ?.rewards.length || 0
+                getCustomerLoyaltyByRestaurantId(restaurant._id)?.rewards
+                  .length || 0
               }}
             </span>
             {{
-              getCustomerLoyaltyByRestaurantId(restaurant._id)
-                ?.rewards.length == 1 ? "reward" : "rewards"
+              getCustomerLoyaltyByRestaurantId(restaurant._id)?.rewards
+                .length == 1
+                ? "reward"
+                : "rewards"
             }}
           </span>
 
@@ -84,12 +88,7 @@
                 <button
                   mat-flat-button
                   class="customer-reward-context-button gradient-button"
-                  (click)="
-                    openQRCodeDialog(
-                      restaurant._id,
-                      customerReward._id
-                    )
-                  "
+                  (click)="openQRCodeDialog(restaurant._id, customerReward._id)"
                 >
                   Redeem Reward
                 </button>
@@ -112,29 +111,4 @@
       </div>
     </div>
   </div>
-</div>
-
-<div
-  *ngIf="endVal"
-  id="count-up-overlay"
-  (click)="endVal = null; confetti.reset()"
->
-  <span class="gradient-text count-up-hint">
-    You now have
-  </span>
-  <span
-    id="count-up"
-    class="gradient-text"
-    [countUp]="endVal"
-    [options]="countUpOptions"
-    (complete)="endVal = null"
-    >0</span
-  >
-  <span class="gradient-text count-up-hint">
-    tickets
-  </span>
-</div>
-
-<div id="canvas-container">
-  <canvas #canvas></canvas>
 </div>

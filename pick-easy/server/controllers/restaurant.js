@@ -27,6 +27,10 @@ module.exports.createRestaurant = async (req, res) => {
       cost: req.body.restaurantCost,
       cuisine: req.body.restaurantCuisine,
       image: req.file,
+      log: {
+        achievements: [],
+        rewards: [],
+      },
     });
 
     await User.findByIdAndUpdate(req.user._id, {

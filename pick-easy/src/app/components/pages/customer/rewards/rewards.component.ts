@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, AfterViewInit } from "@angular/core";
+import { Component, ViewChild, ElementRef } from "@angular/core";
 import { startWith, map } from "rxjs/operators";
 import { FormControl } from "@angular/forms";
 import { Observable } from "rxjs";
@@ -11,23 +11,19 @@ import { User } from "src/app/shared/models/user.model";
 import { CustomerService } from "src/app/shared/customer.service";
 import { RestaurantDetailsComponent } from "../restaurant-details/restaurant-details.component";
 import { QRCodeComponent } from "../qr-code/qr-code.component";
-import * as confetti from "canvas-confetti";
 
 @Component({
   selector: "app-rewards",
   templateUrl: "./rewards.component.html",
   styleUrls: ["./rewards.component.css"],
 })
-export class RewardsComponent implements AfterViewInit {
+export class RewardsComponent {
   @ViewChild("canvas") canvas: ElementRef<HTMLCanvasElement>;
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
   restaurants: Restaurant[];
   currentUser = this.authenticationService.currentUser;
   customer: User;
-  endVal: number = null;
-  countUpOptions = { duration: 4 };
-  confetti: any;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -43,14 +39,6 @@ export class RewardsComponent implements AfterViewInit {
 
     this.getRestaurants();
     this.getCustomer();
-  }
-
-  ngAfterViewInit() {
-    this.canvas.nativeElement.width = window.innerWidth;
-
-    this.confetti = confetti.create(this.canvas.nativeElement, {
-      resize: true,
-    });
   }
 
   async getRestaurants() {
@@ -92,32 +80,13 @@ export class RewardsComponent implements AfterViewInit {
   }
 
   /* Change this function */
-  async redeemTickets(restaurantId: string, customerRewardId: string) {
-    
-    await this.customerService
-      .redeemReward(
-        this.customer._id,
-        restaurantId,
-        customerRewardId
-      )
-      .toPromise();
+  // async redeemTickets(restaurantId: string, customerRewardId: string) {
+  //   await this.customerService
+  //     .redeemReward(this.customer._id, restaurantId, customerRewardId)
+  //     .toPromise();
 
-    await this.getCustomer();
-
-    this.endVal = this.getCustomerLoyaltyByRestaurantId(
-      restaurantId
-    ).numberOfTickets;
-
-    this.confetti({
-      particleCount: 100,
-      spread: 90,
-      origin: {
-        y: 1,
-        x: 0.5,
-      },
-      zIndex: 1001,
-    });
-  }
+  //   await this.getCustomer();
+  // }
 
   openDetailsDialog(restaurant: Restaurant) {
     this.dialog.open(RestaurantDetailsComponent, {

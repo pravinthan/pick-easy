@@ -349,11 +349,6 @@ router.post(
       .trim()
       .isMongoId()
       .escape(),
-    body("customerRewardId")
-      .exists({ checkNull: true, checkFalsy: true })
-      .trim()
-      .isMongoId()
-      .escape(),
   ],
   customerController.addReward
 );

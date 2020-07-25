@@ -75,29 +75,33 @@ let restaurantSchema = new Schema({
     },
   ],
   log: {
-    achievements: [{
-      customerId: {
-        type: Schema.Types.ObjectId,
+    achievements: [
+      {
+        customerId: {
+          type: Schema.Types.ObjectId,
+        },
+        customerName: String,
+        achievement: String,
+        progress: String,
+        complete: Boolean,
+        timeOfScan: Date,
       },
-      customerName: String,
-      achievement: String,
-      progress: String,
-      complete: Boolean,
-      timeOfScan: Date,
-    }],
-    rewards: [{
-      customerId: {
-        type: Schema.Types.ObjectId,
+    ],
+    rewards: [
+      {
+        customerId: {
+          type: Schema.Types.ObjectId,
+        },
+        customerName: String,
+        reward: String,
+        level: {
+          type: String,
+          enum: ["Bronze", "Silver", "Gold", "Platinum", "Diamond"],
+        },
+        timeOfScan: Date,
       },
-      customerName: String,
-      reward: String,
-      level: {
-        type: String,
-        enum: ["Bronze", "Silver", "Gold", "Platinum", "Diamond"],
-      },
-      timeOfScan: Date,
-    }],
-  }
+    ],
+  },
 });
 
 mongoose.model("Restaurant", restaurantSchema);

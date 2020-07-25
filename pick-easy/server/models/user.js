@@ -57,7 +57,7 @@ let userSchema = new Schema({
             type: String,
             enum: ["Bronze", "Silver", "Gold", "Platinum", "Diamond"],
           },
-        }
+        },
       ],
     },
   ],
@@ -95,10 +95,4 @@ userSchema.methods.generateJWT = function () {
   );
 };
 
-let User = mongoose.model("User", userSchema);
-
-(async () => {
-  let user = await User.findById("5f1bbc2f6d3e30356c6989b7")
-  user.loyalties[0].rewards = {_id: new mongoose.Types.ObjectId(), content: "stuff", level: "Bronze"}
-  await user.save();
-})();
+mongoose.model("User", userSchema);

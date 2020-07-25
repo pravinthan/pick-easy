@@ -26,6 +26,7 @@ import { AchievementsComponent } from "./components/pages/customer/achievements/
 import { RewardsComponent } from "./components/pages/customer/rewards/rewards.component";
 import { QRCodeComponent } from "./components/pages/customer/qr-code/qr-code.component";
 import { ScanQrCodeComponent } from "./components/pages/restaurant/scan-qr-code/scan-qr-code.component";
+import { RedeemedRewardDialogComponent } from "./components/pages/restaurant/scan-qr-code/redeemed-reward-dialog/redeemed-reward-dialog.component";
 
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -53,7 +54,6 @@ import { NgxMatFileInputModule } from "@angular-material-components/file-input";
 import { QRCodeModule } from "angularx-qrcode";
 import { ZXingScannerModule } from "@zxing/ngx-scanner";
 import { CountUpModule } from "ngx-countup";
-import { RedeemedRewardDialogComponent } from './components/pages/restaurant/scan-qr-code/redeemed-reward-dialog/redeemed-reward-dialog.component';
 
 @NgModule({
   declarations: [

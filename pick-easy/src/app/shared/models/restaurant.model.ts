@@ -13,9 +13,9 @@ export class Restaurant {
   achievements?: RestaurantAchievement[];
   rewards?: RestaurantReward[];
   log: {
-    achievements: RestaurantAchievementLog[],
-    rewards: RestaurantRewardLog[],
-  }
+    achievements: RestaurantAchievementLog[];
+    rewards: RestaurantRewardLog[];
+  };
 }
 
 export class MulterFile {
@@ -63,18 +63,18 @@ export type RestaurantCuisine =
 export type RestaurantCost = 1 | 2 | 3 | 4;
 
 export type RestaurantAchievementLog = {
-  customerId: string,
-  customerName: string,
-  achievement: string,
-  progress: string,
-  complete: boolean,
-  timeOfScan: Date,
-}
+  customerId: string;
+  customerName: string;
+  achievement: string;
+  progress: string;
+  complete: boolean;
+  timeOfScan: Date;
+};
 
 export type RestaurantRewardLog = {
-  customerId: string,
-  customerName: string,
-  reward: string,
-  level: RestaurantRewardLevel,
-  timeOfScan: Date,
-}
+  customerId: string;
+  customerName: string;
+  reward: string;
+  level: RestaurantRewardLevel;
+  timeOfScan: Date;
+};

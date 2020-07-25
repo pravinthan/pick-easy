@@ -32,8 +32,7 @@ let RewardTemplate = mongoose.model(
       templateNumber: 1,
       content:
         "Spend $<amount> or more pre-tax and get <restaurant item> for FREE",
-      value:
-        "Spend $:variable or more pre-tax and get :variable for FREE",
+      value: "Spend $:variable or more pre-tax and get :variable for FREE",
       variables: ["Dollar", "Restaurant Item"],
     },
     {
