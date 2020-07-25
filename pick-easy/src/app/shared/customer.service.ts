@@ -33,7 +33,7 @@ export class CustomerService {
 
   upgradeLevel(customerId: string, restaurantId: string) {
     return this.http.patch(
-      `/api/customers/${customerId}/rewards`,
+      `/api/customers/${customerId}/level`,
       {
         restaurantId,
       },

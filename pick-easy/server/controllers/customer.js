@@ -411,8 +411,6 @@ module.exports.removeReward = async (req, res) => {
         .status(404)
         .send(`Customer ${req.params.userId} does not exist`);
 
-    if (!customer._id.equals(req.user._id)) return res.status(401);
-
     let restaurant = await Restaurant.findById(req.body.restaurantId);
     if (!restaurant)
       return res
