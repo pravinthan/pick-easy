@@ -334,6 +334,25 @@ router.patch(
   customerController.updateAchievement
 );
 
+router.patch(
+  "/customers/:userId/level",
+  auth,
+  customerAuth,
+  [
+    param("userId")
+      .exists({ checkNull: true, checkFalsy: true })
+      .trim()
+      .isMongoId()
+      .escape(),
+    body("restaurantId")
+      .exists({ checkNull: true, checkFalsy: true })
+      .trim()
+      .isMongoId()
+      .escape(),
+  ],
+  customerController.updateLevel
+);
+
 router.post(
   "/customers/:userId/rewards",
   auth,

@@ -87,14 +87,18 @@ export class RewardsComponent {
     return this.getCustomerLoyaltyByRestaurantId(restaurantId)?.rewards;
   }
 
-  /* Change this function */
-  // async redeemTickets(restaurantId: string, customerRewardId: string) {
-  //   await this.customerService
-  //     .redeemReward(this.customer._id, restaurantId, customerRewardId)
-  //     .toPromise();
+  async upgradeLevel(restaurantId: string) {
+    // put tier changing animation here?
 
-  //   await this.getCustomer();
-  // }
+    // first if statement and the number of tickets removed when moving up a tier
+    // aren't connected to restaurant side variable values and values are not
+    // being saved when updating tier?
+    await this.customerService
+      .upgradeLevel(this.customer._id, restaurantId)
+      .toPromise();
+
+    await this.getCustomer();
+  }
 
   openDetailsDialog(restaurant: Restaurant) {
     this.dialog.open(RestaurantDetailsComponent, {
