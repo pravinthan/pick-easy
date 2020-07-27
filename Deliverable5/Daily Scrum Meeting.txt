@@ -182,9 +182,9 @@ Evan
     2. 
     3. 
 Anthony
-    1. 
-    2. 
-    3. 
+    1. working on PIC-64 
+    2. learning about animation in angular
+    3. keep working on PIC-64
 Pravinthan
     1. 
     2. 
@@ -210,9 +210,9 @@ Evan
     2. 
     3. 
 Anthony
-    1. 
-    2. 
-    3. 
+    1. working on PIC-64
+    2. learning about animation in angular
+    3. keep working on PIC-64
 Pravinthan
     1. 
     2. 
