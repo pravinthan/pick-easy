@@ -69,6 +69,7 @@
               matTooltipPosition="right"
             />
             <button
+              (click)="upgradeLevel(restaurant._id)"
               *ngIf="
                 getCustomerLoyaltyByRestaurantId(restaurant._id)
                   ?.numberOfTickets >= restaurant.numberOfTicketsForRedemption
