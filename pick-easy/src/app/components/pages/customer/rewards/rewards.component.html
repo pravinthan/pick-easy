@@ -135,25 +135,45 @@
           </span>
 
           <div class="customer-rewards">
-            <div
-              *ngFor="
-                let customerReward of getCustomerRewardsByRestaurantId(
-                  restaurant._id
-                )
-              "
-              class="customer-reward-container"
-            >
-              <div class="customer-reward">
-                <span class="reward-description">
-                  {{ customerReward.content }}
-                </span>
-                <button
-                  mat-flat-button
-                  class="customer-reward-context-button gradient-button"
-                  (click)="openQRCodeDialog(restaurant._id, customerReward._id)"
+            <div *ngFor="let level of levels">
+              <div
+                *ngIf="
+                  getCustomerRewardsByRestaurantId(restaurant._id, level)
+                    .length > 0
+                "
+                class="customer-rewards-container"
+              >
+                <div>
+                  <span class="reward-level">{{ level }}</span>
+                  <img
+                    [src]="'/assets/' + level.toLowerCase() + '.png'"
+                    class="level-icon-small"
+                  />
+                </div>
+                <div
+                  *ngFor="
+                    let customerReward of getCustomerRewardsByRestaurantId(
+                      restaurant._id,
+                      level
+                    )
+                  "
+                  class="customer-reward-subcontainer"
                 >
-                  Redeem Reward
-                </button>
+                  <div class="customer-reward">
+                    <span class="reward-description">
+                      {{ customerReward.content }}
+                    </span>
+                    <button
+                      mat-flat-button
+                      class="customer-reward-context-button gradient-button"
+                      (click)="
+                        openQRCodeDialog(restaurant._id, customerReward._id)
+                      "
+                    >
+                      Redeem Reward
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
             <div
