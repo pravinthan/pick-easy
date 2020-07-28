@@ -10,9 +10,9 @@ Luke
     2. 
     3. 
 Evan
-    1. 
-    2. 
-    3. 
+    1. Worked on PIC-67
+    2. Other courses
+    3. Continue working on pic-67
 Anthony
     1. Begin working on pic-52 
     2. C10 course work
@@ -66,9 +66,9 @@ Luke
     2. 
     3. 
 Evan
-    1. 
-    2. 
-    3. 
+    1. Worked on PIC-67
+    2. Other courses
+    3. Continue working on pic-67
 Anthony
     1. Worked on pic-52
     2. Other homework
@@ -94,9 +94,9 @@ Luke
     2. 
     3. 
 Evan
-    1. 
-    2. 
-    3. 
+    1. Worked on PIC-67
+    2. Other courses
+    3. Continue working on pic-67
 Anthony
     1. started working on PIC-65 
     2. other work
