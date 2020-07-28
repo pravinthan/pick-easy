@@ -171,6 +171,12 @@
   margin-left: 1rem;
 }
 
+.level-icon-small {
+  width: 16px;
+  margin-bottom: -7px;
+  margin-left: 0.5rem;
+}
+
 .level-up-button {
   color: green;
 }

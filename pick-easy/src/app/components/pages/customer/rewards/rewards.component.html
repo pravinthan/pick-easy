@@ -142,7 +142,12 @@
                 "
                 class="customer-rewards-container"
               >
+              <div>
                 <span class="reward-level">{{ level }}</span>
+                <img
+                  [src]="'/assets/' + level.toLowerCase() + '.png'"
+                  class="level-icon-small"
+                /></div>
                 <div
                   *ngFor="
                     let customerReward of getCustomerRewardsByRestaurantId(
