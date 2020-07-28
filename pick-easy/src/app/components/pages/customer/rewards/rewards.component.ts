@@ -93,7 +93,7 @@ export class RewardsComponent {
     );
   }
 
-  getCustomerRewardsByRestaurantId(restaurantId: string, level: string) {
+  getCustomerRewardsByRestaurantId(restaurantId: string, level?: string) {
     if (level) {
       return this.getCustomerLoyaltyByRestaurantId(
         restaurantId
