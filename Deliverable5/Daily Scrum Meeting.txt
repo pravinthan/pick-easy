@@ -38,9 +38,9 @@ Luke
     2. 
     3. 
 Evan
-    1. 
-    2. 
-    3. 
+    1. Worked on PIC-67
+    2. Other courses
+    3. Continue working on pic-67
 Anthony
     1. Worked on pic-52
     2. Other homework
@@ -122,9 +122,9 @@ Luke
     2. 
     3. 
 Evan
-    1. 
-    2. 
-    3. 
+    1. Worked on PIC-67
+    2. Other courses
+    3. Continue working on pic-67
 Anthony
     1. Worked on PIC-65
     2. other work
@@ -150,9 +150,9 @@ Luke
     2. 
     3. 
 Evan
-    1. 
-    2. 
-    3. 
+    1. Worked on PIC-67
+    2. Other courses
+    3. Continue working on pic-67
 Anthony
     1. Finished PIC-65 
     2. nothing
@@ -178,9 +178,9 @@ Luke
     2. 
     3. 
 Evan
-    1. 
-    2. 
-    3. 
+    1. Worked on PIC-67
+    2. Other courses
+    3. Continue working on pic-67
 Anthony
     1. working on PIC-64 
     2. learning about animation in angular
@@ -206,9 +206,9 @@ Luke
     2. 
     3. 
 Evan
-    1. 
-    2. 
-    3. 
+    1. Worked on PIC-67
+    2. Other courses
+    3. Continue working on pic-67
 Anthony
     1. working on PIC-64
     2. learning about animation in angular
@@ -234,9 +234,9 @@ Luke
     2. 
     3. 
 Evan
-    1. 
-    2. 
-    3. 
+    1. Worked on PIC-67
+    2. Other courses
+    3. Continue working on pic-67 
 Anthony
     1. 
     2. 
@@ -262,9 +262,9 @@ Luke
     2. 
     3. 
 Evan
-    1. 
-    2. 
-    3. 
+    1. Worked on PIC-67
+    2. Other courses
+    3. Continue working on pic-67
 Anthony
     1. 
     2. 
