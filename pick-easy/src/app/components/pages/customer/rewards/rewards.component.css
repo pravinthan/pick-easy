@@ -179,3 +179,65 @@
   font-weight: 500;
   color: #7c7c7ca3;
 }
+
+.loot-box-animation {
+  background: url(/assets/unopened_loot_box.gif) no-repeat center center;
+  height: 500px;
+  width: 500px;
+  min-width: 300px;
+  border-radius: 50%;
+  background-size: 100%;
+  background-color: white;
+}
+
+.opened-loot-box-animation {
+  background: url(/assets/opened_loot_box.gif) no-repeat center center;
+  height: 500px;
+  width: 500px;
+  min-width: 300px;
+  border-radius: 50%;
+  background-size: 100%;
+  background-color: white;
+}
+
+.loot-box-reward {
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.loot-box-reward-text {
+  font-size: 32px;
+  line-height: 32px;
+  width: 400px;
+  text-align: center;
+}
+
+.loot-box-reward-level {
+  position: relative;
+  bottom: 150px;
+  width: 50px;
+  right: 7px;
+}
+
+#overlay {
+  position: fixed;
+  display: none;
+  width: stretch;
+  height: stretch;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 1000;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

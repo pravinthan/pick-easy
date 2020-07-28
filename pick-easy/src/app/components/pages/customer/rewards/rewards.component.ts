@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from "@angular/core";
+import { Component } from "@angular/core";
 import { startWith, map } from "rxjs/operators";
 import { FormControl } from "@angular/forms";
 import { Observable } from "rxjs";
@@ -7,7 +7,7 @@ import { RestaurantService } from "src/app/shared/restaurant.service";
 import { MatDialog } from "@angular/material/dialog";
 import { UserService } from "src/app/shared/user.service";
 import { AuthenticationService } from "src/app/shared/authentication.service";
-import { User } from "src/app/shared/models/user.model";
+import { User, CustomerReward } from "src/app/shared/models/user.model";
 import { CustomerService } from "src/app/shared/customer.service";
 import { RestaurantDetailsComponent } from "../restaurant-details/restaurant-details.component";
 import { QRCodeComponent } from "../qr-code/qr-code.component";
@@ -19,13 +19,16 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./rewards.component.css"],
 })
 export class RewardsComponent {
-  @ViewChild("canvas") canvas: ElementRef<HTMLCanvasElement>;
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
   restaurants: Restaurant[];
   currentUser = this.authenticationService.currentUser;
   customer: User;
   queryName: string;
+  lootBoxOverlayOpened = false;
+  openedLootBox = false;
+  lootBoxReward: CustomerReward;
+  showLootBoxReward = false;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -110,7 +113,7 @@ export class RewardsComponent {
   openQRCodeDialog(restaurantId: string, customerRewardId: string) {
     let qrCodeDialog = this.dialog.open(QRCodeComponent, {
       data: {
-        customerId: this.currentUser._id,
+        customerId: this.customer._id,
         restaurantId: restaurantId,
         customerRewardId: customerRewardId,
       },
@@ -119,5 +122,25 @@ export class RewardsComponent {
     qrCodeDialog.afterClosed().subscribe(() => {
       this.getCustomer();
     });
+  }
+
+  async rollRandomReward(restaurantId: string) {
+    this.lootBoxReward = await this.customerService
+      .generateReward(this.customer._id, restaurantId)
+      .toPromise();
+    await this.getCustomer();
+    this.lootBoxOverlayOpened = true;
+  }
+
+  openLootBox() {
+    this.openedLootBox = true;
+    setTimeout(() => {
+      this.showLootBoxReward = true;
+    }, 1000);
+    setTimeout(() => {
+      this.lootBoxOverlayOpened = false;
+      this.openedLootBox = false;
+      this.showLootBoxReward = false;
+    }, 5000);
   }
 }

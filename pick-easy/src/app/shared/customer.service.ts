@@ -1,7 +1,7 @@
 import { Observable } from "rxjs";
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { User } from "./models/user.model";
+import { User, CustomerReward } from "./models/user.model";
 
 @Injectable({ providedIn: "root" })
 export class CustomerService {
@@ -85,5 +85,11 @@ export class CustomerService {
       },
       { responseType: "text" }
     );
+  }
+
+  generateReward(customerId: string, restaurantId: string): Observable<CustomerReward> {
+    return this.http.post<CustomerReward>(`/api/customers/${customerId}/rewards`, {
+      restaurantId,
+    });
   }
 }
