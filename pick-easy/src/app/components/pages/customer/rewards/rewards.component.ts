@@ -2,7 +2,10 @@ import { Component, ViewChild, ElementRef } from "@angular/core";
 import { startWith, map } from "rxjs/operators";
 import { FormControl } from "@angular/forms";
 import { Observable } from "rxjs";
-import { Restaurant } from "src/app/shared/models/restaurant.model";
+import {
+  Restaurant,
+  RestaurantRewardLevel,
+} from "src/app/shared/models/restaurant.model";
 import { RestaurantService } from "src/app/shared/restaurant.service";
 import { MatDialog } from "@angular/material/dialog";
 import { UserService } from "src/app/shared/user.service";
@@ -26,6 +29,13 @@ export class RewardsComponent {
   currentUser = this.authenticationService.currentUser;
   customer: User;
   queryName: string;
+  levels: RestaurantRewardLevel[] = [
+    "Bronze",
+    "Silver",
+    "Gold",
+    "Platinum",
+    "Diamond",
+  ];
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -83,8 +93,14 @@ export class RewardsComponent {
     );
   }
 
-  getCustomerRewardsByRestaurantId(restaurantId: string) {
-    return this.getCustomerLoyaltyByRestaurantId(restaurantId)?.rewards;
+  getCustomerRewardsByRestaurantId(restaurantId: string, level: string) {
+    if (level) {
+      return this.getCustomerLoyaltyByRestaurantId(
+        restaurantId
+      )?.rewards?.filter((reward) => reward.level === level);
+    } else {
+      return this.getCustomerLoyaltyByRestaurantId(restaurantId)?.rewards;
+    }
   }
 
   async upgradeLevel(restaurantId: string) {

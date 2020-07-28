@@ -69,7 +69,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 2rem;
+  padding: 2rem 1rem;
   background-color: #0000000d;
   border-radius: 30px;
   min-width: 400px;
@@ -91,9 +91,17 @@
   flex-wrap: wrap;
 }
 
-.customer-reward-container {
+.customer-rewards-container,
+.customer-reward-subcontainer {
   display: flex;
   flex-direction: column;
+}
+
+.customer-rewards-container {
+  border-radius: 20px;
+  background-color: #00000009;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0px;
 }
 
 .customer-reward {
@@ -102,18 +110,23 @@
   justify-content: space-between;
 }
 
-.customer-reward-container {
+.customer-reward-subcontainer {
   border-bottom: 1px solid #00000026;
   padding: 0.75rem 0;
 }
 
-.customer-reward-container:last-of-type {
+.customer-reward-subcontainer:last-of-type {
   border-bottom: none;
   padding-bottom: 0;
 }
 
 .customer-reward {
   padding-bottom: 0.75rem;
+}
+
+.reward-level {
+  color: #00000088;
+  font-size: small;
 }
 
 .reward-description {
