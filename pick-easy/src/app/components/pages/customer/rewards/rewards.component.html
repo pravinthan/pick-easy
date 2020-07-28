@@ -139,7 +139,7 @@
               <div
                 *ngIf="
                   getCustomerRewardsByRestaurantId(restaurant._id, level)
-                    .length > 0
+                    ?.length > 0
                 "
                 class="customer-rewards-container"
               >
