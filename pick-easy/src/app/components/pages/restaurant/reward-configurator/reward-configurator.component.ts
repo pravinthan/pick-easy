@@ -61,7 +61,7 @@ export class RewardConfiguratorComponent {
     this.rewards.push({
       templateNumber,
       variables: Array<string>(template.variables.length).fill(""),
-      level: null,
+      level: "Bronze",
     });
 
     this.templatePicker.writeValue(null);
@@ -82,5 +82,28 @@ export class RewardConfiguratorComponent {
       .toPromise()
       .then(() => this.notyf.success("Saved successfully!"))
       .catch(() => this.notyf.error("An error occurred while saving"));
+  }
+
+
+  filterRewardsByLevel(level: RestaurantRewardLevel) {
+    return this.rewards?.filter(
+      (reward) => reward.level == level
+    );
+  }
+
+  filterLevelsByRewards() {
+    return this.levels.filter((level) =>
+      this.rewards?.find(
+        (reward) => reward.level == level
+      )
+    );
+  }
+
+  calculateIndex(level: RestaurantRewardLevel, index: number) {
+    this.rewards.sort((a, b) => this.levels.indexOf(a.level) -this.levels.indexOf(b.level));
+    for (let i = 0; i < this.levels.indexOf(level); i++) {
+      index += this.filterRewardsByLevel(this.levels[i]).length;
+    }
+    return index;
   }
 }

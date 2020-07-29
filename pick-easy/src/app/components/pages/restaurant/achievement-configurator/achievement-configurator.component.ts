@@ -101,4 +101,26 @@ export class AchievementConfiguratorComponent {
       .then(() => this.notyf.success("Saved successfully!"))
       .catch(() => this.notyf.error("An error occurred while saving"));
   }
+
+  filterAchievementsByTemplate(templateNumber: number) {
+    return this.achievements?.filter(
+      (achievement) => achievement.templateNumber == templateNumber
+    );
+  }
+
+  filterTemplatesByAchievements() {
+    return this.templates?.filter((template) =>
+      this.achievements?.find(
+        (achievement) => achievement.templateNumber == template.templateNumber
+      )
+    );
+  }
+
+  calculateIndex(templateNumber: number, index: number) {
+    this.achievements.sort((a, b) => a.templateNumber - b.templateNumber);
+    for (let i = 0; i < templateNumber; i++) {
+      index += this.filterAchievementsByTemplate(i).length;
+    }
+    return index;
+  }
 }
