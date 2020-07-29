@@ -419,21 +419,16 @@ module.exports.generateReward = async (req, res) => {
 
     let allowedRestaurantRewards = restaurant.rewards.filter((reward) => {
       let filter = false;
-      if (customerLoyaltyForRestaurant.level == "Bronze") {
+      if (customerLoyaltyForRestaurant.level == "Bronze")
         filter = filter || reward.level == "Bronze";
-      }
-      if (customerLoyaltyForRestaurant.level == "Silver") {
+      if (customerLoyaltyForRestaurant.level == "Silver")
         filter = filter || reward.level == "Silver";
-      }
-      if (customerLoyaltyForRestaurant.level == "Gold") {
+      if (customerLoyaltyForRestaurant.level == "Gold")
         filter = filter || reward.level == "Gold";
-      }
-      if (customerLoyaltyForRestaurant.level == "Platinum") {
+      if (customerLoyaltyForRestaurant.level == "Platinum")
         filter = filter || reward.level == "Platinum";
-      }
-      if ((customerLoyaltyForRestaurant.level = "Diamond")) {
+      if ((customerLoyaltyForRestaurant.level = "Diamond"))
         filter = filter || reward.level == "Diamond";
-      }
       return filter;
     });
 
@@ -472,9 +467,10 @@ module.exports.generateReward = async (req, res) => {
             "loyalties.$.rewards": newRandomReward,
           },
           $set: {
-            "loyalties.$.numberOfTickets": customerLoyaltyForRestaurant.numberOfTickets -
-            restaurant.numberOfTicketsForRedemption,
-          }
+            "loyalties.$.numberOfTickets":
+              customerLoyaltyForRestaurant.numberOfTickets -
+              restaurant.numberOfTicketsForRedemption,
+          },
         },
         { new: true }
       );

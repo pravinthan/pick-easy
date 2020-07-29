@@ -87,9 +87,15 @@ export class CustomerService {
     );
   }
 
-  generateReward(customerId: string, restaurantId: string): Observable<CustomerReward> {
-    return this.http.post<CustomerReward>(`/api/customers/${customerId}/rewards`, {
-      restaurantId,
-    });
+  generateReward(
+    customerId: string,
+    restaurantId: string
+  ): Observable<CustomerReward> {
+    return this.http.post<CustomerReward>(
+      `/api/customers/${customerId}/rewards`,
+      {
+        restaurantId,
+      }
+    );
   }
 }
