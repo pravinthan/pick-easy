@@ -316,91 +316,6 @@ module.exports.updateLevel = async (req, res) => {
   }
 };
 
-module.exports.addReward = async (req, res) => {
-  if (isBadRequest(req)) return res.sendStatus(400);
-
-  try {
-    let user = await User.findById(req.params.userId);
-    if (!user)
-      return res.status(404).send(`User ${req.params.userId} does not exist`);
-
-    if (!user._id.equals(req.user._id)) return res.status(401);
-
-    let restaurant = await Restaurant.findById(req.body.restaurantId);
-    if (!restaurant)
-      return res
-        .status(404)
-        .send(`Restaurant ${req.body.restaurantId} does not exist`);
-
-    let restaurantReward = restaurant.rewards.find((reward) =>
-      reward._id.equals(req.body.restaurantRewardId)
-    );
-    if (!restaurantReward)
-      return res
-        .status(404)
-        .send(
-          `Restaurant reward ${req.body.restaurantRewardId} does not exist`
-        );
-
-    let rewardTemplate = await RewardTemplate.findOne({
-      templateNumber: restaurantReward.templateNumber,
-    });
-
-    if (!rewardTemplate)
-      return res
-        .status(404)
-        .send(
-          `Restaurant rewards template ${restaurantReward.templateNumber} does not exist`
-        );
-
-    let newReward = {
-      content: rewardTemplate.value
-        .split(":variable")
-        .reduce(
-          (result, text, i) =>
-            result + text + (restaurantReward.variables[i] || ""),
-          ""
-        ),
-      level: restaurantReward.level,
-    };
-
-    let loyalty = user.loyalties.find((loyalty) =>
-      loyalty.restaurantId.equals(restaurant._id)
-    );
-    if (loyalty) {
-      user = await User.findOneAndUpdate(
-        { _id: req.user._id, "loyalties.restaurantId": restaurant._id },
-        {
-          $push: {
-            "loyalties.$.rewards": newReward,
-          },
-        },
-        { new: true }
-      );
-    } else {
-      user = await User.findByIdAndUpdate(
-        req.user._id,
-        {
-          $push: {
-            loyalties: {
-              restaurantId: restaurant._id,
-              numberOfTickets: 0,
-              level: "Bronze",
-              achievements: [],
-              rewards: [newReward],
-            },
-          },
-        },
-        { new: true }
-      );
-    }
-
-    res.json(user);
-  } catch (err) {
-    return res.sendStatus(500);
-  }
-};
-
 module.exports.removeReward = async (req, res) => {
   if (isBadRequest(req)) return res.sendStatus(400);
 
@@ -464,6 +379,104 @@ module.exports.removeReward = async (req, res) => {
     }
 
     res.sendStatus(200);
+  } catch (err) {
+    return res.sendStatus(500);
+  }
+};
+
+module.exports.generateReward = async (req, res) => {
+  if (isBadRequest(req)) return res.sendStatus(400);
+
+  try {
+    let customer = await User.findById(req.params.userId);
+    if (!customer)
+      return res.status(404).send(`User ${req.params.userId} does not exist`);
+
+    if (!customer._id.equals(req.user._id)) return res.status(401);
+
+    let restaurant = await Restaurant.findById(req.body.restaurantId);
+    if (!restaurant)
+      return res
+        .status(404)
+        .send(`Restaurant ${req.body.restaurantId} does not exist`);
+
+    let customerLoyaltyForRestaurant = customer.loyalties.find((loyalty) =>
+      restaurant._id.equals(loyalty.restaurantId)
+    );
+
+    if (!customerLoyaltyForRestaurant)
+      return res
+        .status(404)
+        .send(
+          `Customer loyalty for restaurant ${req.body.restaurantId} does not exist`
+        );
+
+    if (
+      customerLoyaltyForRestaurant.numberOfTickets <
+      restaurant.numberOfTicketsForRedemption
+    )
+      return res.status(409).send(`Not enough tickets to roll for reward`);
+
+    let allowedRestaurantRewards = restaurant.rewards.filter((reward) => {
+      let filter = false;
+      if (customerLoyaltyForRestaurant.level == "Bronze")
+        filter = filter || reward.level == "Bronze";
+      if (customerLoyaltyForRestaurant.level == "Silver")
+        filter = filter || reward.level == "Silver";
+      if (customerLoyaltyForRestaurant.level == "Gold")
+        filter = filter || reward.level == "Gold";
+      if (customerLoyaltyForRestaurant.level == "Platinum")
+        filter = filter || reward.level == "Platinum";
+      if ((customerLoyaltyForRestaurant.level = "Diamond"))
+        filter = filter || reward.level == "Diamond";
+      return filter;
+    });
+
+    let randomRestaurantReward =
+      allowedRestaurantRewards[
+        Math.floor(Math.random() * allowedRestaurantRewards.length)
+      ];
+
+    let rewardTemplate = await RewardTemplate.findOne({
+      templateNumber: randomRestaurantReward.templateNumber,
+    });
+
+    if (!rewardTemplate)
+      return res
+        .status(404)
+        .send(
+          `Restaurant rewards template ${randomRestaurantReward.templateNumber} does not exist`
+        );
+
+    let newRandomReward = {
+      content: rewardTemplate.value
+        .split(":variable")
+        .reduce(
+          (result, text, i) =>
+            result + text + (randomRestaurantReward.variables[i] || ""),
+          ""
+        ),
+      level: randomRestaurantReward.level,
+    };
+
+    if (customerLoyaltyForRestaurant) {
+      customer = await User.findOneAndUpdate(
+        { _id: req.user._id, "loyalties.restaurantId": restaurant._id },
+        {
+          $push: {
+            "loyalties.$.rewards": newRandomReward,
+          },
+          $set: {
+            "loyalties.$.numberOfTickets":
+              customerLoyaltyForRestaurant.numberOfTickets -
+              restaurant.numberOfTicketsForRedemption,
+          },
+        },
+        { new: true }
+      );
+    }
+
+    res.json(newRandomReward);
   } catch (err) {
     return res.sendStatus(500);
   }

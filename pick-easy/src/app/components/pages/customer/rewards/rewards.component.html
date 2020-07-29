@@ -195,6 +195,7 @@
               "
               mat-raised-button
               class="roll-reward-button gradient-button"
+              (click)="rollRandomReward(restaurant._id)"
             >
               <mat-icon>casino</mat-icon>
               Roll a Reward for {{ restaurant.numberOfTicketsForRedemption }}
@@ -209,5 +210,26 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div *ngIf="lootBoxOverlayOpened" id="overlay">
+  <div
+    (click)="openLootBox()"
+    [ngClass]="{
+      'opened-loot-box-animation': openedLootBox && !showLootBoxReward,
+      'loot-box-animation': !openedLootBox
+    }"
+  ></div>
+  <div *ngIf="showLootBoxReward" class="loot-box-reward">
+    <img
+      [src]="'/assets/' + lootBoxReward.level.toLowerCase() + '.png'"
+      class="level-icon loot-box-reward-level"
+      [matTooltip]="lootBoxReward.level + ' reward!'"
+      matTooltipPosition="right"
+    />
+    <span class="loot-box-reward-text gradient-text">
+      {{ lootBoxReward.content }}
+    </span>
   </div>
 </div>

@@ -369,7 +369,7 @@ router.post(
       .isMongoId()
       .escape(),
   ],
-  customerController.addReward
+  customerController.generateReward
 );
 
 router.patch(
