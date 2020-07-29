@@ -6,13 +6,13 @@ Date: July 19, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Work on PIC-70
+    2. Nothing
+    3. Work on PIC-70
 Evan
-    1. 
-    2. 
-    3. 
+    1. Worked on PIC-67
+    2. Other courses
+    3. Continue working on pic-67
 Anthony
     1. Begin working on pic-52 
     2. C10 course work
@@ -34,13 +34,13 @@ Date: July 20, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Work on PIC-70
+    2. Nothing
+    3. Work on PIC-70
 Evan
-    1. 
-    2. 
-    3. 
+    1. Worked on PIC-67
+    2. Other courses
+    3. Continue working on pic-67
 Anthony
     1. Worked on pic-52
     2. Other homework
@@ -62,13 +62,13 @@ Date: July 21, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Work on PIC-70
+    2. Nothing
+    3. Work on PIC-70
 Evan
-    1. 
-    2. 
-    3. 
+    1. Worked on PIC-67
+    2. Other courses
+    3. Continue working on pic-67
 Anthony
     1. Worked on pic-52
     2. Other homework
@@ -90,13 +90,13 @@ Date: July 22, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Work on PIC-70
+    2. Nothing
+    3. Work on PIC-70
 Evan
-    1. 
-    2. 
-    3. 
+    1. Worked on PIC-67
+    2. Other courses
+    3. Continue working on pic-67
 Anthony
     1. started working on PIC-65 
     2. other work
@@ -118,13 +118,13 @@ Date: July 23, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Work on PIC-70
+    2. Nothing
+    3. Prepare for client meeting
 Evan
-    1. 
-    2. 
-    3. 
+    1. Worked on PIC-67
+    2. Other courses
+    3. Continue working on pic-67
 Anthony
     1. Worked on PIC-65
     2. other work
@@ -146,13 +146,13 @@ Date: July 24, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Client Meeting
+    2. Nothing
+    3. Work on PIC-70
 Evan
-    1. 
-    2. 
-    3. 
+    1. Worked on PIC-67
+    2. Other courses
+    3. Continue working on pic-67
 Anthony
     1. Finished PIC-65 
     2. nothing
@@ -174,21 +174,21 @@ Date: July 25, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Work on PIC-70
+    2. Nothing
+    3. Work on PIC-70
 Evan
-    1. 
-    2. 
-    3. 
+    1. Worked on PIC-67
+    2. Other courses
+    3. Continue working on pic-67
 Anthony
-    1. 
-    2. 
-    3. 
+    1. working on PIC-64 
+    2. learning about animation in angular
+    3. keep working on PIC-64
 Pravinthan
-    1. 
-    2. 
-    3. 
+    1. Helping team out with tasks
+    2. Nothing
+    3. Help team
 Jeremy
     1. Nothing
     2. Other work
@@ -202,21 +202,21 @@ Date: July 26, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Work on PIC-70
+    2. Need help from Prav
+    3. Work on PIC-70
 Evan
-    1. 
-    2. 
-    3. 
+    1. Worked on PIC-67
+    2. Other courses
+    3. Continue working on pic-67
 Anthony
-    1. 
-    2. 
-    3. 
+    1. working on PIC-64
+    2. learning about animation in angular
+    3. keep working on PIC-64
 Pravinthan
-    1. 
-    2. 
-    3. 
+    1. Helping team out with tasks
+    2. Nothing
+    3. Help team
 Jeremy
     1. Started pic-69
     2. Other work
@@ -230,25 +230,25 @@ Date: July 27, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Finished PIC-70
+    2. Nothing
+    3. Pull Request
 Evan
-    1. 
-    2. 
-    3. 
+    1. Worked on PIC-67
+    2. Other courses
+    3. Continue working on pic-67 
 Anthony
-    1. 
-    2. 
-    3. 
+    1. Worked on PIC-64 
+    2. Nothing
+    3. Continue with PIC-64
 Pravinthan
-    1. 
-    2. 
-    3. 
+    1. Helping team out with tasks
+    2. Nothing
+    3. Help team
 Jeremy
-    1. 
-    2. 
-    3. 
+    1. Finished pic-69
+    2. Nothing
+    3. Help team if needed
 
 --------------------------------------------------------------------------------------------
 Date: July 28, 2020
@@ -258,25 +258,25 @@ Date: July 28, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Pull Request
+    2. Nothing
+    3. Prepare for Client Meeting
 Evan
-    1. 
-    2. 
-    3. 
+    1. Worked on PIC-67
+    2. Other courses
+    3. Continue working on pic-67
 Anthony
     1. 
     2. 
     3. 
 Pravinthan
-    1. 
-    2. 
-    3. 
+    1. Merged team's branches into master
+    2. Other work
+    3. Help team if needed
 Jeremy
-    1. 
-    2. 
-    3. 
+    1. Nothing
+    2. Other work
+    3. Help team if needed
 
 --------------------------------------------------------------------------------------------
 Date: July 29, 2020
