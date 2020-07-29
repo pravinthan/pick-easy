@@ -6,9 +6,9 @@ Date: July 19, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Work on PIC-70
+    2. Nothing
+    3. Work on PIC-70
 Evan
     1. Worked on PIC-67
     2. Other courses
@@ -34,9 +34,9 @@ Date: July 20, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Work on PIC-70
+    2. Nothing
+    3. Work on PIC-70
 Evan
     1. Worked on PIC-67
     2. Other courses
@@ -62,9 +62,9 @@ Date: July 21, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Work on PIC-70
+    2. Nothing
+    3. Work on PIC-70
 Evan
     1. Worked on PIC-67
     2. Other courses
@@ -90,9 +90,9 @@ Date: July 22, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Work on PIC-70
+    2. Nothing
+    3. Work on PIC-70
 Evan
     1. Worked on PIC-67
     2. Other courses
@@ -118,9 +118,9 @@ Date: July 23, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Work on PIC-70
+    2. Nothing
+    3. Prepare for client meeting
 Evan
     1. Worked on PIC-67
     2. Other courses
@@ -146,9 +146,9 @@ Date: July 24, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Client Meeting
+    2. Nothing
+    3. Work on PIC-70
 Evan
     1. Worked on PIC-67
     2. Other courses
@@ -174,9 +174,9 @@ Date: July 25, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Work on PIC-70
+    2. Nothing
+    3. Work on PIC-70
 Evan
     1. Worked on PIC-67
     2. Other courses
@@ -202,9 +202,9 @@ Date: July 26, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Work on PIC-70
+    2. Need help from Prav
+    3. Work on PIC-70
 Evan
     1. Worked on PIC-67
     2. Other courses
@@ -230,9 +230,9 @@ Date: July 27, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Finished PIC-70
+    2. Nothing
+    3. Pull Request
 Evan
     1. Worked on PIC-67
     2. Other courses
@@ -258,9 +258,9 @@ Date: July 28, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Pull Request
+    2. Nothing
+    3. Prepare for Client Meeting
 Evan
     1. Worked on PIC-67
     2. Other courses
