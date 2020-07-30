@@ -298,9 +298,9 @@ Anthony
     2. 
     3. 
 Pravinthan
-    1. 
-    2. 
-    3. 
+    1. Merged team's branches into master
+    2. Other work
+    3. Help team if needed
 Jeremy
     1. 
     2. 
