@@ -72,7 +72,10 @@
               (click)="upgradeLevel(restaurant._id)"
               *ngIf="
                 getCustomerLoyaltyByRestaurantId(restaurant._id)
-                  ?.numberOfTickets >= restaurant.numberOfTicketsForRedemption
+                  ?.numberOfTickets >=
+                  restaurant.numberOfTicketsForRedemption &&
+                getCustomerLoyaltyByRestaurantId(restaurant._id)?.level !=
+                  'Diamond'
               "
               mat-icon-button
               class="level-up-button"
@@ -213,7 +216,7 @@
   </div>
 </div>
 
-<div *ngIf="lootBoxOverlayOpened" id="overlay">
+<div *ngIf="lootBoxOverlayOpened" class="overlay">
   <div
     (click)="openLootBox()"
     [ngClass]="{
@@ -232,4 +235,34 @@
       {{ lootBoxReward.content }}
     </span>
   </div>
+</div>
+
+<div
+  *ngIf="levelUpOverlayOpened"
+  class="overlay"
+  (click)="levelUpOverlayOpened = false; confetti.reset()"
+>
+  <div class="level-up-container">
+    <span *ngIf="showOldLevel" class="gradient-text level-up-text level-up-old">
+      {{ levelUp.oldLevel }}
+    </span>
+    <img
+      *ngIf="showOldLevel"
+      [src]="'/assets/' + levelUp.oldLevel.toLowerCase() + '.png'"
+      class="level-icon level-up-icon level-up-old"
+    />
+    <div *ngIf="showNewLevel" class="gradient-text level-up-text level-up-new">
+      You are now
+      <div>{{ levelUp.newLevel }}!</div>
+    </div>
+    <img
+      *ngIf="showNewLevel"
+      [src]="'/assets/' + levelUp.newLevel.toLowerCase() + '.png'"
+      class="level-icon level-up-icon level-up-new"
+    />
+  </div>
+</div>
+
+<div id="canvas-container">
+  <canvas #canvas></canvas>
 </div>

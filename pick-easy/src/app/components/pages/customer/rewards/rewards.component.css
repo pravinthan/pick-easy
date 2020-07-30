@@ -244,7 +244,7 @@
   right: 7px;
 }
 
-#overlay {
+.overlay {
   position: fixed;
   display: none;
   width: stretch;
@@ -256,6 +256,61 @@
   background-color: rgba(0, 0, 0, 0.75);
   z-index: 1000;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.level-up-icon {
+  width: 200px;
+}
+
+@keyframes levelUpOld {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(2000px);
+  }
+}
+@keyframes levelUpNew {
+  from {
+    transform: translateY(-2000px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.level-up-old {
+  animation: levelUpOld 2s;
+  animation-timing-function: cubic-bezier(1, 0, 1, 1);
+}
+
+.level-up-new {
+  animation: levelUpNew 2s;
+}
+
+.level-up-container {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.level-up-text {
+  font-size: 60px;
+  line-height: 60px;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+#canvas-container {
   display: flex;
   justify-content: center;
   align-items: center;

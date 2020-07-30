@@ -1,5 +1,5 @@
-import { Component } from "@angular/core";
-import { startWith, map } from "rxjs/operators";
+import { Component, ViewChild, ElementRef, AfterViewInit } from "@angular/core";
+import { startWith, map, timeout } from "rxjs/operators";
 import { FormControl } from "@angular/forms";
 import { Observable } from "rxjs";
 import {
@@ -15,20 +15,30 @@ import { CustomerService } from "src/app/shared/customer.service";
 import { RestaurantDetailsComponent } from "../restaurant-details/restaurant-details.component";
 import { QRCodeComponent } from "../qr-code/qr-code.component";
 import { ActivatedRoute } from "@angular/router";
+import * as confetti from "canvas-confetti";
 
 @Component({
   selector: "app-rewards",
   templateUrl: "./rewards.component.html",
   styleUrls: ["./rewards.component.css"],
 })
-export class RewardsComponent {
+export class RewardsComponent implements AfterViewInit {
+  @ViewChild("canvas") canvas: ElementRef<HTMLCanvasElement>;
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
   restaurants: Restaurant[];
   currentUser = this.authenticationService.currentUser;
   customer: User;
   queryName: string;
+  confetti: any;
+  showOldLevel = false;
+  showNewLevel = false;
   lootBoxOverlayOpened = false;
+  levelUpOverlayOpened = false;
+  levelUp: {
+    oldLevel: RestaurantRewardLevel;
+    newLevel: RestaurantRewardLevel;
+  } = null;
   openedLootBox = false;
   lootBoxReward: CustomerReward;
   showLootBoxReward = false;
@@ -62,8 +72,16 @@ export class RewardsComponent {
     this.getCustomer();
   }
 
+  ngAfterViewInit() {
+    this.canvas.nativeElement.width = window.innerWidth;
+
+    this.confetti = confetti.create(this.canvas.nativeElement, {
+      resize: true,
+    });
+  }
+
   async getRestaurants() {
-    let restaurants = await this.restaurantService
+    const restaurants = await this.restaurantService
       .getAllRestaurants()
       .toPromise();
 
@@ -73,7 +91,7 @@ export class RewardsComponent {
   }
 
   async getCustomer() {
-    let customer = await this.userService
+    const customer = await this.userService
       .getUserInfo(this.currentUser._id)
       .toPromise();
 
@@ -115,6 +133,54 @@ export class RewardsComponent {
     await this.customerService
       .upgradeLevel(this.customer._id, restaurantId)
       .toPromise();
+    const oldLevel = this.getCustomerLoyaltyByRestaurantId(restaurantId)?.level;
+    const newLevel = this.levels[this.levels.indexOf(oldLevel) + 1];
+    this.levelUp = { oldLevel, newLevel };
+    this.showOldLevel = true;
+    this.levelUpOverlayOpened = true;
+    setTimeout(() => {
+      this.showOldLevel = false;
+    }, 2000);
+    setTimeout(() => {
+      this.showNewLevel = true;
+    }, 2250);
+    setTimeout(() => {
+      this.showNewLevel = false;
+      this.levelUpOverlayOpened = false;
+    }, 6250);
+
+    const duration = 15 * 1000;
+    const animationEnd = Date.now() + duration;
+
+    const randomInRange = (min: number, max: number) => {
+      return Math.random() * (max - min) + min;
+    };
+
+    const interval = setInterval(() => {
+      const timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0 || !this.levelUpOverlayOpened) {
+        return clearInterval(interval);
+      }
+
+      const particleCount = 50 * (timeLeft / duration);
+      this.confetti({
+        startVelocity: 30,
+        spread: 360,
+        ticks: 60,
+        zIndex: 0,
+        particleCount,
+        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+      });
+      this.confetti({
+        startVelocity: 30,
+        spread: 360,
+        ticks: 60,
+        zIndex: 0,
+        particleCount,
+        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+      });
+    }, 250);
 
     await this.getCustomer();
   }
@@ -127,7 +193,7 @@ export class RewardsComponent {
   }
 
   openQRCodeDialog(restaurantId: string, customerRewardId: string) {
-    let qrCodeDialog = this.dialog.open(QRCodeComponent, {
+    const qrCodeDialog = this.dialog.open(QRCodeComponent, {
       data: {
         customerId: this.customer._id,
         restaurantId: restaurantId,
