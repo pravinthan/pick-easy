@@ -49,6 +49,11 @@
   align-items: baseline;
   padding: 1rem;
   border-bottom: 1px solid #00000026;
+  margin: 0 1rem 0 1rem;
+}
+
+.reward:last-of-type {
+  border-bottom: 0;
 }
 
 .reward-field {
@@ -83,4 +88,18 @@
 #save-button-container > button {
   min-width: 300px;
   width: 40%;
+}
+
+.grouped-rewards {
+  background-color: #0000000d;
+  margin-bottom: 1rem;
+  border-radius: 25px;
+}
+
+.grouped-reward-header {
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.452);
+  padding-left: 1.5rem;
+  padding-top: 0.5rem;
+  display: block;
 }
