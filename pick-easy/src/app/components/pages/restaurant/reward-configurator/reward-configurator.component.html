@@ -24,10 +24,7 @@
           </span>
           <div
             class="reward"
-            *ngFor="
-              let reward of filterRewardsByLevel(level);
-              let i = index
-            "
+            *ngFor="let reward of filterRewardsByLevel(level); let i = index"
           >
             <div class="reward-text">
               <span
@@ -138,7 +135,7 @@
                 color="warn"
                 title="Remove reward"
                 class="remove-reward-button"
-                (click)="deleteReward(calculateIndex(level,i))"
+                (click)="deleteReward(calculateIndex(level, i))"
               >
                 <mat-icon>remove_circle</mat-icon>
               </button>
