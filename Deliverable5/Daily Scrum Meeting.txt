@@ -314,25 +314,25 @@ Date: July 30, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Finished sprint
+    2. N/A
+    3. Plan next sprint
 Evan
-    1. 
-    2. 
-    3. 
+    1. Finished sprint
+    2. N/A
+    3. Plan next sprint
 Anthony
-    1. 
-    2. 
-    3. 
+    1. Finished sprint
+    2. N/A
+    3. Plan next sprint
 Pravinthan
-    1. 
-    2. 
-    3. 
+    1. Finished sprint
+    2. N/A
+    3. Plan next sprint
 Jeremy
-    1. 
-    2. 
-    3. 
+    1. Finished sprint
+    2. N/A
+    3. Plan next sprint
 
 --------------------------------------------------------------------------------------------
 Date: July 31, 2020
@@ -342,25 +342,25 @@ Date: July 31, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Finished sprint
+    2. N/A
+    3. Plan next sprint
 Evan
-    1. 
-    2. 
-    3. 
+    1. Finished sprint
+    2. N/A
+    3. Plan next sprint
 Anthony
-    1. 
-    2. 
-    3. 
+    1. Finished sprint
+    2. N/A
+    3. Plan next sprint
 Pravinthan
-    1. 
-    2. 
-    3. 
+    1. Finished sprint
+    2. N/A
+    3. Plan next sprint
 Jeremy
-    1. 
-    2. 
-    3. 
+    1. Finished sprint
+    2. N/A
+    3. Plan next sprint
 
 --------------------------------------------------------------------------------------------
 Date: August 1, 2020
@@ -370,22 +370,22 @@ Date: August 1, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Finished sprint
+    2. N/A
+    3. Plan next sprint
 Evan
-    1. 
-    2. 
-    3. 
+    1. Finished sprint
+    2. N/A
+    3. Plan next sprint
 Anthony
-    1. 
-    2. 
-    3. 
+    1. Finished sprint
+    2. N/A
+    3. Plan next sprint
 Pravinthan
-    1. 
-    2. 
-    3. 
+    1. Finished sprint
+    2. N/A
+    3. Plan next sprint
 Jeremy
-    1. 
-    2. 
-    3. 
+    1. Finished sprint
+    2. N/A
+    3. Plan next sprint
