@@ -1,26 +1,31 @@
 import { Component } from "@angular/core";
 import { AuthenticationService } from "src/app/shared/authentication.service";
 import { MatDialog } from "@angular/material/dialog";
-import { SignInComponent } from "src/app/components/sign-in/sign-in.component";
-import { SignUpComponent } from "src/app/components/sign-up/sign-up.component";
+import { SignInComponent } from "../../sign-in/sign-in.component";
+import { SignUpComponent } from "../../sign-up/sign-up.component";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: "app-restaurant-home",
-  templateUrl: "./restaurant-home.component.html",
-  styleUrls: ["./restaurant-home.component.css"],
+  selector: "app-home",
+  templateUrl: "./home.component.html",
+  styleUrls: ["./home.component.css"],
 })
-export class RestaurantHomeComponent {
+export class HomeComponent {
   currentUser = this.authenticationService.currentUser;
+  isRestaurantStaff = false;
 
   constructor(
     private authenticationService: AuthenticationService,
-    public dialog: MatDialog
-  ) {}
+    public dialog: MatDialog,
+    public router: Router
+  ) {
+    this.isRestaurantStaff = this.router.url == "/restaurant";
+  }
 
   openSignInDialog() {
     const signInDialog = this.dialog.open(SignInComponent, {
       width: "400px",
-      data: { isRestaurantStaff: true },
+      data: { isRestaurantStaff: this.isRestaurantStaff },
     });
     const signInSubscription = signInDialog.componentInstance.signedIn.subscribe(
       (signedIn: boolean) => {
@@ -39,7 +44,7 @@ export class RestaurantHomeComponent {
   openSignUpDialog() {
     const signUpDialog = this.dialog.open(SignUpComponent, {
       width: "400px",
-      data: { isRestaurantStaff: true },
+      data: { isRestaurantStaff: this.isRestaurantStaff },
     });
     const signUpSubscription = signUpDialog.componentInstance.signedUp.subscribe(
       (signedUp: boolean) => {

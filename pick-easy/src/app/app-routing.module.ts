@@ -3,10 +3,8 @@ import { Routes, RouterModule } from "@angular/router";
 import { PageNotFoundComponent } from "./components/pages/page-not-found/page-not-found.component";
 import { CreditsComponent } from "./components/pages/credits/credits.component";
 import { AuthenticationGuard } from "./shared/authentication.guard";
-import { CustomerHomeComponent } from "./components/pages/customer/customer-home/customer-home.component";
 import { DiscoverComponent } from "./components/pages/customer/discover/discover.component";
 import { ProfileComponent } from "./components/pages/customer/profile/profile.component";
-import { RestaurantHomeComponent } from "./components/pages/restaurant/restaurant-home/restaurant-home.component";
 import { RewardConfiguratorComponent } from "./components/pages/restaurant/reward-configurator/reward-configurator.component";
 import { AchievementConfiguratorComponent } from "./components/pages/restaurant/achievement-configurator/achievement-configurator.component";
 import { LandingPageComponent } from "./components/pages/landing-page/landing-page.component";
@@ -17,6 +15,7 @@ import { RestaurantCreationGuard } from "./shared/restaurant-creation.guard";
 import { AchievementsComponent } from "./components/pages/customer/achievements/achievements.component";
 import { RewardsComponent } from "./components/pages/customer/rewards/rewards.component";
 import { ScanQrCodeComponent } from "./components/pages/restaurant/scan-qr-code/scan-qr-code.component";
+import { HomeComponent } from "./components/pages/home/home.component";
 
 const routes: Routes = [
   {
@@ -26,9 +25,7 @@ const routes: Routes = [
   },
   {
     path: "customer",
-    component: CustomerHomeComponent,
-    canActivate: [CustomerGuard],
-    data: { guardOnlyIfSignedIn: true },
+    component: HomeComponent,
   },
   {
     path: "customer/discover",
@@ -52,9 +49,7 @@ const routes: Routes = [
   },
   {
     path: "restaurant",
-    component: RestaurantHomeComponent,
-    canActivate: [RestaurantStaffGuard],
-    data: { guardOnlyIfSignedIn: true },
+    component: HomeComponent,
   },
   {
     path: "restaurant/my-restaurant",

@@ -16,9 +16,7 @@ import { CreditsComponent } from "./components/pages/credits/credits.component";
 import { MyRestaurantComponent } from "./components/pages/restaurant/my-restaurant/my-restaurant.component";
 import { ProfileComponent } from "./components/pages/customer/profile/profile.component";
 import { DiscoverComponent } from "./components/pages/customer/discover/discover.component";
-import { CustomerHomeComponent } from "./components/pages/customer/customer-home/customer-home.component";
 import { RewardConfiguratorComponent } from "./components/pages/restaurant/reward-configurator/reward-configurator.component";
-import { RestaurantHomeComponent } from "./components/pages/restaurant/restaurant-home/restaurant-home.component";
 import { AchievementConfiguratorComponent } from "./components/pages/restaurant/achievement-configurator/achievement-configurator.component";
 import { LandingPageComponent } from "./components/pages/landing-page/landing-page.component";
 import { RestaurantDetailsComponent } from "./components/pages/customer/restaurant-details/restaurant-details.component";
@@ -27,6 +25,7 @@ import { RewardsComponent } from "./components/pages/customer/rewards/rewards.co
 import { QRCodeComponent } from "./components/pages/customer/qr-code/qr-code.component";
 import { ScanQrCodeComponent } from "./components/pages/restaurant/scan-qr-code/scan-qr-code.component";
 import { RedeemedRewardDialogComponent } from "./components/pages/restaurant/scan-qr-code/redeemed-reward-dialog/redeemed-reward-dialog.component";
+import { HomeComponent } from "./components/pages/home/home.component";
 
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -61,13 +60,11 @@ import { CountUpModule } from "ngx-countup";
     HeaderComponent,
     SignInComponent,
     SignUpComponent,
-    CustomerHomeComponent,
     PageNotFoundComponent,
     CreditsComponent,
     ProfileComponent,
     DiscoverComponent,
     RewardConfiguratorComponent,
-    RestaurantHomeComponent,
     RestaurantDetailsComponent,
     AchievementConfiguratorComponent,
     LandingPageComponent,
@@ -77,6 +74,7 @@ import { CountUpModule } from "ngx-countup";
     QRCodeComponent,
     ScanQrCodeComponent,
     RedeemedRewardDialogComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

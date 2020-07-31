@@ -1,7 +1,7 @@
 <div id="page">
   <div id="content">
     <div id="title">
-      <span class="gradient-text">Configure Your Rewards</span>
+      <span class="gradient-text">Configure Rewards</span>
     </div>
     <div id="configurator-container">
       <mat-form-field id="template-picker" appearance="fill">
@@ -19,9 +19,13 @@
           class="grouped-rewards"
           *ngFor="let level of filterLevelsByRewards()"
         >
-          <span class="grouped-reward-header">
+          <div class="grouped-reward-header">
             {{ level }}
-          </span>
+            <img
+              src="/assets/{{ level.toLowerCase() }}.png"
+              class="level-icon-small"
+            />
+          </div>
           <div
             class="reward"
             *ngFor="let reward of filterRewardsByLevel(level); let i = index"
@@ -122,7 +126,7 @@
               </span>
             </div>
             <div class="reward-context-container">
-              <mat-form-field class="reward-level" appearance="fill">
+              <mat-form-field class="reward-level" appearance="outline">
                 <mat-label>Choose level</mat-label>
                 <mat-select [(ngModel)]="reward.level" required>
                   <mat-option *ngFor="let level of levels" [value]="level">{{
