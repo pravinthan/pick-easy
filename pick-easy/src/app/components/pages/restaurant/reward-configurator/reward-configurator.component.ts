@@ -50,7 +50,7 @@ export class RewardConfiguratorComponent {
   }
 
   getTemplateByNumber(templateNumber: number): RewardTemplate {
-    return this.templates.find(
+    return this.templates?.find(
       (template) => template.templateNumber == templateNumber
     );
   }
