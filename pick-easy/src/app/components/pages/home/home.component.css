@@ -76,3 +76,32 @@
 .buttons-container > button:last-of-type {
   margin-right: 0;
 }
+
+@media only screen and (min-width: 1201px) {
+}
+
+@media only screen and (max-width: 1200px) {
+  .buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .buttons-container > a,
+  .buttons-container > button {
+    margin-right: 0;
+    margin-bottom: 1rem;
+    max-width: 200px;
+  }
+
+  .buttons-container > a:last-of-type,
+  .buttons-container > button:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+}
+
+@media only screen and (max-width: 480px) {
+}

@@ -1,6 +1,15 @@
 <mat-toolbar id="toolbar">
   <mat-toolbar-row>
-    <div class="space-evenly">
+    <button
+      *ngIf="currentUser"
+      mat-icon-button
+      (click)="toggleSidebar.emit()"
+      class="toggle-sidebar"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <div class="space-evenly hide-mobile">
       <a
         mat-button
         routerLink="/customer/discover"
@@ -53,7 +62,7 @@
       </a>
     </div>
 
-    <div>
+    <div class="logo-mobile">
       <a
         [routerLink]="
           currentUser
@@ -69,7 +78,7 @@
       </a>
     </div>
 
-    <div style="flex: 1;">
+    <div style="flex: 1;" class="hide-mobile">
       <div class="space-evenly">
         <a
           mat-button
@@ -137,17 +146,18 @@
           <mat-icon class="gradient-text disabled">redeem</mat-icon>
           <span class="gradient-text disabled">Rewards</span>
         </a>
+
+        <button
+          mat-button
+          id="sign-out-button"
+          class="gradient-text"
+          (click)="signOut()"
+          *ngIf="currentUser"
+        >
+          Sign Out
+        </button>
       </div>
     </div>
-    <button
-      mat-button
-      id="sign-out-button"
-      class="gradient-text"
-      (click)="signOut()"
-      *ngIf="currentUser"
-    >
-      Sign Out
-    </button>
   </mat-toolbar-row>
 </mat-toolbar>
 

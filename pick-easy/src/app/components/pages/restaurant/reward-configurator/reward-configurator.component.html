@@ -35,7 +35,7 @@
                 *ngFor="
                   let text of getTemplateByNumber(
                     reward.templateNumber
-                  ).value.split(':variable');
+                  )?.value.split(':variable');
                   let i = index
                 "
               >
