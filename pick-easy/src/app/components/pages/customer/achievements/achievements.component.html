@@ -87,6 +87,7 @@
           </span>
 
           <span
+            class="align-text-center"
             *ngIf="
               restaurant.numberOfTicketsForRedemption >
               getCustomerLoyaltyByRestaurantId(restaurant._id)?.numberOfTickets
@@ -116,6 +117,7 @@
           </span>
 
           <span
+            class="align-text-center"
             *ngIf="
               getCustomerLoyaltyByRestaurantId(restaurant._id)
                 ?.numberOfTickets >= restaurant.numberOfTicketsForRedemption

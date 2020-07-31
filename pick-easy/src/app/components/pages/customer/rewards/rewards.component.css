@@ -73,6 +73,7 @@
   background-color: #0000000d;
   border-radius: 30px;
   min-width: 400px;
+  margin: 1rem;
 }
 
 .restaurant-name {
@@ -89,6 +90,7 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .customer-rewards-container,
@@ -101,13 +103,14 @@
   border-radius: 20px;
   background-color: #00000009;
   padding: 0.5rem 1rem;
-  margin: 0.5rem 0px;
+  margin: 0.5rem 2rem;
 }
 
 .customer-reward {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-bottom: 0.75rem;
 }
 
 .customer-reward-subcontainer {
@@ -120,10 +123,6 @@
   padding-bottom: 0;
 }
 
-.customer-reward {
-  padding-bottom: 0.75rem;
-}
-
 .reward-level {
   color: #00000088;
   font-size: small;
@@ -132,6 +131,7 @@
 .reward-description {
   font-size: 16px;
   max-width: 350px;
+  overflow-wrap: break-word;
 }
 
 .roll-reward-button,
@@ -142,6 +142,7 @@
 
 .customer-reward-context-button {
   margin-left: 1rem;
+  min-width: 150px;
 }
 
 .bold {
@@ -314,4 +315,32 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.align-text-center {
+  text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+  #page {
+    padding: 0;
+  }
+
+  #content {
+    border-radius: 0;
+    margin-top: 64px;
+    background: none;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  #search > .mat-form-field {
+    width: 100%;
+  }
+
+  .restaurant {
+    min-width: 250px;
+    margin: 1rem 0;
+    padding: 1rem;
+  }
 }

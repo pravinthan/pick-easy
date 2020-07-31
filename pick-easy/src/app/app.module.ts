@@ -42,7 +42,6 @@ import { MatCardModule } from "@angular/material/card";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatTabsModule } from "@angular/material/tabs";
-import { RatingModule } from "ng-starrating";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatSelectModule } from "@angular/material/select";
 import { MatTooltipModule } from "@angular/material/tooltip";
@@ -98,7 +97,6 @@ import { CountUpModule } from "ngx-countup";
     MatCardModule,
     MatProgressBarModule,
     MatAutocompleteModule,
-    RatingModule,
     MatChipsModule,
     MatSelectModule,
     MatTabsModule,

@@ -73,6 +73,7 @@
   background-color: #0000000d;
   border-radius: 30px;
   min-width: 400px;
+  margin: 1rem;
 }
 
 .restaurant-name {
@@ -123,6 +124,7 @@
 .achievement-description {
   font-size: 16px;
   max-width: 350px;
+  overflow-wrap: break-word;
 }
 
 .restaurant-achievement-activate-button,
@@ -130,6 +132,10 @@
   margin-left: 1rem;
   font-size: 14px;
   font-weight: 500;
+}
+
+.restaurant-achievement-activate-button {
+  min-width: 90px;
 }
 
 .customer-achievement-progress-container {
@@ -218,4 +224,32 @@
 .level-icon {
   width: 30px;
   margin-left: 1rem;
+}
+
+.align-text-center {
+  text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+  #page {
+    padding: 0;
+  }
+
+  #content {
+    border-radius: 0;
+    margin-top: 64px;
+    background: none;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  #search > .mat-form-field {
+    width: 100%;
+  }
+
+  .restaurant {
+    min-width: 250px;
+    margin: 1rem 0;
+    padding: 1.5rem;
+  }
 }
