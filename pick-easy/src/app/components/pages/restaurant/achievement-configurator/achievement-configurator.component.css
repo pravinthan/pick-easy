@@ -16,7 +16,7 @@
   background: linear-gradient(to right, #e8285f, #f23f43);
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: 22px;
+  font-size: 26px;
   font-weight: bold;
 }
 
@@ -59,7 +59,7 @@
 
 .achievement {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   padding: 1rem;
   border-bottom: 1px solid #00000026;
   margin: 0 1rem 0 1rem;
@@ -71,7 +71,7 @@
 
 .achievement-template-container {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   flex: 1 0 0;
 }
 
@@ -109,7 +109,7 @@
 }
 
 .grouped-achievement-header {
-  font-size: 11px;
+  font-size: 12px;
   color: rgba(0, 0, 0, 0.452);
   padding-left: 1.5rem;
   padding-top: 0.5rem;

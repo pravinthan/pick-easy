@@ -66,3 +66,13 @@
     background-position: 0% 50%;
   }
 }
+
+.buttons-container > a,
+.buttons-container > button {
+  margin-right: 2rem;
+}
+
+.buttons-container > a:last-of-type,
+.buttons-container > button:last-of-type {
+  margin-right: 0;
+}

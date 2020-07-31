@@ -46,7 +46,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   padding: 1rem;
   border-bottom: 1px solid #00000026;
   margin: 0 1rem 0 1rem;
@@ -62,17 +62,20 @@
 
 .reward-context-container {
   display: flex;
-  align-items: baseline;
+  align-items: center;
 }
 
 .reward-level {
   padding-left: 3rem;
 }
 
+::ng-deep .reward-level > .mat-form-field-wrapper {
+  margin-bottom: -1.25em !important;
+}
+
 .remove-reward-button {
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
 }
 
 .primary-color {
@@ -97,9 +100,13 @@
 }
 
 .grouped-reward-header {
-  font-size: 11px;
   color: rgba(0, 0, 0, 0.452);
-  padding-left: 1.5rem;
-  padding-top: 0.5rem;
-  display: block;
+  padding: 0.75rem 0 0 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.level-icon-small {
+  width: 16px;
+  margin-left: 0.3rem;
 }

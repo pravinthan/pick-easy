@@ -18,13 +18,7 @@ export class RestaurantStaffGuard implements CanActivate {
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (
-      (route.data.guardOnlyIfSignedIn &&
-        (!this.authenticationService.currentUser ||
-          this.authenticationService.currentUser.isRestaurantStaff)) ||
-      this.authenticationService.currentUser.isRestaurantStaff
-    )
-      return true;
+    if (this.authenticationService.currentUser.isRestaurantStaff) return true;
 
     this.router.navigate(["/"]);
     this.notyf.error("Unauthorized or forbidden access to this resource");

@@ -1,12 +1,16 @@
 <div id="home-video">
-  <video autoplay muted loop>
+  <video autoPlay muted loop>
     <source src="/assets/home-video.mp4" type="video/mp4" />
   </video>
 </div>
 <div id="home-overlay">
   <div>
     <span style="font-size: xx-large; font-weight: bold;">
-      Welcome to PickEasy for Restaurants
+      {{
+        isRestaurantStaff
+          ? "Welcome to PickEasy for Restaurants"
+          : "Welcome to PickEasy"
+      }}
     </span>
   </div>
   <div style="margin-top: 0.5rem;">
@@ -15,12 +19,8 @@
     </span>
   </div>
   <div style="margin-top: 2rem;">
-    <div *ngIf="!currentUser">
-      <button
-        mat-raised-button
-        (click)="openSignInDialog()"
-        style="margin-right: 2rem;"
-      >
+    <div *ngIf="!currentUser" class="buttons-container">
+      <button mat-raised-button (click)="openSignInDialog()">
         Sign In
       </button>
       <button
@@ -32,7 +32,29 @@
       </button>
     </div>
 
-    <div *ngIf="currentUser">
+    <div
+      *ngIf="currentUser && !this.isRestaurantStaff"
+      class="buttons-container"
+    >
+      <a mat-raised-button routerLink="./discover" class="gradient-button">
+        <mat-icon>storefront</mat-icon>
+        Discover
+      </a>
+      <a mat-raised-button routerLink="./profile" class="gradient-button">
+        <mat-icon>person</mat-icon>
+        Profile
+      </a>
+      <a mat-raised-button routerLink="./achievements" class="gradient-button">
+        <mat-icon>card_membership</mat-icon>
+        Achievements
+      </a>
+      <a mat-raised-button routerLink="./rewards" class="gradient-button">
+        <mat-icon>redeem</mat-icon>
+        Rewards
+      </a>
+    </div>
+
+    <div *ngIf="currentUser && isRestaurantStaff" class="buttons-container">
       <a
         mat-raised-button
         routerLink="./my-restaurant"
@@ -42,7 +64,6 @@
         [matBadgeHidden]="currentUser?.createdRestaurant"
         matBadgeColor="warn"
         matBadgeSize="small"
-        style="margin-right: 2rem;"
         matTooltip="Create a restaurant here!"
         [matTooltipDisabled]="currentUser?.createdRestaurant"
       >
@@ -55,7 +76,6 @@
         routerLink="./scan"
         *ngIf="currentUser?.createdRestaurant"
         class="gradient-button"
-        style="margin-right: 2rem;"
       >
         <mat-icon>qr_code_scanner</mat-icon>
         Scan
@@ -65,7 +85,6 @@
         *ngIf="!currentUser?.createdRestaurant"
         disabled
         class="gradient-button"
-        style="margin-right: 2rem;"
         matTooltip="Create a restaurant to scan"
       >
         <mat-icon>qr_code_scanner</mat-icon>
@@ -77,7 +96,6 @@
         routerLink="./achievements"
         *ngIf="currentUser?.createdRestaurant"
         class="gradient-button"
-        style="margin-right: 2rem;"
       >
         <mat-icon>card_membership</mat-icon>
         Achievements
@@ -87,7 +105,6 @@
         *ngIf="!currentUser?.createdRestaurant"
         disabled
         class="gradient-button"
-        style="margin-right: 2rem;"
         matTooltip="Create a restaurant to configure achievements"
       >
         <mat-icon>card_membership</mat-icon>
