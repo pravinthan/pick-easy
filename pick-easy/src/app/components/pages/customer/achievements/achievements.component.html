@@ -279,6 +279,10 @@
       </div>
     </div>
   </div>
+
+  <div id="canvas-container" [hidden]="!endVal">
+    <canvas #canvas></canvas>
+  </div>
 </div>
 
 <div
@@ -300,8 +304,4 @@
   <span class="gradient-text count-up-hint">
     Tickets
   </span>
-</div>
-
-<div id="canvas-container">
-  <canvas #canvas></canvas>
 </div>

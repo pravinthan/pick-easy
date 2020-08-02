@@ -6,7 +6,6 @@ export class Restaurant {
   image: MulterFile;
   name: string;
   description: string;
-  rating: 0 | 1 | 2 | 3 | 4 | 5;
   cost: RestaurantCost;
   cuisine: RestaurantCuisine;
   numberOfTicketsForRedemption?: number;

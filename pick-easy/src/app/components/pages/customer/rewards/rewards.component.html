@@ -215,9 +215,16 @@
       </div>
     </div>
   </div>
+
+  <div
+    id="canvas-container"
+    [hidden]="!levelUpOverlayOpened && !showLootBoxReward"
+  >
+    <canvas #canvas></canvas>
+  </div>
 </div>
 
-<div *ngIf="lootBoxOverlayOpened" class="overlay">
+<div *ngIf="lootBoxOverlayOpened" class="overlay no-click">
   <div
     (click)="openLootBox()"
     [ngClass]="{
@@ -232,6 +239,12 @@
       [matTooltip]="lootBoxReward.level + ' reward!'"
       matTooltipPosition="right"
     />
+    <span class="loot-box-reward-text gradient-text">
+      Congratulations!
+    </span>
+    <span class="loot-box-reward-text gradient-text">
+      You receieved:
+    </span>
     <span class="loot-box-reward-text gradient-text">
       {{ lootBoxReward.content }}
     </span>
@@ -262,8 +275,4 @@
       class="level-icon level-up-icon level-up-new"
     />
   </div>
-</div>
-
-<div id="canvas-container">
-  <canvas #canvas></canvas>
 </div>
