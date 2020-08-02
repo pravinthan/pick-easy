@@ -11,6 +11,7 @@ mat-dialog-content {
   font-size: 36px;
   font-weight: bold;
   line-height: normal;
+  text-align: center;
   height: stretch;
 }
 
@@ -22,4 +23,10 @@ mat-dialog-content {
 
 ::ng-deep .mat-button .mat-ripple-element {
   background-color: #f23f43;
+}
+
+@media only screen and (max-width: 480px) {
+  mat-dialog-content {
+    font-size: 24px;
+  }
 }

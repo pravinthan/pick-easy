@@ -190,7 +190,7 @@
 }
 
 .roll-reward-button {
-  margin-top: 1rem;
+  margin-bottom: 1rem;
   height: 40px;
   border-radius: 50px;
 }
@@ -237,7 +237,6 @@
 .loot-box-reward-text {
   font-size: 32px;
   line-height: 40px;
-  text-align: center;
 }
 
 .loot-box-reward-text:nth-last-child(2) {
@@ -330,7 +329,9 @@
 }
 
 .align-text-center,
-.level-up-text {
+.level-up-text,
+.loot-box-reward-text,
+.no-rewards-text {
   text-align: center;
 }
 

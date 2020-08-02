@@ -139,6 +139,24 @@
           </span>
 
           <div class="customer-rewards">
+            <button
+              *ngIf="
+                getCustomerLoyaltyByRestaurantId(restaurant._id)
+                  ?.numberOfTickets >= restaurant.numberOfTicketsForRedemption
+              "
+              mat-raised-button
+              class="roll-reward-button gradient-button"
+              (click)="rollRandomReward(restaurant._id)"
+            >
+              <mat-icon>casino</mat-icon>
+              Roll a Reward for {{ restaurant.numberOfTicketsForRedemption }}
+              {{
+                restaurant.numberOfTicketsForRedemption == 1
+                  ? "Ticket"
+                  : "Tickets"
+              }}
+              <mat-icon>casino</mat-icon>
+            </button>
             <div *ngFor="let level of levels">
               <div
                 *ngIf="
@@ -191,25 +209,6 @@
             >
               No Obtained Rewards
             </div>
-
-            <button
-              *ngIf="
-                getCustomerLoyaltyByRestaurantId(restaurant._id)
-                  ?.numberOfTickets >= restaurant.numberOfTicketsForRedemption
-              "
-              mat-raised-button
-              class="roll-reward-button gradient-button"
-              (click)="rollRandomReward(restaurant._id)"
-            >
-              <mat-icon>casino</mat-icon>
-              Roll a Reward for {{ restaurant.numberOfTicketsForRedemption }}
-              {{
-                restaurant.numberOfTicketsForRedemption == 1
-                  ? "Ticket"
-                  : "Tickets"
-              }}
-              <mat-icon>casino</mat-icon>
-            </button>
           </div>
         </div>
       </div>

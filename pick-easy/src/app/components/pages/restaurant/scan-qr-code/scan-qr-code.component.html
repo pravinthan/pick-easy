@@ -63,6 +63,7 @@
               matSortActive="timeOfScan"
               matSortDisableClear
               matSortDirection="desc"
+              id="achievement-log"
             >
               <ng-container matColumnDef="customerName">
                 <mat-header-cell *matHeaderCellDef>
@@ -106,11 +107,11 @@
             ><mat-table
               #rewardLogSort="matSort"
               [dataSource]="rewardLogDataSource"
-              class="mat-elevation-z8"
               matSort
               matSortActive="timeOfScan"
               matSortDisableClear
               matSortDirection="desc"
+              id="reward-log"
             >
               <ng-container matColumnDef="customerName">
                 <mat-header-cell *matHeaderCellDef>

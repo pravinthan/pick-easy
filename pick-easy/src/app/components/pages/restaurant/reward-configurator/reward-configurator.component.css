@@ -23,6 +23,7 @@
 #title {
   display: flex;
   justify-content: center;
+  text-align: center;
 }
 
 #title > .gradient-text {
@@ -37,9 +38,10 @@
   margin-top: 2rem;
 }
 
-#template-picker {
-  min-width: 300px;
-  width: 50%;
+#template-picker,
+#save-button-container > button {
+  width: 100%;
+  max-width: 450px;
 }
 
 .reward {
@@ -50,6 +52,16 @@
   padding: 1rem;
   border-bottom: 1px solid #00000026;
   margin: 0 1rem 0 1rem;
+}
+
+.reward-text {
+  display: flex;
+  flex: 1 0 0;
+}
+
+.reward-text > div {
+  display: flex;
+  align-items: center;
 }
 
 .reward:last-of-type {
@@ -69,13 +81,12 @@
   padding-left: 3rem;
 }
 
-::ng-deep .reward-level > .mat-form-field-wrapper {
-  margin-bottom: -1.25em !important;
+.remove-reward-button {
+  margin-left: 1rem;
 }
 
-.remove-reward-button {
-  display: flex;
-  justify-content: center;
+::ng-deep .reward-level > .mat-form-field-wrapper {
+  margin-bottom: -1.25em !important;
 }
 
 .primary-color {
@@ -86,11 +97,6 @@
   display: flex;
   justify-content: center;
   margin-top: 2rem;
-}
-
-#save-button-container > button {
-  min-width: 300px;
-  width: 40%;
 }
 
 .grouped-rewards {
@@ -109,4 +115,43 @@
 .level-icon-small {
   width: 16px;
   margin-left: 0.3rem;
+}
+
+@media only screen and (max-width: 1200px) {
+  .reward-text,
+  .reward-text > div {
+    flex: initial;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .reward-text {
+    margin-bottom: 1rem;
+  }
+
+  .reward {
+    flex-direction: column;
+  }
+
+  .reward-level {
+    padding-left: 0;
+  }
+
+  .remove-reward-button {
+    margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #page {
+    padding: 0;
+  }
+
+  #content {
+    border-radius: 0;
+    margin-top: 64px;
+    background: none;
+    padding: 16px 0;
+  }
 }
