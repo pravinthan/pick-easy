@@ -190,6 +190,41 @@ router.patch(
   restaurantController.updateRestaurant
 );
 
+router.patch(
+  "/restaurants/:id/rewardWeight",
+  auth,
+  restaurantStaffAuth,
+  [
+    param("id")
+      .exists({ checkNull: true, checkFalsy: true })
+      .trim()
+      .isMongoId()
+      .escape(),
+    body("rewardWeight").exists({ checkNull: true, checkFalsy: true }),
+    body("rewardWeight.*.bronze")
+      .exists({ checkNull: true })
+      .toInt()
+      .isInt({ min: 0 }),
+    body("rewardWeight.*.silver")
+      .exists({ checkNull: true })
+      .toInt()
+      .isInt({ min: 0 }),
+    body("rewardWeight.*.gold")
+      .exists({ checkNull: true })
+      .toInt()
+      .isInt({ min: 0 }),
+    body("rewardWeight.*.platinum")
+      .exists({ checkNull: true })
+      .toInt()
+      .isInt({ min: 0 }),
+    body("rewardWeight.*.diamond")
+      .exists({ checkNull: true })
+      .toInt()
+      .isInt({ min: 0 }),
+  ],
+  restaurantController.updateRestaurantRewardWeight
+);
+
 router.get(
   "/restaurants/:id/image",
   auth,

@@ -12,6 +12,7 @@ export class Restaurant {
   numberOfTicketsForRedemption?: number;
   achievements?: RestaurantAchievement[];
   rewards?: RestaurantReward[];
+  rewardWeight: RestaurantRewardWeight;
   log: {
     achievements: RestaurantAchievementLog[];
     rewards: RestaurantRewardLog[];
@@ -38,6 +39,14 @@ export class RestaurantReward {
   templateNumber: number;
   variables: string[];
   level: RestaurantRewardLevel;
+}
+
+export class RestaurantRewardWeight {
+  bronze: number;
+  silver: number;
+  gold: number;
+  platinum: number;
+  diamond: number;
 }
 
 export type RestaurantRewardLevel =
