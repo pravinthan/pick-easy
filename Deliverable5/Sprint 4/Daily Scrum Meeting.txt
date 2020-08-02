@@ -7,23 +7,23 @@ Date: August 2, 2020
 
 Luke
     1. N/A (first meeting)
-    2. 
+    2. N/A
     3. 
 Evan
     1. N/A (first meeting)
-    2. 
+    2. N/A
     3. 
 Anthony
     1. N/A (first meeting)
-    2. 
+    2. N/A
     3. 
 Pravinthan
     1. N/A (first meeting)
-    2. 
-    3. 
+    2. N/A
+    3. Work on pic-53
 Jeremy
     1. N/A (first meeting)
-    2. 
+    2. N/A
     3. 
 
 --------------------------------------------------------------------------------------------
@@ -46,9 +46,9 @@ Anthony
     2. 
     3. 
 Pravinthan
-    1. 
-    2. 
-    3. 
+    1. Worked on pic-53
+    2. Nothing
+    3. Continue to work on pic-53 (just need to fix iOS/macOS CSS functionality)
 Jeremy
     1. 
     2. 
