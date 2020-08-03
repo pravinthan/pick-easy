@@ -50,9 +50,9 @@ Pravinthan
     2. Nothing
     3. Continue to work on pic-53 (just need to fix iOS/macOS CSS functionality)
 Jeremy
-    1. 
-    2. 
-    3. 
+    1. Worked on pic-74
+    2. Other work
+    3. Continue pic-74
 
 --------------------------------------------------------------------------------------------
 Date: August 4, 2020
