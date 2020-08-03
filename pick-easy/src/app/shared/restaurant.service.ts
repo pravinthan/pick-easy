@@ -76,7 +76,7 @@ export class RestaurantService {
   ) {
     return this.http.patch(
       `/api/restaurants/${restaurantId}/rewardWeight`,
-      { restaurantRewardWeight },
+      { rewardWeight: restaurantRewardWeight },
       { responseType: "text" }
     );
   }

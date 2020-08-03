@@ -5,6 +5,7 @@ import {
   Restaurant,
   RestaurantReward,
   RestaurantRewardLevel,
+  RestaurantRewardWeight,
 } from "src/app/shared/models/restaurant.model";
 import { MatSelect } from "@angular/material/select";
 import { RestaurantService } from "src/app/shared/restaurant.service";
@@ -28,6 +29,7 @@ export class RewardConfiguratorComponent {
     "Platinum",
     "Diamond",
   ];
+  rewardWeight: RestaurantRewardWeight;
 
   constructor(
     private templateService: TemplateService,
@@ -46,6 +48,7 @@ export class RewardConfiguratorComponent {
       .then((restaurant) => {
         this.restaurant = restaurant;
         this.rewards = restaurant.rewards;
+        this.rewardWeight = restaurant.rewardWeight;
       });
   }
 
@@ -80,6 +83,10 @@ export class RewardConfiguratorComponent {
     this.restaurantService
       .updateRewards(this.restaurant._id, this.rewards)
       .toPromise()
+      .then(() => {
+        console.log(this.rewardWeight)
+        return this.restaurantService.updateRestaurantRewardWeight(this.restaurant._id, this.rewardWeight).toPromise()
+      })
       .then(() => this.notyf.success("Saved successfully!"))
       .catch(() => this.notyf.error("An error occurred while saving"));
   }

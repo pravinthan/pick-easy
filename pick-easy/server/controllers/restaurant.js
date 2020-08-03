@@ -27,6 +27,13 @@ module.exports.createRestaurant = async (req, res) => {
       cost: req.body.restaurantCost,
       cuisine: req.body.restaurantCuisine,
       image: req.file,
+      rewardWeight: {
+        bronze: 5,
+        silver: 4,
+        gold: 3,
+        platinum: 2,
+        diamond: 1
+      },
       log: {
         achievements: [],
         rewards: [],
@@ -198,7 +205,7 @@ module.exports.updateRestaurantRewardWeight = async (req, res) => {
       return res.status(404).send(`Restaurant ${req.params.id} does not exist`);
 
     if (!restaurant.staff._id.equals(req.user._id)) return res.sendStatus(403);
-
+    console.log(req.body.rewardWeight)
     await Restaurant.findByIdAndUpdate(restaurant._id, {
       $set: {
         rewardWeight: req.body.rewardWeight,

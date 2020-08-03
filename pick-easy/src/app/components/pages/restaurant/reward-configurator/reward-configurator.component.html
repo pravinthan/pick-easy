@@ -4,6 +4,27 @@
       <span class="gradient-text">Configure Rewards</span>
     </div>
     <div id="configurator-container">
+      <div id="reward-weights">
+        <div class="reward-weight" *ngFor="let level of levels; let i = index">
+          <span>{{ level }} Weight</span>
+          <mat-form-field appearance="outline" class="weight-field">
+            <mat-label>{{ level }}</mat-label>
+            <input
+              matInput
+              type="number"
+              min="1"
+              required
+              [(ngModel)]="rewardWeight[level.toLowerCase()]"
+            />
+            <mat-hint [id]="null">
+              Enter a weight 1 or higher
+            </mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+      <div id="rewards-title">
+        <span class="gradient-text">List of Rewards</span>
+      </div>
       <mat-form-field id="template-picker" appearance="fill">
         <mat-label>Choose a reward template</mat-label>
         <mat-select #templatePicker (selectionChange)="addReward($event.value)">

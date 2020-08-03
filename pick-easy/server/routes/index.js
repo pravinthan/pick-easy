@@ -201,26 +201,26 @@ router.patch(
       .isMongoId()
       .escape(),
     body("rewardWeight").exists({ checkNull: true, checkFalsy: true }),
-    body("rewardWeight.*.bronze")
+    body("rewardWeight.bronze")
       .exists({ checkNull: true })
       .toInt()
-      .isInt({ min: 0 }),
-    body("rewardWeight.*.silver")
+      .isInt({ min: 1 }),
+    body("rewardWeight.silver")
       .exists({ checkNull: true })
       .toInt()
-      .isInt({ min: 0 }),
-    body("rewardWeight.*.gold")
+      .isInt({ min: 1 }),
+    body("rewardWeight.gold")
       .exists({ checkNull: true })
       .toInt()
-      .isInt({ min: 0 }),
-    body("rewardWeight.*.platinum")
+      .isInt({ min: 1 }),
+    body("rewardWeight.platinum")
       .exists({ checkNull: true })
       .toInt()
-      .isInt({ min: 0 }),
-    body("rewardWeight.*.diamond")
+      .isInt({ min: 1 }),
+    body("rewardWeight.diamond")
       .exists({ checkNull: true })
       .toInt()
-      .isInt({ min: 0 }),
+      .isInt({ min: 1 }),
   ],
   restaurantController.updateRestaurantRewardWeight
 );

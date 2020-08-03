@@ -77,23 +77,23 @@ let restaurantSchema = new Schema({
   rewardWeight: {
     bronze: {
       type: Number,
-      min: 0,
+      min: 1,
     },
     silver: {
       type: Number,
-      min: 0,
+      min: 1,
     },
     gold: {
       type: Number,
-      min: 0,
+      min: 1,
     },
     platinum: {
       type: Number,
-      min: 0,
+      min: 1,
     },
     diamond: {
       type: Number,
-      min: 0,
+      min: 1,
     },
   },
   log: {
