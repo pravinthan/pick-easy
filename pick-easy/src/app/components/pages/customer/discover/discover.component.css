@@ -20,6 +20,10 @@
   font-weight: bold;
 }
 
+.gradient-text-button {
+  color: #e8285f;
+}
+
 #title {
   display: flex;
   justify-content: center;

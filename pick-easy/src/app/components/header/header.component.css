@@ -80,6 +80,10 @@ mat-icon.gradient-text {
   background-clip: text;
 }
 
+.gradient-text-button {
+  color: #e8285f;
+}
+
 .toggle-sidebar {
   position: absolute;
   left: 5px;

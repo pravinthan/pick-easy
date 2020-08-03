@@ -135,7 +135,7 @@
               mat-stroked-button
               routerLink="../rewards"
               [queryParams]="{ restaurantName: restaurant.name }"
-              class="navigate-reward-button gradient-text"
+              class="navigate-reward-button gradient-text-button"
               >Take me there!</a
             >
           </span>
@@ -266,7 +266,7 @@
               </span>
               <button
                 mat-stroked-button
-                class="restaurant-achievement-activate-button gradient-text"
+                class="restaurant-achievement-activate-button gradient-text-button"
                 (click)="
                   activateAchievement(restaurant._id, restaurantAchievement)
                 "

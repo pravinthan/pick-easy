@@ -21,6 +21,10 @@ mat-dialog-content {
   -webkit-text-fill-color: transparent;
 }
 
+.gradient-text-button {
+  color: #e8285f;
+}
+
 ::ng-deep .mat-button .mat-ripple-element {
   background-color: #f23f43;
 }
