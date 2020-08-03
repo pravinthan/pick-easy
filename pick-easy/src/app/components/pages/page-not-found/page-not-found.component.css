@@ -74,10 +74,11 @@
   min-height: 600px;
   margin: 0px auto;
   width: auto;
-  max-width: 460px;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: white;
 }
 
 .path {

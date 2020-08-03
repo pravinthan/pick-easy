@@ -33,6 +33,25 @@
           [ngStyle]="{ display: deviceSelect == 'none' ? 'none' : 'block' }"
         ></zxing-scanner>
       </div>
+      <span class="error" *ngIf="hasPermission === undefined"
+        >Waiting for permissions (If your device does not have cameras, no
+        permissions will be asked)
+      </span>
+
+      <span class="error" *ngIf="hasPermission === false"
+        >You denied the camera permission (Allow access to your camera)
+      </span>
+
+      <span
+        class="error"
+        *ngIf="hasDevices === undefined && hasPermission !== false"
+        >Couldn't check for devices (This may be caused by some security error)
+      </span>
+
+      <span class="error" *ngIf="hasDevices === false"
+        >No media devices were found
+      </span>
+
       <div class="logs">
         <mat-tab-group>
           <mat-tab label="Scanned Achievement History">
@@ -44,6 +63,7 @@
               matSortActive="timeOfScan"
               matSortDisableClear
               matSortDirection="desc"
+              id="achievement-log"
             >
               <ng-container matColumnDef="customerName">
                 <mat-header-cell *matHeaderCellDef>
@@ -87,11 +107,11 @@
             ><mat-table
               #rewardLogSort="matSort"
               [dataSource]="rewardLogDataSource"
-              class="mat-elevation-z8"
               matSort
               matSortActive="timeOfScan"
               matSortDisableClear
               matSortDirection="desc"
+              id="reward-log"
             >
               <ng-container matColumnDef="customerName">
                 <mat-header-cell *matHeaderCellDef>
@@ -106,8 +126,13 @@
                   Reward
                 </mat-header-cell>
                 <mat-cell *matCellDef="let reward">
-                  {{ reward.reward
-                  }}<!--Add level icons-->
+                  <img
+                    src="/assets/{{ reward.level.toLowerCase() }}.png"
+                    class="level-icon-small"
+                    [matTooltip]="reward.level"
+                    matTooltipPosition="above"
+                  />
+                  {{ reward.reward }}
                 </mat-cell>
               </ng-container>
               <ng-container matColumnDef="timeOfScan">
@@ -127,24 +152,6 @@
           ></mat-tab>
         </mat-tab-group>
       </div>
-      <span class="error" *ngIf="hasPermission === undefined"
-        >Waiting for permissions (If your device does not have cameras, no
-        permissions will be asked)
-      </span>
-
-      <span class="error" *ngIf="hasPermission === false"
-        >You denied the camera permission (Allow access to your camera)
-      </span>
-
-      <span
-        class="error"
-        *ngIf="hasDevices === undefined && hasPermission !== false"
-        >Couldn't check for devices (This may be caused by some security error)
-      </span>
-
-      <span class="error" *ngIf="hasDevices === false"
-        >No media devices were found
-      </span>
     </div>
   </div>
 </div>

@@ -26,6 +26,7 @@ import { QRCodeComponent } from "./components/pages/customer/qr-code/qr-code.com
 import { ScanQrCodeComponent } from "./components/pages/restaurant/scan-qr-code/scan-qr-code.component";
 import { RedeemedRewardDialogComponent } from "./components/pages/restaurant/scan-qr-code/redeemed-reward-dialog/redeemed-reward-dialog.component";
 import { HomeComponent } from "./components/pages/home/home.component";
+import { NavigationComponent } from "./components/navigation/navigation.component";
 
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -41,13 +42,13 @@ import { MatCardModule } from "@angular/material/card";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatTabsModule } from "@angular/material/tabs";
-import { RatingModule } from "ng-starrating";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatSelectModule } from "@angular/material/select";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatBadgeModule } from "@angular/material/badge";
 import { MatTableModule } from "@angular/material/table";
 import { MatSortModule } from "@angular/material/sort";
+import { MatSidenavModule } from "@angular/material/sidenav";
 
 import { NgxMatFileInputModule } from "@angular-material-components/file-input";
 import { QRCodeModule } from "angularx-qrcode";
@@ -75,6 +76,7 @@ import { CountUpModule } from "ngx-countup";
     ScanQrCodeComponent,
     RedeemedRewardDialogComponent,
     HomeComponent,
+    NavigationComponent,
   ],
   imports: [
     BrowserModule,
@@ -95,7 +97,6 @@ import { CountUpModule } from "ngx-countup";
     MatCardModule,
     MatProgressBarModule,
     MatAutocompleteModule,
-    RatingModule,
     MatChipsModule,
     MatSelectModule,
     MatTabsModule,
@@ -107,6 +108,7 @@ import { CountUpModule } from "ngx-countup";
     CountUpModule,
     MatTableModule,
     MatSortModule,
+    MatSidenavModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, AfterViewInit } from "@angular/core";
+import { Component, ViewChild, ElementRef } from "@angular/core";
 import { startWith, map } from "rxjs/operators";
 import { FormControl } from "@angular/forms";
 import { Observable } from "rxjs";
@@ -24,7 +24,7 @@ import { ActivatedRoute } from "@angular/router";
   templateUrl: "./achievements.component.html",
   styleUrls: ["./achievements.component.css"],
 })
-export class AchievementsComponent implements AfterViewInit {
+export class AchievementsComponent {
   @ViewChild("canvas") canvas: ElementRef<HTMLCanvasElement>;
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
@@ -63,14 +63,6 @@ export class AchievementsComponent implements AfterViewInit {
 
     this.getCustomer();
     this.getRestaurants();
-  }
-
-  ngAfterViewInit() {
-    this.canvas.nativeElement.width = window.innerWidth;
-
-    this.confetti = confetti.create(this.canvas.nativeElement, {
-      resize: true,
-    });
   }
 
   async getRestaurants() {
@@ -215,15 +207,52 @@ export class AchievementsComponent implements AfterViewInit {
       restaurantId
     ).numberOfTickets;
 
-    this.confetti({
-      particleCount: 100,
-      spread: 90,
-      origin: {
-        y: 1,
-        x: 0.5,
-      },
-      zIndex: 1001,
+    this.playConfetti();
+  }
+
+  playConfetti() {
+    this.canvas.nativeElement.width = window.innerWidth;
+    this.canvas.nativeElement.height = Math.max(
+      this.canvas.nativeElement.parentElement.parentElement.offsetHeight,
+      window.innerHeight
+    );
+
+    this.confetti = confetti.create(this.canvas.nativeElement, {
+      resize: true,
     });
+
+    const duration = 15 * 1000;
+    const animationEnd = Date.now() + duration;
+
+    const randomInRange = (min: number, max: number) => {
+      return Math.random() * (max - min) + min;
+    };
+
+    const interval = setInterval(() => {
+      const timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0 || !this.endVal) {
+        return clearInterval(interval);
+      }
+
+      const particleCount = 50 * (timeLeft / duration);
+      this.confetti({
+        startVelocity: 30,
+        spread: 360,
+        ticks: 60,
+        zIndex: 0,
+        particleCount,
+        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+      });
+      this.confetti({
+        startVelocity: 30,
+        spread: 360,
+        ticks: 60,
+        zIndex: 0,
+        particleCount,
+        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+      });
+    }, 250);
   }
 
   openDetailsDialog(restaurant: Restaurant) {

@@ -24,6 +24,7 @@
   display: flex;
   justify-content: center;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 #title > .gradient-text {
@@ -37,24 +38,27 @@
   flex-direction: column;
 }
 
+#tickets-picker,
+#template-picker,
+#save-button-container > button {
+  width: 100%;
+  max-width: 450px;
+}
+
 #tickets-picker {
-  width: 40%;
   margin-bottom: 2rem;
 }
 
 #achievements-title {
   margin-bottom: 1rem;
-}
-
-#template-picker {
-  width: 40%;
+  text-align: center;
 }
 
 #achievements {
   display: flex;
   flex-direction: column;
   max-height: 450px;
-  overflow: auto;
+  overflow-y: auto;
 }
 
 .achievement {
@@ -93,10 +97,6 @@
   margin-top: 2rem;
 }
 
-#save-button-container > button {
-  width: 40%;
-}
-
 .gradient-button {
   color: white;
   background: linear-gradient(to right, #e8285f, #f23f43);
@@ -114,4 +114,51 @@
   padding-left: 1.5rem;
   padding-top: 0.5rem;
   display: block;
+}
+
+::ng-deep .achievement-context-container .mat-form-field-wrapper {
+  margin-bottom: -1.25em !important;
+}
+
+@media only screen and (max-width: 1200px) {
+  .achievement-template-container,
+  .achievement-template-container > div {
+    flex: initial;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .achievement-template-container {
+    margin-bottom: 0.5rem;
+  }
+
+  .achievement-template-container > div {
+    display: flex;
+    align-items: center;
+  }
+
+  .achievement {
+    flex-direction: column;
+  }
+
+  .achievement-context-container {
+    padding-left: 0;
+  }
+
+  .remove-achievement-button {
+    margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #page {
+    padding: 0;
+  }
+
+  #content {
+    border-radius: 0;
+    margin-top: 64px;
+    background: none;
+    padding: 16px 0;
+  }
 }

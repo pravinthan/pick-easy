@@ -46,24 +46,16 @@
               "
             >
             </mat-card-subtitle>
-            <star-rating
-              [value]="restaurant.rating"
-              [totalstars]="5"
-              checkedcolor="red"
-              uncheckedcolor="black"
-              size="24px"
-              [readonly]="true"
-            ></star-rating>
           </mat-card-header>
           <img mat-card-image #image [id]="restaurant._id + '-image'" src="" />
           <mat-card-content>
             <div class="description" [innerHTML]="restaurant.description"></div>
-            <div style="display: flex; justify-content: space-between;">
+            <div class="restaurant-nav-buttons">
               <a
                 mat-stroked-button
                 routerLink="../achievements"
                 [queryParams]="{ restaurantName: restaurant.name }"
-                class="gradient-text"
+                class="gradient-text-button"
               >
                 <mat-icon>card_membership</mat-icon>
                 Achievements
@@ -72,7 +64,7 @@
                 mat-stroked-button
                 routerLink="../rewards"
                 [queryParams]="{ restaurantName: restaurant.name }"
-                class="gradient-text"
+                class="gradient-text-button"
               >
                 <mat-icon>redeem</mat-icon>
                 Rewards

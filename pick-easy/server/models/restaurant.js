@@ -17,17 +17,6 @@ let restaurantSchema = new Schema({
   },
   name: String,
   description: String,
-  rating: {
-    value: {
-      type: Number,
-      min: 0,
-      max: 5,
-    },
-    ratedBy: {
-      type: Number,
-      min: 0,
-    },
-  },
   cost: {
     type: Number,
     min: 1,

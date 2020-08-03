@@ -43,3 +43,29 @@
   color: white;
   background: linear-gradient(to right, #e8285f, #f23f43);
 }
+
+.buttons-container > a {
+  margin-right: 2rem;
+}
+
+.buttons-container > a:last-of-type {
+  margin-right: 0;
+}
+
+@media only screen and (max-width: 1200px) {
+  .buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .buttons-container > a {
+    margin-right: 0;
+    margin-bottom: 1rem;
+    max-width: 200px;
+  }
+
+  .buttons-container > a:last-of-type {
+    margin-bottom: 0;
+  }
+}

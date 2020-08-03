@@ -55,9 +55,6 @@ mat-icon.gradient-text {
 }
 
 #sign-out-button {
-  position: absolute;
-  top: 14px;
-  right: 36px;
   font-size: 16px;
 }
 
@@ -81,4 +78,33 @@ mat-icon.gradient-text {
 .gradient-text.disabled {
   background: linear-gradient(to right, #e8285e8e, #f23f4277);
   background-clip: text;
+}
+
+.gradient-text-button {
+  color: #e8285f;
+}
+
+.toggle-sidebar {
+  position: absolute;
+  left: 5px;
+}
+
+@media only screen and (min-width: 1201px) {
+  .toggle-sidebar {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  #toolbar {
+    border-radius: 0;
+  }
+
+  .hide-mobile {
+    display: none;
+  }
+
+  .logo-mobile {
+    margin: 0 auto;
+  }
 }

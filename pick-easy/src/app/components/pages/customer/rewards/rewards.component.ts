@@ -1,5 +1,5 @@
-import { Component, ViewChild, ElementRef, AfterViewInit } from "@angular/core";
-import { startWith, map, timeout } from "rxjs/operators";
+import { Component, ViewChild, ElementRef } from "@angular/core";
+import { startWith, map } from "rxjs/operators";
 import { FormControl } from "@angular/forms";
 import { Observable } from "rxjs";
 import {
@@ -22,7 +22,7 @@ import * as confetti from "canvas-confetti";
   templateUrl: "./rewards.component.html",
   styleUrls: ["./rewards.component.css"],
 })
-export class RewardsComponent implements AfterViewInit {
+export class RewardsComponent {
   @ViewChild("canvas") canvas: ElementRef<HTMLCanvasElement>;
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
@@ -72,14 +72,6 @@ export class RewardsComponent implements AfterViewInit {
     this.getCustomer();
   }
 
-  ngAfterViewInit() {
-    this.canvas.nativeElement.width = window.innerWidth;
-
-    this.confetti = confetti.create(this.canvas.nativeElement, {
-      resize: true,
-    });
-  }
-
   async getRestaurants() {
     const restaurants = await this.restaurantService
       .getAllRestaurants()
@@ -125,11 +117,6 @@ export class RewardsComponent implements AfterViewInit {
   }
 
   async upgradeLevel(restaurantId: string) {
-    // put tier changing animation here?
-
-    // first if statement and the number of tickets removed when moving up a tier
-    // aren't connected to restaurant side variable values and values are not
-    // being saved when updating tier?
     await this.customerService
       .upgradeLevel(this.customer._id, restaurantId)
       .toPromise();
@@ -149,6 +136,22 @@ export class RewardsComponent implements AfterViewInit {
       this.levelUpOverlayOpened = false;
     }, 6250);
 
+    this.playConfetti(true);
+
+    await this.getCustomer();
+  }
+
+  playConfetti(isLevelUpConfetti: boolean) {
+    this.canvas.nativeElement.width = window.innerWidth;
+    this.canvas.nativeElement.height = Math.max(
+      this.canvas.nativeElement.parentElement.parentElement.offsetHeight,
+      window.innerHeight
+    );
+
+    this.confetti = confetti.create(this.canvas.nativeElement, {
+      resize: true,
+    });
+
     const duration = 15 * 1000;
     const animationEnd = Date.now() + duration;
 
@@ -159,7 +162,10 @@ export class RewardsComponent implements AfterViewInit {
     const interval = setInterval(() => {
       const timeLeft = animationEnd - Date.now();
 
-      if (timeLeft <= 0 || !this.levelUpOverlayOpened) {
+      const clearCondition = isLevelUpConfetti
+        ? !this.levelUpOverlayOpened
+        : !this.showLootBoxReward;
+      if (timeLeft <= 0 || clearCondition) {
         return clearInterval(interval);
       }
 
@@ -181,8 +187,6 @@ export class RewardsComponent implements AfterViewInit {
         origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
       });
     }, 250);
-
-    await this.getCustomer();
   }
 
   openDetailsDialog(restaurant: Restaurant) {
@@ -218,6 +222,7 @@ export class RewardsComponent implements AfterViewInit {
     this.openedLootBox = true;
     setTimeout(() => {
       this.showLootBoxReward = true;
+      this.playConfetti(false);
     }, 1000);
     setTimeout(() => {
       this.lootBoxOverlayOpened = false;

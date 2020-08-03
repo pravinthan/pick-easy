@@ -66,3 +66,37 @@ zxing-scanner {
 .logs > mat-tab-group {
   width: stretch;
 }
+
+.level-icon-small {
+  width: 16px;
+  margin-right: 0.3rem;
+}
+
+#achievement-log,
+#reward-log {
+  overflow-x: auto;
+}
+
+#achievement-log {
+  min-width: 700px;
+}
+
+#reward-log {
+  min-width: 550px;
+}
+
+@media only screen and (max-width: 768px) {
+  #page {
+    padding: 0;
+  }
+
+  #content {
+    border-radius: 0;
+    margin-top: 64px;
+    background: none;
+    padding: 16px 0;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+}

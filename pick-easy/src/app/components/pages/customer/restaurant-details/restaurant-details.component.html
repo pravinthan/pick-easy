@@ -6,14 +6,6 @@
       >{{ data.restaurant.cuisine }} Restaurant ·
       {{ "$".repeat(data.restaurant.cost) }}</mat-card-subtitle
     >
-    <star-rating
-      [value]="data.restaurant.rating"
-      [totalstars]="5"
-      checkedcolor="red"
-      uncheckedcolor="black"
-      size="24px"
-      [readonly]="true"
-    ></star-rating>
   </mat-card-header>
   <img mat-card-image #image [id]="data.restaurant._id + '-image'" src="" />
   <mat-card-content>
