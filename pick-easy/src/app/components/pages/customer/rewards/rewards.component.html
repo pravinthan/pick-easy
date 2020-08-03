@@ -92,6 +92,23 @@
             </button>
           </div>
 
+          <a
+            routerLink="../history"
+            [queryParams]="{ restaurantName: restaurant.name }"
+            mat-icon-button
+            class="history-button"
+          >
+            <mat-icon class="gradient-text">history</mat-icon>
+          </a>
+          <a
+            routerLink="../achievements"
+            [queryParams]="{ restaurantName: restaurant.name }"
+            mat-icon-button
+            class="achievements-button"
+          >
+            <mat-icon class="gradient-text">card_membership</mat-icon>
+          </a>
+
           <span>
             You currently have
             <span class="bold">

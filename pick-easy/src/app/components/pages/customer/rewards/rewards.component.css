@@ -66,6 +66,7 @@
 }
 
 .restaurant {
+  position: relative;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -74,6 +75,26 @@
   border-radius: 30px;
   min-width: 400px;
   margin: 1rem;
+}
+
+.history-button{
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.history-button mat-icon{
+  font-size: 24px;
+}
+
+.achievements-button{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.achievements-button mat-icon{
+  font-size: 24px;
 }
 
 .restaurant-name {

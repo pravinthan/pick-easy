@@ -69,6 +69,22 @@
               matTooltipPosition="right"
             />
           </div>
+          <a
+            routerLink="../history"
+            [queryParams]="{ restaurantName: restaurant.name }"
+            mat-icon-button
+            class="history-button"
+          >
+            <mat-icon class="gradient-text">history</mat-icon>
+          </a>
+          <a
+            routerLink="../rewards"
+            [queryParams]="{ restaurantName: restaurant.name }"
+            mat-icon-button
+            class="rewards-button"
+          >
+            <mat-icon class="gradient-text">redeem</mat-icon>
+          </a>
 
           <span>
             You currently have
