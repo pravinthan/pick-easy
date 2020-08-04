@@ -70,7 +70,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 2rem 1rem;
+  padding: 2rem 1rem 1rem 1rem;
   background-color: #0000000d;
   border-radius: 30px;
   min-width: 400px;
@@ -122,6 +122,10 @@
   background-color: #00000009;
   padding: 0.5rem 1rem;
   margin: 0.5rem 2rem;
+}
+
+.customer-rewards-container:first-of-type {
+  margin-top: 1rem;
 }
 
 .customer-reward {
@@ -208,7 +212,7 @@
 }
 
 .roll-reward-button {
-  margin-bottom: 1rem;
+  margin: 0.5rem 0 0 0;
   height: 40px;
   border-radius: 50px;
 }
