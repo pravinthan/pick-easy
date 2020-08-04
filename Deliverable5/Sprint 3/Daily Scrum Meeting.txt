@@ -286,25 +286,25 @@ Date: July 29, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Prepared for Client Meeting
+    2. Nothing
+    3. Prepare for Client Meeting
 Evan
     1. Finished PIC-67
     2. Nothing
     3. Help the team if anyone needs it.
 Anthony
-    1. 
-    2. 
-    3. 
+    1. Finished PIC-64
+    2. Nothing
+    3. Help team members
 Pravinthan
     1. Merged team's branches into master
     2. Other work
     3. Help team if needed
 Jeremy
-    1. 
-    2. 
-    3. 
+    1. Nothing
+    2. N/A
+    3. Help team if needed
 
 --------------------------------------------------------------------------------------------
 Date: July 30, 2020

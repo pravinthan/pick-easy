@@ -20,6 +20,10 @@
   font-weight: bold;
 }
 
+.gradient-text-button {
+  color: #e8285f;
+}
+
 #title {
   display: flex;
   justify-content: center;
@@ -58,11 +62,6 @@
   max-width: 500px;
 }
 
-star-rating {
-  height: fit-content;
-  margin-left: auto;
-}
-
 .description {
   padding: 1rem 0;
 }
@@ -85,4 +84,45 @@ a.gradient-text {
 
 ::ng-deep .mat-stroked-button .mat-ripple-element {
   background-color: #f23f43;
+}
+
+.restaurant-nav-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 768px) {
+  #page {
+    padding: 0;
+  }
+
+  #content {
+    border-radius: 0;
+    margin-top: 64px;
+    background: none;
+    padding: 16px 0;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  mat-card > img {
+    width: 300px;
+    height: auto;
+  }
+
+  .restaurant-card {
+    width: 275px;
+  }
+
+  .restaurant-nav-buttons {
+    flex-direction: column;
+  }
+
+  .restaurant-nav-buttons > a {
+    margin: 0.25rem;
+  }
+
+  #search > .mat-form-field {
+    width: 100%;
+  }
 }

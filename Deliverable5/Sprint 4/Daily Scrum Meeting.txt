@@ -34,25 +34,25 @@ Date: August 3, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Worked on pic-72
+    2. Nothing
+    3. Bug fix rolling rewards
 Evan
     1. 
     2. 
     3. 
 Anthony
-    1. 
-    2. 
-    3. 
+    1. Worked on pic-75
+    2. other work
+    3. continue working on pic-75
 Pravinthan
     1. Worked on pic-53
     2. Nothing
     3. Continue to work on pic-53 (just need to fix iOS/macOS CSS functionality)
 Jeremy
-    1. 
-    2. 
-    3. 
+    1. Worked on pic-74
+    2. Other work
+    3. Continue pic-74
 
 --------------------------------------------------------------------------------------------
 Date: August 4, 2020
@@ -74,9 +74,9 @@ Anthony
     2. 
     3. 
 Pravinthan
-    1. 
-    2. 
-    3. 
+    1. Finished pic-53
+    2. Nothing
+    3. Help team with their tasks, prep for final release
 Jeremy
     1. 
     2. 

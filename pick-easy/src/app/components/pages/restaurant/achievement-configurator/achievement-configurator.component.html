@@ -115,7 +115,7 @@
             </div>
 
             <div class="achievement-context-container">
-              <mat-form-field>
+              <mat-form-field appearance="outline">
                 <mat-label>Number of Tickets to award</mat-label>
                 <input
                   type="number"
@@ -127,22 +127,22 @@
                   required
                 />
               </mat-form-field>
-
-              <button
-                mat-icon-button
-                color="warn"
-                title="Remove achievement"
-                class="remove-achievement-button"
-                (click)="
-                  removeAchievement(
-                    achievement,
-                    calculateIndex(template.templateNumber, i)
-                  )
-                "
-              >
-                <mat-icon>remove_circle</mat-icon>
-              </button>
             </div>
+
+            <button
+              mat-icon-button
+              color="warn"
+              title="Remove achievement"
+              class="remove-achievement-button"
+              (click)="
+                removeAchievement(
+                  achievement,
+                  calculateIndex(template.templateNumber, i)
+                )
+              "
+            >
+              <mat-icon>remove_circle</mat-icon>
+            </button>
           </div>
         </div>
       </div>

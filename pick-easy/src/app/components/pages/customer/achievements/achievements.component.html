@@ -70,6 +70,25 @@
             />
           </div>
 
+          <a
+            routerLink="../history"
+            [queryParams]="{ restaurantName: restaurant.name }"
+            mat-icon-button
+            class="history-button"
+            matTooltip="Go to History"
+          >
+            <mat-icon class="gradient-text">history</mat-icon>
+          </a>
+          <a
+            routerLink="../rewards"
+            [queryParams]="{ restaurantName: restaurant.name }"
+            mat-icon-button
+            class="rewards-button"
+            matTooltip="Go to Rewards"
+          >
+            <mat-icon class="gradient-text">redeem</mat-icon>
+          </a>
+
           <span>
             You currently have
             <span class="bold">
@@ -87,6 +106,7 @@
           </span>
 
           <span
+            class="align-text-center"
             *ngIf="
               restaurant.numberOfTicketsForRedemption >
               getCustomerLoyaltyByRestaurantId(restaurant._id)?.numberOfTickets
@@ -116,6 +136,7 @@
           </span>
 
           <span
+            class="align-text-center"
             *ngIf="
               getCustomerLoyaltyByRestaurantId(restaurant._id)
                 ?.numberOfTickets >= restaurant.numberOfTicketsForRedemption
@@ -133,7 +154,7 @@
               mat-stroked-button
               routerLink="../rewards"
               [queryParams]="{ restaurantName: restaurant.name }"
-              class="navigate-reward-button gradient-text"
+              class="navigate-reward-button gradient-text-button"
               >Take me there!</a
             >
           </span>
@@ -264,7 +285,7 @@
               </span>
               <button
                 mat-stroked-button
-                class="restaurant-achievement-activate-button gradient-text"
+                class="restaurant-achievement-activate-button gradient-text-button"
                 (click)="
                   activateAchievement(restaurant._id, restaurantAchievement)
                 "
@@ -276,6 +297,10 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div id="canvas-container" [hidden]="!endVal">
+    <canvas #canvas></canvas>
   </div>
 </div>
 
@@ -298,8 +323,4 @@
   <span class="gradient-text count-up-hint">
     Tickets
   </span>
-</div>
-
-<div id="canvas-container">
-  <canvas #canvas></canvas>
 </div>

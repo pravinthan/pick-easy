@@ -23,7 +23,6 @@ module.exports.createRestaurant = async (req, res) => {
       staff: { _id: req.user._id },
       name: req.body.restaurantName,
       description: req.body.restaurantDescription,
-      rating: { value: 0, ratedBy: 0 },
       cost: req.body.restaurantCost,
       cuisine: req.body.restaurantCuisine,
       image: req.file,

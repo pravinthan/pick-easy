@@ -1,0 +1,82 @@
+mat-toolbar-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toolbar-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.sidebar {
+  width: 320px;
+}
+
+.mat-list-icon {
+  margin: 0 12px 0 12px !important;
+}
+
+.button-border {
+  outline: none;
+}
+
+.is-active {
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+mat-sidenav-content {
+  background-color: #edeef0;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #e8285f, #f23f43);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: bold;
+}
+
+#app-icon {
+  width: 36px;
+  height: 36px;
+  margin-right: 0.5rem;
+}
+
+.app-logo-text {
+  font-size: 36px;
+  line-height: 46px;
+}
+
+.toggle-sidebar {
+  position: absolute;
+  top: 12px;
+  left: 5px;
+}
+
+a.mat-list-item-disabled {
+  background-color: white;
+}
+
+a.mat-list-item-disabled .gradient-text,
+a.mat-list-item-disabled mat-icon {
+  color: rgba(255, 255, 255, 0.507);
+  -webkit-text-fill-color: unset;
+}
+
+.mat-toolbar-row,
+.mat-toolbar-multiple-rows {
+  min-height: 64px !important;
+  height: 64px !important;
+}
