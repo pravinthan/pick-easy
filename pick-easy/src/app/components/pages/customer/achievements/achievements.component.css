@@ -81,24 +81,21 @@
   margin: 1rem;
 }
 
-.history-button{
+.history-button {
   position: absolute;
   top: 5px;
   left: 5px;
 }
 
-.history-button mat-icon{
+.history-button mat-icon,
+.rewards-button mat-icon {
   font-size: 24px;
 }
 
-.rewards-button{
+.rewards-button {
   position: absolute;
   top: 5px;
   right: 5px;
-}
-
-.rewards-button mat-icon{
-  font-size: 24px;
 }
 
 .restaurant-name {

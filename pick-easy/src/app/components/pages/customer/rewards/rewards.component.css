@@ -77,24 +77,21 @@
   margin: 1rem;
 }
 
-.history-button{
+.history-button {
   position: absolute;
   top: 5px;
   left: 5px;
 }
 
-.history-button mat-icon{
+.history-button mat-icon,
+.achievements-button mat-icon {
   font-size: 24px;
 }
 
-.achievements-button{
+.achievements-button {
   position: absolute;
   top: 5px;
   right: 5px;
-}
-
-.achievements-button mat-icon{
-  font-size: 24px;
 }
 
 .restaurant-name {
