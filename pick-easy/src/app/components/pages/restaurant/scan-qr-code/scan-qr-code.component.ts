@@ -22,7 +22,7 @@ import { MatDialog } from "@angular/material/dialog";
   templateUrl: "./scan-qr-code.component.html",
   styleUrls: ["./scan-qr-code.component.css"],
 })
-export class ScanQrCodeComponent implements AfterViewInit {
+export class ScanQRCodeComponent implements AfterViewInit {
   availableDevices: MediaDeviceInfo[];
   deviceSelect = "none";
   currentDevice: MediaDeviceInfo = null;
