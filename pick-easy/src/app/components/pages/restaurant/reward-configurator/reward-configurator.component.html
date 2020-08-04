@@ -4,6 +4,42 @@
       <span class="gradient-text">Configure Rewards</span>
     </div>
     <div id="configurator-container">
+      <div class="rewards-title">
+        <span class="gradient-text">Configure Reward Weights</span>
+      </div>
+      <span>
+        <strong>Reward weights</strong> are the odds of receiving a reward.
+      </span>
+      <span>
+        <strong>Note:</strong>
+        Enter a weight from 0 to 100 (in %). Ensure the weights add up to 100%
+      </span>
+      <div id="reward-weights">
+        <ng-container *ngFor="let level of levels">
+          <div class="reward-weight" *ngIf="areAnyRewardsOfLevel(level)">
+            <div>
+              <img
+                src="/assets/{{ level.toLowerCase() }}.png"
+                class="level-icon-small reverse-margin"
+              />
+              {{ level }} Weight:
+            </div>
+            <mat-form-field appearance="outline" class="weight-field">
+              <mat-label>{{ level }}</mat-label>
+              <input
+                matInput
+                type="number"
+                min="1"
+                required
+                [(ngModel)]="rewardWeight[level.toLowerCase()]"
+              />
+            </mat-form-field>
+          </div>
+        </ng-container>
+      </div>
+      <div class="rewards-title">
+        <span class="gradient-text">List of Rewards</span>
+      </div>
       <mat-form-field id="template-picker" appearance="fill">
         <mat-label>Choose a reward template</mat-label>
         <mat-select #templatePicker (selectionChange)="addReward($event.value)">

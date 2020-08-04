@@ -26,6 +26,13 @@ module.exports.createRestaurant = async (req, res) => {
       cost: req.body.restaurantCost,
       cuisine: req.body.restaurantCuisine,
       image: req.file,
+      rewardWeight: {
+        bronze: 100,
+        silver: 0,
+        gold: 0,
+        platinum: 0,
+        diamond: 0,
+      },
       log: {
         achievements: [],
         rewards: [],
@@ -180,6 +187,38 @@ module.exports.updateRestaurant = async (req, res) => {
         $set: updatedRestaurantValues,
       });
     }
+
+    res.sendStatus(200);
+  } catch (err) {
+    res.sendStatus(500);
+  }
+};
+
+module.exports.updateRestaurantRewardWeight = async (req, res) => {
+  if (isBadRequest(req)) return res.sendStatus(400);
+
+  try {
+    let restaurant = await Restaurant.findById(req.params.id);
+
+    if (!restaurant)
+      return res.status(404).send(`Restaurant ${req.params.id} does not exist`);
+
+    if (!restaurant.staff._id.equals(req.user._id)) return res.sendStatus(403);
+
+    const rewardWeight = req.body.rewardWeight;
+    if (
+      rewardWeight.bronze +
+        rewardWeight.silver +
+        rewardWeight.gold +
+        rewardWeight.platinum +
+        rewardWeight.diamond !=
+      100
+    )
+      return res.status(400).send("Reward weight should add up to 100%");
+
+    await Restaurant.findByIdAndUpdate(restaurant._id, {
+      $set: { rewardWeight },
+    });
 
     res.sendStatus(200);
   } catch (err) {

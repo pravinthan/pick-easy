@@ -5,6 +5,7 @@ import {
   Restaurant,
   RestaurantAchievement,
   RestaurantReward,
+  RestaurantRewardWeight,
   RestaurantCost,
   RestaurantCuisine,
 } from "./models/restaurant.model";
@@ -67,6 +68,17 @@ export class RestaurantService {
     return this.http.patch(`/api/restaurants/${restaurantId}`, formData, {
       responseType: "text",
     });
+  }
+
+  updateRestaurantRewardWeight(
+    restaurantId: string,
+    restaurantRewardWeight: RestaurantRewardWeight
+  ) {
+    return this.http.patch(
+      `/api/restaurants/${restaurantId}/rewardWeight`,
+      { rewardWeight: restaurantRewardWeight },
+      { responseType: "text" }
+    );
   }
 
   createRestaurant(

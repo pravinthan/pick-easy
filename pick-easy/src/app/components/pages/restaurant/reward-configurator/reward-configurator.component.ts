@@ -5,6 +5,7 @@ import {
   Restaurant,
   RestaurantReward,
   RestaurantRewardLevel,
+  RestaurantRewardWeight,
 } from "src/app/shared/models/restaurant.model";
 import { MatSelect } from "@angular/material/select";
 import { RestaurantService } from "src/app/shared/restaurant.service";
@@ -28,6 +29,7 @@ export class RewardConfiguratorComponent {
     "Platinum",
     "Diamond",
   ];
+  rewardWeight: RestaurantRewardWeight;
 
   constructor(
     private templateService: TemplateService,
@@ -46,6 +48,7 @@ export class RewardConfiguratorComponent {
       .then((restaurant) => {
         this.restaurant = restaurant;
         this.rewards = restaurant.rewards;
+        this.rewardWeight = restaurant.rewardWeight;
       });
   }
 
@@ -53,6 +56,10 @@ export class RewardConfiguratorComponent {
     return this.templates?.find(
       (template) => template.templateNumber == templateNumber
     );
+  }
+
+  areAnyRewardsOfLevel(level: RestaurantRewardLevel) {
+    return !!this.rewards?.find((reward) => reward.level == level);
   }
 
   addReward(templateNumber: number) {
@@ -77,9 +84,32 @@ export class RewardConfiguratorComponent {
       return;
     }
 
+    this.levels.forEach((level) => {
+      if (!this.areAnyRewardsOfLevel(level)) {
+        this.rewardWeight[level.toLowerCase()] = 0;
+      }
+    });
+
+    if (
+      this.rewardWeight.bronze +
+        this.rewardWeight.silver +
+        this.rewardWeight.gold +
+        this.rewardWeight.platinum +
+        this.rewardWeight.diamond !=
+      100
+    ) {
+      this.notyf.error("Reward weights should add up to 100%");
+      return;
+    }
+
     this.restaurantService
       .updateRewards(this.restaurant._id, this.rewards)
       .toPromise()
+      .then(() => {
+        return this.restaurantService
+          .updateRestaurantRewardWeight(this.restaurant._id, this.rewardWeight)
+          .toPromise();
+      })
       .then(() => this.notyf.success("Saved successfully!"))
       .catch(() => this.notyf.error("An error occurred while saving"));
   }

@@ -16,7 +16,7 @@
   background: linear-gradient(to right, #e8285f, #f23f43);
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: 20px;
+  font-size: 26px;
   font-weight: bold;
 }
 
@@ -77,16 +77,56 @@
   align-items: center;
 }
 
+.rewards-title {
+  margin-bottom: 1rem;
+}
+
+#reward-weights {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-width: 200px;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0 2rem;
+}
+
+.reward-weight {
+  display: flex;
+  width: fit-content;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 2rem 0 2rem;
+}
+
+.reward-weight > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.reward-weight > .mat-form-field {
+  margin-left: 1rem;
+  width: 100px;
+}
+
+.reverse-margin {
+  margin: 0 0.3rem 0 0;
+}
+
 .reward-level {
   padding-left: 3rem;
 }
 
-.remove-reward-button {
-  margin-left: 1rem;
+::ng-deep .reward-level > .mat-form-field-wrapper,
+::ng-deep .reward-weight .mat-form-field-wrapper {
+  margin-bottom: -1.25em !important;
 }
 
-::ng-deep .reward-level > .mat-form-field-wrapper {
-  margin-bottom: -1.25em !important;
+.remove-reward-button {
+  margin-left: 1rem;
 }
 
 .primary-color {
