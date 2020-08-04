@@ -84,7 +84,6 @@ export class RewardConfiguratorComponent {
       .updateRewards(this.restaurant._id, this.rewards)
       .toPromise()
       .then(() => {
-        console.log(this.rewardWeight)
         return this.restaurantService.updateRestaurantRewardWeight(this.restaurant._id, this.rewardWeight).toPromise()
       })
       .then(() => this.notyf.success("Saved successfully!"))
