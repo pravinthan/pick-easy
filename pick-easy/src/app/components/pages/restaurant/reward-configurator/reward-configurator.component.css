@@ -65,28 +65,51 @@
   align-items: center;
 }
 
-#rewards-title {
+.rewards-title {
   margin-bottom: 1rem;
 }
 
 #reward-weights {
-  min-width: 300px;
-  width: 40%;
-  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-width: 200px;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0 2rem;
 }
 
 .reward-weight {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  width: fit-content;
+  justify-content: center;
   align-items: center;
+  padding: 1rem 2rem 0 2rem;
+}
+
+.reward-weight > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.reward-weight > .mat-form-field {
+  margin-left: 1rem;
+  width: 100px;
+}
+
+.reverse-margin {
+  margin: 0 0.3rem 0 0;
 }
 
 .reward-level {
   padding-left: 3rem;
 }
 
-::ng-deep .reward-level > .mat-form-field-wrapper {
+::ng-deep .reward-level > .mat-form-field-wrapper,
+::ng-deep .reward-weight .mat-form-field-wrapper {
   margin-bottom: -1.25em !important;
 }
 

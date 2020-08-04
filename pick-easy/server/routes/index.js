@@ -204,23 +204,23 @@ router.patch(
     body("rewardWeight.bronze")
       .exists({ checkNull: true })
       .toInt()
-      .isInt({ min: 1 }),
+      .isInt({ min: 0, max: 100 }),
     body("rewardWeight.silver")
       .exists({ checkNull: true })
       .toInt()
-      .isInt({ min: 1 }),
+      .isInt({ min: 0, max: 100 }),
     body("rewardWeight.gold")
       .exists({ checkNull: true })
       .toInt()
-      .isInt({ min: 1 }),
+      .isInt({ min: 0, max: 100 }),
     body("rewardWeight.platinum")
       .exists({ checkNull: true })
       .toInt()
-      .isInt({ min: 1 }),
+      .isInt({ min: 0, max: 100 }),
     body("rewardWeight.diamond")
       .exists({ checkNull: true })
       .toInt()
-      .isInt({ min: 1 }),
+      .isInt({ min: 0, max: 100 }),
   ],
   restaurantController.updateRestaurantRewardWeight
 );

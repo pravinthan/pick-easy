@@ -58,6 +58,10 @@ export class RewardConfiguratorComponent {
     );
   }
 
+  areAnyRewardsOfLevel(level: RestaurantRewardLevel) {
+    return !!this.rewards?.find((reward) => reward.level == level);
+  }
+
   addReward(templateNumber: number) {
     const template = this.getTemplateByNumber(templateNumber);
 
@@ -80,11 +84,31 @@ export class RewardConfiguratorComponent {
       return;
     }
 
+    this.levels.forEach((level) => {
+      if (!this.areAnyRewardsOfLevel(level)) {
+        this.rewardWeight[level.toLowerCase()] = 0;
+      }
+    });
+
+    if (
+      this.rewardWeight.bronze +
+        this.rewardWeight.silver +
+        this.rewardWeight.gold +
+        this.rewardWeight.platinum +
+        this.rewardWeight.diamond !=
+      100
+    ) {
+      this.notyf.error("Reward weights should add up to 100%");
+      return;
+    }
+
     this.restaurantService
       .updateRewards(this.restaurant._id, this.rewards)
       .toPromise()
       .then(() => {
-        return this.restaurantService.updateRestaurantRewardWeight(this.restaurant._id, this.rewardWeight).toPromise()
+        return this.restaurantService
+          .updateRestaurantRewardWeight(this.restaurant._id, this.rewardWeight)
+          .toPromise();
       })
       .then(() => this.notyf.success("Saved successfully!"))
       .catch(() => this.notyf.error("An error occurred while saving"));
