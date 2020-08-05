@@ -52,33 +52,33 @@ describe("SignInComponent", () => {
       .nativeElement;
   });
 
-  /* component should be created so not be falsy */
+  /**
+   * Description: This unit test checks if the component is created
+   * Expected Outcome: Component is created
+   * Risk Rating: Improbable x Critical
+   */
   it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  /* usernameInput.maxLength should only accept strings of 20 characters or less */
-  it("should check to see if the username input only accepts strings of < 20 characters", () => {
+  /**
+   * Description: This unit test checks if the username input is checking the user's input correctly
+   * Expected Outcome: Username input checks the user's input correctly
+   * Risk Rating: Improbable x Marginal
+   */
+  it("should check to see if the username input is checking the user's input correctly", () => {
     expect(usernameInput.maxLength).toEqual(20);
-  });
-
-  /* usernameInput.minLength should only accept strings of 3 characters or more */
-  it("should check to see if the username input only accepts strings of > 3 characters", () => {
     expect(usernameInput.minLength).toEqual(3);
-  });
-
-  /* usernameInput.pattern should only accept strings that are alphanumeric characters */
-  it("should check to see if the username input only accepts alphanumeric characters", () => {
     expect(usernameInput.pattern).toEqual("[a-zA-Z0-9]+");
   });
 
-  /* passwordInput.maxLength should only accept strings of 20 characters or less */
-  it("should check to see if the password input only accepts strings of < 20 characters", () => {
+  /**
+   * Description: This unit test checks if the password input is checking the user's input correctly
+   * Expected Outcome: Password input checks the user's input correctly
+   * Risk Rating: Improbable x Marginal
+   */
+  it("should check to see if the password input is checking the user's input correctly", () => {
     expect(passwordInput.maxLength).toEqual(20);
-  });
-
-  /* passwordInput.minLength should only accept strings of 8 characters or more */
-  it("should check to see if the password input only accepts strings of > 8 characters", () => {
     expect(passwordInput.minLength).toEqual(8);
   });
 });

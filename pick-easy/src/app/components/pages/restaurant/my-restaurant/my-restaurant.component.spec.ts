@@ -47,17 +47,29 @@ describe("MyRestaurantComponent", () => {
     ).nativeElement;
   });
 
-  /* component should be created so not be falsy */
+  /**
+   * Description: This unit test checks if the component is created
+   * Expected Outcome: Component is created
+   * Risk Rating: Improbable x Critical
+   */
   it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  /* nameInput.maxLength should only accept strings of 30 characters or less */
+  /**
+   * Description: This unit test checks if the restaurant name input accepts strings of < 30 characters
+   * Expected Outcome: Restaurant name input accepts strings of < 30 characters
+   * Risk Rating: Improbable x Marginal
+   */
   it("should check to see if the restaurant name input only accepts strings of < 30 characters", () => {
     expect(nameInput.maxLength).toEqual(30);
   });
 
-  /* descriptionInput.maxLength should only accept strings of 250 characters or less */
+  /**
+   * Description: This unit test checks if the restaurant description input accepts strings of < 250 characters
+   * Expected Outcome: Restaurant description input accepts strings of < 250 characters
+   * Risk Rating: Improbable x Marginal
+   */
   it("should check to see if the restaurant description input only accepts strings of < 250 characters", () => {
     expect(descriptionInput.maxLength).toEqual(250);
   });

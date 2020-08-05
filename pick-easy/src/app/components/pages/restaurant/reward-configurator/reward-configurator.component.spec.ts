@@ -90,12 +90,20 @@ describe("RewardConfiguratorComponent", () => {
     fixture.detectChanges();
   });
 
-  /* component should be created so not be falsy */
+  /**
+   * Description: This unit test checks if the component is created
+   * Expected Outcome: Component is created
+   * Risk Rating: Improbable x Critical
+   */
   it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  /* Adding reward template should be able to be added */
+  /**
+   * Description: This unit test checks if adding an reward template works
+   * Expected Outcome: Adding an reward template modifies the component's rewards array appropriately
+   * Risk Rating: Remote x Critical
+   */
   it("should check to see if adding a reward template works", () => {
     const matSelect = fixture.debugElement.query(By.css(".mat-select-trigger"))
       .nativeElement;
@@ -109,7 +117,11 @@ describe("RewardConfiguratorComponent", () => {
     expect(component.rewards.length).toEqual(1);
   });
 
-  /* Removing reward template should be able to be removed */
+  /**
+   * Description: This unit test checks if removing an reward template works
+   * Expected Outcome: Removing an reward template modifies the component's rewards array appropriately
+   * Risk Rating: Remote x Critical
+   */
   it("should check to see if removing an reward template works", async () => {
     const matSelect = fixture.debugElement.query(By.css(".mat-select-trigger"))
       .nativeElement;

@@ -73,23 +73,31 @@ export class RewardsComponent {
   }
 
   async getRestaurants() {
-    const restaurants = await this.restaurantService
-      .getAllRestaurants()
-      .toPromise();
+    try {
+      let restaurants = await this.restaurantService
+        .getAllRestaurants()
+        .toPromise();
 
-    this.restaurants = restaurants;
+      this.restaurants = restaurants;
 
-    return restaurants;
+      return restaurants;
+    } catch {
+      console.error("Could not retrieve restaurants information");
+    }
   }
 
   async getCustomer() {
-    const customer = await this.userService
-      .getUserInfo(this.currentUser._id)
-      .toPromise();
+    try {
+      let customer = await this.userService
+        .getUserInfo(this.currentUser._id)
+        .toPromise();
 
-    this.customer = customer;
+      this.customer = customer;
 
-    return customer;
+      return customer;
+    } catch {
+      console.error("Could not retrieve customer information");
+    }
   }
 
   private _filter(value: string): string[] {
@@ -106,11 +114,14 @@ export class RewardsComponent {
     );
   }
 
-  getCustomerRewardsByRestaurantId(restaurantId: string, level?: string) {
+  getCustomerRewardsByRestaurantId(
+    restaurantId: string,
+    level?: RestaurantRewardLevel
+  ) {
     if (level) {
       return this.getCustomerLoyaltyByRestaurantId(
         restaurantId
-      )?.rewards?.filter((reward) => reward.level === level);
+      )?.rewards?.filter((reward) => reward.level == level);
     } else {
       return this.getCustomerLoyaltyByRestaurantId(restaurantId)?.rewards;
     }

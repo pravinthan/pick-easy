@@ -43,15 +43,30 @@ describe("ScanQRCodeComponent", () => {
     fixture.detectChanges();
   });
 
+  /**
+   * Description: This unit test checks if the component is created
+   * Expected Outcome: Component is created
+   * Risk Rating: Improbable x Critical
+   */
   it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it("should check to see if default selected device is none", () => {
+  /**
+   * Description: This unit test checks if the default selected device is "none" and current device is null
+   * Expected Outcome: Default selected device is "none" and current device is null
+   * Risk Rating: Occasional x Negligible
+   */
+  it("should check to see if default selected device is none and current device is null", () => {
     expect(component.deviceSelect).toEqual("none");
     expect(component.currentDevice).toEqual(null);
   });
 
+  /**
+   * Description: This unit test checks if the displayed columns for the achievement log table is correct and in order
+   * Expected Outcome: The displayed columns for the achievement log table is correct and in order
+   * Risk Rating: Improbable x Negligible
+   */
   it("should check to see if achievement log table is in the correct order", () => {
     expect(component.achievementLogDisplayedColumns).toEqual([
       "timeOfScan",
@@ -61,6 +76,11 @@ describe("ScanQRCodeComponent", () => {
     ]);
   });
 
+  /**
+   * Description: This unit test checks if the displayed columns for the reward log table is correct and in order
+   * Expected Outcome: The displayed columns for the reward log table is correct and in order
+   * Risk Rating: Improbable x Negligible
+   */
   it("should check to see if reward log table is in the correct order", () => {
     expect(component.rewardLogDisplayedColumns).toEqual([
       "timeOfScan",

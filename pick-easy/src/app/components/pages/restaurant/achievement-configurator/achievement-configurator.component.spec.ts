@@ -146,22 +146,30 @@ describe("AchievementConfiguratorComponent", () => {
     fixture.detectChanges();
   });
 
-  /* component should be created so not be falsy */
+  /**
+   * Description: This unit test checks if the component is created
+   * Expected Outcome: Component is created
+   * Risk Rating: Improbable x Critical
+   */
   it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  /* type of ticketsPickerInput should be number */
-  it("should check to see if the number of tickets input only accepts numbers", () => {
+  /**
+   * Description: This unit test checks if the tickets picker input accepts numbers of 1 or more
+   * Expected Outcome: Tickets picker input accepts numbers of 1 or more
+   * Risk Rating: Improbable x Marginal
+   */
+  it("should check to see if the number of tickets input only accepts numbers of 1 or more", () => {
     expect(ticketsPickerInput.type).toEqual("number");
-  });
-
-  /* min ticketsPickerInput should have a minimum value of 1 */
-  it("should check to see if the number of tickets input only accepts numbers from 1", () => {
     expect(ticketsPickerInput.min).toEqual("1");
   });
 
-  /* Adding achievement template should be able to be added */
+  /**
+   * Description: This unit test checks if adding an achievement template works
+   * Expected Outcome: Adding an achievement template modifies the component's achievements array appropriately
+   * Risk Rating: Remote x Critical
+   */
   it("should check to see if adding an achievement template works", () => {
     const matSelect = fixture.debugElement.query(By.css(".mat-select-trigger"))
       .nativeElement;
@@ -175,7 +183,11 @@ describe("AchievementConfiguratorComponent", () => {
     expect(component.achievements.length).toEqual(1);
   });
 
-  /* Removeing achievement template should be able to be removed */
+  /**
+   * Description: This unit test checks if removing an achievement template works
+   * Expected Outcome: Removing an achievement template modifies the component's achievements array appropriately
+   * Risk Rating: Remote x Critical
+   */
   it("should check to see if removing an achievement template works", async () => {
     const matSelect = fixture.debugElement.query(By.css(".mat-select-trigger"))
       .nativeElement;
