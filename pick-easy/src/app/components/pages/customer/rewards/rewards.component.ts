@@ -239,8 +239,7 @@ export class RewardsComponent {
     let gold = loyalty.level == "Gold";
     let platinum = loyalty.level == "Platinum";
     let diamond = loyalty.level == "Diamond";
-    if (bronze || silver || gold || platinum || diamond)
-      levels.push("Bronze");
+    if (bronze || silver || gold || platinum || diamond) levels.push("Bronze");
     if (silver || gold || platinum || diamond) levels.push("Silver");
     if (gold || platinum || diamond) levels.push("Gold");
     if (platinum || diamond) levels.push("Platinum");

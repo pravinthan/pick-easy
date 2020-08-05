@@ -469,7 +469,6 @@ module.exports.generateReward = async (req, res) => {
       return rewardWeight[level.toLowerCase()] / total;
     };
 
-
     let allowedLevels = Array.from(
       new Set(
         allowedRestaurantRewards.map(
@@ -478,11 +477,16 @@ module.exports.generateReward = async (req, res) => {
       )
     );
 
-    let allowedWeights = allowedLevels.map((level) => calculateNewWeight(level, customerLoyaltyForRestaurant.level, restaurant.rewardWeight));
+    let allowedWeights = allowedLevels.map((level) =>
+      calculateNewWeight(
+        level,
+        customerLoyaltyForRestaurant.level,
+        restaurant.rewardWeight
+      )
+    );
 
     console.log(allowedLevels);
     console.log(allowedWeights);
-
 
     let getRandomLevel = (weights, levels) => {
       let num = Math.random(),
@@ -501,11 +505,11 @@ module.exports.generateReward = async (req, res) => {
 
     let randomLevel = getRandomLevel(allowedWeights, allowedLevels);
 
-    let allowedRandomRewards = restaurant.rewards.filter((reward) => reward.level == randomLevel);
-
-    let randomReward = Math.floor(
-      Math.random() * allowedRandomRewards.length
+    let allowedRandomRewards = restaurant.rewards.filter(
+      (reward) => reward.level == randomLevel
     );
+
+    let randomReward = Math.floor(Math.random() * allowedRandomRewards.length);
 
     let randomRestaurantReward = allowedRandomRewards[randomReward];
 
