@@ -66,23 +66,31 @@ export class AchievementsComponent {
   }
 
   async getRestaurants() {
-    let restaurants = await this.restaurantService
-      .getAllRestaurants()
-      .toPromise();
+    try {
+      let restaurants = await this.restaurantService
+        .getAllRestaurants()
+        .toPromise();
 
-    this.restaurants = restaurants;
+      this.restaurants = restaurants;
 
-    return restaurants;
+      return restaurants;
+    } catch {
+      console.error("Could not retrieve restaurants information");
+    }
   }
 
   async getCustomer() {
-    let customer = await this.userService
-      .getUserInfo(this.currentUser._id)
-      .toPromise();
+    try {
+      let customer = await this.userService
+        .getUserInfo(this.currentUser._id)
+        .toPromise();
 
-    this.customer = customer;
+      this.customer = customer;
 
-    return customer;
+      return customer;
+    } catch {
+      console.error("Could not retrieve customer information");
+    }
   }
 
   private _filter(value: string): string[] {

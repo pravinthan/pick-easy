@@ -23,7 +23,7 @@ import { RestaurantDetailsComponent } from "./components/pages/customer/restaura
 import { AchievementsComponent } from "./components/pages/customer/achievements/achievements.component";
 import { RewardsComponent } from "./components/pages/customer/rewards/rewards.component";
 import { QRCodeComponent } from "./components/pages/customer/qr-code/qr-code.component";
-import { ScanQrCodeComponent } from "./components/pages/restaurant/scan-qr-code/scan-qr-code.component";
+import { ScanQRCodeComponent } from "./components/pages/restaurant/scan-qr-code/scan-qr-code.component";
 import { RedeemedRewardDialogComponent } from "./components/pages/restaurant/scan-qr-code/redeemed-reward-dialog/redeemed-reward-dialog.component";
 import { HomeComponent } from "./components/pages/home/home.component";
 import { NavigationComponent } from "./components/navigation/navigation.component";
@@ -73,7 +73,7 @@ import { CountUpModule } from "ngx-countup";
     AchievementsComponent,
     RewardsComponent,
     QRCodeComponent,
-    ScanQrCodeComponent,
+    ScanQRCodeComponent,
     RedeemedRewardDialogComponent,
     HomeComponent,
     NavigationComponent,

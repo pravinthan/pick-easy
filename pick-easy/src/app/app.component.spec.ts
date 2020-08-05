@@ -10,7 +10,11 @@ describe("AppComponent", () => {
     }).compileComponents();
   }));
 
-  /* app should be created so not be falsy */
+  /**
+   * Description: This unit test checks if the component is created
+   * Expected Outcome: Component is created
+   * Risk Rating: Improbable x Critical
+   */
   it("should create the app", () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;

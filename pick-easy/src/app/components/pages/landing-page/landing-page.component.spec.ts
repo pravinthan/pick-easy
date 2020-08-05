@@ -24,18 +24,22 @@ describe("LandingPageComponent", () => {
     anchors = fixture.debugElement.nativeElement.querySelectorAll("a");
   });
 
-  /* component should be created so not be falsy */
+  /**
+   * Description: This unit test checks if the component is created
+   * Expected Outcome: Component is created
+   * Risk Rating: Improbable x Critical
+   */
   it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  /* anchor should link to "/customer" customer page correctly */
-  it("should link to customer page correctly", () => {
+  /**
+   * Description: This unit test checks all the anchor tags in the component
+   * Expected Outcome: All anchor tags are present and linked correctly (and in correct order)
+   * Risk Rating: Remote x Marginal
+   */
+  it("should link to customer/restaurant page correctly", () => {
     expect(new URL(anchors[0]?.href).pathname).toEqual("/customer");
-  });
-
-  /* anchor should link to "/restaurant" restaurant page correctly */
-  it("should link to restaurant page correctly", () => {
     expect(new URL(anchors[1]?.href).pathname).toEqual("/restaurant");
   });
 });

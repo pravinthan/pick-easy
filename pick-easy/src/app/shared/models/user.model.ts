@@ -51,6 +51,6 @@ export type CompletedNonRepeatableAchievement = {
 
 export type CustomerReward = {
   _id: string;
-  content: number;
-  level: string;
+  content: string;
+  level: RestaurantRewardLevel;
 };
