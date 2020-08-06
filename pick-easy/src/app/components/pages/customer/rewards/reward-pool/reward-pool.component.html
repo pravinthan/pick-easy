@@ -1,0 +1,51 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      {{data.restaurant.name}}
+      <img
+              *ngIf="data.level"
+              [src]="
+                '/assets/' +
+                data.level.toLowerCase() +
+                '.png'
+              "
+              class="level-icon"
+              [matTooltip]="
+                data.level
+              "
+              matTooltipPosition="right"
+            />
+    </mat-card-title>
+  </mat-card-header>
+  Reward Pool
+  <mat-card-content>
+    <div *ngFor="let level of filterLevelsByRewards()">
+
+      <div class="grouped-reward-header">
+        {{ level }}
+        <img
+          src="/assets/{{ level.toLowerCase() }}.png"
+          class="level-icon-small"
+        />
+      </div>
+
+      <div
+        *ngFor="let reward of filterRewardsByLevel(level)"
+        class="customer-rewards-container "
+      >
+      <span
+      *ngIf="withinLevel(data.level, level)">
+        {{ restaurantRewardToText(reward) }}
+        {{data.level}}
+        {{level}}
+      </span>
+      <span
+      class="customer-rewards-disabled"
+      *ngIf="!withinLevel(data.level, level)">
+        {{ restaurantRewardToText(reward) }}
+        test2
+      </span>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
