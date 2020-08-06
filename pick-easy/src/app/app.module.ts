@@ -54,6 +54,8 @@ import { NgxMatFileInputModule } from "@angular-material-components/file-input";
 import { QRCodeModule } from "angularx-qrcode";
 import { ZXingScannerModule } from "@zxing/ngx-scanner";
 import { CountUpModule } from "ngx-countup";
+import { HistoryComponent } from './components/pages/customer/history/history.component';
+import { HistoryDialogComponent } from "./components/pages/customer/history/history-dialog/history-dialog.component";
 
 @NgModule({
   declarations: [
@@ -77,6 +79,8 @@ import { CountUpModule } from "ngx-countup";
     RedeemedRewardDialogComponent,
     HomeComponent,
     NavigationComponent,
+    HistoryComponent,
+    HistoryDialogComponent,
   ],
   imports: [
     BrowserModule,

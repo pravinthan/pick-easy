@@ -16,6 +16,7 @@ import { AchievementsComponent } from "./components/pages/customer/achievements/
 import { RewardsComponent } from "./components/pages/customer/rewards/rewards.component";
 import { ScanQRCodeComponent } from "./components/pages/restaurant/scan-qr-code/scan-qr-code.component";
 import { HomeComponent } from "./components/pages/home/home.component";
+import { HistoryComponent} from "./components/pages/customer/history/history.component"
 
 const routes: Routes = [
   {
@@ -31,6 +32,11 @@ const routes: Routes = [
     path: "customer/discover",
     component: DiscoverComponent,
     canActivate: [AuthenticationGuard, CustomerGuard],
+  },
+  {
+    path: "customer/history",
+    component: HistoryComponent,
+
   },
   {
     path: "customer/achievements",

@@ -1,0 +1,36 @@
+[mat-dialog-title] {
+  font-family: Poppins;
+  font-size: x-large;
+  text-align: center;
+}
+
+mat-dialog-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  font-weight: bold;
+  line-height: normal;
+  text-align: center;
+  height: stretch;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #e8285f, #f23f43);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-button {
+  color: #e8285f;
+}
+
+::ng-deep .mat-button .mat-ripple-element {
+  background-color: #f23f43;
+}
+
+@media only screen and (max-width: 480px) {
+  mat-dialog-content {
+    font-size: 24px;
+  }
+}
