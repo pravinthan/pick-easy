@@ -54,6 +54,7 @@ import { NgxMatFileInputModule } from "@angular-material-components/file-input";
 import { QRCodeModule } from "angularx-qrcode";
 import { ZXingScannerModule } from "@zxing/ngx-scanner";
 import { CountUpModule } from "ngx-countup";
+import { RewardPoolComponent } from './components/pages/customer/rewards/reward-pool/reward-pool.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { CountUpModule } from "ngx-countup";
     RedeemedRewardDialogComponent,
     HomeComponent,
     NavigationComponent,
+    RewardPoolComponent,
   ],
   imports: [
     BrowserModule,

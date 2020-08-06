@@ -6,6 +6,7 @@ import {
   Restaurant,
   RestaurantRewardLevel,
 } from "src/app/shared/models/restaurant.model";
+
 import { RestaurantService } from "src/app/shared/restaurant.service";
 import { MatDialog } from "@angular/material/dialog";
 import { UserService } from "src/app/shared/user.service";
@@ -16,6 +17,7 @@ import { RestaurantDetailsComponent } from "../restaurant-details/restaurant-det
 import { QRCodeComponent } from "../qr-code/qr-code.component";
 import { ActivatedRoute } from "@angular/router";
 import * as confetti from "canvas-confetti";
+import { RewardPoolComponent } from "./reward-pool/reward-pool.component";
 
 @Component({
   selector: "app-rewards",
@@ -49,6 +51,7 @@ export class RewardsComponent {
     "Platinum",
     "Diamond",
   ];
+  openedRewardPool = false;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -218,6 +221,12 @@ export class RewardsComponent {
 
     qrCodeDialog.afterClosed().subscribe(() => {
       this.getCustomer();
+    });
+  }
+
+  openRewardPool(restaurant: Restaurant, level?: RestaurantRewardLevel) {
+    const rewardPoolDialog = this.dialog.open(RewardPoolComponent, {
+      data: { restaurant: restaurant, level: level },
     });
   }
 

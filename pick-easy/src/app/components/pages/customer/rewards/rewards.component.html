@@ -176,6 +176,15 @@
               }}
               <mat-icon>casino</mat-icon>
             </button>
+            <button
+              mat-raised-button
+              class="roll-reward-button gradient-button"
+              (click)="openRewardPool(restaurant, getCustomerLoyaltyByRestaurantId(restaurant._id).level)"
+            >
+              <mat-icon>list</mat-icon>
+              View Reward Pool
+              <mat-icon>list</mat-icon>
+            </button>
             <div *ngFor="let level of levels">
               <div
                 *ngIf="
