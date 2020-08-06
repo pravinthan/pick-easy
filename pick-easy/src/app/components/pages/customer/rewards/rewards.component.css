@@ -162,6 +162,12 @@
   font-weight: 500;
 }
 
+.disabled-button {
+  color: rgb(230, 230, 230);
+  background: #acacac;
+  cursor: default;
+}
+
 .customer-reward-context-button {
   margin-left: 1rem;
   min-width: min-content;

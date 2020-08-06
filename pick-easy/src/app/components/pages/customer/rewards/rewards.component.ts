@@ -241,4 +241,21 @@ export class RewardsComponent {
       this.showLootBoxReward = false;
     }, 5000);
   }
+
+  rewardsForLevel(restaurant: Restaurant) {
+    let levels = [];
+    let loyalty = this.getCustomerLoyaltyByRestaurantId(restaurant._id);
+    let bronze = loyalty.level == "Bronze";
+    let silver = loyalty.level == "Silver";
+    let gold = loyalty.level == "Gold";
+    let platinum = loyalty.level == "Platinum";
+    let diamond = loyalty.level == "Diamond";
+    if (bronze || silver || gold || platinum || diamond) levels.push("Bronze");
+    if (silver || gold || platinum || diamond) levels.push("Silver");
+    if (gold || platinum || diamond) levels.push("Gold");
+    if (platinum || diamond) levels.push("Platinum");
+    if (diamond) levels.push("Diamond");
+
+    return restaurant.rewards.filter((reward) => levels.includes(reward.level));
+  }
 }
