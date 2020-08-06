@@ -485,9 +485,6 @@ module.exports.generateReward = async (req, res) => {
       )
     );
 
-    console.log(allowedLevels);
-    console.log(allowedWeights);
-
     let getRandomLevel = (weights, levels) => {
       let num = Math.random(),
         s = 0,
