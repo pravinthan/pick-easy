@@ -23,6 +23,7 @@ export class RewardPoolComponent {
     "Diamond",
   ];
 
+
   constructor(
     private templateService: TemplateService,
     @Inject(MAT_DIALOG_DATA)
@@ -38,7 +39,7 @@ export class RewardPoolComponent {
 
   /* Returns the reward template given a template number */
   getTemplateByNumber(templateNumber: number): RewardTemplate {
-    return this.templates.find(
+    return this.templates?.find(
       (template) => template.templateNumber == templateNumber
     );
   }
@@ -47,9 +48,9 @@ export class RewardPoolComponent {
   restaurantRewardToText(restaurantReward: RestaurantReward) {
     let rewardWithVariables = this.getTemplateByNumber(
       restaurantReward.templateNumber
-    ).value;
+    )?.value;
     for (const achievementVariable of restaurantReward.variables) {
-      rewardWithVariables = rewardWithVariables.replace(
+      rewardWithVariables = rewardWithVariables?.replace(
         ":variable",
         achievementVariable
       );

@@ -18,6 +18,7 @@ import { QRCodeComponent } from "../qr-code/qr-code.component";
 import { ActivatedRoute } from "@angular/router";
 import * as confetti from "canvas-confetti";
 import { RewardPoolComponent } from "./reward-pool/reward-pool.component";
+import { AutofillMonitor } from '@angular/cdk/text-field';
 
 @Component({
   selector: "app-rewards",

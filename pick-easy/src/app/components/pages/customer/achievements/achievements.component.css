@@ -85,6 +85,7 @@
   position: absolute;
   top: 5px;
   left: 5px;
+  margin: 0 .5rem .5rem 0;
 }
 
 .history-button mat-icon,
@@ -96,6 +97,8 @@
   position: absolute;
   top: 5px;
   right: 5px;
+  margin: 0 0 .5rem .5rem;
+
 }
 
 .restaurant-name {

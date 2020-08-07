@@ -81,6 +81,7 @@
   position: absolute;
   top: 5px;
   left: 5px;
+  margin: 0 .5rem .5rem 0;
 }
 
 .history-button mat-icon,
@@ -92,6 +93,7 @@
   position: absolute;
   top: 5px;
   right: 5px;
+  margin: 0 0 .5rem .5rem;
 }
 
 .restaurant-name {
@@ -162,6 +164,19 @@
   font-weight: 500;
 }
 
+.reward-pool-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: grey;
+  cursor: pointer;
+  margin-top: .25rem;
+}
+
+.reward-pool-button > span {
+  text-decoration: underline;
+}
+
 .customer-reward-context-button {
   margin-left: 1rem;
   min-width: min-content;
@@ -201,18 +216,12 @@
 }
 
 .level-up-button {
-  color: green;
+  color: white;
+  background-color: rgb(0, 177, 0);
 }
 
-.level-up-button mat-icon {
-  font-size: 32px;
-  height: 32px;
-  width: 32px;
-  line-height: 32px;
-}
-
-.roll-reward-button {
-  margin: 0.5rem 0 0 0;
+.roll-reward-button, .level-up-button {
+  margin: 0.5rem 0 0.5rem 0;
   height: 40px;
   border-radius: 50px;
 }

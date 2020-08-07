@@ -32,10 +32,16 @@
 }
 
 .header {
-  font-size: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.header-text {
+  font-size: 40px;
+  overflow-wrap: break-word;
+  line-height: 40px;
+  text-align: center;
 }
 
 .gradient-text {
@@ -52,7 +58,6 @@
 }
 
 .reward {
-  position: relative;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -81,4 +86,10 @@ li {
 .disabled-reward {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+@media only screen and (max-width: 1200px) {
+  .reward-pool {
+    flex-direction: column;
+  }
 }

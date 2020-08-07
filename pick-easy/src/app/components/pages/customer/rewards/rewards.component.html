@@ -68,7 +68,7 @@
               matTooltip="Bronze"
               matTooltipPosition="right"
             />
-            <button
+            <!-- <button
               (click)="upgradeLevel(restaurant._id)"
               *ngIf="
                 getCustomerLoyaltyByRestaurantId(restaurant._id)
@@ -89,7 +89,7 @@
               matTooltipPosition="above"
             >
               <mat-icon>upgrade</mat-icon>
-            </button>
+            </button> -->
           </div>
 
           <a
@@ -161,6 +161,29 @@
             <button
               *ngIf="
                 getCustomerLoyaltyByRestaurantId(restaurant._id)
+                  ?.numberOfTickets >=
+                  restaurant.numberOfTicketsForRedemption &&
+                getCustomerLoyaltyByRestaurantId(restaurant._id)?.level !=
+                  'Diamond'
+              "
+              mat-raised-button
+              class="level-up-button"
+              (click)="upgradeLevel(restaurant._id)"
+            >
+              <mat-icon>upgrade</mat-icon>
+              Level Up for {{ restaurant.numberOfTicketsForRedemption }}
+              {{
+                restaurant.numberOfTicketsForRedemption == 1
+                  ? "Ticket"
+                  : "Tickets"
+              }}
+              <mat-icon>upgrade</mat-icon>
+
+            </button>
+
+            <button
+              *ngIf="
+                getCustomerLoyaltyByRestaurantId(restaurant._id)
                   ?.numberOfTickets >= restaurant.numberOfTicketsForRedemption
               "
               mat-raised-button
@@ -176,9 +199,8 @@
               }}
               <mat-icon>casino</mat-icon>
             </button>
-            <button
-              mat-raised-button
-              class="roll-reward-button gradient-button"
+            <div
+              class="reward-pool-button"
               (click)="
                 openRewardPool(
                   restaurant,
@@ -187,9 +209,10 @@
               "
             >
               <mat-icon>list</mat-icon>
-              View Reward Pool
-              <mat-icon>list</mat-icon>
-            </button>
+              <span>
+                View Reward Pool
+              </span>
+            </div>
             <div *ngFor="let level of levels">
               <div
                 *ngIf="
