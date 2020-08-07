@@ -38,9 +38,9 @@ Luke
     2. Nothing
     3. Bug fix rolling rewards
 Evan
-    1. 
-    2. 
-    3. 
+    1. Worked on PIC-73
+    2. Nothing
+    3. Continue to work on PIC-73
 Anthony
     1. Worked on pic-75
     2. other work
@@ -66,9 +66,9 @@ Luke
     2. 
     3. 
 Evan
-    1. 
-    2. 
-    3. 
+    1. Worked on PIC-73
+    2. Nothing
+    3. Continue to work on PIC-73
 Anthony
     1. 
     2. 
@@ -94,9 +94,9 @@ Luke
     2. 
     3. 
 Evan
-    1. 
-    2. 
-    3. 
+    1. Worked on PIC-73
+    2. Nothing
+    3. Continue to work on PIC-73
 Anthony
     1. 
     2. 
@@ -122,9 +122,9 @@ Luke
     2. 
     3. 
 Evan
-    1. 
-    2. 
-    3. 
+    1. Finished PIC-73
+    2. Nothing
+    3. Document any remaining code.
 Anthony
     1. 
     2. 

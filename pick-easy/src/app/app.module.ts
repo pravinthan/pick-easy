@@ -27,6 +27,7 @@ import { RedeemedRewardDialogComponent } from "./components/pages/restaurant/sca
 import { HomeComponent } from "./components/pages/home/home.component";
 import { NavigationComponent } from "./components/navigation/navigation.component";
 import { HistoryComponent } from "./components/pages/customer/history/history.component";
+import { RewardPoolComponent } from "./components/pages/customer/rewards/reward-pool/reward-pool.component";
 
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -77,6 +78,7 @@ import { CountUpModule } from "ngx-countup";
     HomeComponent,
     NavigationComponent,
     HistoryComponent,
+    RewardPoolComponent,
   ],
   imports: [
     BrowserModule,
