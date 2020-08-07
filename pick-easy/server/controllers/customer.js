@@ -132,7 +132,7 @@ module.exports.updateAchievement = async (req, res) => {
       (variable) => variable.isProgressionVariable
     );
 
-    let addToLog = async (
+    let addToRestaurantLog = async (
       restaurant,
       customer,
       achievementTemplate,
@@ -160,7 +160,40 @@ module.exports.updateAchievement = async (req, res) => {
         complete,
         timeOfScan: new Date(),
       });
+
       await restaurant.save();
+    };
+
+    let addToCustomerLog = async (
+      restaurant,
+      customer,
+      achievementTemplate,
+      restaurantAchievement,
+      customerAchievementProgress,
+      maxProgression,
+      complete
+    ) => {
+      customer.log.achievements.push({
+        restaurantId: restaurant._id,
+        restaurantName: restaurant.name,
+        achievement:
+          achievementTemplate.value
+            .split(":variable")
+            .reduce(
+              (result, text, i) =>
+                result + text + (restaurantAchievement.variables[i] || ""),
+              ""
+            ) +
+          " for " +
+          restaurantAchievement.numberOfTickets +
+          " Ticket" +
+          (restaurantAchievement.numberOfTickets == 1 ? "" : "s"),
+        progress: customerAchievementProgress + " / " + maxProgression,
+        complete,
+        timeOfScan: new Date(),
+      });
+
+      await customer.save();
     };
 
     for (let i = 0; i < customer.loyalties.length; i++) {
@@ -187,7 +220,22 @@ module.exports.updateAchievement = async (req, res) => {
                   customer.loyalties[i].achievements[j].progress += 1;
                 }
 
-                addToLog(
+                await addToRestaurantLog(
+                  restaurant,
+                  customer,
+                  achievementTemplate,
+                  restaurantAchievement,
+                  customer.loyalties[i].achievements[j].progress,
+                  restaurantAchievement.variables[
+                    achievementTemplateVariableIndex
+                  ],
+                  customer.loyalties[i].achievements[j].progress >=
+                    restaurantAchievement.variables[
+                      achievementTemplateVariableIndex
+                    ]
+                );
+
+                await addToCustomerLog(
                   restaurant,
                   customer,
                   achievementTemplate,
@@ -212,7 +260,16 @@ module.exports.updateAchievement = async (req, res) => {
                   customer.loyalties[i].achievements[j].complete = true;
                 }
               } else if (achievementTemplate.typeOfAchievement == "oneOff") {
-                addToLog(
+                await addToRestaurantLog(
+                  restaurant,
+                  customer,
+                  achievementTemplate,
+                  restaurantAchievement,
+                  1,
+                  1,
+                  true
+                );
+                await addToCustomerLog(
                   restaurant,
                   customer,
                   achievementTemplate,
@@ -367,7 +424,13 @@ module.exports.removeReward = async (req, res) => {
               level: customerReward.level,
               timeOfScan: new Date(),
             });
-
+            customer.log.rewards.push({
+              restaurantId: restaurant._id,
+              restaurantName: restaurant.name,
+              reward: customerReward.content,
+              level: customerReward.level,
+              timeOfScan: new Date(),
+            });
             // Remove the reward from the customer's rewards
             customer.loyalties[i].rewards.splice(j, 1);
             await restaurant.save();

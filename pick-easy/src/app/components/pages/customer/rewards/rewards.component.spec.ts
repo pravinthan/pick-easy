@@ -40,6 +40,7 @@ describe("RewardsComponent", () => {
     firstName: "abc",
     lastName: "def",
     username: "1234",
+    log: null,
   };
 
   let restaurants: Restaurant[] = [
@@ -89,6 +90,7 @@ describe("RewardsComponent", () => {
           level: "Gold",
         },
       ],
+      rewardWeight: null,
     },
   ];
 

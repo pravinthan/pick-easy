@@ -8,12 +8,14 @@ export class User {
   firstName?: string;
   lastName?: string;
   loyalties?: CustomerLoyalty[];
+  log: UserLog;
 
   constructor(
     _id: string,
     username: string,
     isRestaurantStaff: boolean,
     createdRestaurant: boolean,
+    log?: UserLog,
     firstName?: string,
     lastName?: string,
     loyalties?: CustomerLoyalty[]
@@ -23,6 +25,7 @@ export class User {
       username,
       isRestaurantStaff,
       createdRestaurant,
+      log,
       firstName,
       lastName,
       loyalties,
@@ -53,4 +56,26 @@ export type CustomerReward = {
   _id: string;
   content: string;
   level: RestaurantRewardLevel;
+};
+
+export type UserAchievementLog = {
+  restaurantId: string;
+  restaurantName: string;
+  achievement: string;
+  progress: string;
+  complete: boolean;
+  timeOfScan: Date;
+};
+
+export type UserRewardLog = {
+  restaurantId: string;
+  restaurantName: string;
+  reward: string;
+  level: RestaurantRewardLevel;
+  timeOfScan: Date;
+};
+
+export type UserLog = {
+  achievements: UserAchievementLog[];
+  rewards: UserRewardLog[];
 };

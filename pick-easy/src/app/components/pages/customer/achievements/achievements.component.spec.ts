@@ -54,6 +54,7 @@ describe("AchievementsComponent", () => {
       firstName: "abc",
       lastName: "def",
       username: "1234",
+      log: null,
     };
 
     component.restaurants = [
@@ -103,6 +104,7 @@ describe("AchievementsComponent", () => {
             level: "Gold",
           },
         ],
+        rewardWeight: null,
       },
     ];
 

@@ -14,7 +14,6 @@ import { HeaderComponent } from "./components/header/header.component";
 import { PageNotFoundComponent } from "./components/pages/page-not-found/page-not-found.component";
 import { CreditsComponent } from "./components/pages/credits/credits.component";
 import { MyRestaurantComponent } from "./components/pages/restaurant/my-restaurant/my-restaurant.component";
-import { ProfileComponent } from "./components/pages/customer/profile/profile.component";
 import { DiscoverComponent } from "./components/pages/customer/discover/discover.component";
 import { RewardConfiguratorComponent } from "./components/pages/restaurant/reward-configurator/reward-configurator.component";
 import { AchievementConfiguratorComponent } from "./components/pages/restaurant/achievement-configurator/achievement-configurator.component";
@@ -27,6 +26,7 @@ import { ScanQRCodeComponent } from "./components/pages/restaurant/scan-qr-code/
 import { RedeemedRewardDialogComponent } from "./components/pages/restaurant/scan-qr-code/redeemed-reward-dialog/redeemed-reward-dialog.component";
 import { HomeComponent } from "./components/pages/home/home.component";
 import { NavigationComponent } from "./components/navigation/navigation.component";
+import { HistoryComponent } from "./components/pages/customer/history/history.component";
 import { RewardPoolComponent } from "./components/pages/customer/rewards/reward-pool/reward-pool.component";
 
 import { MatListModule } from "@angular/material/list";
@@ -64,7 +64,6 @@ import { CountUpModule } from "ngx-countup";
     SignUpComponent,
     PageNotFoundComponent,
     CreditsComponent,
-    ProfileComponent,
     DiscoverComponent,
     RewardConfiguratorComponent,
     RestaurantDetailsComponent,
@@ -78,6 +77,7 @@ import { CountUpModule } from "ngx-countup";
     RedeemedRewardDialogComponent,
     HomeComponent,
     NavigationComponent,
+    HistoryComponent,
     RewardPoolComponent,
   ],
   imports: [

@@ -1,0 +1,92 @@
+#page {
+  padding: 96px 32px 32px 32px;
+  min-width: 320px;
+}
+
+#content {
+  width: calc(100% - 64px);
+  max-width: 1100px;
+  margin: 0 auto;
+  background: #f5f5f5;
+  padding: 32px;
+  border-radius: 25px;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #e8285f, #f23f43);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+#title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+#title > .gradient-text {
+  font-size: 32px;
+  line-height: 42px;
+}
+
+#search {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+#search > .mat-form-field {
+  width: 50%;
+}
+
+::ng-deep .mat-form-field-flex {
+  align-items: flex-end !important;
+}
+
+.logs {
+  display: flex;
+  justify-content: center;
+  width: stretch;
+}
+
+.logs > mat-tab-group {
+  width: stretch;
+}
+
+.level-icon-small {
+  width: 16px;
+  margin-right: 0.3rem;
+}
+
+#achievement-log,
+#reward-log {
+  overflow-x: auto;
+}
+
+#achievement-log {
+  min-width: 700px;
+}
+
+#reward-log {
+  min-width: 550px;
+}
+
+@media only screen and (max-width: 768px) {
+  #page {
+    padding: 0;
+  }
+
+  #content {
+    border-radius: 0;
+    margin-top: 64px;
+    background: none;
+    padding: 16px 0;
+  }
+}
+@media only screen and (max-width: 480px) {
+  #search > .mat-form-field {
+    width: 100%;
+  }
+}
