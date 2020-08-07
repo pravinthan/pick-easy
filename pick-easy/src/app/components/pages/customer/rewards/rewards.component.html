@@ -179,7 +179,7 @@
             <button
               mat-raised-button
               class="roll-reward-button gradient-button"
-              (click)="openRewardPool(restaurant, getCustomerLoyaltyByRestaurantId(restaurant._id).level)"
+              (click)="openRewardPool(restaurant, getCustomerLoyaltyByRestaurantId(restaurant._id)?.level)"
             >
               <mat-icon>list</mat-icon>
               View Reward Pool

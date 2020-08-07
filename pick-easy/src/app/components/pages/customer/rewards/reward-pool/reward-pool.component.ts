@@ -25,7 +25,8 @@ export class RewardPoolComponent {
 
   constructor(
     private templateService: TemplateService,
-    @Inject(MAT_DIALOG_DATA) public data: { restaurant: Restaurant, level: RestaurantRewardLevel}
+    @Inject(MAT_DIALOG_DATA)
+    public data: { restaurant: Restaurant; level: RestaurantRewardLevel }
   ) {
     this.templateService
       .getRewardTemplates()
@@ -35,12 +36,14 @@ export class RewardPoolComponent {
       });
   }
 
+  /* Returns the reward template given a template number */
   getTemplateByNumber(templateNumber: number): RewardTemplate {
     return this.templates.find(
       (template) => template.templateNumber == templateNumber
     );
   }
 
+  /* Given a restaurant reward, converts it to text by replacing the variable with a string */
   restaurantRewardToText(restaurantReward: RestaurantReward) {
     let rewardWithVariables = this.getTemplateByNumber(
       restaurantReward.templateNumber
@@ -55,26 +58,40 @@ export class RewardPoolComponent {
     return rewardWithVariables;
   }
 
+  /* Given a level, returns a list of rewards of only that level */
   filterRewardsByLevel(level: RestaurantRewardLevel) {
-    return this.data.restaurant.rewards?.filter((reward) => reward.level == level);
+    return this.data.restaurant.rewards?.filter(
+      (reward) => reward.level == level
+    );
   }
 
+  /* Returns list of levels only in the rewards of the restaurant. E.g. if there are no
+     diamond rewards created then the list won't return diamond */
   filterLevelsByRewards() {
     return this.levels.filter((level) =>
       this.data.restaurant.rewards?.find((reward) => reward.level == level)
     );
   }
 
-  withinLevel(customerLevel: RestaurantRewardLevel, rewardLevel: RestaurantRewardLevel) {
-    if (rewardLevel == "Bronze")
-      return true;
+  /* Given a customer level and a reward level, returns true if customerLevel is "greater than
+     or equal to" reward level. E.g. withinLevel("Bronze", "Silver") => False */
+  withinLevel(
+    customerLevel: RestaurantRewardLevel,
+    rewardLevel: RestaurantRewardLevel
+  ) {
+    if (rewardLevel == "Bronze") return true;
+    if (!customerLevel) return false;
     if (rewardLevel == "Silver")
-      return (customerLevel == "Bronze" ? false : true);
+      return customerLevel == "Bronze" ? false : true;
     if (rewardLevel == "Gold")
-      return (customerLevel == "Bronze" || customerLevel == "Silver" ? false : true);
+      return customerLevel == "Bronze" || customerLevel == "Silver"
+        ? false
+        : true;
     if (rewardLevel == "Platinum")
-      return (customerLevel == "Platinum" || customerLevel == "Diamond" ? true : false);
+      return customerLevel == "Platinum" || customerLevel == "Diamond"
+        ? true
+        : false;
     if (rewardLevel == "Diamond")
-      return (customerLevel == "Diamond" ? true : false);
+      return customerLevel == "Diamond" ? true : false;
   }
 }
