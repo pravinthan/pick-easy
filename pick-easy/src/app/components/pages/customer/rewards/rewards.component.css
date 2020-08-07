@@ -177,6 +177,10 @@
   text-decoration: underline;
 }
 
+.reward-pool-button > mat-icon {
+  margin-right: 0.2rem;
+}
+
 .disabled-button {
   color: rgb(230, 230, 230);
   background: #acacac;
