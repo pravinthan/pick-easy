@@ -158,9 +158,9 @@ Anthony
     2. 
     3. 
 Pravinthan
-    1. 
-    2. 
-    3. 
+    1. Finished my part for documentation
+    2. Nothing
+    3. Help team out
 Jeremy
     1. 
     2. 
@@ -186,9 +186,9 @@ Anthony
     2. 
     3. 
 Pravinthan
-    1. 
-    2. 
-    3. 
+    1. Nothing
+    2. Nothing
+    3. Help team out
 Jeremy
     1. 
     2. 
@@ -204,20 +204,20 @@ Date: August 9, 2020
 Luke
     1. 
     2. 
-    3. 
+    3. N/A (Sprint finished)
 Evan
     1. 
     2. 
-    3. 
+    3. N/A (Sprint finished)
 Anthony
     1. 
     2. 
-    3. 
+    3. N/A (Sprint finished)
 Pravinthan
-    1. 
-    2. 
-    3. 
+    1. Sprint finished
+    2. Nothing
+    3. N/A (Sprint finished)
 Jeremy
     1. 
     2. 
-    3. 
+    3. N/A (Sprint finished)
