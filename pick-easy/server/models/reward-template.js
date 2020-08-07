@@ -16,6 +16,7 @@ let RewardTemplate = mongoose.model(
   "reward-templates"
 );
 
+// Put the templates in the database
 (async () => {
   try {
     await RewardTemplate.collection.drop();

@@ -16,6 +16,7 @@ require("./config/passport");
 let apiRoute = require("./routes/index");
 let app = express();
 
+// If env is production, serve the built static files, else allow the server to share cross-origin (for development)
 if (process.env.NODE_ENV == "production") {
   app.use(express.static(path.join(__dirname, "../dist/pick-easy")));
   app.get("/*", (req, res) => res.sendFile(path.join(__dirname)));
@@ -33,12 +34,14 @@ app.use((req, res, next) => {
   next(error);
 });
 
+// Send error 401 if any error responds UnauthorizedError
 app.use((err, req, res, next) => {
   if (err.name === "UnauthorizedError") {
     return res.status(401).send("Unauthorized access");
   }
 });
 
+// Connect to the database
 mongoose.connect(process.env.DB_URI || "mongodb://localhost/pick-easy", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -49,6 +52,7 @@ mongoose.connection.on(
   console.error.bind(console, "MongoDB connection error:")
 );
 
+// Create the server on the specified port
 const server = http.createServer(app);
 const port = process.env.PORT || 3000;
 server.listen(port, () =>

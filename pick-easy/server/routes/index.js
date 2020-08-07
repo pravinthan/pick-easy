@@ -5,17 +5,23 @@ let jwt = require("express-jwt");
 let multer = require("multer");
 let multerS3 = require("multer-s3");
 let aws = require("aws-sdk");
+
+// Update AWS config object with secret credentials
 aws.config.update({
   secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
   accessKeyId: process.env.S3_ACCESS_KEY_ID,
   region: process.env.S3_BUCKET_REGION,
 });
 let s3 = new aws.S3();
+
+// Function that is called to verify if the restaurant image are png/jpg only
 const fileFilter = (req, file, callback) => {
   if (file.mimetype === "image/png" || file.mimetype === "image/jpeg")
     callback(null, true);
   else callback(null, false);
 };
+
+// Multer upload object that uploads images to the cloud (AWS S3)
 let upload = multer({
   storage: multerS3({
     s3,
@@ -28,8 +34,10 @@ let upload = multer({
   limits: { fileSize: 1024 * 1024 * 10 },
 });
 
+// Authentication middleware
 let auth = jwt({ secret: process.env.JWT_SECRET });
 
+// Restaurant staff authentication middleware
 let restaurantStaffAuth = (req, res, next) => {
   if (!req.user.isRestaurantStaff)
     return res.status(403).send("User is not a restaurant staff");
@@ -37,6 +45,7 @@ let restaurantStaffAuth = (req, res, next) => {
   next();
 };
 
+// Customer authentication middleware
 let customerAuth = (req, res, next) => {
   if (req.user.isRestaurantStaff)
     return res.status(403).send("User is not a customer");
@@ -51,7 +60,8 @@ let customerController = require("../controllers/customer");
 let achievementTemplateController = require("../controllers/achievement-template");
 let rewardTemplateController = require("../controllers/reward-template");
 
-// Authentication
+/*********************************** Authentication API endpoints ***********************************/
+// Sign Up endpoint
 router.post(
   "/users/signup",
   [
@@ -67,6 +77,8 @@ router.post(
   ],
   authenticationController.signUp
 );
+
+// Sign In endpoint
 router.post(
   "/users/signin",
   [
@@ -80,13 +92,16 @@ router.post(
   ],
   authenticationController.signIn
 );
+
+// Retrieve New JWT endpoint
 router.get(
   "/users/retrieve-new-jwt",
   auth,
   authenticationController.retrieveNewJWT
 );
 
-// Users
+/*********************************** Users API endpoints ***********************************/
+// Get User Information endpoint
 router.get(
   "/users/:id",
   auth,
@@ -100,7 +115,8 @@ router.get(
   userController.retrieveUserById
 );
 
-// Restaurants
+/*********************************** Restaurants API endpoints ***********************************/
+// Create Restaurant endpoint
 router.post(
   "/restaurants",
   auth,
@@ -133,13 +149,18 @@ router.post(
   restaurantController.createRestaurant
 );
 
+// Get All Restaurants endpoint
 router.get("/restaurants", auth, restaurantController.retrieveAllRestaurants);
+
+// Get Restaurant Staff's Own Restaurant endpoint
 router.get(
   "/restaurants/owned",
   auth,
   restaurantStaffAuth,
   restaurantController.retrieveOwnRestaurant
 );
+
+// Get Restaurant by ID endpoint
 router.get(
   "/restaurants/:id",
   auth,
@@ -153,6 +174,7 @@ router.get(
   restaurantController.retrieveRestaurantById
 );
 
+// Update Restaurant's Information endpoint
 router.patch(
   "/restaurants/:id",
   auth,
@@ -190,6 +212,7 @@ router.patch(
   restaurantController.updateRestaurant
 );
 
+// Update Restaurant's Reward Weights endpoint
 router.patch(
   "/restaurants/:id/rewardWeight",
   auth,
@@ -225,12 +248,14 @@ router.patch(
   restaurantController.updateRestaurantRewardWeight
 );
 
+// Update Restaurant's Image endpoint
 router.get(
   "/restaurants/:id/image",
   auth,
   restaurantController.retrieveRestaurantImage
 );
 
+// Update Restaurant's Achievements endpoint
 router.patch(
   "/restaurants/:id/achievements",
   auth,
@@ -265,13 +290,7 @@ router.patch(
   restaurantController.updateAchievements
 );
 
-// Achievement Templates
-router.get(
-  "/templates/achievements",
-  auth,
-  achievementTemplateController.retrieveAllTemplates
-);
-
+// Update Restaurant's Rewards endpoint
 router.patch(
   "/restaurants/:id/rewards",
   auth,
@@ -305,14 +324,22 @@ router.patch(
   restaurantController.updateRewards
 );
 
-// Reward Templates
+/*********************************** Achievement Templates API endpoints ***********************************/
+router.get(
+  "/templates/achievements",
+  auth,
+  achievementTemplateController.retrieveAllTemplates
+);
+
+/*********************************** Reward Templates API endpoints ***********************************/
 router.get(
   "/templates/rewards",
   auth,
   rewardTemplateController.retrieveAllTemplates
 );
 
-// Customer
+/*********************************** Customer API endpoints ***********************************/
+// Create Customer Achievement endpoint
 router.post(
   "/customers/:userId/achievements",
   auth,
@@ -337,6 +364,7 @@ router.post(
   customerController.addAchievement
 );
 
+// Update Customer Achievement endpoint
 router.patch(
   "/customers/:userId/achievements",
   auth,
@@ -369,6 +397,7 @@ router.patch(
   customerController.updateAchievement
 );
 
+// Create Customer Level endpoint
 router.patch(
   "/customers/:userId/level",
   auth,
@@ -388,6 +417,7 @@ router.patch(
   customerController.updateLevel
 );
 
+// Create Customer Reward endpoint
 router.post(
   "/customers/:userId/rewards",
   auth,
@@ -407,6 +437,7 @@ router.post(
   customerController.generateReward
 );
 
+// Update Customer Reward endpoint
 router.patch(
   "/customers/:userId/rewards",
   auth,

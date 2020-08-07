@@ -30,6 +30,7 @@ let AchievementTemplate = mongoose.model(
   "achievement-templates"
 );
 
+// Put the templates in the database
 (async () => {
   try {
     await AchievementTemplate.collection.drop();

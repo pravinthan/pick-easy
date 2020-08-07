@@ -3,6 +3,7 @@ let LocalStrategy = require("passport-local").Strategy;
 let mongoose = require("mongoose");
 let User = mongoose.model("User");
 
+// Use a passport local strategy that validates the user's entered credentials
 passport.use(
   new LocalStrategy(
     { passReqToCallback: true },

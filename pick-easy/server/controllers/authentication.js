@@ -3,6 +3,7 @@ let { validationResult } = require("express-validator");
 let mongoose = require("mongoose");
 let User = mongoose.model("User");
 
+/* Controller function to validate and create a new user */
 module.exports.signUp = (req, res) => {
   if (validationResult(req).array().length > 0) return res.sendStatus(400);
 
@@ -25,6 +26,7 @@ module.exports.signUp = (req, res) => {
     .catch((err) => res.sendStatus(500));
 };
 
+/* Controller function to validate and send a JWT */
 module.exports.signIn = (req, res) => {
   if (validationResult(req).array().length > 0) return res.sendStatus(400);
 
@@ -36,6 +38,7 @@ module.exports.signIn = (req, res) => {
   })(req, res);
 };
 
+/* Controller function to send a JWT assuming their JWT is old */
 module.exports.retrieveNewJWT = (req, res) => {
   User.findOne({ username: req.user.username })
     .then((user) => res.json({ token: user.generateJWT() }))
