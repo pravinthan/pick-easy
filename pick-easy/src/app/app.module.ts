@@ -27,6 +27,7 @@ import { ScanQRCodeComponent } from "./components/pages/restaurant/scan-qr-code/
 import { RedeemedRewardDialogComponent } from "./components/pages/restaurant/scan-qr-code/redeemed-reward-dialog/redeemed-reward-dialog.component";
 import { HomeComponent } from "./components/pages/home/home.component";
 import { NavigationComponent } from "./components/navigation/navigation.component";
+import { RewardPoolComponent } from "./components/pages/customer/rewards/reward-pool/reward-pool.component";
 
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -54,7 +55,6 @@ import { NgxMatFileInputModule } from "@angular-material-components/file-input";
 import { QRCodeModule } from "angularx-qrcode";
 import { ZXingScannerModule } from "@zxing/ngx-scanner";
 import { CountUpModule } from "ngx-countup";
-import { RewardPoolComponent } from './components/pages/customer/rewards/reward-pool/reward-pool.component';
 
 @NgModule({
   declarations: [

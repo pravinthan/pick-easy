@@ -6,7 +6,6 @@ import {
   Restaurant,
   RestaurantRewardLevel,
 } from "src/app/shared/models/restaurant.model";
-
 import { RestaurantService } from "src/app/shared/restaurant.service";
 import { MatDialog } from "@angular/material/dialog";
 import { UserService } from "src/app/shared/user.service";
@@ -18,7 +17,6 @@ import { QRCodeComponent } from "../qr-code/qr-code.component";
 import { ActivatedRoute } from "@angular/router";
 import * as confetti from "canvas-confetti";
 import { RewardPoolComponent } from "./reward-pool/reward-pool.component";
-import { AutofillMonitor } from '@angular/cdk/text-field';
 
 @Component({
   selector: "app-rewards",
@@ -52,7 +50,6 @@ export class RewardsComponent {
     "Platinum",
     "Diamond",
   ];
-  openedRewardPool = false;
 
   constructor(
     private authenticationService: AuthenticationService,

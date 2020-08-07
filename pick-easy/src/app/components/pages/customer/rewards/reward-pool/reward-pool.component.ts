@@ -23,7 +23,6 @@ export class RewardPoolComponent {
     "Diamond",
   ];
 
-
   constructor(
     private templateService: TemplateService,
     @Inject(MAT_DIALOG_DATA)
