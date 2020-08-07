@@ -162,6 +162,7 @@
               *ngIf="
                 getCustomerLoyaltyByRestaurantId(restaurant._id)
                   ?.numberOfTickets >= restaurant.numberOfTicketsForRedemption
+                rewardsForLevel(restaurant).length > 0
               "
               mat-raised-button
               class="roll-reward-button gradient-button"
@@ -176,6 +177,31 @@
               }}
               <mat-icon>casino</mat-icon>
             </button>
+            
+            <button
+              *ngIf="
+                getCustomerLoyaltyByRestaurantId(restaurant._id)
+                  ?.numberOfTickets >=
+                  restaurant.numberOfTicketsForRedemption &&
+                rewardsForLevel(restaurant).length == 0
+              "
+              mat-raised-button
+              class="roll-reward-button gradient-button disabled-button"
+              matTooltip="No rewards available for {{
+                getCustomerLoyaltyByRestaurantId(restaurant._id)?.level
+              }}"
+              disableRipple
+            >
+              <mat-icon>casino</mat-icon>
+              Roll a Reward for {{ restaurant.numberOfTicketsForRedemption }}
+              {{
+                restaurant.numberOfTicketsForRedemption == 1
+                  ? "Ticket"
+                  : "Tickets"
+              }}
+              <mat-icon>casino</mat-icon>
+            </button>
+            
             <div
               class="reward-pool-button"
               (click)="
@@ -190,6 +216,7 @@
                 View Reward Pool
               </span>
             </div>
+          
             <div *ngFor="let level of levels">
               <div
                 *ngIf="

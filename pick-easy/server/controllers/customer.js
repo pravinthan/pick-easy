@@ -417,25 +417,98 @@ module.exports.generateReward = async (req, res) => {
     )
       return res.status(409).send(`Not enough tickets to roll for reward`);
 
+    let bronzeLoyalty = customerLoyaltyForRestaurant.level == "Bronze";
+    let silverLoyalty = customerLoyaltyForRestaurant.level == "Silver";
+    let goldLoyalty = customerLoyaltyForRestaurant.level == "Gold";
+    let platinumLoyalty = customerLoyaltyForRestaurant.level == "Platinum";
+    let diamondLoyalty = customerLoyaltyForRestaurant.level == "Diamond";
+
     let allowedRestaurantRewards = restaurant.rewards.filter((reward) => {
       let filter = false;
-      if (customerLoyaltyForRestaurant.level == "Bronze")
+      if (
+        bronzeLoyalty ||
+        silverLoyalty ||
+        goldLoyalty ||
+        platinumLoyalty ||
+        diamondLoyalty
+      )
         filter = filter || reward.level == "Bronze";
-      if (customerLoyaltyForRestaurant.level == "Silver")
+      if (silverLoyalty || goldLoyalty || platinumLoyalty || diamondLoyalty)
         filter = filter || reward.level == "Silver";
-      if (customerLoyaltyForRestaurant.level == "Gold")
+      if (goldLoyalty || platinumLoyalty || diamondLoyalty)
         filter = filter || reward.level == "Gold";
-      if (customerLoyaltyForRestaurant.level == "Platinum")
+      if (platinumLoyalty || diamondLoyalty)
         filter = filter || reward.level == "Platinum";
-      if ((customerLoyaltyForRestaurant.level = "Diamond"))
-        filter = filter || reward.level == "Diamond";
+      if (diamondLoyalty) filter = filter || reward.level == "Diamond";
       return filter;
     });
 
-    let randomRestaurantReward =
-      allowedRestaurantRewards[
-        Math.floor(Math.random() * allowedRestaurantRewards.length)
-      ];
+    let getLevelsUnder = (level) => {
+      let levels = [];
+      let bronze = level == "Bronze";
+      let silver = level == "Silver";
+      let gold = level == "Gold";
+      let platinum = level == "Platinum";
+      let diamond = level == "Diamond";
+      if (bronze || silver || gold || platinum || diamond)
+        levels.push("Bronze");
+      if (silver || gold || platinum || diamond) levels.push("Silver");
+      if (gold || platinum || diamond) levels.push("Gold");
+      if (platinum || diamond) levels.push("Platinum");
+      if (diamond) levels.push("Diamond");
+      return levels;
+    };
+
+    let calculateNewWeight = (level, customerLevel, rewardWeight) => {
+      let total = 0;
+      let levels = getLevelsUnder(customerLevel);
+      for (let i = 0; i < levels.length; i++) {
+        total += rewardWeight[levels[i].toLowerCase()];
+      }
+      if (total == 0) return 0;
+      return rewardWeight[level.toLowerCase()] / total;
+    };
+
+    let allowedLevels = Array.from(
+      new Set(
+        allowedRestaurantRewards.map(
+          (allowedRestaurantReward) => allowedRestaurantReward.level
+        )
+      )
+    );
+
+    let allowedWeights = allowedLevels.map((level) =>
+      calculateNewWeight(
+        level,
+        customerLoyaltyForRestaurant.level,
+        restaurant.rewardWeight
+      )
+    );
+
+    let getRandomLevel = (weights, levels) => {
+      let num = Math.random(),
+        s = 0,
+        lastIndex = weights.length - 1;
+
+      for (let i = 0; i < lastIndex; ++i) {
+        s += weights[i];
+        if (num < s) {
+          return levels[i];
+        }
+      }
+
+      return levels[lastIndex];
+    };
+
+    let randomLevel = getRandomLevel(allowedWeights, allowedLevels);
+
+    let allowedRandomRewards = restaurant.rewards.filter(
+      (reward) => reward.level == randomLevel
+    );
+
+    let randomReward = Math.floor(Math.random() * allowedRandomRewards.length);
+
+    let randomRestaurantReward = allowedRandomRewards[randomReward];
 
     let rewardTemplate = await RewardTemplate.findOne({
       templateNumber: randomRestaurantReward.templateNumber,
@@ -478,6 +551,7 @@ module.exports.generateReward = async (req, res) => {
 
     res.json(newRandomReward);
   } catch (err) {
+    console.log(err);
     return res.sendStatus(500);
   }
 };
