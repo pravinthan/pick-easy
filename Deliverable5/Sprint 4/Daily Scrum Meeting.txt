@@ -24,7 +24,7 @@ Pravinthan
 Jeremy
     1. N/A (first meeting)
     2. N/A
-    3. 
+    3. Work on pic-74
 
 --------------------------------------------------------------------------------------------
 Date: August 3, 2020
@@ -130,9 +130,9 @@ Anthony
     2. 
     3. 
 Pravinthan
-    1. 
-    2. 
-    3. 
+    1. Helped team out
+    2. Nothing
+    3. Documentation needs to be done
 Jeremy
     1. 
     2. 
