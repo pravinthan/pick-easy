@@ -225,7 +225,6 @@ export class RewardsComponent {
   }
 
   openRewardPool(restaurant: Restaurant, level: RestaurantRewardLevel) {
-    
     this.dialog.open(RewardPoolComponent, {
       data: { restaurant: restaurant, level: level },
     });
