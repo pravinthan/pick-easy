@@ -17,8 +17,8 @@ import { Observable } from "rxjs";
   templateUrl: "./history.component.html",
   styleUrls: ["./history.component.css"],
 })
-// class represenation of table data
 export class HistoryComponent {
+  // Class-level vars
   achievementLogDisplayedColumns: string[] = [
     "timeOfScan",
     "restaurantName",
@@ -30,7 +30,6 @@ export class HistoryComponent {
     "restaurantName",
     "reward",
   ];
-  //inialized variables
   achievementLogDataSource: MatTableDataSource<UserAchievementLog>;
   rewardLogDataSource: MatTableDataSource<UserRewardLog>;
   currentUser: User;
@@ -66,7 +65,8 @@ export class HistoryComponent {
         this.rewardLogDataSource.filter = this.queryName;
       });
   }
-  // filters out data from the table
+
+  // Filters out data from the table
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.achievementLogDataSource.filter = filterValue.trim().toLowerCase();

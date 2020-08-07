@@ -105,8 +105,6 @@ let restaurantSchema = new Schema({
     ],
     rewards: [
       {
-
-
         customerId: {
           type: Schema.Types.ObjectId,
         },

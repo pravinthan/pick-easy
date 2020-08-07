@@ -1,6 +1,5 @@
 let mongoose = require("mongoose");
 let { validationResult } = require("express-validator");
-const { async } = require("rxjs/internal/scheduler/async");
 let Restaurant = mongoose.model("Restaurant");
 let User = mongoose.model("User");
 let AchievementTemplate = mongoose.model("AchievementTemplate");
@@ -161,10 +160,11 @@ module.exports.updateAchievement = async (req, res) => {
         complete,
         timeOfScan: new Date(),
       });
+
       await restaurant.save();
     };
 
-    let addToCustomerLog = async(
+    let addToCustomerLog = async (
       restaurant,
       customer,
       achievementTemplate,
@@ -173,8 +173,7 @@ module.exports.updateAchievement = async (req, res) => {
       maxProgression,
       complete
     ) => {
-     let user = await User.findById(customer._id);
-     user.log.achievements.push({
+      customer.log.achievements.push({
         restaurantId: restaurant._id,
         restaurantName: restaurant.name,
         achievement:
@@ -193,10 +192,9 @@ module.exports.updateAchievement = async (req, res) => {
         complete,
         timeOfScan: new Date(),
       });
-      await user.save();
 
-    }
-
+      await customer.save();
+    };
 
     for (let i = 0; i < customer.loyalties.length; i++) {
       if (customer.loyalties[i].restaurantId.equals(restaurant._id)) {
@@ -222,7 +220,7 @@ module.exports.updateAchievement = async (req, res) => {
                   customer.loyalties[i].achievements[j].progress += 1;
                 }
 
-                addToRestaurantLog(
+                await addToRestaurantLog(
                   restaurant,
                   customer,
                   achievementTemplate,
@@ -237,7 +235,7 @@ module.exports.updateAchievement = async (req, res) => {
                     ]
                 );
 
-                addToCustomerLog(
+                await addToCustomerLog(
                   restaurant,
                   customer,
                   achievementTemplate,
@@ -262,7 +260,7 @@ module.exports.updateAchievement = async (req, res) => {
                   customer.loyalties[i].achievements[j].complete = true;
                 }
               } else if (achievementTemplate.typeOfAchievement == "oneOff") {
-                addToRestaurantLog(
+                await addToRestaurantLog(
                   restaurant,
                   customer,
                   achievementTemplate,
@@ -271,7 +269,7 @@ module.exports.updateAchievement = async (req, res) => {
                   1,
                   true
                 );
-                addToCustomerLog(
+                await addToCustomerLog(
                   restaurant,
                   customer,
                   achievementTemplate,
@@ -426,20 +424,17 @@ module.exports.removeReward = async (req, res) => {
               level: customerReward.level,
               timeOfScan: new Date(),
             });
-            let user = await User.findById(customer._id);
-            user.log.rewards.push({
+            customer.log.rewards.push({
               restaurantId: restaurant._id,
-              restaurantName : restaurant.name,
+              restaurantName: restaurant.name,
               reward: customerReward.content,
               level: customerReward.level,
               timeOfScan: new Date(),
-
-            })
+            });
             // Remove the reward from the customer's rewards
             customer.loyalties[i].rewards.splice(j, 1);
             await restaurant.save();
             await customer.save();
-            await user.save();
             break;
           }
         }
