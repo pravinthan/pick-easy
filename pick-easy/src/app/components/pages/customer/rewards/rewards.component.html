@@ -161,7 +161,8 @@
             <button
               *ngIf="
                 getCustomerLoyaltyByRestaurantId(restaurant._id)
-                  ?.numberOfTickets >= restaurant.numberOfTicketsForRedemption
+                  ?.numberOfTickets >=
+                  restaurant.numberOfTicketsForRedemption &&
                 rewardsForLevel(restaurant).length > 0
               "
               mat-raised-button
@@ -177,7 +178,7 @@
               }}
               <mat-icon>casino</mat-icon>
             </button>
-            
+
             <button
               *ngIf="
                 getCustomerLoyaltyByRestaurantId(restaurant._id)
@@ -201,7 +202,7 @@
               }}
               <mat-icon>casino</mat-icon>
             </button>
-            
+
             <div
               class="reward-pool-button"
               (click)="
@@ -212,11 +213,9 @@
               "
             >
               <mat-icon>list</mat-icon>
-              <span>
-                View Reward Pool
-              </span>
+              <span>View Reward Pool</span>
             </div>
-          
+
             <div *ngFor="let level of levels">
               <div
                 *ngIf="
