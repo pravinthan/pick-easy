@@ -36,7 +36,7 @@ const routes: Routes = [
   {
     path: "customer/history",
     component: HistoryComponent,
-
+    canActivate: [AuthenticationGuard, CustomerGuard],
   },
   {
     path: "customer/achievements",

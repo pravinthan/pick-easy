@@ -1,5 +1,6 @@
 let mongoose = require("mongoose");
 let { validationResult } = require("express-validator");
+const { async } = require("rxjs/internal/scheduler/async");
 let Restaurant = mongoose.model("Restaurant");
 let User = mongoose.model("User");
 let AchievementTemplate = mongoose.model("AchievementTemplate");
@@ -132,7 +133,7 @@ module.exports.updateAchievement = async (req, res) => {
       (variable) => variable.isProgressionVariable
     );
 
-    let addToLog = async (
+    let addToRestaurantLog = async (
       restaurant,
       customer,
       achievementTemplate,
@@ -163,6 +164,40 @@ module.exports.updateAchievement = async (req, res) => {
       await restaurant.save();
     };
 
+    let addToCustomerLog = async(
+      restaurant,
+      customer,
+      achievementTemplate,
+      restaurantAchievement,
+      customerAchievementProgress,
+      maxProgression,
+      complete
+    ) => {
+     let user = await User.findById(customer._id);
+     user.log.achievements.push({
+        restaurantId: restaurant._id,
+        restaurantName: restaurant.name,
+        achievement:
+          achievementTemplate.value
+            .split(":variable")
+            .reduce(
+              (result, text, i) =>
+                result + text + (restaurantAchievement.variables[i] || ""),
+              ""
+            ) +
+          " for " +
+          restaurantAchievement.numberOfTickets +
+          " Ticket" +
+          (restaurantAchievement.numberOfTickets == 1 ? "" : "s"),
+        progress: customerAchievementProgress + " / " + maxProgression,
+        complete,
+        timeOfScan: new Date(),
+      });
+      await user.save();
+
+    }
+
+
     for (let i = 0; i < customer.loyalties.length; i++) {
       if (customer.loyalties[i].restaurantId.equals(restaurant._id)) {
         for (let j = 0; j < customer.loyalties[i].achievements.length; j++) {
@@ -187,7 +222,22 @@ module.exports.updateAchievement = async (req, res) => {
                   customer.loyalties[i].achievements[j].progress += 1;
                 }
 
-                addToLog(
+                addToRestaurantLog(
+                  restaurant,
+                  customer,
+                  achievementTemplate,
+                  restaurantAchievement,
+                  customer.loyalties[i].achievements[j].progress,
+                  restaurantAchievement.variables[
+                    achievementTemplateVariableIndex
+                  ],
+                  customer.loyalties[i].achievements[j].progress >=
+                    restaurantAchievement.variables[
+                      achievementTemplateVariableIndex
+                    ]
+                );
+
+                addToCustomerLog(
                   restaurant,
                   customer,
                   achievementTemplate,
@@ -212,7 +262,16 @@ module.exports.updateAchievement = async (req, res) => {
                   customer.loyalties[i].achievements[j].complete = true;
                 }
               } else if (achievementTemplate.typeOfAchievement == "oneOff") {
-                addToLog(
+                addToRestaurantLog(
+                  restaurant,
+                  customer,
+                  achievementTemplate,
+                  restaurantAchievement,
+                  1,
+                  1,
+                  true
+                );
+                addToCustomerLog(
                   restaurant,
                   customer,
                   achievementTemplate,
@@ -367,11 +426,20 @@ module.exports.removeReward = async (req, res) => {
               level: customerReward.level,
               timeOfScan: new Date(),
             });
+            let user = await User.findById(customer._id);
+            user.log.rewards.push({
+              restaurantId: restaurant._id,
+              restaurantName : restaurant.name,
+              reward: customerReward.content,
+              level: customerReward.level,
+              timeOfScan: new Date(),
 
+            })
             // Remove the reward from the customer's rewards
             customer.loyalties[i].rewards.splice(j, 1);
             await restaurant.save();
             await customer.save();
+            await user.save();
             break;
           }
         }

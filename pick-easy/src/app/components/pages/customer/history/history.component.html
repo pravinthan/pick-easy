@@ -1,14 +1,14 @@
-<br>
-<br>
-<br>
-<br>
+<div id="page">
+  <div id="content">
+    <div id="title">
+      <span class="gradient-text">History</span>
+    </div>
 <div class="logs">
   <mat-tab-group>
     <mat-tab label="Scanned Achievement History">
       <mat-table
         #achievementLogSort="matSort"
         [dataSource]="achievementLogDataSource"
-        class="mat-elevation-z8"
         matSort
         matSortActive="timeOfScan"
         matSortDisableClear
@@ -20,7 +20,7 @@
             Restaurant Name
           </mat-header-cell>
           <mat-cell *matCellDef="let achievement">
-            {{ restaurant.name }}
+            {{ achievement.restaurantName }}
           </mat-cell>
         </ng-container>
         <ng-container matColumnDef="achievement">
@@ -68,7 +68,7 @@
             Restaurant Name
           </mat-header-cell>
           <mat-cell *matCellDef="let reward">
-            {{ restaurant.name }}
+            {{ reward.restaurantName }}
           </mat-cell>
         </ng-container>
         <ng-container matColumnDef="reward">
@@ -101,4 +101,6 @@
         ></mat-row></mat-table
     ></mat-tab>
   </mat-tab-group>
+</div>
+</div>
 </div>

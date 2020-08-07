@@ -18,6 +18,34 @@ let userSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  log: {
+    achievements: [
+      {
+        restaurantId: {
+          type: Schema.Types.ObjectId,
+        },
+        restaurantName: String,
+        achievement: String,
+        progress: String,
+        complete: Boolean,
+        timeOfScan: Date,
+      },
+    ],
+    rewards: [
+      {
+        restaurantId: {
+          type: Schema.Types.ObjectId,
+        },
+        restaurantName: String,
+        reward: String,
+        level: {
+          type: String,
+          enum: ["Bronze", "Silver", "Gold", "Platinum", "Diamond"],
+        },
+        timeOfScan: Date,
+      },
+    ],
+  },
   loyalties: [
     {
       restaurantId: {

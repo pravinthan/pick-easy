@@ -33,7 +33,8 @@ export class AuthenticationService {
           token._id,
           token.username,
           token.isRestaurantStaff,
-          token.createdRestaurant
+          token.createdRestaurant,
+
         );
       }
     }
