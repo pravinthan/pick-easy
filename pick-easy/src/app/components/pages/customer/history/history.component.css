@@ -2,6 +2,19 @@
   padding: 96px 32px 32px 32px;
   min-width: 320px;
 }
+#search {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+#search > .mat-form-field {
+  width: 50%;
+}
+
+::ng-deep .mat-form-field-flex {
+  align-items: flex-end !important;
+}
 
 #content {
   width: calc(100% - 64px);
@@ -71,4 +84,8 @@
     padding: 16px 0;
   }
 }
-
+@media only screen and (max-width: 480px) {
+  #search > .mat-form-field {
+    width: 100%;
+  }
+}

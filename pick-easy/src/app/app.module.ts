@@ -55,7 +55,6 @@ import { QRCodeModule } from "angularx-qrcode";
 import { ZXingScannerModule } from "@zxing/ngx-scanner";
 import { CountUpModule } from "ngx-countup";
 import { HistoryComponent } from './components/pages/customer/history/history.component';
-import { HistoryDialogComponent } from "./components/pages/customer/history/history-dialog/history-dialog.component";
 
 @NgModule({
   declarations: [
@@ -80,7 +79,7 @@ import { HistoryDialogComponent } from "./components/pages/customer/history/hist
     HomeComponent,
     NavigationComponent,
     HistoryComponent,
-    HistoryDialogComponent,
+
   ],
   imports: [
     BrowserModule,
