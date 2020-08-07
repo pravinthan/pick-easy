@@ -1,0 +1,52 @@
+<mat-dialog-content>
+  <div class="container">
+    <div class="header">
+      <span class="header-text">
+        {{ data.restaurant.name }}
+      </span>
+
+      <img
+        *ngIf="data.level"
+        [src]="'/assets/' + data.level.toLowerCase() + '.png'"
+        class="level-icon"
+        [matTooltip]="data.level"
+        matTooltipPosition="right"
+      />
+    </div>
+    <span class="gradient-text reward-pool-header">
+      Reward Pool
+    </span>
+
+    <div class="reward-pool">
+      <div
+        class="reward"
+        *ngFor="let level of filterLevelsByRewards()"
+        [ngClass]="{ 'disabled-reward': !withinLevel(data.level, level) }"
+        matTooltipPosition="above"
+        [matTooltipDisabled]="withinLevel(data.level, level)"
+        [matTooltip]="'Level up to ' + level + ' to unlock these rewards'"
+      >
+        <div class="reward-level-container">
+          <span class="gradient-text reward-level">
+            {{ level }}
+          </span>
+          <img
+            src="/assets/{{ level.toLowerCase() }}.png"
+            class="level-icon-small"
+          />
+        </div>
+
+        <ul>
+          <li
+            *ngFor="let reward of filterRewardsByLevel(level)"
+            class="customer-rewards-container"
+          >
+            <span class="reward-text">
+              {{ restaurantRewardToText(reward) }}
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
