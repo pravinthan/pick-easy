@@ -50,13 +50,13 @@
         *ngIf="currentUser && !currentUser.isRestaurantStaff"
         mat-list-item
         (click)="sidebar.close()"
-        routerLink="/customer/profile"
+        routerLink="/customer/history"
         routerLinkActive="is-active"
       >
         <mat-icon class="button-border gradient-text" mat-list-icon>
-          person
+          history
         </mat-icon>
-        <span class="gradient-text">Profile</span>
+        <span class="gradient-text">History</span>
       </a>
       <a
         *ngIf="currentUser && !currentUser.isRestaurantStaff"

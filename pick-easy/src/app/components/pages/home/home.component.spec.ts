@@ -45,6 +45,7 @@ describe("HomeComponent", () => {
       createdRestaurant: false,
       isRestaurantStaff: false,
       username: "abc",
+      log: null,
     };
     component.isRestaurantStaff = false;
 
@@ -56,7 +57,7 @@ describe("HomeComponent", () => {
     );
 
     expect(new URL(anchors[0]?.href).pathname).toEqual("/discover");
-    expect(new URL(anchors[1]?.href).pathname).toEqual("/profile");
+    expect(new URL(anchors[1]?.href).pathname).toEqual("/history");
     expect(new URL(anchors[2]?.href).pathname).toEqual("/achievements");
     expect(new URL(anchors[3]?.href).pathname).toEqual("/rewards");
   });
@@ -72,6 +73,7 @@ describe("HomeComponent", () => {
       createdRestaurant: false,
       isRestaurantStaff: true,
       username: "abc",
+      log: null,
     };
     component.isRestaurantStaff = true;
 
@@ -96,6 +98,7 @@ describe("HomeComponent", () => {
       createdRestaurant: true,
       isRestaurantStaff: true,
       username: "abc",
+      log: null,
     };
     component.isRestaurantStaff = true;
 

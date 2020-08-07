@@ -44,6 +44,7 @@ describe("NavigationComponent", () => {
       createdRestaurant: false,
       isRestaurantStaff: false,
       username: "abc",
+      log: null,
     };
 
     fixture.detectChanges();
@@ -55,7 +56,7 @@ describe("NavigationComponent", () => {
 
     expect(new URL(anchors[0]?.href).pathname).toEqual("/customer");
     expect(new URL(anchors[1]?.href).pathname).toEqual("/customer/discover");
-    expect(new URL(anchors[2]?.href).pathname).toEqual("/customer/profile");
+    expect(new URL(anchors[2]?.href).pathname).toEqual("/customer/history");
     expect(new URL(anchors[3]?.href).pathname).toEqual(
       "/customer/achievements"
     );
@@ -73,6 +74,7 @@ describe("NavigationComponent", () => {
       createdRestaurant: true,
       isRestaurantStaff: true,
       username: "abc",
+      log: null,
     };
 
     fixture.detectChanges();
