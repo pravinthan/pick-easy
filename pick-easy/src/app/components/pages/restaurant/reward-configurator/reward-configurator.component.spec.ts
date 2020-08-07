@@ -34,16 +34,79 @@ describe("RewardConfiguratorComponent", () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
 
+    component.restaurant = {
+      _id: "a",
+      numberOfTicketsForRedemption: 3,
+      staff: {
+        _id: null,
+      },
+      name: "test",
+      description: "js",
+      cost: 2,
+      cuisine: "Mexican",
+      image: null,
+      log: {
+        achievements: [],
+        rewards: [],
+      },
+      achievements: [
+        {
+          variables: ["1"],
+          _id: "1",
+          templateNumber: 0,
+          numberOfTickets: 5,
+        },
+        {
+          variables: ["25", "1"],
+          _id: "2",
+          templateNumber: 3,
+          numberOfTickets: 5,
+        },
+      ],
+      rewards: [
+        {
+          variables: ["abc", "10"],
+          templateNumber: 2,
+          level: "Bronze",
+        },
+        {
+          variables: ["w", "w"],
+          templateNumber: 3,
+          level: "Silver",
+        },
+        {
+          variables: ["2", "2"],
+          templateNumber: 3,
+          level: "Gold",
+        },
+      ],
+      rewardWeight: {
+        bronze: 100,
+        diamond: 0,
+        gold: 0,
+        platinum: 0,
+        silver: 0,
+      },
+    };
+
+    component.rewardWeight = {
+      bronze: 100,
+      diamond: 0,
+      gold: 0,
+      platinum: 0,
+      silver: 0,
+    };
+
     component.templates = [
       {
-        _id: null,
+        _id: "0",
         templateNumber: 0,
         content: "Get <percentage>% off for all purchases",
         value: "Get :variable% off for all purchases",
         variables: ["Percent"],
       },
       {
-        _id: null,
+        _id: "1",
         templateNumber: 1,
         content:
           "Spend $<amount> or more pre-tax and get <restaurant item> for FREE",
@@ -51,35 +114,35 @@ describe("RewardConfiguratorComponent", () => {
         variables: ["Dollar", "Restaurant Item"],
       },
       {
-        _id: null,
+        _id: "2",
         templateNumber: 2,
         content: "Purchase <restaurant item> for $<amount> + tax",
         value: "Purchase :variable for $:variable + tax",
         variables: ["Restaurant Item", "Dollar"],
       },
       {
-        _id: null,
+        _id: "3",
         templateNumber: 3,
         content: "Buy <restaurant item> and get <restaurant item> for FREE",
         value: "Buy :variable and get :variable for FREE",
         variables: ["Restaurant Item", "Restaurant Item"],
       },
       {
-        _id: null,
+        _id: "4",
         templateNumber: 4,
         content: "Purchase <restaurant item> and get <percentage> off",
         value: "Purchase :variable and get :variable off",
         variables: ["Restaurant Item", "Percent"],
       },
       {
-        _id: null,
+        _id: "5",
         templateNumber: 5,
         content: "Purchase <restaurant item> and get $<amount> off",
         value: "Purchase :variable and get $:variable off",
         variables: ["Restaurant Item", "Dollar"],
       },
       {
-        _id: null,
+        _id: "6",
         templateNumber: 6,
         content: "FREE <restaurant item>",
         value: "FREE :variable",
