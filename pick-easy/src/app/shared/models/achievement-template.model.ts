@@ -11,7 +11,8 @@ export class AchievementTemplate {
   typeOfAchievement: "progress" | "oneOff";
 }
 
-/*  */
+/* Stores description and type of variable. Also stores whether variable is
+   a progression var. Check server/models/achievement-template.js for examples */
 export type AchievementTemplateVariable = {
   variableDescription: string;
   variableType: string;

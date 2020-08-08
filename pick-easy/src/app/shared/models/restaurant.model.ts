@@ -1,3 +1,4 @@
+/* Most of the models are self-explanatory */
 export class Restaurant {
   _id: string;
   staff: {
@@ -18,6 +19,7 @@ export class Restaurant {
   };
 }
 
+/* For image in restaurant */
 export class MulterFile {
   _id: string;
   fieldname: string;
@@ -68,6 +70,7 @@ export type RestaurantCuisine =
   | "Greek"
   | "Korean";
 
+/* Number of dollar signs, 1 is the least, 4 is the most. Like Google Maps */
 export type RestaurantCost = 1 | 2 | 3 | 4;
 
 export type RestaurantAchievementLog = {

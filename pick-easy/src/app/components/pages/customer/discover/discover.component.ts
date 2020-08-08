@@ -33,6 +33,7 @@ export class DiscoverComponent implements OnInit, AfterViewInit {
       });
   }
 
+  /* Overridden function that sets the image of the restaurant  */
   ngAfterViewInit() {
     this.logoImageElements.changes.subscribe(
       (logoImageElements: QueryList<ElementRef<HTMLImageElement>>) => {
@@ -63,6 +64,7 @@ export class DiscoverComponent implements OnInit, AfterViewInit {
     );
   }
 
+  /* Lifecycle hook that searches filtered options (in Observable) */
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(""),

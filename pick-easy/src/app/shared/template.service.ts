@@ -8,10 +8,12 @@ import { AchievementTemplate } from "./models/achievement-template.model";
 export class TemplateService {
   constructor(private http: HttpClient) {}
 
+  /* Returns all reward templates */
   getRewardTemplates(): Observable<RewardTemplate[]> {
     return this.http.get<RewardTemplate[]>(`/api/templates/rewards`);
   }
 
+  /* Returns all achievement templates */
   getAchievementTemplates(): Observable<AchievementTemplate[]> {
     return this.http.get<AchievementTemplate[]>(`/api/templates/achievements`);
   }

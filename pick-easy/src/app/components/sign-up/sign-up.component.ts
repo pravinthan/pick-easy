@@ -21,6 +21,7 @@ export class SignUpComponent {
     @Inject(MAT_DIALOG_DATA) public data: { isRestaurantStaff: boolean },
     @Inject(NOTYF) private notyf: Notyf
   ) {
+    
     if (this.authenticationService.currentUserValue)
       this.router.navigate(["/"]);
   }

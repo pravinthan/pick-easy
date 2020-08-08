@@ -7,6 +7,7 @@ import { User } from "./models/user.model";
 export class UserService {
   constructor(private http: HttpClient) {}
 
+  /* Returns all user info */
   getUserInfo(userId: string): Observable<User> {
     return this.http.get<User>(`/api/users/${userId}`);
   }

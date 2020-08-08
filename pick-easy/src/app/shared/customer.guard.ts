@@ -9,6 +9,7 @@ import { AuthenticationService } from "./authentication.service";
 import { NOTYF } from "./utils/notyf.token";
 import { Notyf } from "notyf";
 
+/* Ensures restaurant staff can't access customer routes */
 @Injectable({ providedIn: "root" })
 export class CustomerGuard implements CanActivate {
   constructor(
