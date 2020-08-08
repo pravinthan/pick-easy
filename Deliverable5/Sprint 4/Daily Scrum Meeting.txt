@@ -62,17 +62,17 @@ Date: August 4, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Finished bug fix rolling rewards with Prav
+    2. Need help from Prav for reward pool
+    3. Work on reward pool (pic-72)
 Evan
     1. Worked on PIC-73
     2. Nothing
     3. Continue to work on PIC-73
 Anthony
-    1. 
-    2. 
-    3. 
+    1. Worked on pic-75 
+    2. nothing
+    3. finish working on pic-73
 Pravinthan
     1. Finished pic-53
     2. Nothing
@@ -90,17 +90,17 @@ Date: August 5, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Worked on reward pool (pic-72)
+    2. Need help from Prav
+    3. Work on reward pool (pic-72)
 Evan
     1. Worked on PIC-73
     2. Nothing
     3. Continue to work on PIC-73
 Anthony
-    1. 
-    2. 
-    3. 
+    1. Finished pic-75
+    2. nothing
+    3. Finish documentation-84
 Pravinthan
     1. Finished and merged bug-81
     2. Nothing
@@ -118,17 +118,17 @@ Date: August 6, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Finished reward pool (pic-72)
+    2. Nothing
+    3. Documentation
 Evan
     1. Finished PIC-73
     2. Nothing
     3. Document any remaining code.
 Anthony
-    1. 
-    2. 
-    3. 
+    1. Work on documentation
+    2. nothing
+    3. keep working on documentation
 Pravinthan
     1. Helped team out
     2. Nothing
@@ -146,13 +146,13 @@ Date: August 7, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Documentation
+    2. Nothing
+    3. Documentation
 Evan
-    1. 
-    2. 
-    3. 
+    1. Worked on documentation
+    2. Nothing
+    3. Continue to work on documentation
 Anthony
     1. 
     2. 
@@ -178,9 +178,9 @@ Luke
     2. 
     3. 
 Evan
-    1. 
-    2. 
-    3. 
+    1. Finished my part of the documentation
+    2. Nothing
+    3. Help team out
 Anthony
     1. 
     2. 
@@ -202,12 +202,12 @@ Date: August 9, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
+    1. Sprint finished
+    2. Nothing
     3. N/A (Sprint finished)
 Evan
-    1. 
-    2. 
+    1. Sprint finished
+    2. Nothing
     3. N/A (Sprint finished)
 Anthony
     1. 
