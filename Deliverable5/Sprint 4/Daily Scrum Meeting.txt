@@ -62,9 +62,9 @@ Date: August 4, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Finished bug fix rolling rewards with Prav
+    2. Need help from Prav for reward pool
+    3. Work on reward pool (pic-72)
 Evan
     1. Worked on PIC-73
     2. Nothing
@@ -90,9 +90,9 @@ Date: August 5, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Worked on reward pool (pic-72)
+    2. Need help from Prav
+    3. Work on reward pool (pic-72)
 Evan
     1. Worked on PIC-73
     2. Nothing
@@ -118,9 +118,9 @@ Date: August 6, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Finished reward pool (pic-72)
+    2. Nothing
+    3. Documentation
 Evan
     1. Finished PIC-73
     2. Nothing
@@ -146,9 +146,9 @@ Date: August 7, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Documentation
+    2. Nothing
+    3. Documentation
 Evan
     1. Worked on documentation
     2. Nothing
@@ -202,8 +202,8 @@ Date: August 9, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
+    1. Sprint finished
+    2. Nothing
     3. N/A (Sprint finished)
 Evan
     1. Sprint finished
