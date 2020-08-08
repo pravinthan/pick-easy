@@ -70,9 +70,9 @@ Evan
     2. Nothing
     3. Continue to work on PIC-73
 Anthony
-    1. 
-    2. 
-    3. 
+    1. Worked on pic-75 
+    2. nothing
+    3. finish working on pic-73
 Pravinthan
     1. Finished pic-53
     2. Nothing
@@ -98,9 +98,9 @@ Evan
     2. Nothing
     3. Continue to work on PIC-73
 Anthony
-    1. 
-    2. 
-    3. 
+    1. Finished pic-75
+    2. nothing
+    3. Finish documentation-84
 Pravinthan
     1. Finished and merged bug-81
     2. Nothing
@@ -126,9 +126,9 @@ Evan
     2. Nothing
     3. Document any remaining code.
 Anthony
-    1. 
-    2. 
-    3. 
+    1. Work on documentation
+    2. nothing
+    3. keep working on documentation
 Pravinthan
     1. Helped team out
     2. Nothing
