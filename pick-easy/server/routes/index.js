@@ -54,7 +54,6 @@ let customerAuth = (req, res, next) => {
 };
 
 let authenticationController = require("../controllers/authentication");
-let userController = require("../controllers/user");
 let restaurantController = require("../controllers/restaurant");
 let customerController = require("../controllers/customer");
 let achievementTemplateController = require("../controllers/achievement-template");
@@ -335,7 +334,7 @@ router.get(
       .isMongoId()
       .escape(),
   ],
-  userController.retrieveCustomerById
+  customerController.retrieveCustomerById
 );
 
 // Create Customer Achievement endpoint
