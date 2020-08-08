@@ -17,6 +17,7 @@ import { ScanQRCodeComponent } from "./components/pages/restaurant/scan-qr-code/
 import { HomeComponent } from "./components/pages/home/home.component";
 import { HistoryComponent } from "./components/pages/customer/history/history.component";
 
+// sets up all the rounting links that the user can visit.
 const routes: Routes = [
   {
     path: "",
