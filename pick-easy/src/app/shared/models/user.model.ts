@@ -1,3 +1,4 @@
+/* Most of the models are self-explanatory */
 import { RestaurantRewardLevel } from "./restaurant.model";
 
 export class User {
