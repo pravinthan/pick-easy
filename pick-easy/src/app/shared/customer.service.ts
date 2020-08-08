@@ -9,7 +9,7 @@ export class CustomerService {
 
   /* Returns all customer info */
   getCustomerInformation(customerId: string): Observable<User> {
-    return this.http.get<User>(`/api/users/${customerId}`);
+    return this.http.get<User>(`/api/customers/${customerId}`);
   }
 
   /* Given customer id, restaurant id, and achievement, sends post request to create achievement */
