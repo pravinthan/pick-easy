@@ -150,9 +150,9 @@ Luke
     2. 
     3. 
 Evan
-    1. 
-    2. 
-    3. 
+    1. Worked on documentation
+    2. Nothing
+    3. Continue to work on documentation
 Anthony
     1. 
     2. 
@@ -178,9 +178,9 @@ Luke
     2. 
     3. 
 Evan
-    1. 
-    2. 
-    3. 
+    1. Finished my part of the documentation
+    2. Nothing
+    3. Help team out
 Anthony
     1. 
     2. 
@@ -206,8 +206,8 @@ Luke
     2. 
     3. N/A (Sprint finished)
 Evan
-    1. 
-    2. 
+    1. Sprint finished
+    2. Nothing
     3. N/A (Sprint finished)
 Anthony
     1. 
