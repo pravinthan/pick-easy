@@ -53,13 +53,13 @@ let customerAuth = (req, res, next) => {
   next();
 };
 
-let authenticationController = require("../controllers/authentication");
+let userController = require("../controllers/user");
 let restaurantController = require("../controllers/restaurant");
 let customerController = require("../controllers/customer");
 let achievementTemplateController = require("../controllers/achievement-template");
 let rewardTemplateController = require("../controllers/reward-template");
 
-/*********************************** Authentication API endpoints ***********************************/
+/*********************************** Users API endpoints ***********************************/
 // Sign Up endpoint
 router.post(
   "/users/signup",
@@ -74,7 +74,7 @@ router.post(
       .escape(),
     body("password").trim().isLength({ min: 8, max: 20 }).escape(),
   ],
-  authenticationController.signUp
+  userController.signUp
 );
 
 // Sign In endpoint
@@ -89,15 +89,11 @@ router.post(
       .escape(),
     body("password").trim().isLength({ min: 8, max: 20 }).escape(),
   ],
-  authenticationController.signIn
+  userController.signIn
 );
 
 // Retrieve New JWT endpoint
-router.get(
-  "/users/retrieve-new-jwt",
-  auth,
-  authenticationController.retrieveNewJWT
-);
+router.get("/users/retrieve-new-jwt", auth, userController.retrieveNewJWT);
 
 /*********************************** Restaurants API endpoints ***********************************/
 // Create Restaurant endpoint

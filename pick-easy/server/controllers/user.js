@@ -26,7 +26,7 @@ module.exports.signUp = (req, res) => {
     .catch((err) => res.sendStatus(500));
 };
 
-/* Controller function to validate and send a JWT */
+/* Controller function to validate and send a JWT (i.e. sign in) */
 module.exports.signIn = (req, res) => {
   if (validationResult(req).array().length > 0) return res.sendStatus(400);
 
