@@ -109,7 +109,7 @@ export class AchievementsComponent {
 
   /* Function that gets an achievement template by its number */
   getTemplateByNumber(templateNumber: number): AchievementTemplate {
-    return this.templates.find(
+    return this.templates?.find(
       (template) => template.templateNumber == templateNumber
     );
   }
@@ -130,9 +130,9 @@ export class AchievementsComponent {
   restaurantAchievementToText(restaurantAchievement: RestaurantAchievement) {
     let achievementWithVariables = this.getTemplateByNumber(
       restaurantAchievement.templateNumber
-    ).value;
+    )?.value;
     for (const achievementVariable of restaurantAchievement.variables) {
-      achievementWithVariables = achievementWithVariables.replace(
+      achievementWithVariables = achievementWithVariables?.replace(
         ":variable",
         achievementVariable
       );
