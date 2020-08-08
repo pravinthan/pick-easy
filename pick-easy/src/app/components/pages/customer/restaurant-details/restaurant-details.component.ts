@@ -30,6 +30,7 @@ export class RestaurantDetailsComponent {
     );
   }
 
+  /* Given restaurant id and <img> element obtains the restaurant image through restaurant service */
   async getRestaurantImage(
     restaurantId: string,
     imageElement: HTMLImageElement

@@ -1,3 +1,6 @@
+/* Achievement template to be used for creating achievements by restaurant
+   staff and seeing achievements by customers. Templates are referenced by
+   template number */
 export class AchievementTemplate {
   _id: string;
   templateNumber: number;
@@ -8,6 +11,7 @@ export class AchievementTemplate {
   typeOfAchievement: "progress" | "oneOff";
 }
 
+/*  */
 export type AchievementTemplateVariable = {
   variableDescription: string;
   variableType: string;

@@ -23,6 +23,7 @@ export class HeaderComponent {
     });
   }
 
+  /* Tells authentication service that user is signed out  */
   signOut() {
     this.signingOut = true;
     this.authenticationService.signOut();

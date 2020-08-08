@@ -25,6 +25,9 @@ export class SignUpComponent {
       this.router.navigate(["/"]);
   }
 
+  /* Given a form, use the username, password, first name, and last name
+     to sign up through authentication service. Note restaurant status is passed
+     through dialog */
   signUp(form: NgForm) {
     this.loading = true;
     this.authenticationService
@@ -37,7 +40,7 @@ export class SignUpComponent {
       )
       .subscribe(
         (data) => {
-          this.signedUp.emit(true);
+          this.signedUp.emit(true);``
           if (!this.data.isRestaurantStaff) this.router.navigate(["/customer"]);
           else this.router.navigate(["/restaurant"]);
         },
