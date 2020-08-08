@@ -8,7 +8,31 @@ let RewardTemplate = mongoose.model("RewardTemplate");
 // Function that checks if the request is invalid (due to the validation chain)
 const isBadRequest = (req) => !validationResult(req).isEmpty();
 
-/* Controller function to validate and create a new user */
+/* Controller function that retrieves the customer information */
+module.exports.retrieveCustomerById = async (req, res) => {
+  if (isBadRequest(req)) return res.sendStatus(400);
+
+  try {
+    // Find the customer and check if it exists
+    let customer = await User.findById(req.params.id);
+    if (!customer)
+      return res.status(404).send(`Customer ${req.params.id} does not exist`);
+
+    // Check if the customer's id matches the user requesting the information
+    if (!customer._id.equals(req.user._id)) return res.status(401);
+
+    // Only send back the customer's information without the hash and salt
+    let customerWithoutPassword = (({ hash, salt, ...rest }) => rest)(
+      customer.toJSON()
+    );
+
+    res.json(customerWithoutPassword);
+  } catch (err) {
+    res.sendStatus(500);
+  }
+};
+
+/* Controller function to validate and create a new achievement */
 module.exports.addAchievement = async (req, res) => {
   if (isBadRequest(req)) return res.sendStatus(400);
 
@@ -16,7 +40,9 @@ module.exports.addAchievement = async (req, res) => {
     // Get requested user id and check if it exists
     let customer = await User.findById(req.params.userId);
     if (!customer)
-      return res.status(404).send(`User ${req.params.userId} does not exist`);
+      return res
+        .status(404)
+        .send(`Customer ${req.params.userId} does not exist`);
 
     // Check if the given customer id is the same as the user requesting
     if (!customer._id.equals(req.user._id)) return res.status(401);

@@ -8,7 +8,6 @@ import {
 } from "src/app/shared/models/restaurant.model";
 import { RestaurantService } from "src/app/shared/restaurant.service";
 import { MatDialog } from "@angular/material/dialog";
-import { UserService } from "src/app/shared/user.service";
 import { TemplateService } from "src/app/shared/template.service";
 import { AchievementTemplate } from "src/app/shared/models/achievement-template.model";
 import { AuthenticationService } from "src/app/shared/authentication.service";
@@ -42,7 +41,6 @@ export class AchievementsComponent {
     private authenticationService: AuthenticationService,
     private templateService: TemplateService,
     public restaurantService: RestaurantService,
-    public userService: UserService,
     public customerService: CustomerService,
     public dialog: MatDialog,
     public route: ActivatedRoute
@@ -88,8 +86,8 @@ export class AchievementsComponent {
   /* Function that gets the current customer */
   async getCustomer() {
     try {
-      let customer = await this.userService
-        .getUserInfo(this.currentUser._id)
+      let customer = await this.customerService
+        .getCustomerInformation(this.currentUser._id)
         .toPromise();
 
       this.customer = customer;

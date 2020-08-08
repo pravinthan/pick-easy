@@ -8,7 +8,6 @@ import {
 } from "src/app/shared/models/restaurant.model";
 import { RestaurantService } from "src/app/shared/restaurant.service";
 import { MatDialog } from "@angular/material/dialog";
-import { UserService } from "src/app/shared/user.service";
 import { AuthenticationService } from "src/app/shared/authentication.service";
 import { User, CustomerReward } from "src/app/shared/models/user.model";
 import { CustomerService } from "src/app/shared/customer.service";
@@ -54,7 +53,6 @@ export class RewardsComponent {
   constructor(
     private authenticationService: AuthenticationService,
     public restaurantService: RestaurantService,
-    public userService: UserService,
     public customerService: CustomerService,
     public dialog: MatDialog,
     public route: ActivatedRoute
@@ -91,8 +89,8 @@ export class RewardsComponent {
   // function to retrieve the correct customer
   async getCustomer() {
     try {
-      let customer = await this.userService
-        .getUserInfo(this.currentUser._id)
+      let customer = await this.customerService
+        .getCustomerInformation(this.currentUser._id)
         .toPromise();
 
       this.customer = customer;

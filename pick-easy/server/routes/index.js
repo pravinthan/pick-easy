@@ -100,21 +100,6 @@ router.get(
   authenticationController.retrieveNewJWT
 );
 
-/*********************************** Users API endpoints ***********************************/
-// Get User Information endpoint
-router.get(
-  "/users/:id",
-  auth,
-  [
-    param("id")
-      .exists({ checkNull: true, checkFalsy: true })
-      .trim()
-      .isMongoId()
-      .escape(),
-  ],
-  userController.retrieveUserById
-);
-
 /*********************************** Restaurants API endpoints ***********************************/
 // Create Restaurant endpoint
 router.post(
@@ -339,6 +324,20 @@ router.get(
 );
 
 /*********************************** Customer API endpoints ***********************************/
+// Get Customer Information endpoint
+router.get(
+  "/customers/:id",
+  auth,
+  [
+    param("id")
+      .exists({ checkNull: true, checkFalsy: true })
+      .trim()
+      .isMongoId()
+      .escape(),
+  ],
+  userController.retrieveCustomerById
+);
+
 // Create Customer Achievement endpoint
 router.post(
   "/customers/:userId/achievements",

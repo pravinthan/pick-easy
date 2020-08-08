@@ -7,6 +7,11 @@ import { User, CustomerReward } from "./models/user.model";
 export class CustomerService {
   constructor(private http: HttpClient) {}
 
+  /* Returns all customer info */
+  getCustomerInformation(customerId: string): Observable<User> {
+    return this.http.get<User>(`/api/users/${customerId}`);
+  }
+
   /* Given customer id, restaurant id, and achievement, sends post request to create achievement */
   initializeAchievement(
     customerId: string,
