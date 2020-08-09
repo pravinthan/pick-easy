@@ -155,7 +155,9 @@ export class MyRestaurantComponent implements OnInit {
         .toPromise()
         .then(() => {
           this.form.markAsPristine();
-          this.notyf.success("Saved successfully! You can configure your achievements here.");
+          this.notyf.success(
+            "Saved successfully! You can configure your achievements here."
+          );
           return this.authenticationService.retrieveNewJWT().toPromise();
         })
         .then(() => {

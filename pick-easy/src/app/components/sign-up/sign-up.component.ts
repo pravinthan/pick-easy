@@ -21,7 +21,6 @@ export class SignUpComponent {
     @Inject(MAT_DIALOG_DATA) public data: { isRestaurantStaff: boolean },
     @Inject(NOTYF) private notyf: Notyf
   ) {
-    
     if (this.authenticationService.currentUserValue)
       this.router.navigate(["/"]);
   }
@@ -41,7 +40,8 @@ export class SignUpComponent {
       )
       .subscribe(
         (data) => {
-          this.signedUp.emit(true);``
+          this.signedUp.emit(true);
+          ``;
           if (!this.data.isRestaurantStaff) this.router.navigate(["/customer"]);
           else this.router.navigate(["/restaurant"]);
         },
