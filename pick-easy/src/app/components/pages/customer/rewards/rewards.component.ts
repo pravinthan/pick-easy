@@ -57,6 +57,7 @@ export class RewardsComponent {
     public dialog: MatDialog,
     public route: ActivatedRoute
   ) {
+    // Search filtered options (in Observable)
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(""),
       map((value: string) =>
@@ -101,6 +102,7 @@ export class RewardsComponent {
     }
   }
 
+  /* Function that filters the restaurants by a string */
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 

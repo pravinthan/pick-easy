@@ -60,8 +60,8 @@ export class MyRestaurantComponent implements OnInit {
       restaurantCuisine: new FormControl(""),
     });
 
-    // checks if restaurant has already been created. if restaurant already
-    // exists, retrieves the current data of that restaurant.
+    /* checks if restaurant has already been created. if restaurant already
+    exists, retrieves the current data of that restaurant. */
     if (this.authenticationService.currentUser?.createdRestaurant) {
       this.restaurantService
         .getOwnRestaurant()
@@ -95,6 +95,7 @@ export class MyRestaurantComponent implements OnInit {
     }
   }
 
+  /* Lifecycle hook that searches filtered options (in Observable) */
   ngOnInit(): void {
     this.fileControl.valueChanges.subscribe((file: File) => {
       if (file) {
@@ -122,10 +123,10 @@ export class MyRestaurantComponent implements OnInit {
       });
   }
 
-  // function used to save any changes restaurant staff have made on the server
-  // if the restaurant is newly created, forces restaurant owner to update their
-  // profile before modifying rewards/achievements
+  /* function used to save any changes restaurant staff have made on the server */
   save() {
+    /* if the restaurant is newly created, forces restaurant owner to update
+    their my restaurant page before modifying rewards/achievements */
     if (this.restaurant) {
       this.restaurantService
         .updateRestaurant(

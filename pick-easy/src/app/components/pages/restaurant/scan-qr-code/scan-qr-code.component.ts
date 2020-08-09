@@ -54,6 +54,7 @@ export class ScanQRCodeComponent implements AfterViewInit {
     @Inject(NOTYF) private notyf: Notyf
   ) {}
 
+  /* Overridden function that sets the image of the restaurant  */
   ngAfterViewInit(): void {
     this.restaurantService
       .getOwnRestaurant()
@@ -166,8 +167,7 @@ export class ScanQRCodeComponent implements AfterViewInit {
     this.hasPermission = has;
   }
 
-  // function used to display message notifying user that a reward
-  // has been redeemed
+  /* function used to display message notifying user that a reward has been redeemed */
   openRedeemedRewardDialog(reward: string) {
     this.dialog.open(RedeemedRewardDialogComponent, {
       width: "600px",
