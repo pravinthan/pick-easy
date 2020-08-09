@@ -174,9 +174,9 @@ Date: August 8, 2020
 3. What will you do between now and the next Scrum meeting? 
 
 Luke
-    1. 
-    2. 
-    3. 
+    1. Documentation
+    2. Nothing
+    3. Documentation
 Evan
     1. Finished my part of the documentation
     2. Nothing
