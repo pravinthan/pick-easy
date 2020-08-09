@@ -17,6 +17,7 @@ export class RestaurantStaffGuard implements CanActivate {
     @Inject(NOTYF) private notyf: Notyf
   ) {}
 
+  /* Guards against non-restaurant-staff from routing to restaurant routes */
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (this.authenticationService.currentUser.isRestaurantStaff) return true;
 

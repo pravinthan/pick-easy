@@ -8,7 +8,6 @@ import {
 } from "src/app/shared/models/restaurant.model";
 import { RestaurantService } from "src/app/shared/restaurant.service";
 import { MatDialog } from "@angular/material/dialog";
-import { UserService } from "src/app/shared/user.service";
 import { AuthenticationService } from "src/app/shared/authentication.service";
 import { User, CustomerReward } from "src/app/shared/models/user.model";
 import { CustomerService } from "src/app/shared/customer.service";
@@ -54,11 +53,11 @@ export class RewardsComponent {
   constructor(
     private authenticationService: AuthenticationService,
     public restaurantService: RestaurantService,
-    public userService: UserService,
     public customerService: CustomerService,
     public dialog: MatDialog,
     public route: ActivatedRoute
   ) {
+    // Search filtered options (in Observable)
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(""),
       map((value: string) =>
@@ -73,6 +72,7 @@ export class RewardsComponent {
     this.getCustomer();
   }
 
+  // function to retrieve the correct restaurant
   async getRestaurants() {
     try {
       let restaurants = await this.restaurantService
@@ -87,10 +87,11 @@ export class RewardsComponent {
     }
   }
 
+  // function to retrieve the correct customer
   async getCustomer() {
     try {
-      let customer = await this.userService
-        .getUserInfo(this.currentUser._id)
+      let customer = await this.customerService
+        .getCustomerInformation(this.currentUser._id)
         .toPromise();
 
       this.customer = customer;
@@ -101,6 +102,7 @@ export class RewardsComponent {
     }
   }
 
+  /* Function that filters the restaurants by a string */
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
@@ -109,12 +111,14 @@ export class RewardsComponent {
       .filter((name) => name.toLowerCase().indexOf(filterValue) != -1);
   }
 
+  // function to get a customer's current level for a given restaurant
   getCustomerLoyaltyByRestaurantId(restaurantId: string) {
     return this.customer?.loyalties.find(
       (loyalty) => loyalty.restaurantId == restaurantId
     );
   }
 
+  // function to get a customer's rewards for a specific restaurant
   getCustomerRewardsByRestaurantId(
     restaurantId: string,
     level?: RestaurantRewardLevel
@@ -128,6 +132,8 @@ export class RewardsComponent {
     }
   }
 
+  // function to change a customer's level for a given restaurant, when leveling up
+  // displays a level up animation
   async upgradeLevel(restaurantId: string) {
     await this.customerService
       .upgradeLevel(this.customer._id, restaurantId)
@@ -153,6 +159,7 @@ export class RewardsComponent {
     await this.getCustomer();
   }
 
+  // Creates a confetti animation that displays during level up animation
   playConfetti(isLevelUpConfetti: boolean) {
     this.canvas.nativeElement.width = window.innerWidth;
     this.canvas.nativeElement.height = Math.max(
@@ -201,6 +208,7 @@ export class RewardsComponent {
     }, 250);
   }
 
+  // function to displays a given restaurant's information
   openDetailsDialog(restaurant: Restaurant) {
     this.dialog.open(RestaurantDetailsComponent, {
       width: "600px",
@@ -208,6 +216,7 @@ export class RewardsComponent {
     });
   }
 
+  // function to display a comfirmation message, when a QR code has been scanned
   openQRCodeDialog(restaurantId: string, customerRewardId: string) {
     const qrCodeDialog = this.dialog.open(QRCodeComponent, {
       data: {
@@ -228,6 +237,7 @@ export class RewardsComponent {
     });
   }
 
+  // function for the animation of recieving a random reward
   async rollRandomReward(restaurantId: string) {
     this.lootBoxReward = await this.customerService
       .generateReward(this.customer._id, restaurantId)
@@ -236,6 +246,7 @@ export class RewardsComponent {
     this.lootBoxOverlayOpened = true;
   }
 
+  // loot box animation, when recieving a random reward
   openLootBox() {
     this.openedLootBox = true;
     setTimeout(() => {
@@ -249,6 +260,8 @@ export class RewardsComponent {
     }, 5000);
   }
 
+  // assigns rewards to specific levels, rewards will only be available
+  // when the customer's level is greater or equal to that rewards assigned level
   rewardsForLevel(restaurant: Restaurant) {
     let levels = [];
     let loyalty = this.getCustomerLoyaltyByRestaurantId(restaurant._id);

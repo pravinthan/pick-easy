@@ -15,6 +15,7 @@ export class HomeComponent {
   isRestaurantStaff = false;
 
   constructor(
+    // initialzes instance variables
     private authenticationService: AuthenticationService,
     public dialog: MatDialog,
     public router: Router
@@ -23,6 +24,7 @@ export class HomeComponent {
   }
 
   openSignInDialog() {
+    //  opens the sign in window and deals authentication when user attempts to sign into the app
     const signInDialog = this.dialog.open(SignInComponent, {
       width: "400px",
       data: { isRestaurantStaff: this.isRestaurantStaff },
@@ -42,6 +44,7 @@ export class HomeComponent {
   }
 
   openSignUpDialog() {
+    // opens the sign up window for the user and deals with authenication of user
     const signUpDialog = this.dialog.open(SignUpComponent, {
       width: "400px",
       data: { isRestaurantStaff: this.isRestaurantStaff },

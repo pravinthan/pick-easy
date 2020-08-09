@@ -8,7 +8,6 @@ import {
 } from "src/app/shared/models/restaurant.model";
 import { RestaurantService } from "src/app/shared/restaurant.service";
 import { MatDialog } from "@angular/material/dialog";
-import { UserService } from "src/app/shared/user.service";
 import { TemplateService } from "src/app/shared/template.service";
 import { AchievementTemplate } from "src/app/shared/models/achievement-template.model";
 import { AuthenticationService } from "src/app/shared/authentication.service";
@@ -25,6 +24,7 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./achievements.component.css"],
 })
 export class AchievementsComponent {
+  // Class-level variables
   @ViewChild("canvas") canvas: ElementRef<HTMLCanvasElement>;
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
@@ -41,11 +41,11 @@ export class AchievementsComponent {
     private authenticationService: AuthenticationService,
     private templateService: TemplateService,
     public restaurantService: RestaurantService,
-    public userService: UserService,
     public customerService: CustomerService,
     public dialog: MatDialog,
     public route: ActivatedRoute
   ) {
+    // Search filtered options (in Observable)
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(""),
       map((value: string) =>
@@ -53,18 +53,22 @@ export class AchievementsComponent {
       )
     );
 
+    // Gets the restaurant's name from the query params
     this.queryName = this.route.snapshot.queryParamMap.get("restaurantName");
     this.myControl.setValue(this.queryName);
 
+    // Get the achievement templates
     this.templateService
       .getAchievementTemplates()
       .toPromise()
       .then((templates) => (this.templates = templates));
 
+    // Get the current customer information and all restaurants
     this.getCustomer();
     this.getRestaurants();
   }
 
+  /* Function that gets all the restaurants */
   async getRestaurants() {
     try {
       let restaurants = await this.restaurantService
@@ -79,10 +83,11 @@ export class AchievementsComponent {
     }
   }
 
+  /* Function that gets the current customer */
   async getCustomer() {
     try {
-      let customer = await this.userService
-        .getUserInfo(this.currentUser._id)
+      let customer = await this.customerService
+        .getCustomerInformation(this.currentUser._id)
         .toPromise();
 
       this.customer = customer;
@@ -93,6 +98,7 @@ export class AchievementsComponent {
     }
   }
 
+  /* Function that filters the restaurants by a string */
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
@@ -101,12 +107,15 @@ export class AchievementsComponent {
       .filter((name) => name.toLowerCase().indexOf(filterValue) != -1);
   }
 
+  /* Function that gets an achievement template by its number */
   getTemplateByNumber(templateNumber: number): AchievementTemplate {
-    return this.templates.find(
+    return this.templates?.find(
       (template) => template.templateNumber == templateNumber
     );
   }
 
+  /* Function that gets restaurant achievement given its restaurant achievement
+  array and a specific restaurant achievement id */
   getRestaurantAchievementById(
     restaurantAchievements: RestaurantAchievement[],
     restaurantAchievementId: string
@@ -117,12 +126,13 @@ export class AchievementsComponent {
     );
   }
 
+  /* Function that converts a restaurant achievement to text form */
   restaurantAchievementToText(restaurantAchievement: RestaurantAchievement) {
     let achievementWithVariables = this.getTemplateByNumber(
       restaurantAchievement.templateNumber
-    ).value;
+    )?.value;
     for (const achievementVariable of restaurantAchievement.variables) {
-      achievementWithVariables = achievementWithVariables.replace(
+      achievementWithVariables = achievementWithVariables?.replace(
         ":variable",
         achievementVariable
       );
@@ -131,16 +141,20 @@ export class AchievementsComponent {
     return achievementWithVariables;
   }
 
+  /* Function that gets the customer's loyalty object given a restaurant id */
   getCustomerLoyaltyByRestaurantId(restaurantId: string) {
     return this.customer?.loyalties.find(
       (loyalty) => loyalty.restaurantId == restaurantId
     );
   }
 
+  /* Function that gets customer achievements by the restaurant id */
   getCustomerAchievementsByRestaurantId(restaurantId: string) {
     return this.getCustomerLoyaltyByRestaurantId(restaurantId)?.achievements;
   }
 
+  /* Function that gets all the unactivated achievements given its restaurant achievement
+  array and a specific restaurant achievement id */
   getUnactivatedAchievements(
     restaurantId: string,
     restaurantAchievements: RestaurantAchievement[]
@@ -172,6 +186,7 @@ export class AchievementsComponent {
     return restaurantAchievements;
   }
 
+  /* Function that gets the progression value for a given restaurant achievement */
   getProgressionNumber(restaurantAchievement: RestaurantAchievement) {
     let templateVariables = this.getTemplateByNumber(
       restaurantAchievement.templateNumber
@@ -184,6 +199,7 @@ export class AchievementsComponent {
     return Number(restaurantAchievement.variables[templateVariableIndex]);
   }
 
+  /* Function that activates a specific customer achievement */
   activateAchievement(
     restaurantId: string,
     restaurantAchievement: RestaurantAchievement
@@ -200,6 +216,7 @@ export class AchievementsComponent {
       });
   }
 
+  /* Function that redeems the tickets for a given restaurant achievement id and the restaurant id */
   async redeemTickets(restaurantId: string, restaurantAchievementId: string) {
     await this.customerService
       .redeemTicketsForCompletedAchievement(
@@ -218,6 +235,7 @@ export class AchievementsComponent {
     this.playConfetti();
   }
 
+  /* Function that plays the confetti animation in the view */
   playConfetti() {
     this.canvas.nativeElement.width = window.innerWidth;
     this.canvas.nativeElement.height = Math.max(
@@ -263,6 +281,7 @@ export class AchievementsComponent {
     }, 250);
   }
 
+  /* Function that opens the restaurant details dialog with the given restaurant object */
   openDetailsDialog(restaurant: Restaurant) {
     this.dialog.open(RestaurantDetailsComponent, {
       width: "600px",
@@ -270,6 +289,7 @@ export class AchievementsComponent {
     });
   }
 
+  /* Function that opens the QR code dialog given the restaurant's id and restaurant achievement id */
   openQRCodeDialog(restaurantId: string, restaurantAchievementId: string) {
     let qrCodeDialog = this.dialog.open(QRCodeComponent, {
       data: {

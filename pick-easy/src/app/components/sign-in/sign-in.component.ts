@@ -26,6 +26,8 @@ export class SignInComponent {
       this.router.navigate(["/"]);
   }
 
+  /* Given a form, use the username and password to sign in through authentication service.
+     Note restaurant status is passed through dialog  */
   signIn(form: NgForm) {
     this.loading = true;
     this.authenticationService

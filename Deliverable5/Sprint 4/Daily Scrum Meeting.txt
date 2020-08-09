@@ -176,7 +176,7 @@ Date: August 8, 2020
 Luke
     1. Documentation
     2. Nothing
-    3. Help team out
+    3. Documentation
 Evan
     1. Finished my part of the documentation
     2. Nothing

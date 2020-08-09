@@ -93,6 +93,7 @@ let userSchema = new Schema({
   salt: String,
 });
 
+// Function that sets the password (using salt and hash)
 userSchema.methods.setPassword = function (password) {
   this.salt = crypto.randomBytes(16).toString("hex");
   this.hash = crypto
@@ -100,6 +101,7 @@ userSchema.methods.setPassword = function (password) {
     .toString("hex");
 };
 
+// Function that checks if the password is valid by comparing the hashes
 userSchema.methods.isValidPassword = function (password) {
   let hash = crypto
     .pbkdf2Sync(password, this.salt, 1000, 64, "sha512")
@@ -107,6 +109,7 @@ userSchema.methods.isValidPassword = function (password) {
   return this.hash === hash;
 };
 
+// Function that generates a new JWT
 userSchema.methods.generateJWT = function () {
   let expiry = new Date();
   expiry.setDate(expiry.getDate() + 7);

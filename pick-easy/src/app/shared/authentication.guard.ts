@@ -4,6 +4,7 @@ import { AuthenticationService } from "./authentication.service";
 import { NOTYF } from "./utils/notyf.token";
 import { Notyf } from "notyf";
 
+/* Ensures if user is not logged in, they cannot access other pages than root */
 @Injectable({ providedIn: "root" })
 export class AuthenticationGuard implements CanActivate {
   constructor(

@@ -17,6 +17,7 @@ export class AuthenticationService {
     this.currentUserObservable = this.currentUserSubject.asObservable();
   }
 
+  /* Parses JSON web token */
   private parseJWT(token: string) {
     try {
       return JSON.parse(atob(token.split(".")[1]));
@@ -25,6 +26,7 @@ export class AuthenticationService {
     }
   }
 
+  /* Returns current user */
   public get currentUser(): User {
     if (this.currentUserSubject.value) {
       const token = this.parseJWT(this.currentUserSubject.value.token);
@@ -41,18 +43,22 @@ export class AuthenticationService {
     return null;
   }
 
+  /* Returns user ID */
   public get currentUserId(): string {
     return this.parseJWT(this.currentUserSubject.value.token)._id;
   }
 
+  /* Returns username */
   public get currentUsername(): string {
     return this.parseJWT(this.currentUserSubject.value.token).username;
   }
 
+  /* Returns user value */
   public get currentUserValue() {
     return this.currentUserSubject.value;
   }
 
+  /* Retrieves new JSON web token from server */
   retrieveNewJWT() {
     if (this.currentUser) {
       return this.http.get<any>(`/api/users/retrieve-new-jwt`).pipe(
@@ -65,6 +71,7 @@ export class AuthenticationService {
     }
   }
 
+  /* Given username, password, and restaurant staff status, tries to sign in */
   signIn(username: string, password: string, isRestaurantStaff: boolean) {
     return this.http
       .post<any>(`/api/users/signin`, {
@@ -81,6 +88,7 @@ export class AuthenticationService {
       );
   }
 
+  /* Given username, password, first name, last name and restaurant staff status, tries to sign up */
   signUp(
     username: string,
     password: string,
@@ -105,6 +113,7 @@ export class AuthenticationService {
       );
   }
 
+  /* Signs out */
   signOut() {
     localStorage.removeItem("currentUser");
     this.currentUserSubject.next(null);

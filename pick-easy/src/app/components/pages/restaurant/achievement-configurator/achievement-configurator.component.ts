@@ -17,6 +17,7 @@ import { DOCUMENT } from "@angular/common";
   styleUrls: ["./achievement-configurator.component.css"],
 })
 export class AchievementConfiguratorComponent {
+  // Class-level variables
   @ViewChild("templatePicker") templatePicker: MatSelect;
   templates: AchievementTemplate[];
   achievements: RestaurantAchievement[] = [];
@@ -29,11 +30,13 @@ export class AchievementConfiguratorComponent {
     @Inject(DOCUMENT) public document: Document,
     private elem: ElementRef
   ) {
+    // Get the achievement templates
     this.templateService
       .getAchievementTemplates()
       .toPromise()
       .then((templates) => (this.templates = templates));
 
+    // Get the restaurant staff's restaurant object
     this.restaurantService
       .getOwnRestaurant()
       .toPromise()
@@ -43,6 +46,7 @@ export class AchievementConfiguratorComponent {
       });
   }
 
+  /* Function that adds an achievement to the achievements array given that its not repeatable */
   addAchievement(templateNumber: number) {
     let template = this.getTemplateByNumber(templateNumber);
 
@@ -61,12 +65,14 @@ export class AchievementConfiguratorComponent {
     this.templatePicker.writeValue(null);
   }
 
+  /* Function that gets the template object given its template number */
   getTemplateByNumber(templateNumber: number): AchievementTemplate {
     return this.templates.find(
       (template) => template.templateNumber == templateNumber
     );
   }
 
+  /* Function that gets the first restaurant achievement object given its template number */
   getFirstAchievementByTemplateNumber(
     templateNumber: number
   ): RestaurantAchievement {
@@ -75,6 +81,7 @@ export class AchievementConfiguratorComponent {
     );
   }
 
+  /* Function that removes an achievement from the achievement array given itself and its index */
   removeAchievement(achievement: RestaurantAchievement, index: number) {
     this.achievements.splice(index, 1);
 
@@ -85,6 +92,7 @@ export class AchievementConfiguratorComponent {
     }
   }
 
+  /* Function that validates and saves the achievements */
   saveAchievements() {
     if (this.elem.nativeElement.querySelectorAll(".ng-invalid").length > 0) {
       this.notyf.error("Invalid input(s)");
@@ -102,12 +110,14 @@ export class AchievementConfiguratorComponent {
       .catch(() => this.notyf.error("An error occurred while saving"));
   }
 
+  /* Function that filters the achievements array by the given template number */
   filterAchievementsByTemplate(templateNumber: number) {
     return this.achievements?.filter(
       (achievement) => achievement.templateNumber == templateNumber
     );
   }
 
+  /* Function that returns the templates that are only used by the achievements array */
   filterTemplatesByAchievements() {
     return this.templates?.filter((template) =>
       this.achievements?.find(
@@ -116,6 +126,7 @@ export class AchievementConfiguratorComponent {
     );
   }
 
+  /* Function that returns the index of a given achievement given its index and its template number */
   calculateIndex(templateNumber: number, index: number) {
     this.achievements.sort((a, b) => a.templateNumber - b.templateNumber);
     for (let i = 0; i < templateNumber; i++) {

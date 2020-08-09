@@ -14,6 +14,7 @@ export class LandingPageComponent {
     private router: Router,
     private authenticationService: AuthenticationService
   ) {
+    // checks the type of user, and navigates them to either restarurant or customer side
     if (this.currentUser) {
       this.router.navigateByUrl(
         this.currentUser.isRestaurantStaff ? "/restaurant" : "/customer"

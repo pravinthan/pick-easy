@@ -19,6 +19,7 @@ export class RestaurantDetailsComponent {
     public restaurantService: RestaurantService
   ) {}
 
+  /* Lifecycle hook that gets restaurant image */
   ngAfterViewInit() {
     this.getRestaurantImage(
       this.data.restaurant._id,
@@ -30,6 +31,7 @@ export class RestaurantDetailsComponent {
     );
   }
 
+  /* Given restaurant id and <img> element obtains the restaurant image through restaurant service */
   async getRestaurantImage(
     restaurantId: string,
     imageElement: HTMLImageElement

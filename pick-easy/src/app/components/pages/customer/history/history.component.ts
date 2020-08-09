@@ -5,12 +5,12 @@ import {
   UserAchievementLog,
   UserRewardLog,
 } from "src/app/shared/models/user.model";
-import { UserService } from "src/app/shared/user.service";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { FormControl } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { Observable } from "rxjs";
+import { CustomerService } from "src/app/shared/customer.service";
 
 @Component({
   selector: "app-history",
@@ -32,7 +32,8 @@ export class HistoryComponent {
   ];
   achievementLogDataSource: MatTableDataSource<UserAchievementLog>;
   rewardLogDataSource: MatTableDataSource<UserRewardLog>;
-  currentUser: User;
+  currentUser = this.authenticationService.currentUser;
+  customer: User;
   queryName: string;
   filteredOptions: Observable<string[]>;
   myControl = new FormControl();
@@ -41,20 +42,21 @@ export class HistoryComponent {
 
   constructor(
     public route: ActivatedRoute,
-    authenticationService: AuthenticationService,
-    userService: UserService
+    public customerService: CustomerService,
+    public authenticationService: AuthenticationService
   ) {
     // Gets users information and adds it to history table
-    userService
-      .getUserInfo(authenticationService.currentUserId)
-      .subscribe((res) => {
-        this.currentUser = res;
+    customerService
+      .getCustomerInformation(this.currentUser._id)
+      .toPromise()
+      .then((customer) => {
+        this.customer = customer;
         this.achievementLogDataSource = new MatTableDataSource(
-          this.currentUser.log.achievements
+          this.customer.log.achievements
         );
         this.achievementLogDataSource.sort = this.achievementLogSort;
         this.rewardLogDataSource = new MatTableDataSource(
-          this.currentUser.log.rewards
+          this.customer.log.rewards
         );
         this.rewardLogDataSource.sort = this.rewardLogSort;
         this.queryName = this.route.snapshot.queryParamMap.get(

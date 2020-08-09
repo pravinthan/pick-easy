@@ -7,6 +7,12 @@ import { User, CustomerReward } from "./models/user.model";
 export class CustomerService {
   constructor(private http: HttpClient) {}
 
+  /* Returns all customer info */
+  getCustomerInformation(customerId: string): Observable<User> {
+    return this.http.get<User>(`/api/customers/${customerId}`);
+  }
+
+  /* Given customer id, restaurant id, and achievement, sends post request to create achievement */
   initializeAchievement(
     customerId: string,
     restaurantId: string,
@@ -18,6 +24,7 @@ export class CustomerService {
     });
   }
 
+  /* Redeems an achievement */
   redeemTicketsForCompletedAchievement(
     customerId: string,
     restaurantId: string,
@@ -31,6 +38,7 @@ export class CustomerService {
     );
   }
 
+  /* Upgrades a level of a customer for a restaurant */
   upgradeLevel(customerId: string, restaurantId: string) {
     return this.http.patch(
       `/api/customers/${customerId}/level`,
@@ -41,6 +49,7 @@ export class CustomerService {
     );
   }
 
+  /* Makes progress on an achievement */
   progressAchievement(
     customerId: string,
     restaurantId: string,
@@ -54,6 +63,7 @@ export class CustomerService {
     );
   }
 
+  /* Submits a partial change request on achievement */
   private patchAchievements(
     customerId: string,
     restaurantId: string,
@@ -71,6 +81,7 @@ export class CustomerService {
     );
   }
 
+  /* Redeems a reward through patch request */
   redeemReward(
     customerId: string,
     restaurantId: string,
@@ -87,6 +98,7 @@ export class CustomerService {
     );
   }
 
+  /* Creates a new customer reward */
   generateReward(
     customerId: string,
     restaurantId: string

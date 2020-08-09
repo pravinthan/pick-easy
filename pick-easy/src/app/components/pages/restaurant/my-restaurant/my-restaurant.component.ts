@@ -60,6 +60,8 @@ export class MyRestaurantComponent implements OnInit {
       restaurantCuisine: new FormControl(""),
     });
 
+    /* checks if restaurant has already been created. if restaurant already
+    exists, retrieves the current data of that restaurant. */
     if (this.authenticationService.currentUser?.createdRestaurant) {
       this.restaurantService
         .getOwnRestaurant()
@@ -93,6 +95,7 @@ export class MyRestaurantComponent implements OnInit {
     }
   }
 
+  /* Lifecycle hook that searches filtered options (in Observable) */
   ngOnInit(): void {
     this.fileControl.valueChanges.subscribe((file: File) => {
       if (file) {
@@ -106,6 +109,7 @@ export class MyRestaurantComponent implements OnInit {
     });
   }
 
+  // function used to get the image uploaded for a given restaurant
   getImage() {
     this.restaurantService
       .getRestaurantImage(this.restaurant._id)
@@ -119,7 +123,10 @@ export class MyRestaurantComponent implements OnInit {
       });
   }
 
+  /* function used to save any changes restaurant staff have made on the server */
   save() {
+    /* if the restaurant is newly created, forces restaurant owner to update
+    their my restaurant page before modifying rewards/achievements */
     if (this.restaurant) {
       this.restaurantService
         .updateRestaurant(
@@ -148,7 +155,9 @@ export class MyRestaurantComponent implements OnInit {
         .toPromise()
         .then(() => {
           this.form.markAsPristine();
-          this.notyf.success("Saved successfully! You can configure your achievements here.");
+          this.notyf.success(
+            "Saved successfully! You can configure your achievements here."
+          );
           return this.authenticationService.retrieveNewJWT().toPromise();
         })
         .then(() => {

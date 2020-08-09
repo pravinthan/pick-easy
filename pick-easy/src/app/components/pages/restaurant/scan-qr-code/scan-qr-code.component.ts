@@ -54,6 +54,7 @@ export class ScanQRCodeComponent implements AfterViewInit {
     @Inject(NOTYF) private notyf: Notyf
   ) {}
 
+  /* Overridden function that sets the image of the restaurant  */
   ngAfterViewInit(): void {
     this.restaurantService
       .getOwnRestaurant()
@@ -71,12 +72,14 @@ export class ScanQRCodeComponent implements AfterViewInit {
       });
   }
 
+  // function used for camera display
   onCamerasFound(devices: MediaDeviceInfo[]): void {
     this.availableDevices = devices;
     this.hasDevices = devices && devices.length > 0;
     this.deviceSelect = devices[0]?.deviceId;
   }
 
+  // function used to show if a QR code has been successful scanned or not
   onCodeResult(scannedString: string) {
     if (!this.nextUpdateAllowed) return;
 
@@ -151,6 +154,7 @@ export class ScanQRCodeComponent implements AfterViewInit {
     }, 5000);
   }
 
+  // function used to idenfity device being used
   onDeviceSelectChange(selected: string) {
     const device = this.availableDevices.find(
       (device) => device.deviceId === selected
@@ -158,10 +162,12 @@ export class ScanQRCodeComponent implements AfterViewInit {
     this.currentDevice = device || null;
   }
 
+  // function used to give permission for scanning
   onHasPermission(has: boolean) {
     this.hasPermission = has;
   }
 
+  /* function used to display message notifying user that a reward has been redeemed */
   openRedeemedRewardDialog(reward: string) {
     this.dialog.open(RedeemedRewardDialogComponent, {
       width: "600px",

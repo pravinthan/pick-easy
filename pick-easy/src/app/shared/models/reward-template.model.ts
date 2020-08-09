@@ -1,3 +1,4 @@
+/* Self-explanatory */
 export class RewardTemplate {
   _id: string;
   templateNumber: number;

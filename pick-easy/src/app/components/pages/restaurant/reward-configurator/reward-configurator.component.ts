@@ -18,6 +18,7 @@ import { Notyf } from "notyf";
   styleUrls: ["./reward-configurator.component.css"],
 })
 export class RewardConfiguratorComponent {
+  // Class-level variables
   @ViewChild("templatePicker") templatePicker: MatSelect;
   templates: RewardTemplate[];
   rewards: RestaurantReward[] = [];
@@ -37,11 +38,13 @@ export class RewardConfiguratorComponent {
     @Inject(NOTYF) private notyf: Notyf,
     private elem: ElementRef
   ) {
+    // Get the reward templates
     this.templateService
       .getRewardTemplates()
       .toPromise()
       .then((templates) => (this.templates = templates));
 
+    // Get the restaurant staff's restaurant object
     this.restaurantService
       .getOwnRestaurant()
       .toPromise()
@@ -52,16 +55,19 @@ export class RewardConfiguratorComponent {
       });
   }
 
+  /* Function that gets the template object given its template number */
   getTemplateByNumber(templateNumber: number): RewardTemplate {
     return this.templates?.find(
       (template) => template.templateNumber == templateNumber
     );
   }
 
+  /* Function returns a boolean indicating if there are rewards in this.rewards that are the given level */
   areAnyRewardsOfLevel(level: RestaurantRewardLevel) {
     return !!this.rewards?.find((reward) => reward.level == level);
   }
 
+  /* Function that adds a reward to the rewards array given */
   addReward(templateNumber: number) {
     const template = this.getTemplateByNumber(templateNumber);
 
@@ -74,10 +80,12 @@ export class RewardConfiguratorComponent {
     this.templatePicker.writeValue(null);
   }
 
+  /* Function that removes a reward from the rewards array given its index */
   deleteReward(index: number) {
     this.rewards.splice(index, 1);
   }
 
+  /* Function that validates and saves the rewards */
   saveRewards() {
     if (this.elem.nativeElement.querySelectorAll(".ng-invalid").length > 0) {
       this.notyf.error("Invalid input(s)");
@@ -114,16 +122,19 @@ export class RewardConfiguratorComponent {
       .catch(() => this.notyf.error("An error occurred while saving"));
   }
 
+  /* Function that filters the rewards array by the given level */
   filterRewardsByLevel(level: RestaurantRewardLevel) {
     return this.rewards?.filter((reward) => reward.level == level);
   }
 
+  /* Function that filters the level array to include level that exist in the rewards array */
   filterLevelsByRewards() {
     return this.levels.filter((level) =>
       this.rewards?.find((reward) => reward.level == level)
     );
   }
 
+  /* Function that returns the index of a given reward given its index and its template number */
   calculateIndex(level: RestaurantRewardLevel, index: number) {
     this.rewards.sort(
       (a, b) => this.levels.indexOf(a.level) - this.levels.indexOf(b.level)

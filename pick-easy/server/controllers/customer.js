@@ -5,24 +5,56 @@ let User = mongoose.model("User");
 let AchievementTemplate = mongoose.model("AchievementTemplate");
 let RewardTemplate = mongoose.model("RewardTemplate");
 
+// Function that checks if the request is invalid (due to the validation chain)
 const isBadRequest = (req) => !validationResult(req).isEmpty();
 
+/* Controller function that retrieves the customer information */
+module.exports.retrieveCustomerById = async (req, res) => {
+  if (isBadRequest(req)) return res.sendStatus(400);
+
+  try {
+    // Find the customer and check if it exists
+    let customer = await User.findById(req.params.id);
+    if (!customer)
+      return res.status(404).send(`Customer ${req.params.id} does not exist`);
+
+    // Check if the customer's id matches the user requesting the information
+    if (!customer._id.equals(req.user._id)) return res.status(401);
+
+    // Only send back the customer's information without the hash and salt
+    let customerWithoutPassword = (({ hash, salt, ...rest }) => rest)(
+      customer.toJSON()
+    );
+
+    res.json(customerWithoutPassword);
+  } catch (err) {
+    res.sendStatus(500);
+  }
+};
+
+/* Controller function to validate and create a new achievement */
 module.exports.addAchievement = async (req, res) => {
   if (isBadRequest(req)) return res.sendStatus(400);
 
   try {
-    let user = await User.findById(req.params.userId);
-    if (!user)
-      return res.status(404).send(`User ${req.params.userId} does not exist`);
+    // Get requested user id and check if it exists
+    let customer = await User.findById(req.params.userId);
+    if (!customer)
+      return res
+        .status(404)
+        .send(`Customer ${req.params.userId} does not exist`);
 
-    if (!user._id.equals(req.user._id)) return res.status(401);
+    // Check if the given customer id is the same as the user requesting
+    if (!customer._id.equals(req.user._id)) return res.status(401);
 
+    // Get requested restaurant and check if it exists
     let restaurant = await Restaurant.findById(req.body.restaurantId);
     if (!restaurant)
       return res
         .status(404)
         .send(`Restaurant ${req.body.restaurantId} does not exist`);
 
+    // Get the specific restaurant achievement and check if it exists
     let restaurantAchievement = restaurant.achievements.find((achievement) =>
       achievement._id.equals(req.body.restaurantAchievementId)
     );
@@ -33,15 +65,19 @@ module.exports.addAchievement = async (req, res) => {
           `Restaurant achievement ${req.body.restaurantAchievementId} does not exist`
         );
 
+    // Construct a new achievement object
     let newAchievement = {
       restaurantAchievementId: restaurantAchievement._id,
       progress: 0,
       complete: false,
     };
 
-    let loyalty = user.loyalties.find((loyalty) =>
+    // Get customer loyalty for restaurant
+    let loyalty = customer.loyalties.find((loyalty) =>
       loyalty.restaurantId.equals(restaurant._id)
     );
+
+    // Check if loyalty is repeatable or not
     if (loyalty) {
       if (
         loyalty.completedNonRepeatableAchievements.find(
@@ -58,7 +94,8 @@ module.exports.addAchievement = async (req, res) => {
           );
       }
 
-      user = await User.findOneAndUpdate(
+      // Update database with new data
+      customer = await User.findOneAndUpdate(
         { _id: req.user._id, "loyalties.restaurantId": restaurant._id },
         {
           $push: {
@@ -68,7 +105,8 @@ module.exports.addAchievement = async (req, res) => {
         { new: true }
       );
     } else {
-      user = await User.findByIdAndUpdate(
+      // Push new loyalty object with new achievement inside
+      customer = await User.findByIdAndUpdate(
         req.user._id,
         {
           $push: {
@@ -85,28 +123,33 @@ module.exports.addAchievement = async (req, res) => {
       );
     }
 
-    res.json(user);
+    // Send back the user object
+    res.json(customer);
   } catch (err) {
     return res.sendStatus(500);
   }
 };
 
+/* Controller function that updates an achievement (progresses or completes) */
 module.exports.updateAchievement = async (req, res) => {
   if (isBadRequest(req)) return res.sendStatus(400);
 
   try {
+    // Get requested user id and check if it exists
     let customer = await User.findById(req.params.userId);
     if (!customer)
       return res
         .status(404)
         .send(`Customer ${req.params.userId} does not exist`);
 
+    // Get requested restaurant and check if it exists
     let restaurant = await Restaurant.findById(req.body.restaurantId);
     if (!restaurant)
       return res
         .status(404)
         .send(`Restaurant ${req.body.restaurantId} does not exist`);
 
+    // Get the specific restaurant achievement and check if it exists
     let restaurantAchievement = restaurant.achievements.find((achievement) =>
       achievement._id.equals(req.body.restaurantAchievementId)
     );
@@ -117,10 +160,10 @@ module.exports.updateAchievement = async (req, res) => {
           `Restaurant achievement ${req.body.restaurantAchievementId} does not exist`
         );
 
+    // Find the specific achievement template and check if it exists
     let achievementTemplate = await AchievementTemplate.findOne({
       templateNumber: restaurantAchievement.templateNumber,
     });
-
     if (!achievementTemplate)
       return res
         .status(404)
@@ -128,10 +171,12 @@ module.exports.updateAchievement = async (req, res) => {
           `Restaurant achievement template ${restaurantAchievement.templateNumber} does not exist`
         );
 
+    // Get the specific variable index that determines the achievement templates progress
     let achievementTemplateVariableIndex = achievementTemplate.variables.findIndex(
       (variable) => variable.isProgressionVariable
     );
 
+    // Function to add the scanned achievement to the restaurant log
     let addToRestaurantLog = async (
       restaurant,
       customer,
@@ -164,6 +209,7 @@ module.exports.updateAchievement = async (req, res) => {
       await restaurant.save();
     };
 
+    // Function to add the scanned achievement to the customer log
     let addToCustomerLog = async (
       restaurant,
       customer,
@@ -220,6 +266,7 @@ module.exports.updateAchievement = async (req, res) => {
                   customer.loyalties[i].achievements[j].progress += 1;
                 }
 
+                // Add the achievement to the restaurant log
                 await addToRestaurantLog(
                   restaurant,
                   customer,
@@ -235,6 +282,7 @@ module.exports.updateAchievement = async (req, res) => {
                     ]
                 );
 
+                // Add the achievement to the customer log
                 await addToCustomerLog(
                   restaurant,
                   customer,
@@ -260,6 +308,7 @@ module.exports.updateAchievement = async (req, res) => {
                   customer.loyalties[i].achievements[j].complete = true;
                 }
               } else if (achievementTemplate.typeOfAchievement == "oneOff") {
+                // Add the achievement to the restaurant log
                 await addToRestaurantLog(
                   restaurant,
                   customer,
@@ -269,6 +318,8 @@ module.exports.updateAchievement = async (req, res) => {
                   1,
                   true
                 );
+
+                // Add the achievement to the customer log
                 await addToCustomerLog(
                   restaurant,
                   customer,
@@ -281,6 +332,7 @@ module.exports.updateAchievement = async (req, res) => {
                 customer.loyalties[i].achievements[j].complete = true;
               }
             } else if (req.body.operation == "redeem") {
+              // Check if the given customer id is the same as the user requesting
               if (!customer._id.equals(req.user._id)) return res.status(401);
 
               if (!customer.loyalties[i].achievements[j].complete) {
@@ -306,6 +358,7 @@ module.exports.updateAchievement = async (req, res) => {
               }
             }
 
+            // Save the modified user object
             await customer.save();
             break;
           }
@@ -313,24 +366,29 @@ module.exports.updateAchievement = async (req, res) => {
       }
     }
 
+    // Send status 200 OK
     res.sendStatus(200);
   } catch (err) {
     return res.sendStatus(500);
   }
 };
 
+/* Controller function that updates customer's level */
 module.exports.updateLevel = async (req, res) => {
   if (isBadRequest(req)) return res.sendStatus(400);
 
   try {
+    // Get requested user id and check if it exists
     let customer = await User.findById(req.params.userId);
     if (!customer)
       return res
         .status(404)
         .send(`Customer ${req.params.userId} does not exist`);
 
+    // Check if the given customer id is the same as the user requesting
     if (!customer._id.equals(req.user._id)) return res.status(401);
 
+    // Get requested restaurant and check if it exists
     let restaurant = await Restaurant.findById(req.body.restaurantId);
     if (!restaurant)
       return res
@@ -367,22 +425,26 @@ module.exports.updateLevel = async (req, res) => {
       }
     }
 
+    // Send status 200 OK
     res.sendStatus(200);
   } catch (err) {
     return res.sendStatus(500);
   }
 };
 
+/* Controller function that removes a customer's reward (because it has been redeemed) */
 module.exports.removeReward = async (req, res) => {
   if (isBadRequest(req)) return res.sendStatus(400);
 
   try {
+    // Get requested user id and check if it exists
     let customer = await User.findById(req.params.userId);
     if (!customer)
       return res
         .status(404)
         .send(`Customer ${req.params.userId} does not exist`);
 
+    // Get requested restaurant and check if it exists
     let restaurant = await Restaurant.findById(req.body.restaurantId);
     if (!restaurant)
       return res
@@ -391,10 +453,10 @@ module.exports.removeReward = async (req, res) => {
 
     if (!restaurant.staff._id.equals(req.user._id)) return res.status(401);
 
+    // Get customer loyalty for restaurant and check if it exists
     let loyalty = customer.loyalties.find((loyalty) =>
       loyalty.restaurantId.equals(restaurant._id)
     );
-
     if (!loyalty)
       return res
         .status(404)
@@ -441,32 +503,37 @@ module.exports.removeReward = async (req, res) => {
       }
     }
 
+    // Send status 200 OK
     res.sendStatus(200);
   } catch (err) {
     return res.sendStatus(500);
   }
 };
 
+/* Controller function that generated a random reward for a customer */
 module.exports.generateReward = async (req, res) => {
   if (isBadRequest(req)) return res.sendStatus(400);
 
   try {
+    // Get requested user id and check if it exists
     let customer = await User.findById(req.params.userId);
     if (!customer)
       return res.status(404).send(`User ${req.params.userId} does not exist`);
 
+    // Check if the given customer id is the same as the user requesting
     if (!customer._id.equals(req.user._id)) return res.status(401);
 
+    // Get requested restaurant and check if it exists
     let restaurant = await Restaurant.findById(req.body.restaurantId);
     if (!restaurant)
       return res
         .status(404)
         .send(`Restaurant ${req.body.restaurantId} does not exist`);
 
+    // Get customer loyalty for restaurant and check if it exists
     let customerLoyaltyForRestaurant = customer.loyalties.find((loyalty) =>
       restaurant._id.equals(loyalty.restaurantId)
     );
-
     if (!customerLoyaltyForRestaurant)
       return res
         .status(404)
@@ -474,18 +541,65 @@ module.exports.generateReward = async (req, res) => {
           `Customer loyalty for restaurant ${req.body.restaurantId} does not exist`
         );
 
+    // Check if customer has enough tickets to roll for a reward
     if (
       customerLoyaltyForRestaurant.numberOfTickets <
       restaurant.numberOfTicketsForRedemption
     )
       return res.status(409).send(`Not enough tickets to roll for reward`);
 
-    let bronzeLoyalty = customerLoyaltyForRestaurant.level == "Bronze";
-    let silverLoyalty = customerLoyaltyForRestaurant.level == "Silver";
-    let goldLoyalty = customerLoyaltyForRestaurant.level == "Gold";
-    let platinumLoyalty = customerLoyaltyForRestaurant.level == "Platinum";
-    let diamondLoyalty = customerLoyaltyForRestaurant.level == "Diamond";
+    // Function that gets the levels under a given level
+    let getLevelsUnder = (level) => {
+      let levels = [];
+      const bronze = level == "Bronze";
+      const silver = level == "Silver";
+      const gold = level == "Gold";
+      const platinum = level == "Platinum";
+      const diamond = level == "Diamond";
+      if (bronze || silver || gold || platinum || diamond)
+        levels.push("Bronze");
+      if (silver || gold || platinum || diamond) levels.push("Silver");
+      if (gold || platinum || diamond) levels.push("Gold");
+      if (platinum || diamond) levels.push("Platinum");
+      if (diamond) levels.push("Diamond");
+      return levels;
+    };
 
+    // Function that calculates the new weight using the possible levels
+    let calculateNewWeight = (level, customerLevel, rewardWeight) => {
+      let total = 0;
+      let levels = getLevelsUnder(customerLevel);
+      for (let i = 0; i < levels.length; i++) {
+        total += rewardWeight[levels[i].toLowerCase()];
+      }
+      if (total == 0) return 0;
+      return rewardWeight[level.toLowerCase()] / total;
+    };
+
+    // Function that gets a random level out the given levels and probabilities
+    let getRandomLevel = (weights, levels) => {
+      let num = Math.random(),
+        s = 0,
+        lastIndex = weights.length - 1;
+
+      for (let i = 0; i < lastIndex; ++i) {
+        s += weights[i];
+        if (num < s) {
+          return levels[i];
+        }
+      }
+
+      return levels[lastIndex];
+    };
+
+    // Constants to check if the customer is a certain level
+    const bronzeLoyalty = customerLoyaltyForRestaurant.level == "Bronze";
+    const silverLoyalty = customerLoyaltyForRestaurant.level == "Silver";
+    const goldLoyalty = customerLoyaltyForRestaurant.level == "Gold";
+    const platinumLoyalty = customerLoyaltyForRestaurant.level == "Platinum";
+    const diamondLoyalty = customerLoyaltyForRestaurant.level == "Diamond";
+
+    // Filter the restaurant rewards that the customer is able to roll
     let allowedRestaurantRewards = restaurant.rewards.filter((reward) => {
       let filter = false;
       if (
@@ -506,32 +620,7 @@ module.exports.generateReward = async (req, res) => {
       return filter;
     });
 
-    let getLevelsUnder = (level) => {
-      let levels = [];
-      let bronze = level == "Bronze";
-      let silver = level == "Silver";
-      let gold = level == "Gold";
-      let platinum = level == "Platinum";
-      let diamond = level == "Diamond";
-      if (bronze || silver || gold || platinum || diamond)
-        levels.push("Bronze");
-      if (silver || gold || platinum || diamond) levels.push("Silver");
-      if (gold || platinum || diamond) levels.push("Gold");
-      if (platinum || diamond) levels.push("Platinum");
-      if (diamond) levels.push("Diamond");
-      return levels;
-    };
-
-    let calculateNewWeight = (level, customerLevel, rewardWeight) => {
-      let total = 0;
-      let levels = getLevelsUnder(customerLevel);
-      for (let i = 0; i < levels.length; i++) {
-        total += rewardWeight[levels[i].toLowerCase()];
-      }
-      if (total == 0) return 0;
-      return rewardWeight[level.toLowerCase()] / total;
-    };
-
+    // List of levels the customer is able to get a reward from
     let allowedLevels = Array.from(
       new Set(
         allowedRestaurantRewards.map(
@@ -540,6 +629,7 @@ module.exports.generateReward = async (req, res) => {
       )
     );
 
+    // List of weights that corresponds 1-1 to the allowed levels
     let allowedWeights = allowedLevels.map((level) =>
       calculateNewWeight(
         level,
@@ -548,35 +638,23 @@ module.exports.generateReward = async (req, res) => {
       )
     );
 
-    let getRandomLevel = (weights, levels) => {
-      let num = Math.random(),
-        s = 0,
-        lastIndex = weights.length - 1;
-
-      for (let i = 0; i < lastIndex; ++i) {
-        s += weights[i];
-        if (num < s) {
-          return levels[i];
-        }
-      }
-
-      return levels[lastIndex];
-    };
-
     let randomLevel = getRandomLevel(allowedWeights, allowedLevels);
 
+    // Filter the allowed random rewards from the list of rewards given the random level
     let allowedRandomRewards = restaurant.rewards.filter(
       (reward) => reward.level == randomLevel
     );
 
-    let randomReward = Math.floor(Math.random() * allowedRandomRewards.length);
+    // Get a random reward out of the list of allowed random rewards
+    let randomRewardIndex = Math.floor(
+      Math.random() * allowedRandomRewards.length
+    );
+    let randomRestaurantReward = allowedRandomRewards[randomRewardIndex];
 
-    let randomRestaurantReward = allowedRandomRewards[randomReward];
-
+    // Get the reward template given the random reward's template number and check if it exists
     let rewardTemplate = await RewardTemplate.findOne({
       templateNumber: randomRestaurantReward.templateNumber,
     });
-
     if (!rewardTemplate)
       return res
         .status(404)
@@ -584,6 +662,7 @@ module.exports.generateReward = async (req, res) => {
           `Restaurant rewards template ${randomRestaurantReward.templateNumber} does not exist`
         );
 
+    // Construct the new random reward object
     let newRandomReward = {
       content: rewardTemplate.value
         .split(":variable")
@@ -595,6 +674,7 @@ module.exports.generateReward = async (req, res) => {
       level: randomRestaurantReward.level,
     };
 
+    // Update database with new reward
     if (customerLoyaltyForRestaurant) {
       customer = await User.findOneAndUpdate(
         { _id: req.user._id, "loyalties.restaurantId": restaurant._id },
@@ -612,9 +692,9 @@ module.exports.generateReward = async (req, res) => {
       );
     }
 
+    // Send back the user object
     res.json(newRandomReward);
   } catch (err) {
-    console.log(err);
     return res.sendStatus(500);
   }
 };

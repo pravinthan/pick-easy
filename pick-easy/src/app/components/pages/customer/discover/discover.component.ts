@@ -33,6 +33,7 @@ export class DiscoverComponent implements OnInit, AfterViewInit {
       });
   }
 
+  /* Overridden function that sets the image of the restaurant  */
   ngAfterViewInit() {
     this.logoImageElements.changes.subscribe(
       (logoImageElements: QueryList<ElementRef<HTMLImageElement>>) => {
@@ -63,6 +64,7 @@ export class DiscoverComponent implements OnInit, AfterViewInit {
     );
   }
 
+  /* Lifecycle hook that searches filtered options (in Observable) */
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(""),
@@ -72,6 +74,7 @@ export class DiscoverComponent implements OnInit, AfterViewInit {
     );
   }
 
+  /* Given restaurant id and <img> element obtains the restaurant image through restaurant service */
   async getRestaurantImage(
     restaurantId: string,
     imageElement: HTMLImageElement
@@ -87,6 +90,7 @@ export class DiscoverComponent implements OnInit, AfterViewInit {
     };
   }
 
+  /* Given a string, returns a list of all restaurant names starting with that string (case-insensitive) */
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
