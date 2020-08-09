@@ -106,9 +106,9 @@ Pravinthan
     2. Nothing
     3. Help team, work on documentation-84
 Jeremy
-    1. 
-    2. 
-    3. 
+    1. Nothing
+    2. Nothing
+    3. Help team, work on documentation-84
 
 --------------------------------------------------------------------------------------------
 Date: August 6, 2020
@@ -134,9 +134,9 @@ Pravinthan
     2. Nothing
     3. Documentation needs to be done
 Jeremy
-    1. 
-    2. 
-    3. 
+    1. Helped Team members with tasks
+    2. Nothing
+    3. Documentation
 
 --------------------------------------------------------------------------------------------
 Date: August 7, 2020
@@ -154,17 +154,17 @@ Evan
     2. Nothing
     3. Continue to work on documentation
 Anthony
-    1. 
-    2. 
-    3. 
+    1. Worked on documentation
+    2. Nothing
+    3. Finish Documenting code
 Pravinthan
     1. Finished my part for documentation
     2. Nothing
     3. Help team out
 Jeremy
-    1. 
-    2. 
-    3. 
+    1. Finished my part for documentation
+    2. Nothing
+    3. Help team out
 
 --------------------------------------------------------------------------------------------
 Date: August 8, 2020
@@ -182,17 +182,17 @@ Evan
     2. Nothing
     3. Help team out
 Anthony
-    1. 
-    2. 
-    3. 
+    1. Finished documenting code
+    2. nothing
+    3. Celebrate :D
 Pravinthan
     1. Nothing
     2. Nothing
     3. Help team out
 Jeremy
-    1. 
-    2. 
-    3. 
+    1. Nothing
+    2. Nothing
+    3. Help team out
 
 --------------------------------------------------------------------------------------------
 Date: August 9, 2020
@@ -210,14 +210,14 @@ Evan
     2. Nothing
     3. N/A (Sprint finished)
 Anthony
-    1. 
-    2. 
+    1. Sprint finished
+    2. Nothing
     3. N/A (Sprint finished)
 Pravinthan
     1. Sprint finished
     2. Nothing
     3. N/A (Sprint finished)
 Jeremy
-    1. 
-    2. 
+    1. Sprint finished
+    2. Nothing
     3. N/A (Sprint finished)
