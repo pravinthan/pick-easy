@@ -8,7 +8,7 @@
   <a href="https://pick-easy.pravinthan.com">PickEasy</a>
 </h1>
 
-> A web app to allow restaurants to create an achievement-based, gamified loyalty and rewards system for their customers (featuring a mobile-friendly UI and animated levels, achievements and rewards).
+> A web app that allows restaurants to create an achievement-based, gamified loyalty and rewards system for their customers (featuring a mobile-friendly UI and animated levels, achievements and rewards).
 
 > This project won **1st place** as the **best project** in a course-wide competition (2020 Summer _Introduction to Software Engineering_).
 
