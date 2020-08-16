@@ -10,12 +10,13 @@
 
 > A web app to allow restaurants to create an achievement-based, gamified loyalty and rewards system for their customers (featuring a mobile-friendly UI and animated levels, achievements and rewards).
 
-> This project won **1st place** as the **best project** in a course-wide competition (_Introduction to Software Engineering_).
+> This project won **1st place** as the **best project** in a course-wide competition (2020 Summer _Introduction to Software Engineering_).
 
 <h2>Table of Contents</h2>
 
 - [Demo](#demo)
 - [Features](#features)
+- [Screenshots](#screenshots)
 - [Contributors](#contributors)
 - [License](#license)
 
@@ -41,6 +42,10 @@ TODO
 - Activate and present Achievement QR Codes to restaurants to earn progression and Tickets.
 - Spend Tickets to Level Up (Bronze - Diamond) to unlock better rewards.
 - Spend Tickets to Roll a Random Reward based on your level.
+
+## Screenshots
+
+![Screenshots](./screenshots.png "Screenshots")
 
 ## Contributors
 
