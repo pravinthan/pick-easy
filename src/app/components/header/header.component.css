@@ -1,0 +1,110 @@
+#toolbar {
+  position: fixed;
+  z-index: 999;
+  border-bottom-right-radius: 75px;
+  border-bottom-left-radius: 75px;
+}
+
+#toolbar > mat-toolbar-row {
+  box-sizing: unset;
+}
+
+mat-toolbar-row {
+  height: 64px !important;
+  padding: 0;
+  display: flex;
+}
+
+a {
+  text-decoration: none;
+}
+
+.space-evenly {
+  display: flex;
+  justify-content: space-evenly;
+  flex: 1;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #e8285f, #f23f43);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+mat-icon.gradient-text {
+  font-size: 24px;
+  margin-right: 0.25rem;
+}
+
+#app-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#app-icon {
+  width: 36px;
+  height: 36px;
+  margin-right: 0.5rem;
+}
+
+.app-logo-text {
+  font-size: 36px;
+}
+
+#sign-out-button {
+  font-size: 16px;
+}
+
+.mat-toolbar-multiple-rows {
+  line-height: 64px !important;
+}
+
+#sign-out-overlay {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.32);
+  z-index: 1000;
+  top: 0;
+  left: 0;
+}
+
+.gradient-text.disabled {
+  background: linear-gradient(to right, #e8285e8e, #f23f4277);
+  background-clip: text;
+}
+
+.gradient-text-button {
+  color: #e8285f;
+}
+
+.toggle-sidebar {
+  position: absolute;
+  left: 5px;
+}
+
+@media only screen and (min-width: 1201px) {
+  .toggle-sidebar {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  #toolbar {
+    border-radius: 0;
+  }
+
+  .hide-mobile {
+    display: none;
+  }
+
+  .logo-mobile {
+    margin: 0 auto;
+  }
+}

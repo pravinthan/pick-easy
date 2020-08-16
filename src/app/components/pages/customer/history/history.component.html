@@ -1,0 +1,118 @@
+<div id="page">
+  <div id="content">
+    <div id="title">
+      <span class="gradient-text">History</span>
+    </div>
+    <div id="search">
+      <mat-form-field>
+        <mat-label>Search</mat-label>
+        <mat-icon matPrefix>search</mat-icon>
+        <input
+          matInput
+          (keyup)="applyFilter($event)"
+          #input
+          [formControl]="myControl"
+        />
+      </mat-form-field>
+    </div>
+    <div class="logs">
+      <mat-tab-group>
+        <mat-tab label="Scanned Achievement History">
+          <mat-table
+            #achievementLogSort="matSort"
+            [dataSource]="achievementLogDataSource"
+            matSort
+            matSortActive="timeOfScan"
+            matSortDisableClear
+            matSortDirection="desc"
+            id="achievement-log"
+          >
+            <ng-container matColumnDef="restaurantName">
+              <mat-header-cell *matHeaderCellDef>
+                Restaurant Name
+              </mat-header-cell>
+              <mat-cell *matCellDef="let achievement">
+                {{ achievement.restaurantName }}
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="achievement">
+              <mat-header-cell *matHeaderCellDef>
+                Achievement
+              </mat-header-cell>
+              <mat-cell *matCellDef="let achievement">
+                {{ achievement.achievement }}
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="progress">
+              <mat-header-cell *matHeaderCellDef> Progress </mat-header-cell>
+              <mat-cell *matCellDef="let achievement">
+                {{ achievement.complete ? "Complete" : achievement.progress }}
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="timeOfScan">
+              <mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                Time Of Scan
+              </mat-header-cell>
+              <mat-cell *matCellDef="let achievement">
+                {{ achievement.timeOfScan | date: "short" }}
+              </mat-cell>
+            </ng-container>
+            <mat-header-row
+              *matHeaderRowDef="achievementLogDisplayedColumns"
+            ></mat-header-row>
+            <mat-row
+              *matRowDef="let row; columns: achievementLogDisplayedColumns"
+            ></mat-row>
+          </mat-table>
+        </mat-tab>
+        <mat-tab label="Scanned Reward History"
+          ><mat-table
+            #rewardLogSort="matSort"
+            [dataSource]="rewardLogDataSource"
+            matSort
+            matSortActive="timeOfScan"
+            matSortDisableClear
+            matSortDirection="desc"
+            id="reward-log"
+          >
+            <ng-container matColumnDef="restaurantName">
+              <mat-header-cell *matHeaderCellDef>
+                Restaurant Name
+              </mat-header-cell>
+              <mat-cell *matCellDef="let reward">
+                {{ reward.restaurantName }}
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="reward">
+              <mat-header-cell *matHeaderCellDef>
+                Reward
+              </mat-header-cell>
+              <mat-cell *matCellDef="let reward">
+                <img
+                  src="/assets/{{ reward.level.toLowerCase() }}.png"
+                  class="level-icon-small"
+                  [matTooltip]="reward.level"
+                  matTooltipPosition="above"
+                />
+                {{ reward.reward }}
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="timeOfScan">
+              <mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                Time Of Scan
+              </mat-header-cell>
+              <mat-cell *matCellDef="let reward">
+                {{ reward.timeOfScan | date: "short" }}
+              </mat-cell>
+            </ng-container>
+            <mat-header-row
+              *matHeaderRowDef="rewardLogDisplayedColumns"
+            ></mat-header-row>
+            <mat-row
+              *matRowDef="let row; columns: rewardLogDisplayedColumns"
+            ></mat-row></mat-table
+        ></mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,197 @@
+#page {
+  padding: 96px 32px 32px 32px;
+  min-width: 320px;
+}
+
+#content {
+  width: calc(100% - 64px);
+  max-width: 1100px;
+  margin: 0 auto;
+  background: #f5f5f5;
+  padding: 32px;
+  border-radius: 25px;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #e8285f, #f23f43);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+#title {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+#title > .gradient-text {
+  font-size: 32px;
+  line-height: 42px;
+}
+
+#configurator-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+#template-picker,
+#save-button-container > button {
+  width: 100%;
+  max-width: 450px;
+}
+
+.reward {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #00000026;
+  margin: 0 1rem 0 1rem;
+}
+
+.reward-text {
+  display: flex;
+  flex: 1 0 0;
+}
+
+.reward-text > div {
+  display: flex;
+  align-items: center;
+}
+
+.reward:last-of-type {
+  border-bottom: 0;
+}
+
+.reward-field {
+  padding: 0 0.25rem;
+}
+
+.reward-context-container {
+  display: flex;
+  align-items: center;
+}
+
+.rewards-title {
+  margin-bottom: 1rem;
+}
+
+#reward-weights {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-width: 200px;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0 2rem;
+}
+
+.reward-weight {
+  display: flex;
+  width: fit-content;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 2rem 0 2rem;
+}
+
+.reward-weight > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.reward-weight > .mat-form-field {
+  margin-left: 1rem;
+  width: 100px;
+}
+
+.reverse-margin {
+  margin: 0 0.3rem 0 0;
+}
+
+.reward-level {
+  padding-left: 3rem;
+}
+
+::ng-deep .reward-level > .mat-form-field-wrapper,
+::ng-deep .reward-weight .mat-form-field-wrapper {
+  margin-bottom: -1.25em !important;
+}
+
+.remove-reward-button {
+  margin-left: 1rem;
+}
+
+.primary-color {
+  background: linear-gradient(to right, #e8285f, #f23f43);
+}
+
+#save-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.grouped-rewards {
+  background-color: #0000000d;
+  margin-bottom: 1rem;
+  border-radius: 25px;
+}
+
+.grouped-reward-header {
+  color: rgba(0, 0, 0, 0.452);
+  padding: 0.75rem 0 0 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.level-icon-small {
+  width: 16px;
+  margin-left: 0.3rem;
+}
+
+@media only screen and (max-width: 1200px) {
+  .reward-text,
+  .reward-text > div {
+    flex: initial;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .reward-text {
+    margin-bottom: 1rem;
+  }
+
+  .reward {
+    flex-direction: column;
+  }
+
+  .reward-level {
+    padding-left: 0;
+  }
+
+  .remove-reward-button {
+    margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #page {
+    padding: 0;
+  }
+
+  #content {
+    border-radius: 0;
+    margin-top: 64px;
+    background: none;
+    padding: 16px 0;
+  }
+}

@@ -1,0 +1,157 @@
+<div id="page">
+  <div id="content">
+    <div id="title">
+      <span class="gradient-text">Scan</span>
+    </div>
+
+    <div id="scan-container">
+      <div [hidden]="!hasDevices">
+        <div class="select-container">
+          <mat-form-field appearance="fill">
+            <mat-label>Select a Media Device</mat-label>
+            <mat-select
+              (selectionChange)="onDeviceSelectChange($event.value)"
+              [(ngModel)]="deviceSelect"
+            >
+              <mat-option value="none">No Device Selected</mat-option>
+              <mat-option
+                *ngFor="let device of availableDevices"
+                [value]="device.deviceId"
+              >
+                {{ device.label }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <zxing-scanner
+          [(device)]="currentDevice"
+          (scanSuccess)="onCodeResult($event)"
+          [formats]="['QR_CODE']"
+          (permissionResponse)="onHasPermission($event)"
+          (camerasFound)="onCamerasFound($event)"
+          [ngStyle]="{ display: deviceSelect == 'none' ? 'none' : 'block' }"
+        ></zxing-scanner>
+      </div>
+      <span class="error" *ngIf="hasPermission === undefined"
+        >Waiting for permissions (If your device does not have cameras, no
+        permissions will be asked)
+      </span>
+
+      <span class="error" *ngIf="hasPermission === false"
+        >You denied the camera permission (Allow access to your camera)
+      </span>
+
+      <span
+        class="error"
+        *ngIf="hasDevices === undefined && hasPermission !== false"
+        >Couldn't check for devices (This may be caused by some security error)
+      </span>
+
+      <span class="error" *ngIf="hasDevices === false"
+        >No media devices were found
+      </span>
+
+      <div class="logs">
+        <mat-tab-group>
+          <mat-tab label="Scanned Achievement History">
+            <mat-table
+              #achievementLogSort="matSort"
+              [dataSource]="achievementLogDataSource"
+              class="mat-elevation-z8"
+              matSort
+              matSortActive="timeOfScan"
+              matSortDisableClear
+              matSortDirection="desc"
+              id="achievement-log"
+            >
+              <ng-container matColumnDef="customerName">
+                <mat-header-cell *matHeaderCellDef>
+                  Customer Name
+                </mat-header-cell>
+                <mat-cell *matCellDef="let achievement">
+                  {{ achievement.customerName }}
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="achievement">
+                <mat-header-cell *matHeaderCellDef>
+                  Achievement
+                </mat-header-cell>
+                <mat-cell *matCellDef="let achievement">
+                  {{ achievement.achievement }}
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="progress">
+                <mat-header-cell *matHeaderCellDef> Progress </mat-header-cell>
+                <mat-cell *matCellDef="let achievement">
+                  {{ achievement.complete ? "Complete" : achievement.progress }}
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="timeOfScan">
+                <mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                  Time Of Scan
+                </mat-header-cell>
+                <mat-cell *matCellDef="let achievement">
+                  {{ achievement.timeOfScan | date: "short" }}
+                </mat-cell>
+              </ng-container>
+              <mat-header-row
+                *matHeaderRowDef="achievementLogDisplayedColumns"
+              ></mat-header-row>
+              <mat-row
+                *matRowDef="let row; columns: achievementLogDisplayedColumns"
+              ></mat-row>
+            </mat-table>
+          </mat-tab>
+          <mat-tab label="Scanned Reward History"
+            ><mat-table
+              #rewardLogSort="matSort"
+              [dataSource]="rewardLogDataSource"
+              matSort
+              matSortActive="timeOfScan"
+              matSortDisableClear
+              matSortDirection="desc"
+              id="reward-log"
+            >
+              <ng-container matColumnDef="customerName">
+                <mat-header-cell *matHeaderCellDef>
+                  Customer Name
+                </mat-header-cell>
+                <mat-cell *matCellDef="let reward">
+                  {{ reward.customerName }}
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="reward">
+                <mat-header-cell *matHeaderCellDef>
+                  Reward
+                </mat-header-cell>
+                <mat-cell *matCellDef="let reward">
+                  <img
+                    src="/assets/{{ reward.level.toLowerCase() }}.png"
+                    class="level-icon-small"
+                    [matTooltip]="reward.level"
+                    matTooltipPosition="above"
+                  />
+                  {{ reward.reward }}
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="timeOfScan">
+                <mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                  Time Of Scan
+                </mat-header-cell>
+                <mat-cell *matCellDef="let reward">
+                  {{ reward.timeOfScan | date: "short" }}
+                </mat-cell>
+              </ng-container>
+              <mat-header-row
+                *matHeaderRowDef="rewardLogDisplayedColumns"
+              ></mat-header-row>
+              <mat-row
+                *matRowDef="let row; columns: rewardLogDisplayedColumns"
+              ></mat-row></mat-table
+          ></mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+  </div>
+</div>

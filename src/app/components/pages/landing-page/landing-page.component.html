@@ -1,0 +1,28 @@
+<div id="home-video">
+  <video autoplay muted loop>
+    <source src="/assets/home-video.mp4" type="video/mp4" />
+  </video>
+</div>
+<div id="home-overlay">
+  <div>
+    <span style="font-size: xx-large; font-weight: bold;">
+      Welcome to PickEasy
+    </span>
+  </div>
+  <div style="margin-top: 2rem;">
+    <div class="buttons-container">
+      <a mat-raised-button routerLink="/customer" class="gradient-button">
+        <mat-icon>account_circle</mat-icon>
+        Customer App
+      </a>
+      <a mat-raised-button routerLink="/restaurant" class="gradient-button">
+        <mat-icon>storefront</mat-icon>
+        Restaurant App
+      </a>
+    </div>
+  </div>
+</div>
+
+<a mat-flat-button class="gradient-button" id="credits" routerLink="/credits"
+  >Credits</a
+>

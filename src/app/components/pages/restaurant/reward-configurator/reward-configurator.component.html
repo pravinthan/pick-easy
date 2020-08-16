@@ -1,0 +1,199 @@
+<div id="page">
+  <div id="content">
+    <div id="title">
+      <span class="gradient-text">Configure Rewards</span>
+    </div>
+    <div id="configurator-container">
+      <div class="rewards-title">
+        <span class="gradient-text">Configure Reward Weights</span>
+      </div>
+      <span>
+        <strong>Reward weights</strong> are the odds of receiving a reward.
+      </span>
+      <span>
+        <strong>Note:</strong>
+        Enter a weight from 0 to 100 (in %). Ensure the weights add up to 100%
+      </span>
+      <div id="reward-weights">
+        <ng-container *ngFor="let level of levels">
+          <div class="reward-weight" *ngIf="areAnyRewardsOfLevel(level)">
+            <div>
+              <img
+                src="/assets/{{ level.toLowerCase() }}.png"
+                class="level-icon-small reverse-margin"
+              />
+              {{ level }} Weight:
+            </div>
+            <mat-form-field appearance="outline" class="weight-field">
+              <mat-label>{{ level }}</mat-label>
+              <input
+                matInput
+                type="number"
+                min="1"
+                required
+                [(ngModel)]="rewardWeight[level.toLowerCase()]"
+              />
+            </mat-form-field>
+          </div>
+        </ng-container>
+      </div>
+      <div class="rewards-title">
+        <span class="gradient-text">List of Rewards</span>
+      </div>
+      <mat-form-field id="template-picker" appearance="fill">
+        <mat-label>Choose a reward template</mat-label>
+        <mat-select #templatePicker (selectionChange)="addReward($event.value)">
+          <mat-option
+            *ngFor="let template of templates"
+            [value]="template.templateNumber"
+            >{{ template.content }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+      <div id="rewards">
+        <div
+          class="grouped-rewards"
+          *ngFor="let level of filterLevelsByRewards()"
+        >
+          <div class="grouped-reward-header">
+            {{ level }}
+            <img
+              src="/assets/{{ level.toLowerCase() }}.png"
+              class="level-icon-small"
+            />
+          </div>
+          <div
+            class="reward"
+            *ngFor="let reward of filterRewardsByLevel(level); let i = index"
+          >
+            <div class="reward-text">
+              <div
+                *ngFor="
+                  let text of getTemplateByNumber(
+                    reward.templateNumber
+                  )?.value.split(':variable');
+                  let i = index
+                "
+              >
+                <span>{{ text }}</span>
+                <mat-form-field
+                  class="reward-field"
+                  *ngIf="
+                    getTemplateByNumber(reward.templateNumber).variables[i]
+                  "
+                >
+                  <mat-label>{{
+                    getTemplateByNumber(reward.templateNumber).variables[i]
+                  }}</mat-label>
+
+                  <!--Percent input-->
+                  <input
+                    *ngIf="
+                      getTemplateByNumber(reward.templateNumber).variables[
+                        i
+                      ] === 'Percent'
+                    "
+                    matInput
+                    type="number"
+                    min="1"
+                    max="100"
+                    value="1"
+                    required
+                    [(ngModel)]="reward.variables[i]"
+                  />
+                  <mat-hint
+                    *ngIf="
+                      getTemplateByNumber(reward.templateNumber).variables[
+                        i
+                      ] === 'Percent'
+                    "
+                    [id]="null"
+                  >
+                    Enter a percent between 1 - 100
+                  </mat-hint>
+
+                  <!--Dollar amount input-->
+                  <input
+                    *ngIf="
+                      getTemplateByNumber(reward.templateNumber).variables[
+                        i
+                      ] === 'Dollar'
+                    "
+                    matInput
+                    type="number"
+                    min="1"
+                    value="1"
+                    required
+                    [(ngModel)]="reward.variables[i]"
+                  />
+                  <mat-hint
+                    *ngIf="
+                      getTemplateByNumber(reward.templateNumber).variables[
+                        i
+                      ] === 'Dollar'
+                    "
+                    [id]="null"
+                  >
+                    Enter a Dollar amount
+                  </mat-hint>
+
+                  <!--Restaurant item input-->
+                  <input
+                    *ngIf="
+                      getTemplateByNumber(reward.templateNumber).variables[
+                        i
+                      ] === 'Restaurant Item'
+                    "
+                    matInput
+                    required
+                    [(ngModel)]="reward.variables[i]"
+                  />
+                  <mat-hint
+                    *ngIf="
+                      getTemplateByNumber(reward.templateNumber).variables[
+                        i
+                      ] === 'Restaurant Item'
+                    "
+                    [id]="null"
+                  >
+                    Enter a Restaurant Item
+                  </mat-hint>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="reward-context-container">
+              <mat-form-field class="reward-level" appearance="outline">
+                <mat-label>Choose level</mat-label>
+                <mat-select [(ngModel)]="reward.level" required>
+                  <mat-option *ngFor="let level of levels" [value]="level">{{
+                    level
+                  }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <button
+              mat-icon-button
+              color="warn"
+              title="Remove reward"
+              class="remove-reward-button"
+              (click)="deleteReward(calculateIndex(level, i))"
+            >
+              <mat-icon>remove_circle</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="save-button-container">
+      <button
+        class="primary-color"
+        mat-raised-button
+        color="accent"
+        (click)="saveRewards()"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</div>

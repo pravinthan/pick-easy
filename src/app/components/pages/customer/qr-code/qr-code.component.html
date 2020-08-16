@@ -1,0 +1,14 @@
+<span mat-dialog-title>Present QR Code to Restaurant</span>
+<mat-dialog-content>
+  <qrcode
+    [qrdata]="qrCodeData"
+    width="256"
+    errorCorrectionLevel="M"
+    elementType="svg"
+  ></qrcode>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close class="gradient-text-button">
+    Close
+  </button>
+</mat-dialog-actions>

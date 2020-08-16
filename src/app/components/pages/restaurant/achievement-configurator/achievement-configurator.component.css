@@ -1,0 +1,164 @@
+#page {
+  padding: 96px 32px 32px 32px;
+  min-width: 320px;
+}
+
+#content {
+  width: calc(100% - 64px);
+  max-width: 1100px;
+  margin: 0 auto;
+  background: #f5f5f5;
+  padding: 32px;
+  border-radius: 25px;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #e8285f, #f23f43);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+#title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+#title > .gradient-text {
+  font-size: 32px;
+  line-height: 42px;
+}
+
+#configurator-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#tickets-picker,
+#template-picker,
+#save-button-container > button {
+  width: 100%;
+  max-width: 450px;
+}
+
+#tickets-picker {
+  margin-bottom: 2rem;
+}
+
+#achievements-title {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+#achievements {
+  display: flex;
+  flex-direction: column;
+  max-height: 450px;
+  overflow-y: auto;
+}
+
+.achievement {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #00000026;
+  margin: 0 1rem 0 1rem;
+}
+
+.achievement:last-of-type {
+  border-bottom: 0;
+}
+
+.achievement-template-container {
+  display: flex;
+  align-items: center;
+  flex: 1 0 0;
+}
+
+.achievement-field {
+  padding: 0 0.25rem;
+}
+
+.achievement-context-container {
+  padding-left: 3rem;
+}
+
+.remove-achievement-button {
+  margin-left: 1rem;
+}
+
+#save-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.gradient-button {
+  color: white;
+  background: linear-gradient(to right, #e8285f, #f23f43);
+}
+
+.grouped-achievements {
+  background-color: #0000000d;
+  margin-bottom: 1rem;
+  border-radius: 25px;
+}
+
+.grouped-achievement-header {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.452);
+  padding-left: 1.5rem;
+  padding-top: 0.5rem;
+  display: block;
+}
+
+::ng-deep .achievement-context-container .mat-form-field-wrapper {
+  margin-bottom: -1.25em !important;
+}
+
+@media only screen and (max-width: 1200px) {
+  .achievement-template-container,
+  .achievement-template-container > div {
+    flex: initial;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .achievement-template-container {
+    margin-bottom: 0.5rem;
+  }
+
+  .achievement-template-container > div {
+    display: flex;
+    align-items: center;
+  }
+
+  .achievement {
+    flex-direction: column;
+  }
+
+  .achievement-context-container {
+    padding-left: 0;
+  }
+
+  .remove-achievement-button {
+    margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #page {
+    padding: 0;
+  }
+
+  #content {
+    border-radius: 0;
+    margin-top: 64px;
+    background: none;
+    padding: 16px 0;
+  }
+}

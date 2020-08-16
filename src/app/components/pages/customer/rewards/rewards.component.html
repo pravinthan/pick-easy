@@ -1,0 +1,336 @@
+<div id="page">
+  <div id="content">
+    <div id="title">
+      <span class="gradient-text">Rewards</span>
+    </div>
+
+    <div id="search">
+      <mat-form-field>
+        <mat-icon matPrefix>search</mat-icon>
+        <input
+          type="text"
+          placeholder="Search Restaurants"
+          matInput
+          [formControl]="myControl"
+          [matAutocomplete]="auto"
+          #search
+        />
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option
+            *ngFor="let option of filteredOptions | async"
+            [value]="option"
+          >
+            {{ option }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <div id="restaurants">
+      <div *ngFor="let restaurant of restaurants">
+        <div
+          *ngIf="
+            (filteredOptions | async).includes(restaurant.name) ||
+            search.value == restaurant.name ||
+            search.value.length == 0
+          "
+          class="restaurant mat-elevation-z4"
+          [ngClass]="{
+            highlight: queryName ? queryName == restaurant.name : false
+          }"
+        >
+          <div class="restaurant-header-container">
+            <span
+              [innerHTML]="restaurant.name"
+              class="restaurant-name"
+              (click)="openDetailsDialog(restaurant)"
+            ></span>
+
+            <img
+              *ngIf="getCustomerLoyaltyByRestaurantId(restaurant._id)?.level"
+              [src]="
+                '/assets/' +
+                getCustomerLoyaltyByRestaurantId(
+                  restaurant._id
+                ).level.toLowerCase() +
+                '.png'
+              "
+              class="level-icon"
+              [matTooltip]="
+                getCustomerLoyaltyByRestaurantId(restaurant._id).level
+              "
+              matTooltipPosition="right"
+            />
+            <img
+              *ngIf="!getCustomerLoyaltyByRestaurantId(restaurant._id)?.level"
+              src="/assets/bronze.png"
+              class="level-icon"
+              matTooltip="Bronze"
+              matTooltipPosition="right"
+            />
+          </div>
+
+          <a
+            routerLink="../history"
+            [queryParams]="{ restaurantName: restaurant.name }"
+            mat-icon-button
+            class="history-button"
+            matTooltip="Go to History"
+          >
+            <mat-icon class="gradient-text">history</mat-icon>
+          </a>
+          <a
+            routerLink="../achievements"
+            [queryParams]="{ restaurantName: restaurant.name }"
+            mat-icon-button
+            class="achievements-button"
+            matTooltip="Go to Achievements"
+          >
+            <mat-icon class="gradient-text">card_membership</mat-icon>
+          </a>
+
+          <span>
+            You currently have
+            <span class="bold">
+              {{
+                getCustomerLoyaltyByRestaurantId(restaurant._id)
+                  ?.numberOfTickets || 0
+              }}
+            </span>
+            {{
+              getCustomerLoyaltyByRestaurantId(restaurant._id)
+                ?.numberOfTickets == 1
+                ? "Ticket"
+                : "Tickets"
+            }}
+          </span>
+
+          <span
+            class="align-text-center"
+            *ngIf="
+              restaurant.numberOfTicketsForRedemption >
+              getCustomerLoyaltyByRestaurantId(restaurant._id)?.numberOfTickets
+            "
+          >
+            You need
+            <span class="bold">
+              {{
+                restaurant.numberOfTicketsForRedemption -
+                  getCustomerLoyaltyByRestaurantId(restaurant._id)
+                    ?.numberOfTickets
+              }}
+            </span>
+            more
+            {{
+              restaurant.numberOfTicketsForRedemption -
+                getCustomerLoyaltyByRestaurantId(restaurant._id)
+                  ?.numberOfTickets ==
+              1
+                ? " Ticket"
+                : " Tickets"
+            }}
+            to
+            <span class="bold">Level Up</span>
+            or
+            <span class="bold">Roll a Reward!</span>
+          </span>
+
+          <div class="customer-rewards">
+            <button
+              *ngIf="
+                getCustomerLoyaltyByRestaurantId(restaurant._id)
+                  ?.numberOfTickets >=
+                  restaurant.numberOfTicketsForRedemption &&
+                getCustomerLoyaltyByRestaurantId(restaurant._id)?.level !=
+                  'Diamond'
+              "
+              mat-raised-button
+              class="level-up-button"
+              (click)="upgradeLevel(restaurant._id)"
+            >
+              <mat-icon>upgrade</mat-icon>
+              Level Up for {{ restaurant.numberOfTicketsForRedemption }}
+              {{
+                restaurant.numberOfTicketsForRedemption == 1
+                  ? "Ticket"
+                  : "Tickets"
+              }}
+              <mat-icon>upgrade</mat-icon>
+            </button>
+
+            <button
+              *ngIf="
+                getCustomerLoyaltyByRestaurantId(restaurant._id)
+                  ?.numberOfTickets >=
+                  restaurant.numberOfTicketsForRedemption &&
+                rewardsForLevel(restaurant).length > 0
+              "
+              mat-raised-button
+              class="roll-reward-button gradient-button"
+              (click)="rollRandomReward(restaurant._id)"
+            >
+              <mat-icon>casino</mat-icon>
+              Roll a Reward for {{ restaurant.numberOfTicketsForRedemption }}
+              {{
+                restaurant.numberOfTicketsForRedemption == 1
+                  ? "Ticket"
+                  : "Tickets"
+              }}
+              <mat-icon>casino</mat-icon>
+            </button>
+
+            <button
+              *ngIf="
+                getCustomerLoyaltyByRestaurantId(restaurant._id)
+                  ?.numberOfTickets >=
+                  restaurant.numberOfTicketsForRedemption &&
+                rewardsForLevel(restaurant).length == 0
+              "
+              mat-raised-button
+              class="roll-reward-button gradient-button disabled-button"
+              matTooltip="No rewards available for {{
+                getCustomerLoyaltyByRestaurantId(restaurant._id)?.level
+              }}"
+              disableRipple
+            >
+              <mat-icon>casino</mat-icon>
+              Roll a Reward for {{ restaurant.numberOfTicketsForRedemption }}
+              {{
+                restaurant.numberOfTicketsForRedemption == 1
+                  ? "Ticket"
+                  : "Tickets"
+              }}
+              <mat-icon>casino</mat-icon>
+            </button>
+
+            <div
+              class="reward-pool-button"
+              (click)="
+                openRewardPool(
+                  restaurant,
+                  getCustomerLoyaltyByRestaurantId(restaurant._id)?.level
+                )
+              "
+            >
+              <mat-icon>list</mat-icon>
+              <span>View Reward Pool</span>
+            </div>
+
+            <div *ngFor="let level of levels">
+              <div
+                *ngIf="
+                  getCustomerRewardsByRestaurantId(restaurant._id, level)
+                    ?.length > 0
+                "
+                class="customer-rewards-container"
+              >
+                <div>
+                  <span class="reward-level">{{ level }}</span>
+                  <img
+                    [src]="'/assets/' + level.toLowerCase() + '.png'"
+                    class="level-icon-small"
+                  />
+                </div>
+                <div
+                  *ngFor="
+                    let customerReward of getCustomerRewardsByRestaurantId(
+                      restaurant._id,
+                      level
+                    )
+                  "
+                  class="customer-reward-subcontainer"
+                >
+                  <div class="customer-reward">
+                    <span class="reward-description">
+                      {{ customerReward.content }}
+                    </span>
+                    <button
+                      mat-flat-button
+                      class="customer-reward-context-button gradient-button"
+                      (click)="
+                        openQRCodeDialog(restaurant._id, customerReward._id)
+                      "
+                    >
+                      Redeem Reward
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              *ngIf="
+                getCustomerLoyaltyByRestaurantId(restaurant._id)?.rewards
+                  .length == 0 &&
+                getCustomerLoyaltyByRestaurantId(restaurant._id)
+                  ?.numberOfTickets < restaurant.numberOfTicketsForRedemption
+              "
+              class="no-rewards-text"
+            >
+              No Obtained Rewards
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    id="canvas-container"
+    [hidden]="!levelUpOverlayOpened && !showLootBoxReward"
+  >
+    <canvas #canvas></canvas>
+  </div>
+</div>
+
+<div *ngIf="lootBoxOverlayOpened" class="overlay no-click">
+  <div
+    (click)="openLootBox()"
+    [ngClass]="{
+      'opened-loot-box-animation': openedLootBox && !showLootBoxReward,
+      'loot-box-animation': !openedLootBox
+    }"
+  ></div>
+  <div *ngIf="showLootBoxReward" class="loot-box-reward">
+    <img
+      [src]="'/assets/' + lootBoxReward.level.toLowerCase() + '.png'"
+      class="level-icon loot-box-reward-level"
+      [matTooltip]="lootBoxReward.level + ' reward!'"
+      matTooltipPosition="right"
+    />
+    <span class="loot-box-reward-text gradient-text">
+      Congratulations!
+    </span>
+    <span class="loot-box-reward-text gradient-text">
+      You receieved:
+    </span>
+    <span class="loot-box-reward-text gradient-text">
+      {{ lootBoxReward.content }}
+    </span>
+  </div>
+</div>
+
+<div
+  *ngIf="levelUpOverlayOpened"
+  class="overlay"
+  (click)="levelUpOverlayOpened = false; confetti.reset()"
+>
+  <div class="level-up-container">
+    <span *ngIf="showOldLevel" class="gradient-text level-up-text level-up-old">
+      {{ levelUp.oldLevel }}
+    </span>
+    <img
+      *ngIf="showOldLevel"
+      [src]="'/assets/' + levelUp.oldLevel.toLowerCase() + '.png'"
+      class="level-icon level-up-icon level-up-old"
+    />
+    <div *ngIf="showNewLevel" class="gradient-text level-up-text level-up-new">
+      You are now
+      <div>{{ levelUp.newLevel }}!</div>
+    </div>
+    <img
+      *ngIf="showNewLevel"
+      [src]="'/assets/' + levelUp.newLevel.toLowerCase() + '.png'"
+      class="level-icon level-up-icon level-up-new"
+    />
+  </div>
+</div>

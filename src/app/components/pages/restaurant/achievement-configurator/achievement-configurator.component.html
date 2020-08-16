@@ -1,0 +1,161 @@
+<div id="page">
+  <div id="content">
+    <div id="title">
+      <span class="gradient-text">Configure Achievements</span>
+    </div>
+
+    <div id="configurator-container">
+      <mat-form-field id="tickets-picker" appearance="outline">
+        <mat-label>Number of Tickets</mat-label>
+        <input
+          type="number"
+          id="tickets-picker-input"
+          matInput
+          min="1"
+          step="1"
+          placeholder="5"
+          autocomplete="off"
+          [ngModel]="restaurant?.numberOfTicketsForRedemption"
+          (ngModelChange)="restaurant.numberOfTicketsForRedemption = $event"
+        />
+        <mat-hint align="start"
+          ><strong
+            >Number of Tickets the customer must collect to Roll a Reward or
+            Level Up</strong
+          >
+        </mat-hint>
+      </mat-form-field>
+
+      <div id="achievements-title">
+        <span class="gradient-text">List of Achievements</span>
+      </div>
+
+      <mat-form-field appearance="fill" id="template-picker">
+        <mat-label>Choose an achievement template</mat-label>
+        <mat-select
+          #templatePicker
+          (selectionChange)="addAchievement($event.value)"
+        >
+          <mat-option
+            *ngFor="let template of templates"
+            [value]="template.templateNumber"
+            [disabled]="
+              !template.repeatable &&
+              getFirstAchievementByTemplateNumber(template.templateNumber)
+            "
+            >{{ template.content }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+      <div id="achievements">
+        <div
+          class="grouped-achievements"
+          *ngFor="let template of filterTemplatesByAchievements()"
+        >
+          <span class="grouped-achievement-header">
+            {{ template.content }}
+          </span>
+          <div
+            class="achievement"
+            *ngFor="
+              let achievement of filterAchievementsByTemplate(
+                template.templateNumber
+              );
+              let i = index
+            "
+          >
+            <div class="achievement-template-container">
+              <div
+                *ngFor="
+                  let achievementText of getTemplateByNumber(
+                    achievement.templateNumber
+                  ).value.split(':variable');
+                  let j = index
+                "
+              >
+                <span>{{ achievementText }}</span>
+
+                <mat-form-field
+                  class="achievement-field"
+                  *ngIf="
+                    getTemplateByNumber(achievement.templateNumber).variables[j]
+                  "
+                >
+                  <mat-label>{{
+                    getTemplateByNumber(achievement.templateNumber).variables[j]
+                      .variableDescription
+                  }}</mat-label>
+
+                  <input
+                    *ngIf="
+                      getTemplateByNumber(achievement.templateNumber).variables[
+                        j
+                      ].variableType == 'number';
+                      else stringInput
+                    "
+                    type="number"
+                    matInput
+                    min="0"
+                    autocomplete="off"
+                    [(ngModel)]="achievement.variables[j]"
+                    required
+                  />
+
+                  <ng-template #stringInput>
+                    <input
+                      type="text"
+                      matInput
+                      autocomplete="off"
+                      [(ngModel)]="achievement.variables[j]"
+                      required
+                    />
+                  </ng-template>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="achievement-context-container">
+              <mat-form-field appearance="outline">
+                <mat-label>Number of Tickets to award</mat-label>
+                <input
+                  type="number"
+                  matInput
+                  min="1"
+                  step="1"
+                  autocomplete="off"
+                  [(ngModel)]="achievement.numberOfTickets"
+                  required
+                />
+              </mat-form-field>
+            </div>
+
+            <button
+              mat-icon-button
+              color="warn"
+              title="Remove achievement"
+              class="remove-achievement-button"
+              (click)="
+                removeAchievement(
+                  achievement,
+                  calculateIndex(template.templateNumber, i)
+                )
+              "
+            >
+              <mat-icon>remove_circle</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="save-button-container">
+      <button
+        mat-raised-button
+        class="gradient-button"
+        (click)="saveAchievements()"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</div>

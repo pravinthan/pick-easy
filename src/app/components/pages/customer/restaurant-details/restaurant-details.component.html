@@ -1,0 +1,16 @@
+<mat-card>
+  <mat-card-header>
+    <img mat-card-avatar #logo [id]="data.restaurant._id + '-logo'" src="" />
+    <mat-card-title>{{ data.restaurant.name }}</mat-card-title>
+    <mat-card-subtitle
+      >{{ data.restaurant.cuisine }} Restaurant ·
+      {{ "$".repeat(data.restaurant.cost) }}</mat-card-subtitle
+    >
+  </mat-card-header>
+  <img mat-card-image #image [id]="data.restaurant._id + '-image'" src="" />
+  <mat-card-content>
+    <div class="description">
+      {{ data.restaurant.description }}
+    </div>
+  </mat-card-content>
+</mat-card>

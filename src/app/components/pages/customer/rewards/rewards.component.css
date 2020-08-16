@@ -1,0 +1,441 @@
+#page {
+  padding: 96px 32px 32px 32px;
+  min-width: 320px;
+}
+
+#content {
+  width: calc(100% - 64px);
+  max-width: 1500px;
+  margin: 0 auto;
+  background: #f5f5f5;
+  padding: 32px;
+  border-radius: 25px;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #e8285f, #f23f43);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#title {
+  display: flex;
+  justify-content: center;
+}
+
+#title > .gradient-text {
+  font-size: 32px;
+  line-height: 42px;
+}
+
+#search {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+#search > .mat-form-field {
+  width: 50%;
+}
+
+::ng-deep .mat-form-field-flex {
+  align-items: flex-end !important;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #e8285f, #f23f43);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+::ng-deep .mat-stroked-button .mat-ripple-element {
+  background-color: #f23f43;
+}
+
+.gradient-button {
+  color: white;
+  background: linear-gradient(to right, #e8285f, #f23f43);
+}
+
+#restaurants {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.restaurant {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem 1rem 1rem 1rem;
+  background-color: #0000000d;
+  border-radius: 30px;
+  min-width: 400px;
+  margin: 1rem;
+}
+
+.history-button {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  margin: 0 0.5rem 0.5rem 0;
+}
+
+.history-button mat-icon,
+.achievements-button mat-icon {
+  font-size: 24px;
+}
+
+.achievements-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  margin: 0 0 0.5rem 0.5rem;
+}
+
+.restaurant-name {
+  font-size: 32px;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.restaurant-name:hover {
+  text-decoration: underline;
+}
+
+.customer-rewards {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.customer-rewards-container,
+.customer-reward-subcontainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.customer-rewards-container {
+  border-radius: 20px;
+  background-color: #00000009;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 2rem;
+}
+
+.customer-rewards-container:first-of-type {
+  margin-top: 1rem;
+}
+
+.customer-reward {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.75rem;
+}
+
+.customer-reward-subcontainer {
+  border-bottom: 1px solid #00000026;
+  padding: 0.75rem 0;
+}
+
+.customer-reward-subcontainer:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.reward-level {
+  color: #00000088;
+  font-size: small;
+}
+
+.reward-description {
+  font-size: 16px;
+  max-width: 350px;
+  overflow-wrap: break-word;
+}
+
+.roll-reward-button,
+.customer-reward-context-button {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.reward-pool-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: grey;
+  cursor: pointer;
+  margin-top: 0.25rem;
+}
+
+.reward-pool-button > span {
+  text-decoration: underline;
+}
+
+.reward-pool-button > mat-icon {
+  margin-right: 0.2rem;
+}
+
+.disabled-button {
+  color: rgb(230, 230, 230);
+  background: #acacac;
+  cursor: default;
+}
+
+.customer-reward-context-button {
+  margin-left: 1rem;
+  min-width: min-content;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+@keyframes highlight {
+  0% {
+    background: rgba(250, 238, 9, 0.719);
+  }
+  100% {
+    background: none;
+  }
+}
+
+.highlight {
+  animation: highlight 3s;
+}
+
+.restaurant-header-container {
+  display: flex;
+  align-items: center;
+}
+
+.level-icon {
+  width: 30px;
+  margin-left: 1rem;
+}
+
+.level-icon-small {
+  width: 16px;
+  margin-bottom: -7px;
+  margin-left: 0.5rem;
+}
+
+.level-up-button {
+  color: white;
+  background-color: rgb(0, 177, 0);
+}
+
+.roll-reward-button,
+.level-up-button {
+  margin: 0.5rem 0 0.5rem 0;
+  height: 40px;
+  border-radius: 50px;
+}
+
+.no-rewards-text {
+  font-size: 18px;
+  margin-top: 1rem;
+  font-weight: 500;
+  color: #7c7c7ca3;
+}
+
+.loot-box-animation,
+.opened-loot-box-animation,
+.loot-box-reward {
+  height: 500px;
+  width: 500px;
+  border-radius: 50%;
+  background-color: white;
+  position: relative;
+}
+
+.loot-box-animation,
+.opened-loot-box-animation {
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.loot-box-animation {
+  background-image: url(/assets/unopened_loot_box.gif);
+}
+
+.opened-loot-box-animation {
+  background-image: url(/assets/opened_loot_box.gif);
+}
+
+.loot-box-reward {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.loot-box-reward-text {
+  font-size: 32px;
+  line-height: 40px;
+}
+
+.loot-box-reward-text:nth-last-child(2) {
+  margin-bottom: 0.5rem;
+}
+
+.loot-box-reward-level {
+  position: absolute;
+  bottom: 75%;
+  width: 75px;
+  margin: 0;
+}
+
+.overlay {
+  position: fixed;
+  display: none;
+  width: stretch;
+  height: stretch;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 1000;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay.no-click {
+  cursor: default;
+}
+
+.level-up-icon {
+  width: 200px;
+}
+
+@keyframes levelUpOld {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(2000px);
+  }
+}
+@keyframes levelUpNew {
+  from {
+    transform: translateY(-2000px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.level-up-old {
+  animation: levelUpOld 2s;
+  animation-timing-function: cubic-bezier(1, 0, 1, 1);
+}
+
+.level-up-new {
+  animation: levelUpNew 2s;
+}
+
+.level-up-container {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.level-up-text {
+  font-size: 60px;
+  line-height: 60px;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+#canvas-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.align-text-center,
+.level-up-text,
+.loot-box-reward-text,
+.no-rewards-text {
+  text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+  #page {
+    padding: 0;
+  }
+
+  #content {
+    border-radius: 0;
+    margin-top: 64px;
+    background: none;
+    padding: 16px 0;
+  }
+
+  .loot-box-animation,
+  .opened-loot-box-animation,
+  .loot-box-reward {
+    height: 400px;
+    width: 400px;
+  }
+
+  .loot-box-reward-text {
+    font-size: 28px;
+    line-height: 34px;
+  }
+
+  .loot-box-reward-level {
+    bottom: 74%;
+    width: 63px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  #search > .mat-form-field {
+    width: 100%;
+  }
+
+  .restaurant {
+    min-width: 250px;
+    margin: 1rem 0;
+    padding: 1rem 0.5rem;
+  }
+
+  .loot-box-animation,
+  .opened-loot-box-animation,
+  .loot-box-reward {
+    height: 300px;
+    width: 300px;
+  }
+
+  .loot-box-reward-text {
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  .loot-box-reward-level {
+    bottom: 72%;
+    width: 50px;
+  }
+
+  .customer-rewards-container {
+    margin: 0.5rem 1rem;
+  }
+}

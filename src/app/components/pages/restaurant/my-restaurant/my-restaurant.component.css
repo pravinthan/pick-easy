@@ -1,0 +1,109 @@
+#page {
+  padding: 96px 32px 32px 32px;
+  min-width: 320px;
+}
+
+#content {
+  width: calc(100% - 64px);
+  max-width: 600px;
+  margin: 0 auto;
+  background: #f5f5f5;
+  padding: 32px;
+  border-radius: 25px;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #e8285f, #f23f43);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#title {
+  display: flex;
+  justify-content: center;
+}
+
+#title > .gradient-text {
+  font-size: 32px;
+  line-height: 42px;
+}
+
+#info-container {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+#info-container > div {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+#info-container > div:last-of-type {
+  margin-bottom: 0;
+}
+
+mat-form-field {
+  width: stretch;
+}
+
+form,
+#image-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#image-upload > mat-form-field {
+  width: 50%;
+  margin-top: 1rem;
+}
+
+#image-upload > img {
+  max-width: 400px;
+  max-height: 400px;
+  height: 100%;
+  width: 100%;
+}
+
+#save-button {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+#cuisine-cost {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#cuisine-cost > mat-form-field {
+  width: 45%;
+}
+
+.gradient-button {
+  color: white;
+  background: linear-gradient(to right, #e8285f, #f23f43);
+}
+
+.mat-raised-button[disabled][disabled] {
+  color: rgba(255, 255, 255, 0.507);
+}
+
+@media only screen and (max-width: 768px) {
+  #page {
+    padding: 0;
+  }
+
+  #content {
+    border-radius: 0;
+    margin-top: 64px;
+    background: none;
+    padding: 16px 0;
+  }
+}

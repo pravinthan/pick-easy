@@ -1,0 +1,78 @@
+<div id="page">
+  <div id="content">
+    <div id="title">
+      <span class="gradient-text">Discover</span>
+    </div>
+
+    <div id="search">
+      <mat-form-field>
+        <mat-icon matPrefix>search</mat-icon>
+        <input
+          type="text"
+          placeholder="Search Restaurants"
+          matInput
+          [formControl]="myControl"
+          [matAutocomplete]="auto"
+          #search
+        />
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option
+            *ngFor="let option of filteredOptions | async"
+            [value]="option"
+          >
+            {{ option }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <div id="restaurants">
+      <div class="restaurant" *ngFor="let restaurant of restaurants">
+        <mat-card
+          class="restaurant-card"
+          *ngIf="
+            (filteredOptions | async).includes(restaurant.name) ||
+            search.value.length == 0
+          "
+        >
+          <mat-card-header>
+            <img mat-card-avatar #logo [id]="restaurant._id + '-logo'" src="" />
+            <mat-card-title [innerHTML]="restaurant.name"></mat-card-title>
+            <mat-card-subtitle
+              [innerHTML]="
+                restaurant.cuisine +
+                ' Restaurant · ' +
+                '$'.repeat(restaurant.cost)
+              "
+            >
+            </mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image #image [id]="restaurant._id + '-image'" src="" />
+          <mat-card-content>
+            <div class="description" [innerHTML]="restaurant.description"></div>
+            <div class="restaurant-nav-buttons">
+              <a
+                mat-stroked-button
+                routerLink="../achievements"
+                [queryParams]="{ restaurantName: restaurant.name }"
+                class="gradient-text-button"
+              >
+                <mat-icon>card_membership</mat-icon>
+                Achievements
+              </a>
+              <a
+                mat-stroked-button
+                routerLink="../rewards"
+                [queryParams]="{ restaurantName: restaurant.name }"
+                class="gradient-text-button"
+              >
+                <mat-icon>redeem</mat-icon>
+                Rewards
+              </a>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

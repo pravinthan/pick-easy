@@ -1,0 +1,280 @@
+#page {
+  padding: 96px 32px 32px 32px;
+  min-width: 320px;
+}
+
+#content {
+  width: calc(100% - 64px);
+  max-width: 1500px;
+  margin: 0 auto;
+  background: #f5f5f5;
+  padding: 32px;
+  border-radius: 25px;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #e8285f, #f23f43);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#title {
+  display: flex;
+  justify-content: center;
+}
+
+#title > .gradient-text {
+  font-size: 32px;
+  line-height: 42px;
+}
+
+#search {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+#search > .mat-form-field {
+  width: 50%;
+}
+
+::ng-deep .mat-form-field-flex {
+  align-items: flex-end !important;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #e8285f, #f23f43);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-button {
+  color: #e8285f;
+}
+
+::ng-deep .mat-stroked-button .mat-ripple-element {
+  background-color: #f23f43;
+}
+
+.gradient-button {
+  color: white;
+  background: linear-gradient(to right, #e8285f, #f23f43);
+}
+
+#restaurants {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.restaurant {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+  background-color: #0000000d;
+  border-radius: 30px;
+  min-width: 400px;
+  margin: 1rem;
+}
+
+.history-button {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  margin: 0 0.5rem 0.5rem 0;
+}
+
+.history-button mat-icon,
+.rewards-button mat-icon {
+  font-size: 24px;
+}
+
+.rewards-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  margin: 0 0 0.5rem 0.5rem;
+}
+
+.restaurant-name {
+  font-size: 32px;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.restaurant-name:hover {
+  text-decoration: underline;
+}
+
+.restaurant-achievements,
+.customer-achievements {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.customer-achievement-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.restaurant-achievement,
+.customer-achievement {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.customer-achievement-container,
+.restaurant-achievement {
+  border-bottom: 1px solid #00000026;
+  padding: 0.75rem 0;
+}
+
+.customer-achievement-container:last-of-type,
+.restaurant-achievement:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.customer-achievement {
+  padding-bottom: 0.75rem;
+}
+
+.achievement-description {
+  font-size: 16px;
+  max-width: 350px;
+  overflow-wrap: break-word;
+}
+
+.restaurant-achievement-activate-button,
+.customer-achievement-context-button {
+  margin-left: 1rem;
+  font-size: 14px;
+  font-weight: 500;
+  min-width: min-content;
+}
+
+.customer-achievement-progress-container {
+  display: flex;
+  align-items: center;
+}
+
+.customer-achievement-progress-hint {
+  white-space: nowrap;
+  margin-left: 1rem;
+}
+
+::ng-deep .mat-progress-bar-buffer {
+  background-color: #e9abac;
+}
+
+::ng-deep .mat-progress-bar-fill::after {
+  background: linear-gradient(to right, #e8285f, #f23f43);
+}
+
+.bold {
+  font-weight: bold;
+}
+
+#count-up-overlay {
+  position: fixed;
+  display: none;
+  width: stretch;
+  height: stretch;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 1000;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.count-up-hint {
+  font-size: 48px;
+  line-height: 48px;
+  text-align: center;
+}
+
+#count-up {
+  padding: 0.5rem 0;
+  font-size: 96px;
+  line-height: 96px;
+}
+
+#canvas-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.navigate-reward-button {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 25px;
+  padding: 0 5px;
+  margin-left: 0.25rem;
+}
+
+@keyframes highlight {
+  0% {
+    background: rgba(250, 238, 9, 0.719);
+  }
+  100% {
+    background: none;
+  }
+}
+
+.highlight {
+  animation: highlight 3s;
+}
+
+.name-level-container {
+  display: flex;
+  align-items: center;
+}
+
+.level-icon {
+  width: 30px;
+  margin-left: 1rem;
+}
+
+.align-text-center {
+  text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+  #page {
+    padding: 0;
+  }
+
+  #content {
+    border-radius: 0;
+    margin-top: 64px;
+    background: none;
+    padding: 16px 0;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  #search > .mat-form-field {
+    width: 100%;
+  }
+
+  .restaurant {
+    min-width: 250px;
+    margin: 1rem 0;
+    padding: 1.5rem;
+  }
+}

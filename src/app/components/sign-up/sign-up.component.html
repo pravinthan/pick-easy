@@ -1,0 +1,83 @@
+<div id="sign-up-container">
+  <span class="gradient-text">Sign Up</span>
+
+  <form #form="ngForm" id="sign-up-form" (ngSubmit)="signUp(form)">
+    <div class="full-width">
+      <mat-form-field class="names" style="margin-right: 1rem;">
+        <input
+          matInput
+          type="text"
+          name="firstName"
+          required
+          placeholder="First Name"
+          ngModel
+          minlength="1"
+          maxlength="20"
+          pattern="[a-zA-Z]+"
+          #firstName
+        />
+        <mat-hint align="start">Must be alphabetical</mat-hint>
+        <mat-hint align="end">{{ firstName.value.length }} / 20</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="names">
+        <input
+          matInput
+          type="text"
+          name="lastName"
+          required
+          placeholder="Last Name"
+          ngModel
+          minlength="1"
+          maxlength="20"
+          pattern="[a-zA-Z]+"
+          #lastName
+        />
+        <mat-hint align="start">Must be alphabetical</mat-hint>
+        <mat-hint align="end">{{ lastName.value.length }} / 20</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        name="username"
+        required
+        placeholder="Username"
+        ngModel
+        minlength="3"
+        maxlength="20"
+        pattern="[a-zA-Z0-9]+"
+        #username
+      />
+      <mat-hint align="start"
+        >Must be alphanumeric, 3-20 characters long</mat-hint
+      >
+      <mat-hint align="end">{{ username.value.length }} / 20</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        type="password"
+        name="password"
+        required
+        placeholder="Password"
+        ngModel
+        minlength="8"
+        maxlength="20"
+        #password
+      />
+      <mat-hint align="start">Must be 8-20 characters long</mat-hint>
+      <mat-hint align="end">{{ password.value.length }} / 20</mat-hint>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      class="gradient-button full-width"
+      [disabled]="loading || form.invalid"
+    >
+      Sign Up
+    </button>
+  </form>
+</div>

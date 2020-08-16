@@ -1,0 +1,154 @@
+<mat-sidenav-container class="sidebar-container">
+  <mat-sidenav #sidebar class="sidebar">
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <button
+          mat-icon-button
+          (click)="sidebar.close()"
+          class="toggle-sidebar"
+        >
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <div class="toolbar-title">
+          <img id="app-icon" src="/assets/pickeasy-logo.png" />
+          <span class="gradient-text app-logo-text">PickEasy</span>
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-nav-list>
+      <a
+        mat-list-item
+        (click)="sidebar.close()"
+        [routerLink]="
+          currentUser
+            ? currentUser.isRestaurantStaff
+              ? '/restaurant'
+              : '/customer'
+            : ''
+        "
+        routerLinkActive="is-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <mat-icon class="button-border gradient-text" mat-list-icon>
+          home
+        </mat-icon>
+        <span class="gradient-text">Home</span>
+      </a>
+      <a
+        *ngIf="currentUser && !currentUser.isRestaurantStaff"
+        mat-list-item
+        (click)="sidebar.close()"
+        routerLink="/customer/discover"
+        routerLinkActive="is-active"
+      >
+        <mat-icon class="button-border gradient-text" mat-list-icon>
+          storefront
+        </mat-icon>
+        <span class="gradient-text">Discover</span>
+      </a>
+      <a
+        *ngIf="currentUser && !currentUser.isRestaurantStaff"
+        mat-list-item
+        (click)="sidebar.close()"
+        routerLink="/customer/history"
+        routerLinkActive="is-active"
+      >
+        <mat-icon class="button-border gradient-text" mat-list-icon>
+          history
+        </mat-icon>
+        <span class="gradient-text">History</span>
+      </a>
+      <a
+        *ngIf="currentUser && !currentUser.isRestaurantStaff"
+        mat-list-item
+        (click)="sidebar.close()"
+        routerLink="/customer/achievements"
+        routerLinkActive="is-active"
+      >
+        <mat-icon class="button-border gradient-text" mat-list-icon>
+          card_membership
+        </mat-icon>
+        <span class="gradient-text">Achievements</span>
+      </a>
+      <a
+        *ngIf="currentUser && !currentUser.isRestaurantStaff"
+        mat-list-item
+        (click)="sidebar.close()"
+        routerLink="/customer/rewards"
+        routerLinkActive="is-active"
+      >
+        <mat-icon class="button-border gradient-text" mat-list-icon>
+          redeem
+        </mat-icon>
+        <span class="gradient-text">Rewards</span>
+      </a>
+
+      <a
+        *ngIf="currentUser && currentUser.isRestaurantStaff"
+        mat-list-item
+        (click)="sidebar.close()"
+        routerLink="/restaurant/my-restaurant"
+        routerLinkActive="is-active"
+      >
+        <mat-icon class="button-border gradient-text" mat-list-icon>
+          restaurant
+        </mat-icon>
+        <span class="gradient-text">My Restaurant</span>
+      </a>
+      <a
+        *ngIf="currentUser && currentUser.isRestaurantStaff"
+        mat-list-item
+        (click)="sidebar.close()"
+        routerLink="/restaurant/scan"
+        routerLinkActive="is-active"
+        [disabled]="!currentUser.createdRestaurant"
+      >
+        <mat-icon class="button-border gradient-text" mat-list-icon>
+          qr_code_scanner
+        </mat-icon>
+        <span class="gradient-text">Scan</span>
+      </a>
+      <a
+        *ngIf="currentUser && currentUser.isRestaurantStaff"
+        mat-list-item
+        (click)="sidebar.close()"
+        routerLink="/restaurant/achievements"
+        routerLinkActive="is-active"
+        [disabled]="!currentUser.createdRestaurant"
+      >
+        <mat-icon class="button-border gradient-text" mat-list-icon>
+          card_membership
+        </mat-icon>
+        <span class="gradient-text">Achievements</span>
+      </a>
+      <a
+        *ngIf="currentUser && currentUser.isRestaurantStaff"
+        mat-list-item
+        (click)="sidebar.close()"
+        routerLink="/restaurant/rewards"
+        routerLinkActive="is-active"
+        [disabled]="!currentUser.createdRestaurant"
+      >
+        <mat-icon class="button-border gradient-text" mat-list-icon>
+          redeem
+        </mat-icon>
+        <span class="gradient-text">Rewards</span>
+      </a>
+      <mat-divider></mat-divider>
+      <a mat-list-item (click)="signOut()" *ngIf="currentUser">
+        <mat-icon mat-list-icon class="gradient-text"
+          >power_settings_new</mat-icon
+        >
+        <span class="gradient-text">Sign Out</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-header (toggleSidebar)="sidebar.toggle()"></app-header>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<div id="sign-out-overlay" *ngIf="signingOut">
+  <mat-spinner color="accent"></mat-spinner>
+</div>

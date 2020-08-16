@@ -1,0 +1,20 @@
+.description {
+  padding: 1rem 0;
+}
+
+.mat-card {
+  box-shadow: none;
+}
+
+.customer-rewards-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  background-color: #00000009;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 1rem;
+}
+
+.customer-rewards-container:first-of-type {
+  margin-top: 1rem;
+}

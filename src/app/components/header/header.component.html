@@ -1,0 +1,166 @@
+<mat-toolbar id="toolbar">
+  <mat-toolbar-row>
+    <button
+      *ngIf="currentUser"
+      mat-icon-button
+      (click)="toggleSidebar.emit()"
+      class="toggle-sidebar"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <div class="space-evenly hide-mobile">
+      <a
+        mat-button
+        routerLink="/customer/discover"
+        *ngIf="currentUser && !currentUser.isRestaurantStaff"
+      >
+        <mat-icon class="gradient-text">storefront</mat-icon>
+        <span class="gradient-text">Discover</span>
+      </a>
+      <a
+        mat-button
+        routerLink="/customer/history"
+        *ngIf="currentUser && !currentUser.isRestaurantStaff"
+      >
+        <mat-icon class="gradient-text">history</mat-icon>
+        <span class="gradient-text">History</span>
+      </a>
+      <a
+        mat-button
+        routerLink="/restaurant/my-restaurant"
+        *ngIf="currentUser && currentUser.isRestaurantStaff"
+      >
+        <mat-icon class="gradient-text">restaurant</mat-icon>
+        <span class="gradient-text">My Restaurant</span>
+      </a>
+
+      <a
+        mat-button
+        routerLink="/restaurant/scan"
+        *ngIf="
+          currentUser &&
+          currentUser.isRestaurantStaff &&
+          currentUser.createdRestaurant
+        "
+      >
+        <mat-icon class="gradient-text">qr_code_scanner</mat-icon>
+        <span class="gradient-text">Scan</span>
+      </a>
+      <a
+        mat-button
+        disabled
+        *ngIf="
+          currentUser &&
+          currentUser.isRestaurantStaff &&
+          !currentUser.createdRestaurant
+        "
+        matTooltip="Create a restaurant to scan"
+      >
+        <mat-icon class="gradient-text disabled">qr_code_scanner</mat-icon>
+        <span class="gradient-text disabled">Scan</span>
+      </a>
+    </div>
+
+    <div class="logo-mobile">
+      <a
+        [routerLink]="
+          currentUser
+            ? currentUser.isRestaurantStaff
+              ? '/restaurant'
+              : '/customer'
+            : '/'
+        "
+        id="app-name"
+      >
+        <img id="app-icon" src="/assets/pickeasy-logo.png" />
+        <span class="gradient-text app-logo-text">PickEasy</span>
+      </a>
+    </div>
+
+    <div style="flex: 1;" class="hide-mobile">
+      <div class="space-evenly">
+        <a
+          mat-button
+          routerLink="/customer/achievements"
+          *ngIf="currentUser && !currentUser.isRestaurantStaff"
+        >
+          <mat-icon class="gradient-text">card_membership</mat-icon>
+          <span class="gradient-text">Achievements</span>
+        </a>
+        <a
+          mat-button
+          routerLink="/customer/rewards"
+          *ngIf="currentUser && !currentUser.isRestaurantStaff"
+        >
+          <mat-icon class="gradient-text">redeem</mat-icon>
+          <span class="gradient-text">Rewards</span>
+        </a>
+        <a
+          mat-button
+          routerLink="/restaurant/achievements"
+          *ngIf="
+            currentUser &&
+            currentUser.isRestaurantStaff &&
+            currentUser.createdRestaurant
+          "
+        >
+          <mat-icon class="gradient-text">card_membership</mat-icon>
+          <span class="gradient-text">Achievements</span>
+        </a>
+        <a
+          mat-button
+          disabled
+          *ngIf="
+            currentUser &&
+            currentUser.isRestaurantStaff &&
+            !currentUser.createdRestaurant
+          "
+          matTooltip="Create a restaurant to configure achievements"
+        >
+          <mat-icon class="gradient-text disabled">card_membership</mat-icon>
+          <span class="gradient-text disabled">Achievements</span>
+        </a>
+        <a
+          mat-button
+          routerLink="/restaurant/rewards"
+          *ngIf="
+            currentUser &&
+            currentUser.isRestaurantStaff &&
+            currentUser.createdRestaurant
+          "
+        >
+          <mat-icon class="gradient-text">redeem</mat-icon>
+          <span class="gradient-text">Rewards</span>
+        </a>
+        <a
+          mat-button
+          disabled
+          *ngIf="
+            currentUser &&
+            currentUser.isRestaurantStaff &&
+            !currentUser.createdRestaurant
+          "
+          matTooltip="Create a restaurant to configure rewards"
+        >
+          <mat-icon class="gradient-text disabled">redeem</mat-icon>
+          <span class="gradient-text disabled">Rewards</span>
+        </a>
+
+        <button
+          mat-button
+          id="sign-out-button"
+          class="gradient-text-button"
+          (click)="signOut()"
+          *ngIf="currentUser"
+        >
+          Sign Out
+        </button>
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div id="sign-out-overlay" *ngIf="signingOut">
+  <mat-spinner color="accent"></mat-spinner>
+</div>

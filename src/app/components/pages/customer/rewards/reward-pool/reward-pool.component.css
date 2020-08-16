@@ -1,0 +1,95 @@
+.grouped-reward-header {
+  color: rgba(0, 0, 0, 0.452);
+  padding: 0.75rem 0 0 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.level-icon-small {
+  width: 24px;
+  margin-left: 0.5rem;
+}
+
+.level-icon {
+  width: 30px;
+  margin-left: 1rem;
+}
+
+.customer-rewards-disabled {
+  color: rgb(185, 180, 180);
+}
+
+.container,
+.reward-pool,
+.reward-level-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-text {
+  font-size: 40px;
+  overflow-wrap: break-word;
+  line-height: 40px;
+  text-align: center;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #e8285f, #f23f43);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 32px;
+}
+
+.reward-pool-header {
+  margin-top: 1rem;
+}
+
+.reward {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem 2rem;
+  background-color: #0000000d;
+  border-radius: 30px;
+  margin: 0.5rem;
+}
+
+.reward-level {
+  font-size: 24px;
+}
+
+.reward-text {
+  font-size: 18px;
+}
+
+ul {
+  padding-left: 0.5rem;
+}
+
+li {
+  padding: 0.25rem 0;
+}
+
+.disabled-reward {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media only screen and (max-width: 1200px) {
+  .reward-pool {
+    flex-direction: column;
+  }
+}
