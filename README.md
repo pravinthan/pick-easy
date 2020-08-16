@@ -25,8 +25,8 @@
 
 ## Features
 
-- Mobile-friendly and Simple User Interface
-- Gamified and Intuitive User Experience
+- Mobile-friendly and simple UI
+- Gamified and intuitive UX
 
 **As a _restaurant_:**
 
