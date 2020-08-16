@@ -1,3 +1,57 @@
-# Team 4
+<p align="center">
+  <a href="https://pick-easy.pravinthan.com">
+    <img src="src/favicon.png" alt="PickEasy" width="12.5%" height="12.5%" />
+  </a>
+</p>
 
-This is team 4's repository. The repository is organized so our team's deliverables are stored inside folders based on deliverable numbers, along with their corresponding presentation. All of the code we are creating for our pickeasy project will be stored inside the pick-easy folder.
+<h1 align="center">
+  <a href="https://pick-easy.pravinthan.com">PickEasy</a>
+</h1>
+
+> A web app to allow restaurants to create an achievement-based, gamified loyalty and rewards system for their customers (featuring a mobile-friendly UI and animated levels, achievements and rewards).
+
+> This project won **1st place** as the **best project** in a course-wide competition (_Introduction to Software Engineering_).
+
+<h2>Table of Contents</h2>
+
+- [Demo](#demo)
+- [Features](#features)
+- [Contributors](#contributors)
+- [License](#license)
+
+## Demo
+
+[![PickEasy Demo](demo-thumbnail.jpg)](https://youtu.be/YQSpjoTv2oI "PickEasy Demo")
+
+## Features
+
+- Mobile-friendly and Simple User Interface
+- Gamified and Intuitive User Experience
+
+**As a _restaurant_:**
+
+- Configure gamified Achievements and Rewards that are tailored to your customer.
+- Scan Achievement and Reward QR Codes to allow customer to keep track of progress.
+
+**As a _customer_:**
+
+- Discover any of your favourite restaurants and check out its Achievements and Rewards.
+- Activate and present Achievement QR Codes to restaurants to earn progression and Tickets.
+- Spend Tickets to Level Up (Bronze - Diamond) to unlock better rewards.
+- Spend Tickets to Roll a Random Reward based on your level.
+
+## Contributors
+
+This project was made in collaboration with [Luke Zhang](https://github.com/Smawllie), [Evan Ng](https://github.com/Evan8456), [Anthony Alaimo](https://github.com/AnthonyAlaimo), [Jeremy (Chi Jian) Hsu](https://github.com/Jer3myHsu)
+
+## License
+
+[MIT](./LICENSE) &copy; [Pravinthan Prabagaran](https://pravinthan.com).
+
+[MIT](./LICENSE) &copy; [Luke Zhang](https://github.com/Smawllie).
+
+[MIT](./LICENSE) &copy; [Evan Ng](https://github.com/Evan8456).
+
+[MIT](./LICENSE) &copy; [Anthony Alaimo](https://github.com/AnthonyAlaimo).
+
+[MIT](./LICENSE) &copy; [Jeremy (Chi Jian) Hsu](https://github.com/Jer3myHsu).
