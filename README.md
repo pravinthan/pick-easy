@@ -22,9 +22,7 @@
 
 ## Demo
 
-TODO
-
-<!-- [![PickEasy Demo](demo-thumbnail.jpg)](https://youtu.be/YQSpjoTv2oI "PickEasy Demo") -->
+[![PickEasy Demo](demo-thumbnail.jpg)](https://youtu.be/GQPerJtF0yM "PickEasy Demo")
 
 ## Features
 
